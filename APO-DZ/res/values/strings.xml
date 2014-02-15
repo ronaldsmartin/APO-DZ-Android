@@ -7,5 +7,42 @@
     <string name="title_section2">Calendar</string>
     <string name="title_section3">Directory</string>
     <string name="title_section4">Bookmarks</string>
+    
+    <string name="sheet_list_header">Spreadsheets</string>
+    <string name="form_list_header">Forms</string>
+    <string name="site_list_header">Websites</string>
+    <string name="social_list_header">Social Media</string>
+    
+    <string-array name="sheet_links">
+        <item>Membership Sheet</item>
+        <item>Pledge Sheet</item>
+        <item>Big-Little Sheet</item>
+        <item>Food Group Sheet</item>
+    </string-array>
+    
+    <string-array name="form_links">
+        <item>Service Reporting Form</item>
+        <item>Service Reflection Survey</item>
+        <item>Fellowship Hosting</item>
+        <item>Fellowship Reporting</item>
+        <item>Food Group Reporting</item>
+        <item>Big-Little Reporting</item>
+        <item>Merit-Demerit Reporting</item>
+        <item>Reimbursement Reporting</item>
+        <item>Board Feedback</item>
+    </string-array>
+    
+    <string-array name="site_links">
+        <item>Service Calendar</item>
+        <item>National Site</item>
+        <item>Chapter Site</item>
+    </string-array>
+    
+    <string-array name="social_links">
+        <item>Youtube Channel</item>
+        <item>Instagram</item>
+        <item>Tumblr</item>
+        <item>APOut of Context</item>
+    </string-array>
 
 </resources>
