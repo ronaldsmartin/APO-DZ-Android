@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">APO-DZ</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">Brother Status</string>
+    <string name="title_section2">Calendar</string>
+    <string name="title_section3">Directory</string>
+    <string name="title_section4">Bookmarks</string>
+    
+    <string name="sheet_list_header">Spreadsheets</string>
+    <string name="form_list_header">Forms</string>
+    <string name="site_list_header">Websites</string>
+    <string name="social_list_header">Social Media</string>
+    
+    <string-array name="sheet_links">
+        <item>Membership Sheet</item>
+        <item>Pledge Sheet</item>
+        <item>Big-Little Sheet</item>
+        <item>Food Group Sheet</item>
+    </string-array>
+    
+    <string-array name="form_links">
+        <item>Service Reporting Form</item>
+        <item>Service Reflection Survey</item>
+        <item>Fellowship Hosting</item>
+        <item>Fellowship Reporting</item>
+        <item>Food Group Reporting</item>
+        <item>Big-Little Reporting</item>
+        <item>Merit-Demerit Reporting</item>
+        <item>Reimbursement Reporting</item>
+        <item>Board Feedback</item>
+    </string-array>
+    
+    <string-array name="site_links">
+        <item>Service Calendar</item>
+        <item>National Site</item>
+        <item>Chapter Site</item>
+        <item>Ye Olde Service Calendar</item>
+    </string-array>
+    
+    <string-array name="social_links">
+        <item>Youtube Channel</item>
+        <item>Instagram</item>
+        <item>Tumblr</item>
+        <item>APOut of Context</item>
+    </string-array>
+    
+    <string name="brother_sheet_url">&quot;https://docs.google.com/spreadsheet/ccc?key=0AkIjNxyzqN0_dFFWa2VCdnVOaDFvNmNoTEVaWDhoNHc&amp;usp=sharing&quot;</string>
+    <string name="pledge_sheet_url">&quot;https://docs.google.com/spreadsheet/ccc?key=0AvNcCQIvnV-ndHRVY0U4bTYtMF9mQ3RNX3I2a2lzQlE&amp;usp=sharing&quot;</string>
+    <string name="biglittle_sheet_url">&quot;https://docs.google.com/spreadsheet/ccc?key=0ApioopS8TfzIdC03ZnFzR2lCOGJXbUNGV2NaeUpHdEE#gid=0&quot;</string>
+    <string name="food_group_sheet">&quot;https://docs.google.com/spreadsheets/d/1LZmWdp9FZsFpNO-8cAxk2kcyisLQtBs6n5km_TtUL40/edit?usp=sharing&quot;</string>
+    <string name="service_reporting_form">&quot;https://docs.google.com/forms/d/1NQbz8yzaV3kxAqps4ovC48UkiH4qk5GJJYal7TPIBYw/viewform&quot;</string>
+    <string name="service_reflection_form">&quot;https://docs.google.com/forms/d/1ZajXpAjVOlcb2_MBGI1Lc2M7Wi0DrXQyQtFqWGS9tdY/viewform&quot;</string>
+    <string name="fellowship_hosting_form">&quot;https://docs.google.com/forms/d/1BwYuRn0_h0RbaEhZGTzjwYd4WSyIMA6unW9esTMk3sc/viewform&quot;</string>
+    <string name="fellowship_reporting_form">&quot;https://docs.google.com/forms/d/1sYN1pHUPyn3g2C6mKIVvwld4n_m4UYbSAHT9HmlyjgA/viewform&quot;</string>
+    <string name="food_group_reporting_form">&quot;https://docs.google.com/forms/d/1Tj8lgvzBmSTUVxB-FLcOZo01G_F0t7bDllzdW6pGbxo/viewform&quot;</string>
+    <string name="biglittle_reporting_form">&quot;https://docs.google.com/forms/d/1Ybzsj_cIPSF8xs_ubCQG_vD8xYViF3wwb_AcNNvDupQ/viewform&quot;</string>
+    <string name="merit_reporting_form">&quot;https://docs.google.com/forms/d/1lN1IIJa8nkNXdEYLa1zepNjosEDq2XPOr4GRBTvpWxQ/viewform&quot;</string>
+    <string name="reimbursement_form">&quot;http://form.jotform.us/form/40035236575148&quot;</string>
+    <string name="board_feedback_form"></string>
+    <string name="service_calendar_url">&quot;https://sites.google.com/site/aposervicecalendar/&quot;</string>
+    <string name="national_site_url">&quot;http://apo.org/&quot;</string>
+    <string name="chapter_site_url">&quot;http://upennapo.org/&quot;</string>
+    <string name="old_service_calendar_url">&quot;http://pennapo.forumotion.net/&quot;</string>
+    <string name="youtube_url">&quot;http://www.youtube.com/user/DZHistorian&quot;</string>
+    <string name="instagram_url">&quot;http://instagram.com/upennapo&quot;</string>
+    <string name="tumblr_url">&quot;http://upennapo.tumblr.com/&quot;</string>
+    <string name="apoutofcontext_url">&quot;http://apoutofcontext.tumblr.com/&quot;</string>
+    
+    
+
+</resources>
