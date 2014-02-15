@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
+	public static final int NUM_TABS = 4;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -122,22 +123,33 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show total number of pages.
+            return NUM_TABS;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             Locale l = Locale.getDefault();
+            String sectionName = "";
             switch (position) {
                 case 0:
-                    return getString(R.string.title_section1).toUpperCase(l);
+                	// Brother Status
+                	sectionName = getString(R.string.title_section1).toUpperCase(l);
+                	break;
                 case 1:
-                    return getString(R.string.title_section2).toUpperCase(l);
+                	// Calendar
+                	sectionName = getString(R.string.title_section2).toUpperCase(l);
+                	break;
                 case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
+                	// Directory
+                	sectionName = getString(R.string.title_section3).toUpperCase(l);
+                	break;
+                case 3:
+                	// Bookmarks
+                	sectionName = getString(R.string.title_section4).toUpperCase(l);
+                	break;
             }
-            return null;
+            return sectionName;
         }
     }
 
