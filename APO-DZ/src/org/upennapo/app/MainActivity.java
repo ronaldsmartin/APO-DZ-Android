@@ -119,6 +119,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         		urlArgs.putString(CalendarFragment.URL_KEY, "upennapo.org");
         		webCalendar.setArguments(urlArgs);
         		return webCalendar;
+        	case 3:
+        		//Helpful Links
+        		Fragment links = new HelpfulLinksFragment();
+        		return links;
 	        default:
 	            // getItem is called to instantiate the fragment for the given page.
 	            // Return a DummySectionFragment (defined as a static inner class
