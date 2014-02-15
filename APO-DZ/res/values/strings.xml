@@ -3,11 +3,19 @@
 
     <string name="app_name">APO-DZ</string>
     <string name="action_settings">Settings</string>
+    
+    <!-- Tab Names -->
     <string name="title_section1">Brother Status</string>
     <string name="title_section2">Calendar</string>
     <string name="title_section3">Directory</string>
     <string name="title_section4">Bookmarks</string>
     
+    <!-- Button Names -->
+    <string name="service_calendar_button">Service</string>
+    <string name="fellowship_calendar_button">Fellowship</string>
+    <string name="pledging_calendar_button">Pledging</string>
+    
+    <!-- Headers for Helpful Links -->
     <string name="sheet_list_header">Spreadsheets</string>
     <string name="form_list_header">Forms</string>
     <string name="site_list_header">Websites</string>

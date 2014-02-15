@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WebView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/calendar_webview"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/calendars"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-</WebView>
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout android:id="@+id/buttons"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        style="?android:attr/buttonBarStyle" >
+        
+        <Button
+            android:id="@+id/service_calendar_button"
+			android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	style="?android:attr/buttonBarButtonStyle"
+        	android:text="@string/service_calendar_button"
+        	android:onClick="openServiceCalendar" />
+        <Button
+            android:id="@+id/fellowship_calendar_button"
+			android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	style="?android:attr/buttonBarButtonStyle"
+        	android:text="@string/fellowship_calendar_button"
+        	android:onClick="openFellowshipCalendar" />
+        <Button
+            android:id="@+id/pledging_calendar_button"
+			android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	style="?android:attr/buttonBarButtonStyle"
+        	android:text="@string/pledging_calendar_button"
+        	android:onClick="openPledgingCalendar" />
+        
+    </LinearLayout>
+    
+    <WebView 
+	    android:id="@+id/calendar_webview"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent" >
+	</WebView>
+</LinearLayout>
