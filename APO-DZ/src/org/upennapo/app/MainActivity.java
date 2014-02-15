@@ -111,14 +111,24 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a DummySectionFragment (defined as a static inner class
-            // below) with the page number as its lone argument.
-            Fragment fragment = new DummySectionFragment();
-            Bundle args = new Bundle();
-            args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-            fragment.setArguments(args);
-            return fragment;
+        	switch (position) {
+        	case 1:
+        		// Calendar WebView
+        		Fragment webCalendar = new CalendarFragment();
+        		Bundle urlArgs = new Bundle();
+        		urlArgs.putString(CalendarFragment.URL_KEY, "upennapo.org");
+        		webCalendar.setArguments(urlArgs);
+        		return webCalendar;
+	        default:
+	            // getItem is called to instantiate the fragment for the given page.
+	            // Return a DummySectionFragment (defined as a static inner class
+	            // below) with the page number as its lone argument.
+	            Fragment fragment = new DummySectionFragment();
+	            Bundle args = new Bundle();
+	            args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+	            fragment.setArguments(args);
+	            return fragment;
+        	}
         }
 
         @Override
