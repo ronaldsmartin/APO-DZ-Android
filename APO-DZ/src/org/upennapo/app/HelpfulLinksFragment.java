@@ -16,6 +16,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+/**
+ * @author Dean Wilhelmi
+ * Based on tutorial from http://www.javacodegeeks.com/2013/06/android-asynctask-listview-json.html
+ */
 
 public class HelpfulLinksFragment extends Fragment {
 	/**
