@@ -119,6 +119,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         		urlArgs.putString(CalendarFragment.URL_KEY, getString(R.string.calendar_url));
         		webCalendar.setArguments(urlArgs);
         		return webCalendar;
+        	case 2:
+        		//Directory
+        		Fragment directory = new DirectoryFragment();
+        		return directory;
         	case 3:
         		//Helpful Links
         		Fragment links = new HelpfulLinksFragment();
