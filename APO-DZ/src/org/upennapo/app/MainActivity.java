@@ -116,7 +116,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         		// Calendar WebView
         		Fragment webCalendar = new CalendarFragment();
         		Bundle urlArgs = new Bundle();
-        		urlArgs.putString(CalendarFragment.URL_KEY, "upennapo.org");
+        		urlArgs.putString(CalendarFragment.URL_KEY, "https://github.com");
         		webCalendar.setArguments(urlArgs);
         		return webCalendar;
         	case 3:
@@ -165,6 +165,21 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             }
             return sectionName;
         }
+    }
+    
+    public void openServiceCalendar(View v){
+    	CalendarFragment calFragment = (CalendarFragment) mSectionsPagerAdapter.getItem(1);
+    	calFragment.openServiceCalendar(v);
+    }
+    
+    public void openFellowshipCalendar(View v){
+    	CalendarFragment calFragment = (CalendarFragment) mSectionsPagerAdapter.getItem(1);
+    	calFragment.openFellowshipCalendar(v);
+    }
+    
+    public void openPledgingCalendar(View v){
+    	CalendarFragment calFragment = (CalendarFragment) mSectionsPagerAdapter.getItem(1);
+    	calFragment.openPledgingCalendar(v);
     }
 
     /**
