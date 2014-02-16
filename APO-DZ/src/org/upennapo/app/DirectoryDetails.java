@@ -3,6 +3,7 @@ package org.upennapo.app;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,13 +36,20 @@ public class DirectoryDetails extends Activity {
 		TextView major = (TextView) findViewById(R.id.major);
 		major.setText(map.get(Brother.MAJOR_KEY));
 		
+		final String email = map.get(Brother.EMAIL_ADDRESS_KEY);
+		final String number = map.get(Brother.PHONE_NUMBER_KEY);
+		
 		Button email_b = (Button) findViewById(R.id.email_button);
 		email_b.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+				Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+				String aEmailList[] = { email };
+				emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
+				emailIntent.setType("text/plain");
+				startActivity(emailIntent);
 			}
 		});
 	}
