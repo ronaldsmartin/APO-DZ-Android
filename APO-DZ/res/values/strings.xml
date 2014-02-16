@@ -19,13 +19,13 @@
     <string name="site_list_header">Websites</string>
     <string name="social_list_header">Social Media</string>
     
+    <!-- Lists of Helpful Links -->
     <string-array name="sheet_links">
         <item>Membership Sheet</item>
         <item>Pledge Sheet</item>
         <item>Big-Little Sheet</item>
         <item>Food Group Sheet</item>
     </string-array>
-    
     <string-array name="form_links">
         <item>Service Reporting Form</item>
         <item>Service Reflection Survey</item>
@@ -37,14 +37,12 @@
         <item>Reimbursement Reporting</item>
         <item>Board Feedback</item>
     </string-array>
-    
     <string-array name="site_links">
         <item>Service Calendar</item>
         <item>National Site</item>
         <item>Chapter Site</item>
         <item>Ye Olde Service Calendar</item>
     </string-array>
-    
     <string-array name="social_links">
         <item>Youtube Channel</item>
         <item>Instagram</item>
@@ -52,6 +50,9 @@
         <item>APOut of Context</item>
     </string-array>
     
+    
+    
+    <!-- HELPFUL LINKS -->
     <string name="brother_sheet_url">&quot;https://docs.google.com/spreadsheet/ccc?key=0AkIjNxyzqN0_dFFWa2VCdnVOaDFvNmNoTEVaWDhoNHc&amp;usp=sharing&quot;</string>
     <string name="pledge_sheet_url">&quot;https://docs.google.com/spreadsheet/ccc?key=0AvNcCQIvnV-ndHRVY0U4bTYtMF9mQ3RNX3I2a2lzQlE&amp;usp=sharing&quot;</string>
     <string name="biglittle_sheet_url">&quot;https://docs.google.com/spreadsheet/ccc?key=0ApioopS8TfzIdC03ZnFzR2lCOGJXbUNGV2NaeUpHdEE#gid=0&quot;</string>
@@ -74,7 +75,7 @@
     <string name="tumblr_url">&quot;http://upennapo.tumblr.com/&quot;</string>
     <string name="apoutofcontext_url">&quot;http://apoutofcontext.tumblr.com/&quot;</string>
     
-    
-    
+    <!-- Bundle keys -->
+    <string name="dir_brother_number">Brother Number</string>
 
 </resources>
