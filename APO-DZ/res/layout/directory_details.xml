@@ -6,59 +6,113 @@
      >
 
     
-    
+    <!-- Name -->
     <TextView 
-       	android:paddingTop="@dimen/brother_detail_margin"
+       	android:paddingTop="@dimen/brother_detail_marginx2"
 	    android:paddingBottom="@dimen/brother_detail_margin"
-	    android:paddingLeft="@dimen/brother_detail_margin"
+	    android:paddingLeft="@dimen/left_margin_dd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text= "@string/name_dd" />
-    
+        android:text= "@string/name_dd"
+        android:textSize="@dimen/text_size_dd" />
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/brother_detail_margin"
 	    android:paddingBottom="@dimen/brother_detail_margin"
-	    android:paddingLeft="@dimen/brother_detail_margin"
-        android:text="naaammemee" />
+	    android:paddingLeft="@dimen/left_margin_dd"
+        android:text="naaammemee"
+        android:textSize="@dimen/text_size_dd" />
     
+    
+    <!-- Email -->
     <TextView 
        	android:paddingTop="@dimen/brother_detail_margin"
 	    android:paddingBottom="@dimen/brother_detail_margin"
-	    android:paddingLeft="@dimen/brother_detail_margin"
+	    android:paddingLeft="@dimen/left_margin_dd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text= "@string/email_dd" />
-    
+        android:text= "@string/email_dd"
+        android:textSize="@dimen/text_size_dd" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/brother_detail_margin"
-	    android:paddingBottom="@dimen/brother_detail_margin"
-        android:paddingLeft="@dimen/brother_detail_margin"
-        android:paddingRight="@dimen/brother_detail_margin"
-        android:orientation="horizontal"
-         >
-        
+        android:paddingLeft="@dimen/left_margin_dd"
+        android:paddingRight="@dimen/left_margin_dd"
+        android:orientation="horizontal" >
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:text="emmalll" />
-        
+            android:text="emmalll"
+            android:textSize="@dimen/text_size_dd" />
         <Button 
             android:id="@+id/email_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/email_button_dd"
+            android:textSize="@dimen/button_text_size"
             android:layout_alignParentRight="true" />
-        
     </RelativeLayout>
     
     
+    <!-- Phone -->
+    <TextView 
+       	android:paddingTop="@dimen/brother_detail_margin"
+	    android:paddingBottom="@dimen/brother_detail_margin"
+	    android:paddingLeft="@dimen/left_margin_dd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/phone_dd"
+        android:textSize="@dimen/text_size_dd" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/left_margin_dd"
+        android:paddingRight="@dimen/left_margin_dd"
+        android:orientation="horizontal" >
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="phonn"
+            android:textSize="@dimen/text_size_dd" />
+        <Button 
+            android:id="@+id/call_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/call_button_dd"
+            android:textSize="@dimen/button_text_size"
+            android:layout_alignParentRight="true" />
+        <Button 
+            android:id="@+id/text_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_button_dd"
+            android:textSize="@dimen/button_text_size"
+            android:layout_toLeftOf="@id/call_button" /> 
+    </RelativeLayout>
+    
+    <!-- Year, Pledge Class, Major
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:orientation="horizontal" >
+    	
+    	<TextView
+    	    android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	 >
+    	    
+    	</TextView>
+    		
+    
+    </LinearLayout> -->
+    	
 
 </LinearLayout>
