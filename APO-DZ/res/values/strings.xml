@@ -76,6 +76,6 @@
     <string name="apoutofcontext_url">&quot;http://apoutofcontext.tumblr.com/&quot;</string>
     
     <!-- Bundle keys -->
-    <string name="dir_brother_number">Brother Number</string>
+    <string name="dir_brother_data">Brother data</string>
 
 </resources>
