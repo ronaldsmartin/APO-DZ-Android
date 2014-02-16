@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.Comparator;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -60,6 +61,7 @@ public class DirectoryFragment extends Fragment{
 	    @Override
 	    protected void onPostExecute(Brother[] result) {
 	        directoryList = new ArrayList<Brother>(Arrays.asList(result));
+	        Collections.sort(directoryList, new BrotherComparator());
 	        for (Brother brother : directoryList) {
 	        	Log.d("brotherData", brother.toString());
 	        }
@@ -110,8 +112,14 @@ public class DirectoryFragment extends Fragment{
 				
 			});
 	        
-	    }
-	    
+	    }	    
+	}
+	
+	public class BrotherComparator implements Comparator<Brother> {
+		@Override
+		public int compare(Brother b1, Brother b2) {
+			return b1.First_Name.compareToIgnoreCase(b2.First_Name);
+		}
 	}
 	
 }

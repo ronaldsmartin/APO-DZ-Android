@@ -12,16 +12,16 @@ public class DirectoryDetails extends Activity {
 		setContentView(R.layout.directory_details);
 		TextView name = (TextView) findViewById(R.id.name);
 		HashMap<String,String> map = (HashMap<String, String>) getIntent().getSerializableExtra(getString(R.string.dir_brother_data));
-//		HashMap<String,String> map = (HashMap<String, String>) savedInstanceState.getSerializable(getString(R.string.dir_brother_data));
 		String preferredName = map.get(Brother.PREFERRED_NAME_KEY);
 		String firstName;
-		if (preferredName == ""){
+		if (preferredName.length() == 0){
 			firstName = map.get(Brother.FIRST_NAME_KEY);
 		}
 		else{
 			firstName = preferredName;
 		}
-//		if (preferredName != "") firstName = preferredName;
-		name.setText(firstName + " " + map.get(Brother.LAST_NAME_KEY));
+		name.setText(firstName + " " + map.get(Brother.LAST_NAME_KEY)); 
+		TextView emailAdd = (TextView) findViewById(R.id.email);
+		emailAdd.setText(map.get(Brother.EMAIL_ADDRESS_KEY));
 	}
 }
