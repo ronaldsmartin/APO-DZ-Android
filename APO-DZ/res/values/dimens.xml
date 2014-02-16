@@ -5,5 +5,10 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="helpful_links_header_size">30sp</dimen>
     <dimen name="brother_detail_margin">10dip</dimen>
+    <dimen name="brother_detail_marginx2">20dip</dimen>
+    <dimen name="left_margin_dd">15dip</dimen>
+    <dimen name="button_text_size">13sp</dimen>
+    <dimen name="text_size_dd">15sp</dimen>
+    
 
 </resources>
