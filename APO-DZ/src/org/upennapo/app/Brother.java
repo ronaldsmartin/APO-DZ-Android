@@ -14,7 +14,7 @@ public class Brother {
 	public static final String FIRST_NAME_KEY = "First_Name";
 	public static final String PREFERRED_NAME_KEY = "Preferred_Name";
 	public static final String PLEDGE_CLASS_KEY = "Pledge_Class";
-	public static final String EMAIL_ADDRESS_KEY = "E-Mail_Address";
+	public static final String EMAIL_ADDRESS_KEY = "Email_Address";
 	public static final String PHONE_NUMBER_KEY = "Phone_Number";
 	public static final String GRADUATION_YEAR_KEY = "Expected_Graduation_Year";
 	public static final String SCHOOL_KEY = "School";
@@ -22,17 +22,17 @@ public class Brother {
 	public static final String BIRTHDAY_KEY = "Birthday";
 	
 	// Instance Variables
-	public String lastName;
-	public String firstName;
+	public String Last_Name;
+	public String First_Name;
 
-	public String emailAddress;
-	public String phoneNumber;
+	public String Email_Address;
+	public String Phone_Number;
 	
-	public String pledgeClass;
-	public int graduationYear;
+	public String Pledge_Class;
+	public int Expected_Graduation_Year;
 	
-	public String school;
-	public String major;
+	public String School;
+	public String Major;
 	
-	public String birthday;
+	public String Birthday;
 }
