@@ -87,8 +87,11 @@
     
     
     <!-- Directory Details -->
-    <string name="name_dd">Name</string>
-    <string name="email_dd">E-Mail</string>
+    <string name="name_dd">NAME</string>
+    <string name="email_dd">E-MAIL</string>
     <string name="email_button_dd">e-mail</string>
+    <string name="phone_dd">PHONE</string>
+    <string name="call_button_dd">call</string>
+    <string name="text_button_dd">text</string>
     
 </resources>
