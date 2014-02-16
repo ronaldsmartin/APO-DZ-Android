@@ -25,5 +25,6 @@ public class DirectoryDetails extends Activity {
 		emailAdd.setText(map.get(Brother.EMAIL_ADDRESS_KEY));
 		TextView phone = (TextView) findViewById(R.id.phone);
 		phone.setText(map.get(Brother.PHONE_NUMBER_KEY));
+		
 	}
 }
