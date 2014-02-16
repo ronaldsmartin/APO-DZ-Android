@@ -83,4 +83,9 @@
     
     <!-- Bundle keys -->
     <string name="dir_brother_data">Brother data</string>
+    
+    
+    <!-- Directory Details -->
+    <string name="name_dd">Name: </string>
+    
 </resources>
