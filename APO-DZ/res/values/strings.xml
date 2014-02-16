@@ -4,6 +4,9 @@
     <string name="app_name">APO-DZ</string>
     <string name="action_settings">Settings</string>
     
+    <!-- Title Screen -->
+    <string name="login_screen_title"><b>DELTA ZETA CHAPTER</b></string>
+    
     <!-- Tab Names -->
     <string name="title_section1">Brother Status</string>
     <string name="title_section2">Calendar</string>

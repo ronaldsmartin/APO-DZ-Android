@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Custom Colors for Background -->
+    <color name="apo_blue" >#0033AB</color>
+    <color name="apo_yellow" >#F7B512</color>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/apo_blue" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="150dip"
+        android:layout_marginTop="20dip"
+        android:layout_marginBottom="20dip"
+        android:src="@drawable/APOlogofull" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/apo_yellow"
+        android:text="@string/login_screen_title"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</LinearLayout>
