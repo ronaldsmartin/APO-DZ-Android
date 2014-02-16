@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-     >
+    android:background="@color/apo_blue" >
 
     
     <!-- Name -->
@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text= "@string/name_dd"
+        android:textColor="@color/apo_yellow"
         android:textSize="@dimen/text_size_dd" />
     <TextView
         android:id="@+id/name"
@@ -23,6 +24,7 @@
 	    android:paddingBottom="@dimen/brother_detail_margin"
 	    android:paddingLeft="@dimen/left_margin_dd"
         android:text="naaammemee"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/text_size_dd" />
     
     
@@ -33,6 +35,7 @@
 	    android:paddingLeft="@dimen/left_margin_dd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/apo_yellow"
         android:text= "@string/email_dd"
         android:textSize="@dimen/text_size_dd" />
     <RelativeLayout
@@ -48,12 +51,14 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="emmalll"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_dd" />
         <Button 
             android:id="@+id/email_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/email_button_dd"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/button_text_size"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
@@ -67,6 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text= "@string/phone_dd"
+        android:textColor="@color/apo_yellow"
         android:textSize="@dimen/text_size_dd" />
     <RelativeLayout
         android:layout_width="match_parent"
@@ -81,12 +87,14 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:text="phonn"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_dd" />
         <Button 
             android:id="@+id/call_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/call_button_dd"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/button_text_size"
             android:layout_alignParentRight="true" />
         <Button 
@@ -94,6 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_button_dd"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/button_text_size"
             android:layout_toLeftOf="@id/call_button" /> 
     </RelativeLayout>
@@ -120,6 +129,7 @@
 	        	android:layout_height="wrap_content"
 	        	android:paddingTop="@dimen/brother_detail_margin"
 	    		android:paddingBottom="@dimen/brother_detail_margin"
+	    		android:textColor="@color/apo_yellow"
 	        	android:text="@string/year_dd"
 	        	android:gravity="center" />
 	    	<TextView
@@ -128,6 +138,7 @@
 	        	android:layout_height="wrap_content"
 	        	android:paddingTop="@dimen/brother_detail_margin"
 	    		android:paddingBottom="@dimen/brother_detail_margin"
+	    		android:textColor="@android:color/white"
 	        	android:text="yarrr"
 	        	android:gravity="center" />
 	    </LinearLayout> 
@@ -143,6 +154,7 @@
 	        	android:layout_height="wrap_content"
 	        	android:paddingTop="@dimen/brother_detail_margin"
 	    		android:paddingBottom="@dimen/brother_detail_margin"
+	    		android:textColor="@color/apo_yellow"
 	        	android:text="@string/pledge_dd"
 	        	android:gravity="center" />
 	    	<TextView 
@@ -151,6 +163,7 @@
 	        	android:layout_height="wrap_content"
 	        	android:paddingTop="@dimen/brother_detail_margin"
 	    		android:paddingBottom="@dimen/brother_detail_margin"
+	    		android:textColor="@android:color/white"
 	        	android:text="alphalhpap"
 	        	android:gravity="center" />
 	    </LinearLayout> 
@@ -163,6 +176,7 @@
        	android:layout_height="wrap_content"
        	android:paddingTop="@dimen/brother_detail_margin"
 	    android:paddingBottom="@dimen/brother_detail_margin"
+	    android:textColor="@color/apo_yellow"
        	android:text="@string/major_dd"
        	android:gravity="center" />
    	
@@ -173,6 +187,7 @@
        	android:paddingTop="@dimen/brother_detail_margin"
 	    android:paddingBottom="@dimen/brother_detail_margin"
        	android:gravity="center"
+       	android:textColor="@android:color/white"
        	android:text="majjorr" />
 
 </LinearLayout>
