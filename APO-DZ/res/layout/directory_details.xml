@@ -3,28 +3,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="@dimen/brother_detail_margin"
-    android:layout_marginBottom="@dimen/brother_detail_margin"
-    android:layout_marginLeft="@dimen/brother_detail_margin" >
+     >
 
     
     
     <TextView 
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text= "@string/name_dd" />
+       	android:paddingTop="@dimen/brother_detail_margin"
+	    android:paddingBottom="@dimen/brother_detail_margin"
+	    android:paddingLeft="@dimen/brother_detail_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/name_dd" />
+    
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/brother_detail_margin"
+	    android:paddingBottom="@dimen/brother_detail_margin"
+	    android:paddingLeft="@dimen/brother_detail_margin"
+        android:text="naaammemee" />
     
     <TextView 
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+       	android:paddingTop="@dimen/brother_detail_margin"
+	    android:paddingBottom="@dimen/brother_detail_margin"
+	    android:paddingLeft="@dimen/brother_detail_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@string/email_dd" />
     
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:paddingTop="@dimen/brother_detail_margin"
+	    android:paddingBottom="@dimen/brother_detail_margin"
+        android:paddingLeft="@dimen/brother_detail_margin"
+        android:paddingRight="@dimen/brother_detail_margin"
+        android:orientation="horizontal"
+         >
         
-    </LinearLayout>
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="emmalll" />
+        
+        <Button 
+            android:id="@+id/email_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email_button_dd"
+            android:layout_alignParentRight="true" />
+        
+    </RelativeLayout>
     
     
 
