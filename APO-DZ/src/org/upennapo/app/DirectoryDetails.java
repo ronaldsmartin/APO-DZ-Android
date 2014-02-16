@@ -10,6 +10,7 @@ public class DirectoryDetails extends Activity {
 		setContentView(R.layout.directory_details);
 		TextView name = (TextView) findViewById(R.id.name);
 		String preferredName = savedInstanceState.getString(Brother.PREFERRED_NAME_KEY);
+		
 		String firstName = savedInstanceState.getString(Brother.FIRST_NAME_KEY);
 		if (preferredName != "") firstName = preferredName;
 		name.setText(firstName + " " + savedInstanceState.getString(Brother.LAST_NAME_KEY));
