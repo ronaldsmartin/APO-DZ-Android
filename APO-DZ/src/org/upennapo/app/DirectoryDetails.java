@@ -25,6 +25,11 @@ public class DirectoryDetails extends Activity {
 		emailAdd.setText(map.get(Brother.EMAIL_ADDRESS_KEY));
 		TextView phone = (TextView) findViewById(R.id.phone);
 		phone.setText(map.get(Brother.PHONE_NUMBER_KEY));
-		
+		TextView year = (TextView) findViewById(R.id.year);
+		year.setText(map.get(Brother.GRADUATION_YEAR_KEY));
+		TextView pledge = (TextView) findViewById(R.id.pledge_class);
+		pledge.setText(map.get(Brother.PLEDGE_CLASS_KEY));
+		TextView major = (TextView) findViewById(R.id.major);
+		major.setText(map.get(Brother.MAJOR_KEY));
 	}
 }
