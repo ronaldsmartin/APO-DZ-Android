@@ -94,6 +94,7 @@ public class DirectoryFragment extends Fragment{
 					HashMap<String,String> broMap = new HashMap<String,String>();
 					broMap.put(Brother.LAST_NAME_KEY, b.Last_Name);
 					broMap.put(Brother.FIRST_NAME_KEY, b.First_Name);
+					broMap.put(Brother.PREFERRED_NAME_KEY, b.Preferred_Name);
 					broMap.put(Brother.EMAIL_ADDRESS_KEY, b.Email_Address);
 					broMap.put(Brother.PHONE_NUMBER_KEY, b.Phone_Number);
 					broMap.put(Brother.PLEDGE_CLASS_KEY, b.Pledge_Class);
