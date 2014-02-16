@@ -1,6 +1,7 @@
 package org.upennapo.app;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Arrays;
 import java.util.List;
@@ -86,6 +87,7 @@ public class DirectoryFragment extends Fragment{
 			for (Brother obj: directoryList){
 				firstLast.add(obj.First_Name + " " + obj.Last_Name);
 			}
+			Collections.sort(firstLast);
 			
 			// if this works
 			AlphabeticalAdapter adapt = new AlphabeticalAdapter(getActivity(), android.R.layout.simple_list_item_activated_1, firstLast);
