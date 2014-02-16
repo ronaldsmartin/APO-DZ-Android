@@ -1,22 +1,16 @@
 package org.upennapo.app;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +21,6 @@ import android.widget.ListView;
 public class DirectoryFragment extends Fragment{
 	
 	private List<Brother> directoryList;
-	private View view;
 	
 	public DirectoryFragment() {
     }
@@ -35,9 +28,9 @@ public class DirectoryFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		
-		view = inflater.inflate(R.layout.fragment_directory, container, false);
+		View view = inflater.inflate(R.layout.fragment_directory, container, false);
 		
-		
+
 		List<String> firstLast = new ArrayList<String>();
 		for (Brother obj: directoryList){
 			firstLast.add(obj.First_Name + " " + obj.Last_Name);
@@ -75,19 +68,14 @@ public class DirectoryFragment extends Fragment{
 			
 		});
 		
+		AsyncBrotherLoader loader = new AsyncBrotherLoader();
+		final String urlString = getString(R.string.directory_json_url);
+		loader.execute(urlString);
+		
 		return view;
 	}
 	
-	public class AsyncBrotherLoader extends AsyncTask<String, Void, List<Brother>> {
-
-		
-		
-	    @Override
-	    protected void onPostExecute(List<Brother> result) {            
-	        super.onPostExecute(result);
-	        directoryList = result;
-	        
-	    }
+	public class AsyncBrotherLoader extends AsyncTask<String, Void, Brother[]> {
 
 	    @Override
 	    protected void onPreExecute() {        
@@ -95,45 +83,18 @@ public class DirectoryFragment extends Fragment{
 	    }
 
 	    @Override
-	    protected List<Brother> doInBackground(String... params) {
-	        List<Brother> result = new ArrayList<Brother>();
-
-	        try {
-	            URL u = new URL(params[0]);
-
-	            HttpURLConnection conn = (HttpURLConnection) u.openConnection();
-	            conn.setRequestMethod("GET");
-
-	            conn.connect();
-	            InputStream is = conn.getInputStream();
-
-	            // Read the stream
-	            byte[] b = new byte[1024];
-	            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-	            while ( is.read(b) != -1)
-	                baos.write(b);
-
-	            String JSONResp = new String(baos.toByteArray());
-
-	            JSONArray arr = new JSONArray(JSONResp);
-	            for (int i=0; i < arr.length(); i++) {
-	                result.add(convertBrother(arr.getJSONObject(i)));
-	            }
-
-	            return result;
-	        } catch(Throwable t) {
-	            t.printStackTrace();
-	        }
-	        return null;
+	    protected Brother[] doInBackground(String... params) {
+	    	return ReadJSON.getDirectoryData(params[0]);
 	    }
 	    
-	    private Brother convertBrother(JSONObject obj) throws JSONException {
-	    	Brother brother = new Brother();
-	    	
-	    	return brother;
+	    @Override
+	    protected void onPostExecute(Brother[] result) {
+	        directoryList = new ArrayList<Brother>(Arrays.asList(result));
+	        for (Brother brother : directoryList) {
+	        	Log.d("brotherData", brother.toString());
+	        }
 	    }
-
+	    
 	}
 	
 }
