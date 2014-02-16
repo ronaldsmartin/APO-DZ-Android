@@ -1,7 +1,5 @@
 package org.upennapo.app;
 
-import org.upennapo.app.DirectoryFragment.AsyncBrotherLoader;
-
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;

@@ -61,8 +61,11 @@
         
     </LinearLayout>
     
-    <PersonName android:id="@+id/login_list"
+    <EditText android:id="@+id/login_name_field"
+        android:inputType="textPersonName"
         android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
         android:layout_marginTop="10dip"
         android:layout_marginBottom="10dip" />
         
