@@ -29,10 +29,18 @@ public class Brother {
 	public String Phone_Number;
 	
 	public String Pledge_Class;
-	public int Expected_Graduation_Year;
+	public String Expected_Graduation_Year;
 	
 	public String School;
 	public String Major;
 	
 	public String Birthday;
+	
+	@Override
+	public String toString() {
+		StringBuilder brotherBuilder = new StringBuilder();
+		brotherBuilder.append("First name: ");
+		brotherBuilder.append(First_Name);
+		return brotherBuilder.toString();
+	}
 }

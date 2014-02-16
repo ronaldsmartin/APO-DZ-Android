@@ -27,7 +27,11 @@ import com.google.gson.JsonParser;
  */
 public class ReadJSON {
 	
-	public static Brother[] parseJson(String jsonData) {
+	public static Brother[] getDirectoryData(String urlString) {
+		return parseJson(downloadJsonData(urlString));
+	}
+	
+	private static Brother[] parseJson(String jsonData) {
 		Gson gson = new Gson();
 		JsonParser parser = new JsonParser();
 		JsonObject map = parser.parse(jsonData).getAsJsonObject();
