@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class DirectoryDetails extends Activity {
@@ -31,5 +34,15 @@ public class DirectoryDetails extends Activity {
 		pledge.setText(map.get(Brother.PLEDGE_CLASS_KEY));
 		TextView major = (TextView) findViewById(R.id.major);
 		major.setText(map.get(Brother.MAJOR_KEY));
+		
+		Button email_b = (Button) findViewById(R.id.email_button);
+		email_b.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 }
