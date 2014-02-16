@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dip"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:fontFamily="sans-serif-light"
         android:text="@string/welcome_message"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -40,14 +40,14 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@@android:color/white"
         android:fontFamily="sans-serif-light" >
         
         <TextView
 	        android:id="@+id/logged_in_as"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:textColor="@color/white"
+	        android:textColor="@android:color/white"
 	        android:fontFamily="sans-serif-light"
 	        android:text="@string/login_status" />
         
@@ -55,12 +55,24 @@
 	        android:id="@+id/name"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:textColor="@color/white"
+	        android:textColor="@android:color/white"
 	        android:fontFamily="sans-serif-light"
 	        android:text="@string/brother_name" />
         
     </LinearLayout>
     
+    <PersonName android:id="@+id/login_list"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dip"
+        android:layout_marginBottom="10dip" />
+        
+    <Button 
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:paddingLeft="15dip"
+	    android:paddingRight="15dip"
+	    android:background="@color/apo_yellow"
+	    android:text="@string/login_button" />
     
-
 </LinearLayout>

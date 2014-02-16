@@ -102,5 +102,6 @@
 	<string name="brother_name">&quot;&quot;</string>
 	<string name="welcome_message">Welcome, Brother.</string>
 	<string name="login_status">Logged in as...</string>
+	<string name="login_button">Defend the Portal</string>
     
 </resources>
