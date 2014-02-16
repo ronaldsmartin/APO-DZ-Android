@@ -27,11 +27,32 @@ import com.google.gson.JsonParser;
  */
 public class ReadJSON {
 	
-	public static Brother[] getDirectoryData(String urlString) {
-		return parseJson(downloadJsonData(urlString));
+public static User getBrotherData(String urlString, String firstName, String lastName) {
+		
+		User person = new User();
+		for (User brother : parseSpreadsheetJson(urlString)) {
+			// if brother.firstname == firstName && brother.lastName == lastName then
+			// person = brother else null
+		}
+		
+		return person;
 	}
 	
-	private static Brother[] parseJson(String jsonData) {
+	private static User[] parseSpreadsheetJson(String jsonData) {
+		Gson gson = new Gson();
+		JsonParser parser = new JsonParser();
+		JsonObject map = parser.parse(jsonData).getAsJsonObject();
+		JsonArray brotherJsonArray = map.getAsJsonArray("records");
+		User[] brotherSheet = gson.fromJson(brotherJsonArray, User[].class);
+		
+		return brotherSheet;
+	}
+	
+	public static Brother[] getDirectoryData(String urlString) {
+		return parseDirectoryJson(downloadJsonData(urlString));
+	}
+	
+	private static Brother[] parseDirectoryJson(String jsonData) {
 		Gson gson = new Gson();
 		JsonParser parser = new JsonParser();
 		JsonObject map = parser.parse(jsonData).getAsJsonObject();
