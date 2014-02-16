@@ -4,6 +4,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="helpful_links_header_size">30sp</dimen>
-    <dimen name="brother_detail_margin">15dip</dimen>
+    <dimen name="brother_detail_margin">10dip</dimen>
 
 </resources>
