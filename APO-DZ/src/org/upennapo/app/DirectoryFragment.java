@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -39,28 +40,37 @@ public class DirectoryFragment extends Fragment{
 		
 		List<String> firstLast = new ArrayList<String>();
 		for (Brother obj: directoryList){
-			firstLast.add(obj.firstName + " " + obj.lastName);
+			firstLast.add(obj.First_Name + " " + obj.Last_Name);
 		}
 		
 		// if this works
 		AlphabeticalAdapter adapt = new AlphabeticalAdapter(getActivity(), android.R.layout.simple_list_item_activated_1, firstLast);
-		ListView list = (ListView) view.findViewById(R.id.name_list);
 		
 		// if it doesn't work
 //		ArrayAdapter<String> adapt = new ArrayAdapter<String>(getActivity(),
 //                android.R.layout.simple_list_item_activated_1, firstLast);
 		
+		
+		ListView list = (ListView) view.findViewById(R.id.name_list);
 		list.setAdapter(adapt);
 		
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			public void onItemClick(AdapterView <?> parent, View view, int position, long id) {
 				Brother b = directoryList.get(position);
-				HashMap broMap = new HashMap();
-//				broMap.put(Brother.LAST_NAME_KEY, b.lastName);
-//				broMap.put(Brother.FIRST_NAME_KEY, b.firstName);
-//				broMap.put(Brother.PREFERRED_NAME_KEY, );
-				Bundle dirArgs = new Bundle();
-				dirArgs.putSerializable("brother_data", broMap);
+				HashMap<String,String> broMap = new HashMap<String,String>();
+				broMap.put(Brother.LAST_NAME_KEY, b.Last_Name);
+				broMap.put(Brother.FIRST_NAME_KEY, b.First_Name);
+				broMap.put(Brother.EMAIL_ADDRESS_KEY, b.Email_Address);
+				broMap.put(Brother.PHONE_NUMBER_KEY, b.Phone_Number);
+				broMap.put(Brother.PLEDGE_CLASS_KEY, b.Pledge_Class);
+				broMap.put(Brother.GRADUATION_YEAR_KEY, String.valueOf(b.Expected_Graduation_Year));
+				broMap.put(Brother.SCHOOL_KEY, b.School);
+				broMap.put(Brother.MAJOR_KEY, b.Major);
+				broMap.put(Brother.BIRTHDAY_KEY, b.Birthday);
+				
+				Intent broPage = new Intent(getActivity(), DirectoryDetails.class);
+				broPage.putExtra(getString(R.string.dir_brother_data), broMap);
+				getActivity().startActivity(broPage);
 			}
 			
 		});
