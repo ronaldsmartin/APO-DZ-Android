@@ -12,14 +12,55 @@
         android:layout_height="150dip"
         android:layout_marginTop="20dip"
         android:layout_marginBottom="20dip"
-        android:src="@drawable/APOlogofull" />
+        android:src="@drawable/apologofull" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dip"
         android:textColor="@color/apo_yellow"
+        android:fontFamily="sans-serif-condensed"
+        android:textStyle="bold"
         android:text="@string/login_screen_title"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <TextView
+        android:id="@+id/welcome_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/welcome_message"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <LinearLayout
+        android:id="@+id/login_message"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-light" >
+        
+        <TextView
+	        android:id="@+id/logged_in_as"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="@color/white"
+	        android:fontFamily="sans-serif-light"
+	        android:text="@string/login_status" />
+        
+        <TextView
+	        android:id="@+id/name"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textColor="@color/white"
+	        android:fontFamily="sans-serif-light"
+	        android:text="@string/brother_name" />
+        
+    </LinearLayout>
+    
+    
 
 </LinearLayout>
