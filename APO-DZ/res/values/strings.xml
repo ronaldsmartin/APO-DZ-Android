@@ -99,5 +99,8 @@
     <string name="year_dd">YEAR</string>
     <string name="pledge_dd">PLEDGE CLASS</string>
 	<string name="major_dd">MAJOR</string>
+	<string name="brother_name">&quot;&quot;</string>
+	<string name="welcome_message">Welcome, Brother.</string>
+	<string name="login_status">Logged in as...</string>
     
 </resources>
