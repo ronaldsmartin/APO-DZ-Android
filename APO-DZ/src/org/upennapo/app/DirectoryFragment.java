@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -13,14 +14,19 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class DirectoryFragment extends Fragment{
 	
 	private List<Brother> directoryList;
+	private View view;
 	
 	public DirectoryFragment() {
     }
@@ -28,11 +34,36 @@ public class DirectoryFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		
-		View view = inflater.inflate(R.layout.fragment_directory, container, false);
+		view = inflater.inflate(R.layout.fragment_directory, container, false);
 		
-		//AsyncBrotherLoader loader = new AsyncBrotherLoader();
-		//loader.execute("URL");
 		
+		List<String> firstLast = new ArrayList<String>();
+		for (Brother obj: directoryList){
+			firstLast.add(obj.firstName + " " + obj.lastName);
+		}
+		
+		// if this works
+		AlphabeticalAdapter adapt = new AlphabeticalAdapter(getActivity(), android.R.layout.simple_list_item_activated_1, firstLast);
+		ListView list = (ListView) view.findViewById(R.id.name_list);
+		
+		// if it doesn't work
+//		ArrayAdapter<String> adapt = new ArrayAdapter<String>(getActivity(),
+//                android.R.layout.simple_list_item_activated_1, firstLast);
+		
+		list.setAdapter(adapt);
+		
+		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView <?> parent, View view, int position, long id) {
+				Brother b = directoryList.get(position);
+				HashMap broMap = new HashMap();
+//				broMap.put(Brother.LAST_NAME_KEY, b.lastName);
+//				broMap.put(Brother.FIRST_NAME_KEY, b.firstName);
+//				broMap.put(Brother.PREFERRED_NAME_KEY, );
+				Bundle dirArgs = new Bundle();
+				dirArgs.putSerializable("brother_data", broMap);
+			}
+			
+		});
 		
 		return view;
 	}
@@ -45,6 +76,7 @@ public class DirectoryFragment extends Fragment{
 	    protected void onPostExecute(List<Brother> result) {            
 	        super.onPostExecute(result);
 	        directoryList = result;
+	        
 	    }
 
 	    @Override

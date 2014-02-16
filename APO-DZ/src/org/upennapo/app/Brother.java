@@ -3,11 +3,14 @@
  */
 package org.upennapo.app;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * @author Ronald Martin
  *
  */
-public class Brother {
+public class Brother{
 	
 	// Keys
 	public static final String LAST_NAME_KEY = "Last_Name";
@@ -35,4 +38,7 @@ public class Brother {
 	public String major;
 	
 	public String birthday;
+
+
+
 }
