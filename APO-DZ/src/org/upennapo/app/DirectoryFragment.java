@@ -74,7 +74,7 @@ public class DirectoryFragment extends Fragment{
 				else firstName = obj.First_Name;
 				firstLast.add(firstName + " " + obj.Last_Name);
 			}
-			Collections.sort(firstLast);
+			// Collections.sort(firstLast);
 			
 			// if this works
 			AlphabeticalAdapter adapt = new AlphabeticalAdapter(getActivity(), android.R.layout.simple_list_item_activated_1, firstLast);
