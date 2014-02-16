@@ -5,11 +5,11 @@ import java.util.HashMap;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.View;
 
 public class DirectoryDetails extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,8 @@ public class DirectoryDetails extends Activity {
 		TextView major = (TextView) findViewById(R.id.major);
 		major.setText(map.get(Brother.MAJOR_KEY));
 		
+		final String email = map.get(Brother.EMAIL_ADDRESS_KEY);
+		final String number = map.get(Brother.PHONE_NUMBER_KEY);
 		
 		Button smsTo = (Button) findViewById(R.id.text_button);
 		smsTo.setOnClickListener(new OnClickListener () {
@@ -44,8 +46,8 @@ public class DirectoryDetails extends Activity {
 			public void onClick(View v) {
 				try {
 					Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-					sendIntent.putExtra("sms body", "default content");
 					sendIntent.setType("vnd.android-dir/mms-sms");
+					sendIntent.putExtra("address", number);
 					startActivity(sendIntent);
 				}
 				catch (Exception e) {
@@ -54,6 +56,21 @@ public class DirectoryDetails extends Activity {
 						Toast.LENGTH_LONG).show();
 					e.printStackTrace();
 				}
+			}
+		});
+				
+		
+		Button email_b = (Button) findViewById(R.id.email_button);
+		email_b.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+				String aEmailList[] = { email };
+				emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
+				emailIntent.setType("text/plain");
+				startActivity(emailIntent);
 			}
 		});
 	}
