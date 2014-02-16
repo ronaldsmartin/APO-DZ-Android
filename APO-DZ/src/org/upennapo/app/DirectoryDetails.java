@@ -3,12 +3,15 @@ package org.upennapo.app;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DirectoryDetails extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,26 @@ public class DirectoryDetails extends Activity {
 		final String email = map.get(Brother.EMAIL_ADDRESS_KEY);
 		final String number = map.get(Brother.PHONE_NUMBER_KEY);
 		
+		Button smsTo = (Button) findViewById(R.id.text_button);
+		smsTo.setOnClickListener(new OnClickListener () {
+			@Override 
+			public void onClick(View v) {
+				try {
+					Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+					sendIntent.setType("vnd.android-dir/mms-sms");
+					sendIntent.putExtra("address", number);
+					startActivity(sendIntent);
+				}
+				catch (Exception e) {
+					Toast.makeText(getApplicationContext(),
+						"SMS failed, please try again later!",
+						Toast.LENGTH_LONG).show();
+					e.printStackTrace();
+				}
+			}
+		});
+				
+		
 		Button email_b = (Button) findViewById(R.id.email_button);
 		email_b.setOnClickListener(new OnClickListener() {
 			
@@ -50,6 +73,21 @@ public class DirectoryDetails extends Activity {
 				emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
 				emailIntent.setType("text/plain");
 				startActivity(emailIntent);
+			}
+		});
+		
+		Button call_b = (Button) findViewById(R.id.call_button);
+		call_b.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				try {
+			        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+			        callIntent.setData(Uri.parse("tel:" + number));
+			        startActivity(callIntent);
+			    } catch (ActivityNotFoundException e) {
+			         e.printStackTrace();
+			    }
 			}
 		});
 	}
