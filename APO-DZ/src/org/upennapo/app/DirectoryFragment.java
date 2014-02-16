@@ -84,8 +84,11 @@ public class DirectoryFragment extends Fragment{
 	        
 	        
 	        List<String> firstLast = new ArrayList<String>();
+	        String firstName;
 			for (Brother obj: directoryList){
-				firstLast.add(obj.First_Name + " " + obj.Last_Name);
+				if (obj.Preferred_Name != "") firstName = obj.Preferred_Name;
+				else firstName = obj.First_Name;
+				firstLast.add(firstName + " " + obj.Last_Name);
 			}
 			Collections.sort(firstLast);
 			
