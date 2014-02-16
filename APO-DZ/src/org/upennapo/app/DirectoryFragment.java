@@ -20,7 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class DirectoryFragment extends Fragment{
 	
@@ -38,26 +40,6 @@ public class DirectoryFragment extends Fragment{
 		loader.execute(urlString);
 		
 		view = inflater.inflate(R.layout.fragment_directory, container, false);
-		
-//		try{
-//			loader.get(10000, TimeUnit.MILLISECONDS);
-//		}
-//		catch(TimeoutException e){
-//			//e.printStackTrace();
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			//e.printStackTrace();
-//		} catch (ExecutionException e) {
-//			// TODO Auto-generated catch block
-//			//e.printStackTrace();
-//		}
-
-		
-		
-		
-		
-		
-		
 
 		
 		return view;
@@ -84,8 +66,11 @@ public class DirectoryFragment extends Fragment{
 	        
 	        
 	        List<String> firstLast = new ArrayList<String>();
+	        String firstName;
 			for (Brother obj: directoryList){
-				firstLast.add(obj.First_Name + " " + obj.Last_Name);
+				if (obj.Preferred_Name != "") firstName = obj.Preferred_Name;
+				else firstName = obj.First_Name;
+				firstLast.add(firstName + " " + obj.Last_Name);
 			}
 			Collections.sort(firstLast);
 			
@@ -96,8 +81,11 @@ public class DirectoryFragment extends Fragment{
 //			ArrayAdapter<String> adapt = new ArrayAdapter<String>(getActivity(),
 //	                android.R.layout.simple_list_item_activated_1, firstLast);
 			
-			
+			ImageView im  = (ImageView) view.findViewById(R.id.viet);
+			TextView t = (TextView) view.findViewById(R.id.text);
 			ListView list = (ListView) view.findViewById(R.id.name_list);
+			
+			t.setText("");
 			list.setAdapter(adapt);
 			
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -106,6 +94,7 @@ public class DirectoryFragment extends Fragment{
 					HashMap<String,String> broMap = new HashMap<String,String>();
 					broMap.put(Brother.LAST_NAME_KEY, b.Last_Name);
 					broMap.put(Brother.FIRST_NAME_KEY, b.First_Name);
+					broMap.put(Brother.PREFERRED_NAME_KEY, b.Preferred_Name);
 					broMap.put(Brother.EMAIL_ADDRESS_KEY, b.Email_Address);
 					broMap.put(Brother.PHONE_NUMBER_KEY, b.Phone_Number);
 					broMap.put(Brother.PLEDGE_CLASS_KEY, b.Pledge_Class);
