@@ -20,7 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class DirectoryFragment extends Fragment{
 	
@@ -38,26 +40,6 @@ public class DirectoryFragment extends Fragment{
 		loader.execute(urlString);
 		
 		view = inflater.inflate(R.layout.fragment_directory, container, false);
-		
-//		try{
-//			loader.get(10000, TimeUnit.MILLISECONDS);
-//		}
-//		catch(TimeoutException e){
-//			//e.printStackTrace();
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			//e.printStackTrace();
-//		} catch (ExecutionException e) {
-//			// TODO Auto-generated catch block
-//			//e.printStackTrace();
-//		}
-
-		
-		
-		
-		
-		
-		
 
 		
 		return view;
@@ -99,8 +81,11 @@ public class DirectoryFragment extends Fragment{
 //			ArrayAdapter<String> adapt = new ArrayAdapter<String>(getActivity(),
 //	                android.R.layout.simple_list_item_activated_1, firstLast);
 			
-			
+			ImageView im  = (ImageView) view.findViewById(R.id.viet);
+			TextView t = (TextView) view.findViewById(R.id.text);
 			ListView list = (ListView) view.findViewById(R.id.name_list);
+			
+			t.setText("");
 			list.setAdapter(adapt);
 			
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

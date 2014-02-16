@@ -15,7 +15,8 @@
     
     <!-- URL for the Directory -->
     <string name="directory_json_url">
-        placeholder
+        &quot;https://script.google.com/macros/s/AKfycbxKHF4F1rmQ1rfyHBGPMKF16hwszqSoqIOCufO-1Mv4Xiztyvs/exec?id=0AoGYmWmGb8gAdDBXMm8ta2p6ekZjd1U5T3VHRVRfc3c&amp;sheet=ActiveBrotherDirectory&quot;
+        
         </string>
     
     
@@ -86,6 +87,6 @@
     
     
     <!-- Directory Details -->
-    <string name="name_dd">Name: </string>
+    <string name="name_dd">Name</string>
     
 </resources>
