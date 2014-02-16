@@ -16,7 +16,7 @@
     <!-- URL for the Directory -->
     <string name="directory_json_url">
         placeholder
-        </string>
+    </string>
     
     
     <!-- Headers for Helpful Links -->
@@ -71,7 +71,7 @@
     <string name="biglittle_reporting_form">&quot;https://docs.google.com/forms/d/1Ybzsj_cIPSF8xs_ubCQG_vD8xYViF3wwb_AcNNvDupQ/viewform&quot;</string>
     <string name="merit_reporting_form">&quot;https://docs.google.com/forms/d/1lN1IIJa8nkNXdEYLa1zepNjosEDq2XPOr4GRBTvpWxQ/viewform&quot;</string>
     <string name="reimbursement_form">&quot;http://form.jotform.us/form/40035236575148&quot;</string>
-    <string name="board_feedback_form"></string>
+    <string name="board_feedback_form">&quot;https://docs.google.com/forms/d/11I1-aVUOU7z0425Ovmg2EdIoabW_0RTLUJF7TDQeaXI/viewform&quot;</string>
     <string name="service_calendar_url">&quot;https://sites.google.com/site/aposervicecalendar/&quot;</string>
     <string name="national_site_url">&quot;http://apo.org/&quot;</string>
     <string name="chapter_site_url">&quot;http://upennapo.org/&quot;</string>
