@@ -118,7 +118,15 @@ public class DirectoryFragment extends Fragment{
 	public class BrotherComparator implements Comparator<Brother> {
 		@Override
 		public int compare(Brother b1, Brother b2) {
-			return b1.First_Name.compareToIgnoreCase(b2.First_Name);
+			String preferredName1 = b1.Preferred_Name;
+			String firstName1;
+			if (preferredName1.length() == 0) firstName1 = b1.First_Name;
+			else firstName1 = preferredName1;
+			String preferredName2 = b2.Preferred_Name;
+			String firstName2;
+			if (preferredName2.length() == 0) firstName2 = b2.First_Name;
+			else firstName2 = preferredName2;
+			return firstName1.compareToIgnoreCase(firstName2);
 		}
 	}
 	
