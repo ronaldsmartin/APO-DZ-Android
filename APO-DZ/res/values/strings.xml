@@ -15,7 +15,7 @@
     
     <!-- URL for the Directory -->
     <string name="directory_json_url">
-        &quot;https://script.google.com/macros/s/AKfycbxKHF4F1rmQ1rfyHBGPMKF16hwszqSoqIOCufO-1Mv4Xiztyvs/exec?id=0AoGYmWmGb8gAdDBXMm8ta2p6ekZjd1U5T3VHRVRfc3c&amp;sheet=ActiveBrotherDirectory&quot;
+        placeholder
     </string>
 
     
@@ -95,5 +95,6 @@
     <string name="text_button_dd">text</string>
     <string name="year_dd">YEAR</string>
     <string name="pledge_dd">PLEDGE CLASS</string>
+	<string name="major_dd">MAJOR</string>
     
 </resources>
