@@ -3,8 +3,13 @@ package org.upennapo.app;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.view.View;
 
 public class DirectoryDetails extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +36,25 @@ public class DirectoryDetails extends Activity {
 		pledge.setText(map.get(Brother.PLEDGE_CLASS_KEY));
 		TextView major = (TextView) findViewById(R.id.major);
 		major.setText(map.get(Brother.MAJOR_KEY));
+		
+		
+		Button smsTo = (Button) findViewById(R.id.text_button);
+		smsTo.setOnClickListener(new OnClickListener () {
+			@Override 
+			public void onClick(View v) {
+				try {
+					Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+					sendIntent.putExtra("sms body", "default content");
+					sendIntent.setType("vnd.android-dir/mms-sms");
+					startActivity(sendIntent);
+				}
+				catch (Exception e) {
+					Toast.makeText(getApplicationContext(),
+						"SMS failed, please try again later!",
+						Toast.LENGTH_LONG).show();
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }
