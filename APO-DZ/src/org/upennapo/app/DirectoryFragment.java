@@ -61,11 +61,7 @@ public class DirectoryFragment extends Fragment{
 	    @Override
 	    protected void onPostExecute(Brother[] result) {
 	        directoryList = new ArrayList<Brother>(Arrays.asList(result));
-	        Collections.sort(directoryList, new BrotherComparator());
-	        for (Brother brother : directoryList) {
-	        	Log.d("brotherData", brother.toString());
-	        }
-	        
+	        Collections.sort(directoryList, new BrotherComparator());        
 	        
 	        List<String> firstLast = new ArrayList<String>();
 	        String firstName;
