@@ -24,6 +24,7 @@ public class Brother {
 	// Instance Variables
 	public String Last_Name;
 	public String First_Name;
+	public String Preferred_Name;
 
 	public String Email_Address;
 	public String Phone_Number;
