@@ -93,5 +93,7 @@
     <string name="phone_dd">PHONE</string>
     <string name="call_button_dd">call</string>
     <string name="text_button_dd">text</string>
+    <string name="year_dd">YEAR</string>
+    <string name="pledge_dd">PLEDGE CLASS</string>
     
 </resources>
