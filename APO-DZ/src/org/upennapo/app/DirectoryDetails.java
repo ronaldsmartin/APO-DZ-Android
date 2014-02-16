@@ -23,5 +23,8 @@ public class DirectoryDetails extends Activity {
 		name.setText(firstName + " " + map.get(Brother.LAST_NAME_KEY)); 
 		TextView emailAdd = (TextView) findViewById(R.id.email);
 		emailAdd.setText(map.get(Brother.EMAIL_ADDRESS_KEY));
+		TextView phone = (TextView) findViewById(R.id.phone);
+		phone.setText(map.get(Brother.PHONE_NUMBER_KEY));
+		
 	}
 }
