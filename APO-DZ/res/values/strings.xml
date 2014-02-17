@@ -13,12 +13,17 @@
     <string name="title_section3">Directory</string>
     <string name="title_section4">Bookmarks</string>
     
+    <!-- Brother Status Work in Progress Labels -->
+    <string name="brother_status_wip_header">work in progress</string>
+    <string name="brother_status_wip_message">Please enjoy this picture instead.</string>
+    
     <!-- URL for all the Calendars -->
     <string name="calendar_url">&quot;https://www.google.com/calendar/embed?title=APO%20Calendar&amp;amp&amp;showTitle=0&amp;amp&amp;showDate=0&amp;amp&amp;showPrint=0&amp;amp&amp;showTz=0&amp;amp&amp;mode=AGENDA&amp;amp&amp;height=600&amp;amp&amp;wkst=1&amp;amp&amp;bgcolor=%23ffffff&amp;amp&amp;src=uieecnqfvhg1ojnvsp0nf3rfek%40group.calendar.google.com&amp;amp&amp;color=%232F6309&amp;amp&amp;src=apoexec.vpfellowship%40gmail.com&amp;amp&amp;color=%231B887A&amp;amp&amp;src=u088i696n6jak2mpranj291v8k%40group.calendar.google.com&amp;amp&amp;color=%23B1365F&amp;amp&amp;src=bkap2sjjoo0gcu8blq3mn3bnic%40group.calendar.google.com&amp;amp&amp;color=%23B1440E&amp;amp&amp;src=fn14o6l0c7ckl211s92auufsgk%40group.calendar.google.com&amp;amp&amp;color=%236B3304&amp;amp&amp;src=jff5h8mv741iur8s89rr58ki3g%40group.calendar.google.com&amp;amp&amp;color=%23865A5A&amp;amp&amp;src=0m74gt5so38uql7gtcspr3rjbo%40group.calendar.google.com&amp;amp&amp;color=%2342104A&amp;amp&amp;src=nmrpckn1c4g4nkhdrfpgs0grfk%40group.calendar.google.com&amp;amp&amp;color=%23853104&amp;amp&amp;src=2kb6a7ps3tqatsus6cnso3hvn8%40group.calendar.google.com&amp;amp&amp;color=%23182C57&amp;amp&amp;ctz=America%2FNew_York&quot;</string>    
     
     <!-- URL for the Directory -->
     <string name="directory_json_url">
-		p</string>
+		placeholder
+	</string>
 
 
     

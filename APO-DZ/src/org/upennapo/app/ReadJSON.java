@@ -29,16 +29,14 @@ public class ReadJSON {
 	
 	public static User getBrotherData(String urlString, String firstName, String lastName) {
 		
-		User person = new User();
 		for (User brother : parseSpreadsheetJson(urlString)) {
 			if (brother.Last_Name.equalsIgnoreCase(lastName) && 
 					(brother.First_Name.equalsIgnoreCase(firstName))) {
-				person = brother;
-				break;
+				return brother;
 			}
 		}
 		
-		return person;
+		return null;
 	}
 	
 	private static User[] parseSpreadsheetJson(String jsonData) {

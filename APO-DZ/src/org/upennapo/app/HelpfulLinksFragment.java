@@ -28,8 +28,8 @@ public class HelpfulLinksFragment extends Fragment {
      */
     public static final String ARG_SECTION_NUMBER = "section_number";
     public static final float HELPFUL_LINKS_HEADER_SIZE = 30;
-    public static final int HEADER_TEXT_COLOR = Color.WHITE;
-    public static final int HEADER_BACKGROUND_COLOR = Color.BLUE;
+    public int HEADER_TEXT_COLOR;
+    public int HEADER_BACKGROUND_COLOR;
     
 
     public HelpfulLinksFragment() {
@@ -40,7 +40,8 @@ public class HelpfulLinksFragment extends Fragment {
             Bundle savedInstanceState) {
     	
     	View view = inflater.inflate(R.layout.fragment_helpful_links, container, false);
-    	
+    	this.HEADER_TEXT_COLOR = getActivity().getResources().getColor(R.color.apo_yellow);
+    	this.HEADER_BACKGROUND_COLOR = getActivity().getResources().getColor(R.color.apo_blue);
     	
     	ListView sheetList = (ListView)view.findViewById(R.id.sheet_list);
     	
