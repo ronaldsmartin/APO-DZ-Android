@@ -6,8 +6,23 @@
     android:background="@color/apo_blue"
     android:orientation="vertical" >
 
+    <!-- Header -->
+    <TextView android:id="@+id/under_construction_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:gravity="center" 
+        android:background="@android:color/black"
+        android:fontFamily="sans-serif-condensed"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textColor="@color/apo_yellow"    
+        android:text="@string/under_construction_header"
+        style="@android:style/TextAppearance.Large"  />
+    
     <ImageView
         android:id="@+id/imageView1"
+        android:paddingTop="20dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/in_progress" />

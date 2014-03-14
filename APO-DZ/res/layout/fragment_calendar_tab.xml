@@ -5,6 +5,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <!-- Header -->
+    <TextView android:id="@+id/calendar_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:gravity="center" 
+        android:background="@android:color/black"
+        android:fontFamily="sans-serif-condensed"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textColor="@color/apo_yellow"    
+        android:text="@string/calendar_header"
+        style="@android:style/TextAppearance.Large"  />
+    
+    <!-- Calendars -->
     <WebView 
 	    android:id="@+id/calendar_webview"
 	    android:layout_width="fill_parent"
