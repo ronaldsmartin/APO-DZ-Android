@@ -105,8 +105,22 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+    	// TODO: brotherStatusFragment
+    	private Fragment brotherStatusFragment;
+    	private final Fragment calendarFragment     = new CalendarFragment();
+    	private final Fragment broDirectoryFragment = new DirectoryFragment();
+    	private final Fragment linksFragment        = new HelpfulLinksFragment();
+    	
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
+            init();
+        }
+        
+        private void init() {
+        	// Set up Calendar
+            Bundle urlArgs = new Bundle();
+    		urlArgs.putString(CalendarFragment.URL_KEY, getString(R.string.calendar_url));
+    		this.calendarFragment.setArguments(urlArgs);
         }
 
         @Override
@@ -114,19 +128,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         	switch (position) {
         	case 1:
         		// Calendar WebView
-        		Fragment webCalendar = new CalendarFragment();
-        		Bundle urlArgs = new Bundle();
-        		urlArgs.putString(CalendarFragment.URL_KEY, getString(R.string.calendar_url));
-        		webCalendar.setArguments(urlArgs);
-        		return webCalendar;
+        		return this.calendarFragment;
         	case 2:
-        		//Directory
-        		Fragment directory = new DirectoryFragment();
-        		return directory;
+        		// Directory
+        		return this.broDirectoryFragment;
         	case 3:
-        		//Helpful Links
-        		Fragment links = new HelpfulLinksFragment();
-        		return links;
+        		// Helpful Links
+        		return this.linksFragment;
 	        default:
 	            // getItem is called to instantiate the fragment for the given page.
 	            // Return a DummySectionFragment (defined as a static inner class

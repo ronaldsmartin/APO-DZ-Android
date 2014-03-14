@@ -15,12 +15,19 @@ class AlphabeticalAdapter extends ArrayAdapter<String> implements SectionIndexer
     private HashMap<String, Integer> alphaIndexer;
     private String[] sections;
 
-    public AlphabeticalAdapter(Context c, int resource, List<String> data)
-    {
+    public AlphabeticalAdapter(Context c, int resource, List<String> data) {
         super(c, resource, data);
-        alphaIndexer = new HashMap<String, Integer>();
-        for (int i = 0; i < data.size(); i++)
-        {
+        init(data);
+    }
+    
+    public AlphabeticalAdapter (Context context, int resource, int textViewResourceId, List<String> data) {
+    	super(context, resource, textViewResourceId, data);
+    	init(data);
+    }
+    
+    private void init(List<String> data) {
+    	alphaIndexer = new HashMap<String, Integer>();
+        for (int i = 0; i < data.size(); i++) {
             String s = data.get(i).substring(0, 1).toUpperCase();
             if (!alphaIndexer.containsKey(s))
                 alphaIndexer.put(s, i);
@@ -31,7 +38,7 @@ class AlphabeticalAdapter extends ArrayAdapter<String> implements SectionIndexer
         Collections.sort(sectionList);
         sections = new String[sectionList.size()];
         for (int i = 0; i < sectionList.size(); i++)
-            sections[i] = sectionList.get(i);   
+            sections[i] = sectionList.get(i);  
     }
 
     public int getPositionForSection(int section)

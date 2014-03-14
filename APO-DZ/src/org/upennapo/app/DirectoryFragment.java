@@ -33,6 +33,7 @@ public class DirectoryFragment extends Fragment{
 	public DirectoryFragment() {
     }
 	
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		
@@ -46,7 +47,7 @@ public class DirectoryFragment extends Fragment{
 		return view;
 	}
 	
-	public class AsyncBrotherLoader extends AsyncTask<String, Void, Brother[]> {
+	private class AsyncBrotherLoader extends AsyncTask<String, Void, Brother[]> {
 
 	    @Override
 	    protected void onPreExecute() {        
@@ -64,16 +65,16 @@ public class DirectoryFragment extends Fragment{
 	        Collections.sort(directoryList, new BrotherComparator());        
 	        
 	        List<String> firstLast = new ArrayList<String>();
-	        String firstName;
-			for (Brother obj: directoryList){
-				if (obj.Preferred_Name != "") firstName = obj.Preferred_Name;
-				else firstName = obj.First_Name;
-				firstLast.add(firstName + " " + obj.Last_Name);
+	       	for (Brother brother: directoryList) {
+				String firstName =
+					brother.Preferred_Name.equals("") ? brother.First_Name : brother.Preferred_Name;
+				firstLast.add(firstName + " " + brother.Last_Name);
 			}
 			// Collections.sort(firstLast);
 			
 			// if this works
-			AlphabeticalAdapter adapt = new AlphabeticalAdapter(getActivity(), android.R.layout.simple_list_item_activated_1, firstLast);
+			AlphabeticalAdapter adapt =
+				new AlphabeticalAdapter(getActivity(), R.layout.centered_textview, R.id.centered_text, firstLast);
 			
 			// if it doesn't work
 //			ArrayAdapter<String> adapt = new ArrayAdapter<String>(getActivity(),

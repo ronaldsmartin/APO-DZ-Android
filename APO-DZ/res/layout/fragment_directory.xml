@@ -4,26 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
     
-    <!--  
-    <TextView 
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-      	android:layout_height="wrap_content"
-        android:text="Loading..." />
+    <!-- Header -->
+    <TextView android:id="@+id/directory_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:gravity="center" 
+        android:background="@android:color/black"
+        android:fontFamily="sans-serif-condensed"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textColor="@color/apo_yellow"    
+        android:text="@string/brotherhood_directory_header"
+        style="@android:style/TextAppearance.Large"  />
     
-    <ImageView 
-      android:id="@+id/viet"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:src="@drawable/viet"	/>
-    -->
-    
+    <!-- Directory List -->
 	<ListView 
 	    android:id="@+id/name_list"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
 	    android:scrollbars="vertical"
 	    android:fastScrollEnabled="true" >
 	</ListView>

@@ -1,11 +1,15 @@
 package org.upennapo.app;
 
+import java.util.Locale;
+
 import com.commonsware.cwac.merge.MergeAdapter;
 
+import android.R.style;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -17,7 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 /**
- * @author Dean Wilhelmi
+ * @author Dean Wilhelmi & Ronald Martin
  * Based on tutorial from http://www.javacodegeeks.com/2013/06/android-asynctask-listview-json.html
  */
 
@@ -27,9 +31,9 @@ public class HelpfulLinksFragment extends Fragment {
      * fragment.
      */
     public static final String ARG_SECTION_NUMBER = "section_number";
-    public static final float HELPFUL_LINKS_HEADER_SIZE = 30;
-    public int HEADER_TEXT_COLOR;
-    public int HEADER_BACKGROUND_COLOR;
+    public static final float HELPFUL_LINKS_HEADER_SIZE = 22;
+    private int HEADER_TEXT_COLOR;
+    private int HEADER_BACKGROUND_COLOR;
     
 
     public HelpfulLinksFragment() {
@@ -41,55 +45,55 @@ public class HelpfulLinksFragment extends Fragment {
     	
     	View view = inflater.inflate(R.layout.fragment_helpful_links, container, false);
     	this.HEADER_TEXT_COLOR = getActivity().getResources().getColor(R.color.apo_yellow);
-    	this.HEADER_BACKGROUND_COLOR = getActivity().getResources().getColor(R.color.apo_blue);
+    	this.HEADER_BACKGROUND_COLOR = Color.BLACK;
+    	ListView sheetList = (ListView) view.findViewById(R.id.sheet_list);
     	
-    	ListView sheetList = (ListView)view.findViewById(R.id.sheet_list);
     	
-    	
-    	String[] sheets = getResources().getStringArray(R.array.sheet_links);
+    	final String[] sheets = getResources().getStringArray(R.array.sheet_links);
     	ArrayAdapter<String> sheetsAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_activated_1, sheets);
-    	
-    	String[] forms = getResources().getStringArray(R.array.form_links);
+                R.layout.centered_textview, R.id.centered_text, sheets);
+
+    	final String[] forms = getResources().getStringArray(R.array.form_links);
     	ArrayAdapter<String> formsAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_activated_1, forms);
+    			R.layout.centered_textview, R.id.centered_text, forms);
     	
-    	String[] sites = getResources().getStringArray(R.array.site_links);
+    	final String[] sites = getResources().getStringArray(R.array.site_links);
     	ArrayAdapter<String> sitesAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_activated_1, sites);
+    			R.layout.centered_textview, R.id.centered_text, sites);
     	
-    	String[] socials = getResources().getStringArray(R.array.social_links);
+    	final String[] socials = getResources().getStringArray(R.array.social_links);
     	ArrayAdapter<String> socialsAdapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_activated_1, socials);
+    			R.layout.centered_textview, R.id.centered_text, socials);
     	
-    	
+    	// Set text for headers.
     	TextView sheetHeaderView = new TextView(getActivity());
     	sheetHeaderView.setText(R.string.sheet_list_header);
-    	sheetHeaderView.setTextSize(HELPFUL_LINKS_HEADER_SIZE);
-    	sheetHeaderView.setGravity(Gravity.CENTER);
-    	sheetHeaderView.setTextColor(HEADER_TEXT_COLOR);
-    	sheetHeaderView.setBackgroundColor(HEADER_BACKGROUND_COLOR);
     	
     	TextView formHeaderView = new TextView(getActivity());
     	formHeaderView.setText(R.string.form_list_header);
-    	formHeaderView.setTextSize(HELPFUL_LINKS_HEADER_SIZE);
-    	formHeaderView.setGravity(Gravity.CENTER);
-    	formHeaderView.setTextColor(HEADER_TEXT_COLOR);
-    	formHeaderView.setBackgroundColor(HEADER_BACKGROUND_COLOR);
     	
     	TextView siteHeaderView = new TextView(getActivity());
     	siteHeaderView.setText(R.string.site_list_header);
-    	siteHeaderView.setTextSize(HELPFUL_LINKS_HEADER_SIZE);
-    	siteHeaderView.setGravity(Gravity.CENTER);
-    	siteHeaderView.setTextColor(HEADER_TEXT_COLOR);
-    	siteHeaderView.setBackgroundColor(HEADER_BACKGROUND_COLOR);
     	
     	TextView socialHeaderView = new TextView(getActivity());
     	socialHeaderView.setText(R.string.social_list_header);
-    	socialHeaderView.setTextSize(HELPFUL_LINKS_HEADER_SIZE);
-    	socialHeaderView.setGravity(Gravity.CENTER);
-    	socialHeaderView.setTextColor(HEADER_TEXT_COLOR);
-    	socialHeaderView.setBackgroundColor(HEADER_BACKGROUND_COLOR);
+    	
+    	// Set the font and background for headers
+    	final Locale l = Locale.getDefault();
+    	final Typeface headerTypeface = Typeface.create("sans-serif-condensed", Typeface.BOLD);
+    	final float scale = getResources().getDisplayMetrics().density;
+    	final int padding = (int) (10*scale + 0.5f);
+    	final TextView[] headers = {sheetHeaderView, formHeaderView, siteHeaderView, socialHeaderView};
+    	for (TextView header : headers) {
+    		final String headerName = header.getText().toString().toUpperCase(l);
+    		header.setTypeface(headerTypeface);
+    		header.setText(headerName);
+    		header.setTextSize(HELPFUL_LINKS_HEADER_SIZE);
+        	header.setGravity(Gravity.CENTER);
+        	header.setTextColor(HEADER_TEXT_COLOR);
+        	header.setBackgroundColor(HEADER_BACKGROUND_COLOR);
+        	header.setPadding(0, padding, 0, padding);
+    	}
     	
     	MergeAdapter myMergeAdapter = new MergeAdapter();
     	myMergeAdapter.addView(sheetHeaderView); 
@@ -107,117 +111,83 @@ public class HelpfulLinksFragment extends Fragment {
     	sheetList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
     		
     		public void onItemClick(AdapterView <?> parent, View view, int position, long id) {
-    			// When clicked perform some action...
+    			// When clicked open the URL specified by this intent.
+    			String url;
     			switch (position){
-    			// start Spreadsheets
-    			case 1:
-    				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.brother_sheet_url)));
-                    startActivity(i);
-                    break;
-    			case 2:
-    				Intent i2 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.pledge_sheet_url)));
-                    startActivity(i2);
-                    break;
-    			case 3:
-    				Intent i3 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.biglittle_sheet_url)));
-                    startActivity(i3);
-                    break;
-    			case 4:
-    				Intent i4 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.food_group_sheet)));
-                    startActivity(i4);
-                    break;
-                // start Forms
-    			case 6:
-    				Intent i6 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.service_reporting_form)));
-                    startActivity(i6);
-                    break;
-    			case 7:
-    				Intent i7 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.service_reflection_form)));
-                    startActivity(i7);
-                    break;
-    			case 8:
-    				Intent i8 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.fellowship_hosting_form)));
-                    startActivity(i8);
-                    break;
-    			case 9:
-    				Intent i9 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.fellowship_reporting_form)));
-                    startActivity(i9);
-                    break;
-    			case 10:
-    				Intent i10 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.food_group_reporting_form)));
-                    startActivity(i10);
-                    break;
-    			case 11:
-    				Intent i11 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.biglittle_reporting_form)));
-                    startActivity(i11);
-                    break;
-    			case 12:
-    				Intent i12 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.merit_reporting_form)));
-                    startActivity(i12);
-                    break;
-    			case 13:
-    				Intent i13 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.reimbursement_form)));
-                    startActivity(i13);
-                    break;
-    			case 14:
-    				Intent i14 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.board_feedback_form)));
-                    startActivity(i14);
-                    break;
-                // Start Sites
-    			case 16:
-    				Intent i16 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.service_calendar_url)));
-                    startActivity(i16);
-                    break;
-    			case 17:
-    				Intent i17 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.national_site_url)));
-                    startActivity(i17);
-                    break;
-    			case 18:
-    				Intent i18 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.chapter_site_url)));
-                    startActivity(i18);
-                    break;
-    			case 19:
-    				Intent i19 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.old_service_calendar_url)));
-                    startActivity(i19);
-                    break;
-                // Start Social
-    			case 21:
-    				Intent i21 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.youtube_url)));
-                    startActivity(i21);
-                    break;
-    			case 22:
-    				Intent i22 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.instagram_url)));
-                    startActivity(i22);
-                    break;
-    			case 23:
-    				Intent i23 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.tumblr_url)));
-                    startActivity(i23);
-                    break;
-    			case 24:
-    				Intent i24 = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.apoutofcontext_url)));
-                    startActivity(i24);
-                    break;
+	    			// start Spreadsheets
+	    			case 1:
+	    				url = getString(R.string.brother_sheet_url);
+	                    break;
+	    			case 2:
+	    				url = getString(R.string.pledge_sheet_url);
+	                    break;
+	    			case 3:
+	    				url = getString(R.string.biglittle_sheet_url);
+	                    break;
+	    			case 4:
+	    				url = getString(R.string.food_group_sheet);
+	                    break;
+	                // start Forms
+	    			case 6:
+	    				url = getString(R.string.service_reporting_form);
+	                    break;
+	    			case 7:
+	    				url = getString(R.string.service_reflection_form);
+	                    break;
+	    			case 8:
+	    				url = getString(R.string.fellowship_hosting_form);
+	                    break;
+	    			case 9:
+	    				url = getString(R.string.fellowship_reporting_form);
+	                    break;
+	    			case 10:
+	    				url = getString(R.string.food_group_reporting_form);
+	                    break;
+	    			case 11:
+	    				url = getString(R.string.biglittle_reporting_form);
+	                    break;
+	    			case 12:
+	    				url = getString(R.string.merit_reporting_form);
+	                    break;
+	    			case 13:
+	    				url = getString(R.string.reimbursement_form);
+	                    break;
+	    			case 14:
+	    				url = getString(R.string.board_feedback_form);
+	                    break;
+	                // Start Sites
+	    			case 16:
+	    				url = getString(R.string.service_calendar_url);
+	                    break;
+	    			case 17:
+	    				url = getString(R.string.national_site_url);
+	                    break;
+	    			case 18:
+	    				url = getString(R.string.chapter_site_url);
+	                    break;
+	    			case 19:
+	    				url = getString(R.string.old_service_calendar_url);
+	                    break;
+	                // Start Social
+	    			case 21:
+	    				url = getString(R.string.youtube_url);
+	                    break;
+	    			case 22:
+	    				url = getString(R.string.instagram_url);
+	                    break;
+	    			case 23:
+	    				url = getString(R.string.tumblr_url);
+	                    break;
+	    			case 24:
+	    				url = getString(R.string.apoutofcontext_url);
+	                    break;
+                    default:
+                    	url = getString(R.string.chapter_site_url);
     			}
+    			Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+    			startActivity(i);
     		}
-		});
-    	
-//    	String[] sites = getResources().getStringArray(R.array.site_links);
-//    	ArrayAdapter<String> sitesAdapter = new ArrayAdapter<String>(getActivity(),
-//                android.R.layout.simple_list_item_activated_1, sites);
-//    	siteList.setAdapter(sitesAdapter);
-//    	
-//    	String[] socials = getResources().getStringArray(R.array.social_links);
-//    	ArrayAdapter<String> socialsAdapter = new ArrayAdapter<String>(getActivity(),
-//                android.R.layout.simple_list_item_activated_1, socials);
-//    	socialList.setAdapter(socialsAdapter);
-    	
-//    	formList.setAdapter(new ArrayAdapter<String>(getActivity(),
-//                android.R.layout.simple_list_item_activated_1, R.array.form_links));
-//    	siteList.setAdapter(new ArrayAdapter<String>(getActivity(),
-//                android.R.layout.simple_list_item_activated_1, R.array.site_links));
-//    	socialList.setAdapter(new ArrayAdapter<String>(getActivity(),
-//                android.R.layout.simple_list_item_activated_1, R.array.social_links));
-    	
+		});  	
     	
         return view;
     }
