@@ -4,10 +4,8 @@ import java.util.Locale;
 
 import com.commonsware.cwac.merge.MergeAdapter;
 
-import android.R.style;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -48,20 +46,20 @@ public class HelpfulLinksFragment extends Fragment {
     	this.HEADER_BACKGROUND_COLOR = Color.BLACK;
     	ListView sheetList = (ListView) view.findViewById(R.id.sheet_list);
     	
-    	
-    	final String[] sheets = getResources().getStringArray(R.array.sheet_links);
+    	// Populate the cells with the names of the links
+    	final String[] sheets = getResources().getStringArray(R.array.sheet_link_names);
     	ArrayAdapter<String> sheetsAdapter = new ArrayAdapter<String>(getActivity(),
                 R.layout.centered_textview, R.id.centered_text, sheets);
 
-    	final String[] forms = getResources().getStringArray(R.array.form_links);
+    	final String[] forms = getResources().getStringArray(R.array.form_link_names);
     	ArrayAdapter<String> formsAdapter = new ArrayAdapter<String>(getActivity(),
     			R.layout.centered_textview, R.id.centered_text, forms);
     	
-    	final String[] sites = getResources().getStringArray(R.array.site_links);
+    	final String[] sites = getResources().getStringArray(R.array.site_link_names);
     	ArrayAdapter<String> sitesAdapter = new ArrayAdapter<String>(getActivity(),
     			R.layout.centered_textview, R.id.centered_text, sites);
     	
-    	final String[] socials = getResources().getStringArray(R.array.social_links);
+    	final String[] socials = getResources().getStringArray(R.array.social_link_names);
     	ArrayAdapter<String> socialsAdapter = new ArrayAdapter<String>(getActivity(),
     			R.layout.centered_textview, R.id.centered_text, socials);
     	
@@ -78,7 +76,7 @@ public class HelpfulLinksFragment extends Fragment {
     	TextView socialHeaderView = new TextView(getActivity());
     	socialHeaderView.setText(R.string.social_list_header);
     	
-    	// Set the font and background for headers
+    	// Set the layout for headers
     	final Locale l = Locale.getDefault();
     	final Typeface headerTypeface = Typeface.create("sans-serif-condensed", Typeface.BOLD);
     	final float scale = getResources().getDisplayMetrics().density;
@@ -95,6 +93,7 @@ public class HelpfulLinksFragment extends Fragment {
         	header.setPadding(0, padding, 0, padding);
     	}
     	
+    	// Convert Adapter to a TableView
     	MergeAdapter myMergeAdapter = new MergeAdapter();
     	myMergeAdapter.addView(sheetHeaderView); 
     	myMergeAdapter.addAdapter(sheetsAdapter); 
@@ -107,83 +106,12 @@ public class HelpfulLinksFragment extends Fragment {
     	
     	sheetList.setAdapter(myMergeAdapter);
     	
-    	
+    	// Set links to open the corresponding url in the String array.
     	sheetList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-    		
     		public void onItemClick(AdapterView <?> parent, View view, int position, long id) {
     			// When clicked open the URL specified by this intent.
-    			String url;
-    			switch (position){
-	    			// start Spreadsheets
-	    			case 1:
-	    				url = getString(R.string.brother_sheet_url);
-	                    break;
-	    			case 2:
-	    				url = getString(R.string.pledge_sheet_url);
-	                    break;
-	    			case 3:
-	    				url = getString(R.string.biglittle_sheet_url);
-	                    break;
-	    			case 4:
-	    				url = getString(R.string.food_group_sheet);
-	                    break;
-	                // start Forms
-	    			case 6:
-	    				url = getString(R.string.service_reporting_form);
-	                    break;
-	    			case 7:
-	    				url = getString(R.string.service_reflection_form);
-	                    break;
-	    			case 8:
-	    				url = getString(R.string.fellowship_hosting_form);
-	                    break;
-	    			case 9:
-	    				url = getString(R.string.fellowship_reporting_form);
-	                    break;
-	    			case 10:
-	    				url = getString(R.string.food_group_reporting_form);
-	                    break;
-	    			case 11:
-	    				url = getString(R.string.biglittle_reporting_form);
-	                    break;
-	    			case 12:
-	    				url = getString(R.string.merit_reporting_form);
-	                    break;
-	    			case 13:
-	    				url = getString(R.string.reimbursement_form);
-	                    break;
-	    			case 14:
-	    				url = getString(R.string.board_feedback_form);
-	                    break;
-	                // Start Sites
-	    			case 16:
-	    				url = getString(R.string.service_calendar_url);
-	                    break;
-	    			case 17:
-	    				url = getString(R.string.national_site_url);
-	                    break;
-	    			case 18:
-	    				url = getString(R.string.chapter_site_url);
-	                    break;
-	    			case 19:
-	    				url = getString(R.string.old_service_calendar_url);
-	                    break;
-	                // Start Social
-	    			case 21:
-	    				url = getString(R.string.youtube_url);
-	                    break;
-	    			case 22:
-	    				url = getString(R.string.instagram_url);
-	                    break;
-	    			case 23:
-	    				url = getString(R.string.tumblr_url);
-	                    break;
-	    			case 24:
-	    				url = getString(R.string.apoutofcontext_url);
-	                    break;
-                    default:
-                    	url = getString(R.string.chapter_site_url);
-    			}
+    			final String[] links = getResources().getStringArray(R.array.helpful_links);
+    			String url = links[position];
     			Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
     			startActivity(i);
     		}
