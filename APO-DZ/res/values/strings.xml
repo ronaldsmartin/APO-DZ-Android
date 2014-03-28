@@ -49,7 +49,7 @@
 		<string name="major_dd">major</string>
 		<string name="brother_name">&quot;&quot;</string>
 		<string name="welcome_message">Welcome, Brother.</string>
-		<string name="login_status">Logged in as...</string>
+		<string name="login_status">Logged in as&#8230;</string>
 		<string name="login_button">Defend the Portal</string>
 
 
@@ -62,30 +62,32 @@
 	    <string name="social_list_header">Social Media</string>
 	    
 	    <!-- Names of Helpful Links -->
-	    <string-array name="sheet_links">
+	    <!-- the ordering needs to match that of the helpful links below -->
+	    <string-array name="sheet_link_names">
 	        <item>Brotherhood</item>
 	        <item>Pledges</item>
 	        <item>Big-Little</item>
 	        <item>Food Groups</item>
 	    </string-array>
-	    <string-array name="form_links">
-	        <item>Service Reporting Form</item>
-	        <item>Service Reflection Survey</item>
+	    <string-array name="form_link_names">
+	        <item>Service Reporting</item>
+	        <item>Service Reflection</item>
 	        <item>Fellowship Hosting</item>
 	        <item>Fellowship Reporting</item>
 	        <item>Food Group Reporting</item>
 	        <item>Big-Little Reporting</item>
 	        <item>Merit-Demerit Reporting</item>
 	        <item>Reimbursement Reporting</item>
+	        <item>DZ Shoutout Submission</item>
 	        <item>Board Feedback</item>
 	    </string-array>
-	    <string-array name="site_links">
-	        <item>Service Calendar</item>
+	    <string-array name="site_link_names">
 	        <item>National Site</item>
 	        <item>Chapter Site</item>
+	        <item>Service Calendar</item>
 	        <item>Ye Olde Service Forum</item>
 	    </string-array>
-	    <string-array name="social_links">
+	    <string-array name="social_link_names">
 	        <item>YouTube Channel</item>
 	        <item>Instagram</item>
 	        <item>Tumblr</item>
@@ -95,27 +97,42 @@
 	    
 	    
 	    <!-- HELPFUL LINKS -->
-	    <string name="brother_sheet_url">&quot;https://docs.google.com/spreadsheet/ccc?key=0AkIjNxyzqN0_dFFWa2VCdnVOaDFvNmNoTEVaWDhoNHc&amp;usp=sharing&quot;</string>
-	    <string name="pledge_sheet_url">&quot;https://docs.google.com/spreadsheet/ccc?key=0AvNcCQIvnV-ndHRVY0U4bTYtMF9mQ3RNX3I2a2lzQlE&amp;usp=sharing&quot;</string>
-	    <string name="biglittle_sheet_url">&quot;https://docs.google.com/spreadsheet/ccc?key=0ApioopS8TfzIdC03ZnFzR2lCOGJXbUNGV2NaeUpHdEE#gid=0&quot;</string>
-	    <string name="food_group_sheet">&quot;https://docs.google.com/spreadsheets/d/1LZmWdp9FZsFpNO-8cAxk2kcyisLQtBs6n5km_TtUL40/edit?usp=sharing&quot;</string>
-	    <string name="service_reporting_form">&quot;https://docs.google.com/forms/d/1NQbz8yzaV3kxAqps4ovC48UkiH4qk5GJJYal7TPIBYw/viewform&quot;</string>
-	    <string name="service_reflection_form">&quot;https://docs.google.com/forms/d/1ZajXpAjVOlcb2_MBGI1Lc2M7Wi0DrXQyQtFqWGS9tdY/viewform&quot;</string>
-	    <string name="fellowship_hosting_form">&quot;https://docs.google.com/forms/d/1BwYuRn0_h0RbaEhZGTzjwYd4WSyIMA6unW9esTMk3sc/viewform&quot;</string>
-	    <string name="fellowship_reporting_form">&quot;https://docs.google.com/forms/d/1sYN1pHUPyn3g2C6mKIVvwld4n_m4UYbSAHT9HmlyjgA/viewform&quot;</string>
-	    <string name="food_group_reporting_form">&quot;https://docs.google.com/forms/d/1Tj8lgvzBmSTUVxB-FLcOZo01G_F0t7bDllzdW6pGbxo/viewform&quot;</string>
-	    <string name="biglittle_reporting_form">&quot;https://docs.google.com/forms/d/1Ybzsj_cIPSF8xs_ubCQG_vD8xYViF3wwb_AcNNvDupQ/viewform&quot;</string>
-	    <string name="merit_reporting_form">&quot;https://docs.google.com/forms/d/1lN1IIJa8nkNXdEYLa1zepNjosEDq2XPOr4GRBTvpWxQ/viewform&quot;</string>
-	    <string name="reimbursement_form">&quot;http://form.jotform.us/form/40035236575148&quot;</string>
-	    <string name="board_feedback_form">&quot;https://docs.google.com/forms/d/11I1-aVUOU7z0425Ovmg2EdIoabW_0RTLUJF7TDQeaXI/viewform&quot;</string>
-	    <string name="service_calendar_url">&quot;https://sites.google.com/site/aposervicecalendar/&quot;</string>
-	    <string name="national_site_url">&quot;http://apo.org/&quot;</string>
-	    <string name="chapter_site_url">&quot;http://upennapo.org/&quot;</string>
-	    <string name="old_service_calendar_url">&quot;http://pennapo.forumotion.net/&quot;</string>
-	    <string name="youtube_url">&quot;http://www.youtube.com/user/DZHistorian&quot;</string>
-	    <string name="instagram_url">&quot;http://instagram.com/upennapo&quot;</string>
-	    <string name="tumblr_url">&quot;http://upennapo.tumblr.com/&quot;</string>
-	    <string name="apoutofcontext_url">&quot;http://apoutofcontext.tumblr.com/&quot;</string>
+	    <!-- header items ensure that the links' indices match the cell view indices -->
+	    <string-array name="helpful_links">
+	        <!-- Spreadsheets -->
+	        <item>header</item>
+	        <item>&quot;https://docs.google.com/spreadsheet/ccc?key=0AkIjNxyzqN0_dFFWa2VCdnVOaDFvNmNoTEVaWDhoNHc&amp;usp=sharing&quot;</item>
+	    	<item>&quot;https://docs.google.com/spreadsheet/ccc?key=0AvNcCQIvnV-ndHRVY0U4bTYtMF9mQ3RNX3I2a2lzQlE&amp;usp=sharing&quot;</item>
+	    	<item>&quot;https://docs.google.com/spreadsheet/ccc?key=0ApioopS8TfzIdC03ZnFzR2lCOGJXbUNGV2NaeUpHdEE#gid=0&quot;</item>
+	    	<item>&quot;https://docs.google.com/spreadsheets/d/1LZmWdp9FZsFpNO-8cAxk2kcyisLQtBs6n5km_TtUL40/edit?usp=sharing&quot;</item>
+	    	
+	    	<!-- Forms -->
+	    	<item>header</item>
+	    	<item>&quot;https://docs.google.com/forms/d/1NQbz8yzaV3kxAqps4ovC48UkiH4qk5GJJYal7TPIBYw/viewform&quot;</item>
+	    	<item>&quot;https://docs.google.com/forms/d/1ZajXpAjVOlcb2_MBGI1Lc2M7Wi0DrXQyQtFqWGS9tdY/viewform&quot;</item>
+	    	<item>&quot;https://docs.google.com/forms/d/1BwYuRn0_h0RbaEhZGTzjwYd4WSyIMA6unW9esTMk3sc/viewform&quot;</item>
+	    	<item>&quot;https://docs.google.com/forms/d/1sYN1pHUPyn3g2C6mKIVvwld4n_m4UYbSAHT9HmlyjgA/viewform&quot;</item>
+	    	<item>&quot;https://docs.google.com/forms/d/1Tj8lgvzBmSTUVxB-FLcOZo01G_F0t7bDllzdW6pGbxo/viewform&quot;</item>
+	    	<item>&quot;https://docs.google.com/forms/d/1Ybzsj_cIPSF8xs_ubCQG_vD8xYViF3wwb_AcNNvDupQ/viewform&quot;</item>
+	    	<item>&quot;https://docs.google.com/forms/d/1lN1IIJa8nkNXdEYLa1zepNjosEDq2XPOr4GRBTvpWxQ/viewform&quot;</item>
+	    	<item>&quot;http://form.jotform.us/form/40035236575148&quot;</item>
+	    	<item>&quot;https://docs.google.com/forms/d/1EdQ89q1nXJB6Q0KV_-4AYZyLta4utdkEkJPrxUl_Trg/viewform&quot;</item>
+	    	<item>&quot;https://docs.google.com/forms/d/11I1-aVUOU7z0425Ovmg2EdIoabW_0RTLUJF7TDQeaXI/viewform&quot;</item>
+	    	
+	    	<!-- Sites -->
+	    	<item>header</item>
+	    	<item>&quot;http://apo.org/&quot;</item>
+	    	<item>&quot;http://upennapo.org/&quot;</item>
+	    	<item>&quot;https://sites.google.com/site/aposervicecalendar/&quot;</item>
+	    	<item>&quot;http://pennapo.forumotion.net/&quot;</item>
+	    	
+	    	<!-- Social Media -->
+	    	<item>header</item>
+	    	<item>&quot;http://www.youtube.com/user/DZHistorian&quot;</item>
+	    	<item>&quot;http://instagram.com/upennapo&quot;</item>
+	    	<item>&quot;http://upennapo.tumblr.com/&quot;</item>
+	    	<item>&quot;http://apoutofcontext.tumblr.com/&quot;</item>
+	    </string-array>
     
     <!-- Bundle keys -->
     <string name="dir_brother_data">Brother data</string>
