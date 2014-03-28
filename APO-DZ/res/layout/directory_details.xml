@@ -38,6 +38,7 @@
         android:paddingTop="@dimen/brother_detail_margin"
 	    android:paddingBottom="@dimen/brother_detail_margin"
 	    android:layout_gravity="center"
+	    android:fontFamily="sans-serif-light"
 	    android:textSize="@dimen/text_size_dd"
         android:textColor="@android:color/white" />
     
@@ -67,6 +68,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:textIsSelectable="true"
+            android:fontFamily="sans-serif-light"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_dd" />
         <Button 
@@ -105,6 +107,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:textIsSelectable="true"
+            android:fontFamily="sans-serif-light"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_dd" />
         <Button 
@@ -160,6 +163,7 @@
 	        	android:paddingTop="@dimen/brother_detail_margin"
 	    		android:paddingBottom="@dimen/brother_detail_margin"
 	    		android:textColor="@android:color/white"
+	    		android:fontFamily="sans-serif-light"
 	        	android:gravity="center" />
 	    </LinearLayout> 
 	   	<LinearLayout
@@ -185,6 +189,7 @@
 	        	android:layout_height="wrap_content"
 	        	android:paddingTop="@dimen/brother_detail_margin"
 	    		android:paddingBottom="@dimen/brother_detail_margin"
+	    		android:fontFamily="sans-serif-light"
 	    		android:textColor="@android:color/white"
 	        	android:gravity="center" />
 	    </LinearLayout>
@@ -209,6 +214,7 @@
        	android:paddingTop="@dimen/brother_detail_margin"
 	    android:paddingBottom="@dimen/brother_detail_margin"
        	android:gravity="center"
+       	android:fontFamily="sans-serif-light"
        	android:textColor="@android:color/white" />
 
 </LinearLayout>

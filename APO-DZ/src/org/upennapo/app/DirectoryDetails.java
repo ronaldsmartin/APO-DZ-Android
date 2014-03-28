@@ -18,6 +18,7 @@ public class DirectoryDetails extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.directory_details);
 		TextView name = (TextView) findViewById(R.id.name);
+		@SuppressWarnings("unchecked")
 		HashMap<String,String> map = (HashMap<String, String>) getIntent().getSerializableExtra(getString(R.string.dir_brother_data));
 		String preferredName = map.get(Brother.PREFERRED_NAME_KEY);
 		String firstName;
@@ -67,7 +68,6 @@ public class DirectoryDetails extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 				String aEmailList[] = { email };
 				emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
