@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:theme="@android:style/Theme.Holo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,9 +9,10 @@
 
     <ImageView
         android:id="@+id/imageView1"
+        android:contentDescription="@string/logo_description"
         android:layout_width="wrap_content"
         android:layout_height="150dip"
-        android:layout_marginTop="20dip"
+        android:layout_marginTop="30dip"
         android:layout_marginBottom="20dip"
         android:src="@drawable/apologofull" />
 
@@ -60,22 +62,30 @@
 	        android:text="@string/brother_name" />
         
     </LinearLayout>
-    
-    <EditText android:id="@+id/login_name_field"
-        android:inputType="textPersonName"
-        android:textColor="@android:color/white"
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:layout_marginBottom="10dip" />
+        android:layout_height="wrap_content"
+        android:textColor="@@android:color/white"
+        android:fontFamily="sans-serif-light" >
         
-    <Button 
+        <Space 
+            android:layout_width="fill_parent"
+            android:layout_height="20dip" />
+        
+    </LinearLayout>
+    
+    <Button
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:paddingLeft="15dip"
-	    android:paddingRight="15dip"
-	    android:background="@color/apo_yellow"
-	    android:text="@string/login_button" />
+        android:layout_height="wrap_content"
+        android:background="@color/apo_yellow"
+        android:fontFamily="sans-serif-thin"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip"        
+        android:gravity="center"
+        android:text="@string/login_button"
+        android:onClick="login" />
     
 </LinearLayout>
