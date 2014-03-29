@@ -3,10 +3,15 @@
 
     <string name="app_name">APO-DZ</string>
     <string name="action_settings">Settings</string>
+    <string name="app_password">password</string>
     
     <!-- Title Screen -->
     <string name="login_screen_title"><b>DELTA ZETA CHAPTER</b></string>
     <string name="logo_description">Alpha Phi Omega</string>
+    <string name="welcome_message">Welcome, Brother.</string>
+	<string name="login_status">Please log in to continue.</string>
+	<string name="login_button">Defend the Portal</string>
+	<string name="logout_button">Logout</string>
     
     <!-- Tab Names -->
     <string name="title_section1">Brother Status</string>
@@ -31,15 +36,15 @@
     
     <!-- Directories -->
     	<!-- Directory Header -->
-    	<string name="brotherhood_directory_header">Brotherhood Directory</string>
+    	<string name="brotherhood_directory_header">Delta Zeta Directory</string>
     	
     	<!-- URL for the Brotherhood Directory -->
 	    <string name="brother_directory_json_url">
-	        placeholder
+			&quot;https://script.google.com/macros/s/AKfycbxKHF4F1rmQ1rfyHBGPMKF16hwszqSoqIOCufO-1Mv4Xiztyvs/exec?id=ID&amp;sheet=ActiveBrotherDirectory&quot;
 		</string>
 		<!-- URL for the Pledge Directory -->
 	    <string name="pledge_directory_json_url">
-	        placeholder
+	        &quot;https://script.google.com/macros/s/AKfycbxKHF4F1rmQ1rfyHBGPMKF16hwszqSoqIOCufO-1Mv4Xiztyvs/exec?id=ID&amp;sheet=PledgeDirectory&quot;
 		</string>
 	
         <!-- Directory Details -->
@@ -54,10 +59,6 @@
 	    <string name="pledge_dd">pledge class</string>
 		<string name="major_dd">major</string>
 		<string name="brother_name">&quot;&quot;</string>
-		<string name="welcome_message">Welcome, Brother.</string>
-		<string name="login_status">Logged in as&#8230;</string>
-		<string name="login_button">Defend the Portal</string>
-
 
     <!-- Helpful Links -->
     
