@@ -9,19 +9,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
-	public static final int NUM_TABS = 4;
+	public static final int NUM_TABS = 5;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -106,10 +102,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     	// TODO: brotherStatusFragment
-    	private Fragment brotherStatusFragment;
-    	private final Fragment calendarFragment     = new CalendarFragment();
-    	private final Fragment broDirectoryFragment = new DirectoryFragment();
-    	private final Fragment linksFragment        = new HelpfulLinksFragment();
+    	private final Fragment brotherStatusFragment   = new DummySectionFragment();
+    	private final Fragment calendarFragment        = new CalendarFragment();
+    	private final Fragment broDirectoryFragment    = new DirectoryFragment();
+    	private final Fragment pledgeDirectoryFragment = new DirectoryFragment();
+    	private final Fragment linksFragment           = new HelpfulLinksFragment();
     	
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -118,21 +115,38 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         
         private void init() {
         	// Set up Calendar
-            Bundle urlArgs = new Bundle();
-    		urlArgs.putString(CalendarFragment.URL_KEY, getString(R.string.calendar_url));
-    		this.calendarFragment.setArguments(urlArgs);
+            Bundle calendarUrlArgs = new Bundle();
+            calendarUrlArgs.putString(CalendarFragment.URL_KEY, getString(R.string.calendar_url));
+    		this.calendarFragment.setArguments(calendarUrlArgs);
+    		
+    		// Set up Directories
+    		Bundle broDirectoryArgs = new Bundle();
+    		broDirectoryArgs.putString(DirectoryFragment.URL_KEY, getString(R.string.brother_directory_json_url));
+    		broDirectoryArgs.putString(DirectoryFragment.SHEET_KEY, "ActiveBrotherDirectory");
+    		this.broDirectoryFragment.setArguments(broDirectoryArgs);
+    		
+    		Bundle pledgeDirectoryArgs = new Bundle();
+    		pledgeDirectoryArgs.putString(DirectoryFragment.URL_KEY, getString(R.string.pledge_directory_json_url));
+    		pledgeDirectoryArgs.putString(DirectoryFragment.SHEET_KEY, "PledgeDirectory");
+    		this.pledgeDirectoryFragment.setArguments(pledgeDirectoryArgs);
         }
 
         @Override
         public Fragment getItem(int position) {
         	switch (position) {
+        	case 0:
+        		// Brother Status
+        		return this.brotherStatusFragment;
         	case 1:
         		// Calendar WebView
         		return this.calendarFragment;
         	case 2:
-        		// Directory
+        		// Brother Directory
         		return this.broDirectoryFragment;
         	case 3:
+        		// Pledge Directory
+        		return this.pledgeDirectoryFragment;
+        	case 4:
         		// Helpful Links
         		return this.linksFragment;
 	        default:
@@ -167,12 +181,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 	sectionName = getString(R.string.title_section2).toUpperCase(l);
                 	break;
                 case 2:
-                	// Directory
+                	// Brother Directory
                 	sectionName = getString(R.string.title_section3).toUpperCase(l);
                 	break;
                 case 3:
-                	// Bookmarks
+                	// Pledge Directory
                 	sectionName = getString(R.string.title_section4).toUpperCase(l);
+                	break;
+                case 4:
+                	// Helpful Links
+                	sectionName = getString(R.string.title_section5).toUpperCase(l);
                 	break;
             }
             return sectionName;
