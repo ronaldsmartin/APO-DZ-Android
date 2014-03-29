@@ -16,6 +16,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -93,4 +95,13 @@ public class ReadJSON {
 		
 		return builder.toString();
 	}
+	
+	/**
+     * Checks if there is an internet connection.
+     * @param context
+     * @return true iff there is network reachability
+     */
+    public static boolean isNetworkAvailable(Context context) {
+        return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
+    }
 }
