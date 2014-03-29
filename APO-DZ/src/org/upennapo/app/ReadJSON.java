@@ -16,6 +16,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -49,15 +51,15 @@ public class ReadJSON {
 		return brotherSheet;
 	}
 	
-	public static Brother[] getDirectoryData(String urlString) {
-		return parseDirectoryJson(downloadJsonData(urlString));
+	public static Brother[] getDirectoryData(String urlString, String sheetKey) {
+		return parseDirectoryJson(downloadJsonData(urlString), sheetKey);
 	}
 	
-	private static Brother[] parseDirectoryJson(String jsonData) {
+	private static Brother[] parseDirectoryJson(String jsonData, String sheetKey) {
 		Gson gson = new Gson();
 		JsonParser parser = new JsonParser();
 		JsonObject map = parser.parse(jsonData).getAsJsonObject();
-		JsonArray directoryJsonArray = map.getAsJsonArray("ActiveBrotherDirectory");
+		JsonArray directoryJsonArray = map.getAsJsonArray(sheetKey);
 		Brother[] directory = gson.fromJson(directoryJsonArray, Brother[].class);
 		
 		return directory;
@@ -79,11 +81,13 @@ public class ReadJSON {
 					builder.append(line);
 				}
 			} else {
-				
+				Log.d("ReadJSON", "HttpResponse code error");
 			}
 	    } catch (ClientProtocolException e) {
 	    	e.printStackTrace();
 	    } catch (IOException e) {
+	    	e.printStackTrace();
+	    } catch (Error e) {
 	    	e.printStackTrace();
 	    }
 		
