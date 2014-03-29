@@ -46,7 +46,7 @@
         android:fontFamily="sans-serif-light" >
         
         <TextView
-	        android:id="@+id/logged_in_as"
+	        android:id="@+id/login_status"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:textColor="@android:color/white"
@@ -67,7 +67,7 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@@android:color/white"
+        android:textColor="@android:color/white"
         android:fontFamily="sans-serif-light" >
         
         <Space 
@@ -87,5 +87,21 @@
         android:gravity="center"
         android:text="@string/login_button"
         android:onClick="login" />
+    
+    <Space 
+            android:layout_width="fill_parent"
+            android:layout_height="10dip" />
+    
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="@android:color/white"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip"        
+        android:gravity="center"
+        android:text="@string/logout_button"
+        android:onClick="logout" />
     
 </LinearLayout>
