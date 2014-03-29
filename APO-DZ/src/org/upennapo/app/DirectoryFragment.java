@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Comparator;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,12 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class DirectoryFragment extends Fragment{
 	
 	public static final String URL_KEY   = "URL";
 	public static final String SHEET_KEY = "SHEET_KEY";
-	private List<Brother> directoryList;
+	private ArrayList<Brother> directoryList;
 	private View view;
 	
 	public DirectoryFragment() {
@@ -35,9 +36,19 @@ public class DirectoryFragment extends Fragment{
         final String urlString = getArguments().getString(URL_KEY);
         final String sheetKey  = getArguments().getString(SHEET_KEY);
 		
-		// Make an asynchronous request for the JSON using the URL
-		AsyncBrotherLoader loader = new AsyncBrotherLoader();
-		loader.execute(urlString, sheetKey);
+        Context context = getActivity();
+        if (ReadJSON.isNetworkAvailable(context)) {
+        	// Make an asynchronous request for the JSON using the URL
+        	AsyncBrotherLoader loader = new AsyncBrotherLoader();
+        	loader.execute(urlString, sheetKey);
+        } else {
+        	
+        	Toast noInternetAlert = Toast.makeText(getActivity(),
+        											"Oops! There's no internet connection. Try again later.",
+        											Toast.LENGTH_LONG);
+        	noInternetAlert.show();
+        }
+		
 		
 		// Inflate the View
 		view = inflater.inflate(R.layout.fragment_directory, container, false);
@@ -58,18 +69,19 @@ public class DirectoryFragment extends Fragment{
 	    
 	    @Override
 	    protected void onPostExecute(Brother[] result) {
+	    	
 	        directoryList = new ArrayList<Brother>(Arrays.asList(result));
 	        Collections.sort(directoryList, new BrotherComparator());        
 	        
-	        List<String> firstLast = new ArrayList<String>();
-	       	for (Brother brother: directoryList) {
+	        ArrayList<String> alphabetizedNames = new ArrayList<String>();
+	       	for (Brother brother : directoryList) {
 				String firstName =
 					brother.Preferred_Name.equals("") ? brother.First_Name : brother.Preferred_Name;
-				firstLast.add(firstName + " " + brother.Last_Name);
+				alphabetizedNames.add(firstName + " " + brother.Last_Name);
 			}
 
 			AlphabeticalAdapter adapter =
-				new AlphabeticalAdapter(getActivity(), R.layout.centered_textview, R.id.centered_text, firstLast);
+				new AlphabeticalAdapter(getActivity(), R.layout.centered_textview, R.id.centered_text, alphabetizedNames);
 			ListView list = (ListView) view.findViewById(R.id.name_list);
 			
 			list.setAdapter(adapter);
