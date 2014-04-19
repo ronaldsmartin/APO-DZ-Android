@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
@@ -36,6 +37,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_PROGRESS);
         setContentView(R.layout.activity_main);
 
         // Set up the action bar.
@@ -68,7 +70,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             // this tab is selected.
             actionBar.addTab(
                     actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
+                            .setIcon(mSectionsPagerAdapter.getPageIcon(i))
                             .setTabListener(this));
         }
     }
@@ -191,6 +193,33 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 	break;
             }
             return sectionName;
+        }
+        
+        public int getPageIcon(int position) {
+        	int iconID = 0;
+        	switch (position) {
+        	case 0:
+        		// Brother Status
+        		iconID = R.drawable.ic_action_tick;
+        		break;
+        	case 1:
+        		// Calendar
+        		iconID = R.drawable.ic_action_calendar_day;
+        		break;
+        	case 2:
+        		// Brother Directory
+        		iconID = R.drawable.ic_action_users;
+        		break;
+        	case 3:
+        		// Pledge Directory
+        		iconID = R.drawable.ic_action_users;
+        		break;
+        	case 4:
+        		// Helpful Links
+        		iconID = R.drawable.ic_action_bookmark;
+        		break;
+        	}
+        	return iconID;
         }
     }
 
