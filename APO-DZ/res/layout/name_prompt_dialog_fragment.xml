@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:theme="@android:style/Theme.Holo.Dialog" >
+    <TextView
+		android:id="@+id/name_prompt_dialog_instruction"
+		android:text="@string/name_entry_instructions"
+		android:fontFamily="sans-serif-light"
+		android:gravity="center"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+    
+    <!-- First Name Prompt -->
+    <TextView
+		android:id="@+id/name_prompt_first_prompt"
+		android:text="@string/name_entry_first_name_prompt"
+		android:gravity="center"
+		android:textAllCaps="true"
+		android:fontFamily="sans-serif-condensed"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+
+	<EditText
+		android:id="@+id/name_prompt_dialog_first_name_entry"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" 
+		android:gravity="center"
+		android:inputType="textPersonName"
+		android:hint="@string/name_entry_first_name_hint"
+		android:imeOptions="actionNext" />
+	
+	
+	<Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+	
+	<!-- Last Name Prompt -->
+	<TextView
+		android:id="@+id/name_prompt_last_prompt"
+		android:text="@string/name_entry_last_name_prompt"
+		android:gravity="center"
+		android:textAllCaps="true"
+		android:fontFamily="sans-serif-condensed"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+	
+	<EditText
+		android:id="@+id/name_prompt_dialog_last_name_entry"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" 
+		android:gravity="center"
+		android:inputType="textPersonName"
+		android:hint="@string/name_entry_last_name_hint"
+		android:imeOptions="actionDone" />
+	
+
+</LinearLayout>

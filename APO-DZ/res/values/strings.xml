@@ -3,22 +3,32 @@
 
     <string name="app_name">APO-DZ</string>
     <string name="action_settings">Settings</string>
-    <string name="app_password">password</string>
     
     <!-- Title Screen -->
     <string name="login_screen_title"><b>DELTA ZETA CHAPTER</b></string>
     <string name="logo_description">Alpha Phi Omega</string>
     <string name="welcome_message">Welcome, Brother.</string>
-	<string name="login_status">Please log in to continue.</string>
+	<string name="login_status_logged_out">Please log in to continue.</string>
+	<string name="login_status_logged_in">Logged in as</string>
 	<string name="login_button">Defend the Portal</string>
 	<string name="logout_button">Logout</string>
+	
+	
+	<!-- Name Entry Dialog -->
+	<string name="name_entry_title">Who are you?</string>
+	<string name="name_entry_instructions">Enter your name exactly as it appears on the Spreadsheet.</string>
+	<string name="name_entry_first_name_prompt">First Name</string>
+	<string name="name_entry_first_name_hint">Greatest</string>
+	<string name="name_entry_last_name_prompt">Last Name</string>
+	<string name="name_entry_last_name_hint">Ever</string>
+	
     
     <!-- Tab Names -->
-    <string name="title_section1">Brother Status</string>
-    <string name="title_section2">Calendar</string>
-    <string name="title_section3">Brothers</string>
+    <string name="title_section1">Me</string>
+    <string name="title_section2">Cal</string>
+    <string name="title_section3">Bros</string>
     <string name="title_section4">Pledges</string>
-    <string name="title_section5">Helpful Links</string>
+    <string name="title_section5">Links</string>
     
     <!-- Brother Status Work in Progress Labels -->
     <string name="under_construction_header">Under Construction</string>
@@ -27,25 +37,12 @@
     
     <!-- Calendar -->
     	<!-- Calendar Header -->
-    	<string name="calendar_header">Delta Zeta Calendars</string>
-	    <!-- URL for all the Calendars -->
-	    <string name="calendar_url">
-	        &quot;https://www.google.com/calendar/embed?title=APO%20Calendar&amp;amp&amp;showTitle=0&amp;amp&amp;showDate=0&amp;amp&amp;showPrint=0&amp;amp&amp;showTz=0&amp;amp&amp;mode=AGENDA&amp;amp&amp;height=600&amp;amp&amp;wkst=1&amp;amp&amp;bgcolor=%23ffffff&amp;amp&amp;src=uieecnqfvhg1ojnvsp0nf3rfek%40group.calendar.google.com&amp;amp&amp;color=%232F6309&amp;amp&amp;src=apoexec.vpfellowship%40gmail.com&amp;amp&amp;color=%231B887A&amp;amp&amp;src=u088i696n6jak2mpranj291v8k%40group.calendar.google.com&amp;amp&amp;color=%23B1365F&amp;amp&amp;src=bkap2sjjoo0gcu8blq3mn3bnic%40group.calendar.google.com&amp;amp&amp;color=%23B1440E&amp;amp&amp;src=fn14o6l0c7ckl211s92auufsgk%40group.calendar.google.com&amp;amp&amp;color=%236B3304&amp;amp&amp;src=jff5h8mv741iur8s89rr58ki3g%40group.calendar.google.com&amp;amp&amp;color=%23865A5A&amp;amp&amp;src=0m74gt5so38uql7gtcspr3rjbo%40group.calendar.google.com&amp;amp&amp;color=%2342104A&amp;amp&amp;src=nmrpckn1c4g4nkhdrfpgs0grfk%40group.calendar.google.com&amp;amp&amp;color=%23853104&amp;amp&amp;src=2kb6a7ps3tqatsus6cnso3hvn8%40group.calendar.google.com&amp;amp&amp;color=%23182C57&amp;amp&amp;ctz=America%2FNew_York&quot;
-	    </string>    
+    	<string name="calendar_header">Delta Zeta Calendars</string> 
     
     
     <!-- Directories -->
     	<!-- Directory Header -->
     	<string name="brotherhood_directory_header">Delta Zeta Directory</string>
-    	
-    	<!-- URL for the Brotherhood Directory -->
-	    <string name="brother_directory_json_url">
-			&quot;https://script.google.com/macros/s/AKfycbxKHF4F1rmQ1rfyHBGPMKF16hwszqSoqIOCufO-1Mv4Xiztyvs/exec?id=ID&amp;sheet=ActiveBrotherDirectory&quot;
-		</string>
-		<!-- URL for the Pledge Directory -->
-	    <string name="pledge_directory_json_url">
-	        &quot;https://script.google.com/macros/s/AKfycbxKHF4F1rmQ1rfyHBGPMKF16hwszqSoqIOCufO-1Mv4Xiztyvs/exec?id=ID&amp;sheet=PledgeDirectory&quot;
-		</string>
 	
         <!-- Directory Details -->
         <string name="directory_details_header">Brother Details</string>
@@ -58,7 +55,6 @@
 	    <string name="year_dd">year</string>
 	    <string name="pledge_dd">pledge class</string>
 		<string name="major_dd">major</string>
-		<string name="brother_name">&quot;&quot;</string>
 
     <!-- Helpful Links -->
     
@@ -69,7 +65,8 @@
 	    <string name="social_list_header">Social Media</string>
 	    
 	    <!-- Names of Helpful Links -->
-	    <!-- the ordering needs to match that of the helpful links below -->
+	    <!-- To make these link somewhere, you need to add a string arrays with the same length as this -->
+	    <!-- with the actual URLs instead of just the names below. See previous commits for more info. -->
 	    <string-array name="sheet_link_names">
 	        <item>Brotherhood</item>
 	        <item>Pledges</item>
@@ -100,46 +97,7 @@
 	        <item>Tumblr</item>
 	        <item>APOut of Context</item>
 	    </string-array>
-	    
-	    
-	    
-	    <!-- HELPFUL LINKS -->
-	    <!-- header items ensure that the links' indices match the cell view indices -->
-	    <string-array name="helpful_links">
-	        <!-- Spreadsheets -->
-	        <item>header</item>
-	        <item>&quot;https://docs.google.com/spreadsheet/ccc?key=0AkIjNxyzqN0_dFFWa2VCdnVOaDFvNmNoTEVaWDhoNHc&amp;usp=sharing&quot;</item>
-	    	<item>&quot;https://docs.google.com/spreadsheet/ccc?key=0AvNcCQIvnV-ndHRVY0U4bTYtMF9mQ3RNX3I2a2lzQlE&amp;usp=sharing&quot;</item>
-	    	<item>&quot;https://docs.google.com/spreadsheet/ccc?key=0ApioopS8TfzIdC03ZnFzR2lCOGJXbUNGV2NaeUpHdEE#gid=0&quot;</item>
-	    	<item>&quot;https://docs.google.com/spreadsheets/d/1LZmWdp9FZsFpNO-8cAxk2kcyisLQtBs6n5km_TtUL40/edit?usp=sharing&quot;</item>
-	    	
-	    	<!-- Forms -->
-	    	<item>header</item>
-	    	<item>&quot;https://docs.google.com/forms/d/1NQbz8yzaV3kxAqps4ovC48UkiH4qk5GJJYal7TPIBYw/viewform&quot;</item>
-	    	<item>&quot;https://docs.google.com/forms/d/1ZajXpAjVOlcb2_MBGI1Lc2M7Wi0DrXQyQtFqWGS9tdY/viewform&quot;</item>
-	    	<item>&quot;https://docs.google.com/forms/d/1BwYuRn0_h0RbaEhZGTzjwYd4WSyIMA6unW9esTMk3sc/viewform&quot;</item>
-	    	<item>&quot;https://docs.google.com/forms/d/1sYN1pHUPyn3g2C6mKIVvwld4n_m4UYbSAHT9HmlyjgA/viewform&quot;</item>
-	    	<item>&quot;https://docs.google.com/forms/d/1Tj8lgvzBmSTUVxB-FLcOZo01G_F0t7bDllzdW6pGbxo/viewform&quot;</item>
-	    	<item>&quot;https://docs.google.com/forms/d/1Ybzsj_cIPSF8xs_ubCQG_vD8xYViF3wwb_AcNNvDupQ/viewform&quot;</item>
-	    	<item>&quot;https://docs.google.com/forms/d/1lN1IIJa8nkNXdEYLa1zepNjosEDq2XPOr4GRBTvpWxQ/viewform&quot;</item>
-	    	<item>&quot;http://form.jotform.us/form/40035236575148&quot;</item>
-	    	<item>&quot;https://docs.google.com/forms/d/1EdQ89q1nXJB6Q0KV_-4AYZyLta4utdkEkJPrxUl_Trg/viewform&quot;</item>
-	    	<item>&quot;https://docs.google.com/forms/d/11I1-aVUOU7z0425Ovmg2EdIoabW_0RTLUJF7TDQeaXI/viewform&quot;</item>
-	    	
-	    	<!-- Sites -->
-	    	<item>header</item>
-	    	<item>&quot;http://apo.org/&quot;</item>
-	    	<item>&quot;http://upennapo.org/&quot;</item>
-	    	<item>&quot;https://sites.google.com/site/aposervicecalendar/&quot;</item>
-	    	<item>&quot;http://pennapo.forumotion.net/&quot;</item>
-	    	
-	    	<!-- Social Media -->
-	    	<item>header</item>
-	    	<item>&quot;http://www.youtube.com/user/DZHistorian&quot;</item>
-	    	<item>&quot;http://instagram.com/upennapo&quot;</item>
-	    	<item>&quot;http://upennapo.tumblr.com/&quot;</item>
-	    	<item>&quot;http://apoutofcontext.tumblr.com/&quot;</item>
-	    </string-array>
+	   
     
     <!-- Bundle keys -->
     <string name="dir_brother_data">Brother data</string>
