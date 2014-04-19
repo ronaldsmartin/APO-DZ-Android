@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,18 +32,22 @@ public class DirectoryFragment extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-		// Retrieve the argumentS passed by the MainActivity
+		// Retrieve the arguments passed by the MainActivity
         final String urlString = getArguments().getString(URL_KEY);
         final String sheetKey  = getArguments().getString(SHEET_KEY);
 		
-        Context context = getActivity();
+        Activity context = getActivity();
+        context.getActionBar();
+        // Activate the progress view in the action bar.
+        // Progress bar code is due to http://guides.thecodepath.com/android/Handling-ProgressBars
         if (ReadJSON.isNetworkAvailable(context)) {
         	// Make an asynchronous request for the JSON using the URL
         	AsyncBrotherLoader loader = new AsyncBrotherLoader();
+        	showProgressBar();
         	loader.execute(urlString, sheetKey);
         } else {
-        	
-        	Toast noInternetAlert = Toast.makeText(getActivity(),
+        	// Display a Toast if we don't have an Internet connection.
+        	Toast noInternetAlert = Toast.makeText(context,
         											"Oops! There's no internet connection. Try again later.",
         											Toast.LENGTH_LONG);
         	noInternetAlert.show();
@@ -55,23 +59,51 @@ public class DirectoryFragment extends Fragment{
 		return view;
 	}
 	
+	
+	private void showProgressBar() {
+        getActivity().setProgressBarVisibility(true);
+    }
+	
+	private void updateProgressValue(int value) {
+        // Manage the progress (i.e within an AsyncTask)
+        // Valid ranges are from 0 to 10000 (both inclusive). 
+        // If 10000 is given, the progress bar will be completely filled and will fade out.
+		getActivity().setProgress(value);
+    }
+    
+    // Should be called when an async task has finished
+    public void hideProgressBar() {
+    	getActivity().setProgressBarVisibility(false);
+    }
+	
 	private class AsyncBrotherLoader extends AsyncTask<String, Void, Brother[]> {
 
 	    @Override
 	    protected void onPreExecute() {        
-	        super.onPreExecute();    
+	        super.onPreExecute();
+	        updateProgressValue(1000);
 	    }
 
 	    @Override
 	    protected Brother[] doInBackground(String... params) {
-	    	return ReadJSON.getDirectoryData(params[0], params[1]);
+	    	Brother[] results = ReadJSON.getDirectoryData(params[0], params[1]);
+	    	return results;
 	    }
 	    
 	    @Override
 	    protected void onPostExecute(Brother[] result) {
-	    	
+	    	if (result == null) {
+	    		// If there is an error getting the result, break the loop and display an alert.
+	    		updateProgressValue(10000);
+	    		
+	    		Toast failureAlert = Toast.makeText(getActivity(), "Unable to load at this time.", Toast.LENGTH_LONG);
+	    		failureAlert.show();
+	    		return;
+	    	}
 	        directoryList = new ArrayList<Brother>(Arrays.asList(result));
+	        updateProgressValue(4000);
 	        Collections.sort(directoryList, new BrotherComparator());        
+	        updateProgressValue(7000);
 	        
 	        ArrayList<String> alphabetizedNames = new ArrayList<String>();
 	       	for (Brother brother : directoryList) {
@@ -79,13 +111,14 @@ public class DirectoryFragment extends Fragment{
 					brother.Preferred_Name.equals("") ? brother.First_Name : brother.Preferred_Name;
 				alphabetizedNames.add(firstName + " " + brother.Last_Name);
 			}
+	       	updateProgressValue(8500);
 
 			AlphabeticalAdapter adapter =
 				new AlphabeticalAdapter(getActivity(), R.layout.centered_textview, R.id.centered_text, alphabetizedNames);
 			ListView list = (ListView) view.findViewById(R.id.name_list);
 			
 			list.setAdapter(adapter);
-			
+			updateProgressValue(9000);
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				public void onItemClick(AdapterView <?> parent, View view, int position, long id) {
 					// Prepare data to send to the details view.
@@ -109,8 +142,8 @@ public class DirectoryFragment extends Fragment{
 				}
 				
 			});
-	        
-	    }	    
+			updateProgressValue(10000);
+	    }
 	}
 	
 	public class BrotherComparator implements Comparator<Brother> {
