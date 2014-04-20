@@ -3,11 +3,14 @@
  */
 package org.upennapo.app;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * @author Ronald Martin
  *
  */
-public class Brother {
+public class Brother implements Parcelable {
 	
 	// Keys
 	public static final String LAST_NAME_KEY = "Last_Name";
@@ -37,11 +40,66 @@ public class Brother {
 	
 	public String Birthday;
 	
+	private Brother(Parcel in) {
+		// Parcelable tutorial due to: http://guides.thecodepath.com/android/Using-Parcelable
+		this.Last_Name = in.readString();
+		this.First_Name = in.readString();
+		this.Preferred_Name = in.readString();
+
+		this.Email_Address = in.readString();
+		this.Phone_Number = in.readString();
+
+		this.Pledge_Class = in.readString();
+		this.Expected_Graduation_Year = in.readString();
+
+		this.School = in.readString();
+		this.Major = in.readString();
+
+		this.Birthday = in.readString();
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder brotherBuilder = new StringBuilder();
-		brotherBuilder.append("First name: ");
 		brotherBuilder.append(First_Name);
+		brotherBuilder.append(" ");
+		brotherBuilder.append(Last_Name);
 		return brotherBuilder.toString();
 	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel out, int flags) {
+		out.writeString(Last_Name);
+		out.writeString(First_Name);
+		out.writeString(Preferred_Name);
+
+		out.writeString(Email_Address);
+		out.writeString(Phone_Number);
+
+		out.writeString(Pledge_Class);
+		out.writeString(Expected_Graduation_Year);
+
+		out.writeString(School);
+		out.writeString(Major);
+
+		out.writeString(Birthday);
+	}
+	
+	public static final Parcelable.Creator<Brother> CREATOR
+			= new Parcelable.Creator<Brother>() {
+		@Override
+		public Brother createFromParcel(Parcel in) {
+			return new Brother(in);
+		}
+		
+		@Override
+		public Brother[] newArray(int size) {
+			return new Brother[size];
+		}
+	};
 }

@@ -1,7 +1,5 @@
 package org.upennapo.app;
 
-import java.util.HashMap;
-
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -17,43 +15,43 @@ public class DirectoryDetails extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.directory_details);
-		TextView name = (TextView) findViewById(R.id.name);
-		@SuppressWarnings("unchecked")
-		HashMap<String,String> map = (HashMap<String, String>) getIntent().getSerializableExtra(getString(R.string.dir_brother_data));
-		String preferredName = map.get(Brother.PREFERRED_NAME_KEY);
-		String firstName;
-		if (preferredName.length() == 0){
-			firstName = map.get(Brother.FIRST_NAME_KEY);
-		}
-		else{
-			firstName = preferredName;
-		}
-		name.setText(firstName + " " + map.get(Brother.LAST_NAME_KEY)); 
-		TextView emailAdd = (TextView) findViewById(R.id.email);
-		emailAdd.setText(map.get(Brother.EMAIL_ADDRESS_KEY));
+		
+		// Retrieve brother data from intent.
+		final Brother brother = (Brother) getIntent().getParcelableExtra(getString(R.string.dir_brother_data));
+		
+		// Set all labels.
+		TextView nameLabel = (TextView) findViewById(R.id.name);
+		String preferredName = brother.Preferred_Name;
+		String firstName = preferredName.length() == 0 ? brother.First_Name : preferredName;
+		nameLabel.setText(firstName + " " + brother.Last_Name); 
+		
+		TextView emailLabel = (TextView) findViewById(R.id.email);
+		emailLabel.setText(brother.Email_Address);
+		
 		TextView phone = (TextView) findViewById(R.id.phone);
-		phone.setText(map.get(Brother.PHONE_NUMBER_KEY));
-		TextView year = (TextView) findViewById(R.id.year);
-		year.setText(map.get(Brother.GRADUATION_YEAR_KEY));
-		TextView pledge = (TextView) findViewById(R.id.pledge_class);
-		pledge.setText(map.get(Brother.PLEDGE_CLASS_KEY));
-		TextView major = (TextView) findViewById(R.id.major);
-		major.setText(map.get(Brother.MAJOR_KEY));
+		phone.setText(brother.Phone_Number);
 		
-		final String email = map.get(Brother.EMAIL_ADDRESS_KEY);
-		final String number = map.get(Brother.PHONE_NUMBER_KEY);
+		TextView yearLabel = (TextView) findViewById(R.id.year);
+		yearLabel.setText(brother.Expected_Graduation_Year);
 		
-		Button smsTo = (Button) findViewById(R.id.text_button);
-		smsTo.setOnClickListener(new OnClickListener () {
+		TextView pledgeClassLabel = (TextView) findViewById(R.id.pledge_class);
+		pledgeClassLabel.setText(brother.Pledge_Class);
+		
+		TextView majorLabel = (TextView) findViewById(R.id.major);
+		majorLabel.setText(brother.Major);
+		
+
+		// Enable SMS, Email, and Call buttons for this contact.
+		Button smsButton = (Button) findViewById(R.id.text_button);
+		smsButton.setOnClickListener(new OnClickListener () {
 			@Override 
 			public void onClick(View v) {
 				try {
 					Intent sendIntent = new Intent(Intent.ACTION_VIEW);
 					sendIntent.setType("vnd.android-dir/mms-sms");
-					sendIntent.putExtra("address", number);
+					sendIntent.putExtra("address", brother.Phone_Number);
 					startActivity(sendIntent);
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					Toast.makeText(getApplicationContext(),
 						"SMS failed, please try again later!",
 						Toast.LENGTH_LONG).show();
@@ -63,27 +61,25 @@ public class DirectoryDetails extends Activity {
 		});
 				
 		
-		Button email_b = (Button) findViewById(R.id.email_button);
-		email_b.setOnClickListener(new OnClickListener() {
-			
+		Button emailButton = (Button) findViewById(R.id.email_button);
+		emailButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-				String aEmailList[] = { email };
-				emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
+				emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String [] {brother.Email_Address});
 				emailIntent.setType("text/plain");
 				startActivity(emailIntent);
 			}
 		});
 		
-		Button call_b = (Button) findViewById(R.id.call_button);
-		call_b.setOnClickListener(new OnClickListener() {
+		Button callButton = (Button) findViewById(R.id.call_button);
+		callButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				try {
 			        Intent callIntent = new Intent(Intent.ACTION_DIAL);
-			        callIntent.setData(Uri.parse("tel:" + number));
+			        callIntent.setData(Uri.parse("tel:" + brother.Phone_Number));
 			        startActivity(callIntent);
 			    } catch (ActivityNotFoundException e) {
 			         e.printStackTrace();

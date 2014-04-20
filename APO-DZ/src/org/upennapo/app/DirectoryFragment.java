@@ -2,7 +2,6 @@ package org.upennapo.app;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -113,31 +112,16 @@ public class DirectoryFragment extends Fragment{
 			AlphabeticalAdapter adapter =
 				new AlphabeticalAdapter(getActivity(), R.layout.centered_textview, R.id.centered_text, alphabetizedNames);
 			ListView list = (ListView) view.findViewById(R.id.name_list);
-			
 			list.setAdapter(adapter);
 			updateProgressValue(9000);
+			
 			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				public void onItemClick(AdapterView <?> parent, View view, int position, long id) {
-					// Prepare data to send to the details view.
-					Brother b = directoryList.get(position);
-					HashMap<String,String> broMap = new HashMap<String,String>();
-					broMap.put(Brother.LAST_NAME_KEY, b.Last_Name);
-					broMap.put(Brother.FIRST_NAME_KEY, b.First_Name);
-					broMap.put(Brother.PREFERRED_NAME_KEY, b.Preferred_Name);
-					broMap.put(Brother.EMAIL_ADDRESS_KEY, b.Email_Address);
-					broMap.put(Brother.PHONE_NUMBER_KEY, b.Phone_Number);
-					broMap.put(Brother.PLEDGE_CLASS_KEY, b.Pledge_Class);
-					broMap.put(Brother.GRADUATION_YEAR_KEY, String.valueOf(b.Expected_Graduation_Year));
-					broMap.put(Brother.SCHOOL_KEY, b.School);
-					broMap.put(Brother.MAJOR_KEY, b.Major);
-					broMap.put(Brother.BIRTHDAY_KEY, b.Birthday);
-					
-					// Open the details view.
+					// Parcel the brother at this index to the details view.
 					Intent detailPage = new Intent(getActivity(), DirectoryDetails.class);
-					detailPage.putExtra(getString(R.string.dir_brother_data), broMap);
+					detailPage.putExtra(getString(R.string.dir_brother_data), directoryList.get(position));
 					getActivity().startActivity(detailPage);
 				}
-				
 			});
 			updateProgressValue(10000);
 	    }
