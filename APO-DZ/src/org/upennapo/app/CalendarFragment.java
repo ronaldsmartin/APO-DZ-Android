@@ -4,8 +4,8 @@
 package org.upennapo.app;
 
 import android.support.v4.app.Fragment;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +23,8 @@ public class CalendarFragment extends Fragment {
 		
 	}
 
-    @Override
+    @SuppressLint("SetJavaScriptEnabled")
+	@Override
     public View onCreateView(LayoutInflater inflater,
     			ViewGroup container, Bundle savedInstanceState) {
         View calendarView = inflater.inflate(R.layout.fragment_calendar_tab, container, false);
