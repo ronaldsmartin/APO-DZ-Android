@@ -33,8 +33,9 @@ import com.google.gson.JsonParser;
 public class ReadJSON {
 	
 	public static User getBrotherData(String urlString, String firstName, String lastName) {
+		String jsonString = downloadJsonData(urlString);
 		
-		for (User brother : parseSpreadsheetJson(urlString)) {
+		for (User brother : parseSpreadsheetJson(jsonString)) {
 			if (brother.Last_Name.equalsIgnoreCase(lastName) && 
 					(brother.First_Name.equalsIgnoreCase(firstName))) {
 				return brother;

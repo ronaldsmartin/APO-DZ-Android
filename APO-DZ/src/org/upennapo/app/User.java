@@ -30,4 +30,26 @@ public class User {
 	public float Required_Membership_Points;
 	public boolean Pledge_Comp;
 	public boolean Brother_Comp;
+	
+	@Override
+	public String toString() {
+		StringBuilder userStringBuilder = new StringBuilder();
+		userStringBuilder.append(this.First_Name);
+		userStringBuilder.append(" ");
+		userStringBuilder.append(this.Last_Name);
+		userStringBuilder.append(":\n\t");
+		
+		userStringBuilder.append("Service Hours: ");
+		userStringBuilder.append(this.Service_Hours);
+		userStringBuilder.append('\n');
+		
+		userStringBuilder.append("\tMembership Points: ");
+		userStringBuilder.append(this.Membership_Points);
+		userStringBuilder.append('\n');
+		
+		userStringBuilder.append("\tFellowship Points: ");
+		userStringBuilder.append(this.Fellowship_Points);
+		
+		return userStringBuilder.toString();
+	}
 }

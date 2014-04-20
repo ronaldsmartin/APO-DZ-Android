@@ -1,32 +1,41 @@
 package org.upennapo.app;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 public class BrotherStatusFragment extends Fragment {
 	
+	// Constants
+	public static final String URL_KEY = "SPREADSHEET_URL";
+	
 	private User user;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+		SharedPreferences prefs = getActivity().getSharedPreferences("LoginActivity", Context.MODE_PRIVATE);
+		final String firstName = prefs.getString(LoginActivity.USER_FIRSTNAME_KEY, ""),
+					 lastName  = prefs.getString(LoginActivity.USER_LASTNAME_KEY, ""),
+					 spreadsheetUrl = getArguments().getString(URL_KEY);
 		
-//		AsyncUserDataLoader loader = new AsyncUserDataLoader();
-//		loader.execute(urlString);
+		AsyncUserDataLoader loader = new AsyncUserDataLoader();
+		loader.execute(spreadsheetUrl, firstName, lastName);
 		
-		// TODO: fix
-		View view = inflater.inflate(R.layout.fragment_directory, container, false);
+		View view = inflater.inflate(R.layout.work_in_progress_view, container, false);
 		
 		return view;
 	}
 	
 	private void updateView() {
-		
+		Log.v("BrotherStatusFragment", this.user.toString());
 	}
 	
 	private class AsyncUserDataLoader extends AsyncTask<String, Void, User> {

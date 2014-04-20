@@ -104,8 +104,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    	// TODO: brotherStatusFragment
-    	private final Fragment brotherStatusFragment   = new DummySectionFragment();
+    	private final Fragment brotherStatusFragment   = new BrotherStatusFragment();
     	private final Fragment calendarFragment        = new CalendarFragment();
     	private final Fragment broDirectoryFragment    = new DirectoryFragment();
     	private final Fragment pledgeDirectoryFragment = new DirectoryFragment();
@@ -117,6 +116,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         }
         
         private void init() {
+        	// Set up Brother Status
+        	Bundle broStatusArgs = new Bundle();
+        	broStatusArgs.putString(BrotherStatusFragment.URL_KEY, getString(R.string.spreadsheet_url));
+        	this.brotherStatusFragment.setArguments(broStatusArgs);
+        	
         	// Set up Calendar
             Bundle calendarUrlArgs = new Bundle();
             calendarUrlArgs.putString(CalendarFragment.URL_KEY, getString(R.string.calendar_url));
@@ -126,11 +130,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     		Bundle broDirectoryArgs = new Bundle();
     		broDirectoryArgs.putString(DirectoryFragment.URL_KEY, getString(R.string.brother_directory_json_url));
     		broDirectoryArgs.putString(DirectoryFragment.SHEET_KEY, "ActiveBrotherDirectory");
+    		broDirectoryArgs.putString(DirectoryFragment.HEADER_KEY, "Brother Directory");
     		this.broDirectoryFragment.setArguments(broDirectoryArgs);
     		
     		Bundle pledgeDirectoryArgs = new Bundle();
     		pledgeDirectoryArgs.putString(DirectoryFragment.URL_KEY, getString(R.string.pledge_directory_json_url));
     		pledgeDirectoryArgs.putString(DirectoryFragment.SHEET_KEY, "PledgeDirectory");
+    		pledgeDirectoryArgs.putString(DirectoryFragment.HEADER_KEY, "Pledge Directory");
     		this.pledgeDirectoryFragment.setArguments(pledgeDirectoryArgs);
         }
 
@@ -212,7 +218,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         		break;
         	case 3:
         		// Pledge Directory
-        		iconID = R.drawable.ic_action_users;
+        		iconID = R.drawable.ic_action_grow;
         		break;
         	case 4:
         		// Helpful Links
