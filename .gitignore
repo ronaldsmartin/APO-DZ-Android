@@ -30,4 +30,4 @@ proguard/
 .idea/
 
 # Mac
-.DS_store
+*.DS_Store
