@@ -15,7 +15,7 @@
 	
 	
 	<!-- Name Entry Dialog -->
-	<string name="name_entry_title">Who are you?</string>
+	<string name="name_entry_title">Who comes there?</string>
 	<string name="name_entry_instructions">Enter your name exactly as it appears on the Spreadsheet.</string>
 	<string name="name_entry_first_name_prompt">First Name</string>
 	<string name="name_entry_first_name_hint">Greatest</string>
