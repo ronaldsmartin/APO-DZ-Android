@@ -16,10 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class DirectoryFragment extends Fragment{
 	
+	public static final String HEADER_KEY = "HEADER";
 	public static final String URL_KEY   = "URL";
 	public static final String SHEET_KEY = "SHEET_KEY";
 	private ArrayList<Brother> directoryList;
@@ -33,29 +35,24 @@ public class DirectoryFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		// Retrieve the arguments passed by the MainActivity
-        final String urlString = getArguments().getString(URL_KEY);
-        final String sheetKey  = getArguments().getString(SHEET_KEY);
+        final String urlString   = getArguments().getString(URL_KEY);
+        final String sheetKey    = getArguments().getString(SHEET_KEY);
+        final String headerTitle = getArguments().getString(HEADER_KEY);
 		
         Activity context = getActivity();
         context.getActionBar();
         // Activate the progress view in the action bar.
         // Progress bar code is due to http://guides.thecodepath.com/android/Handling-ProgressBars
-        if (ReadJSON.isNetworkAvailable(context)) {
-        	// Make an asynchronous request for the JSON using the URL
-        	AsyncBrotherLoader loader = new AsyncBrotherLoader();
-        	showProgressBar();
-        	loader.execute(urlString, sheetKey);
-        } else {
-        	// Display a Toast if we don't have an Internet connection.
-        	Toast noInternetAlert = Toast.makeText(context,
-        											"Oops! There's no internet connection. Try again later.",
-        											Toast.LENGTH_LONG);
-        	noInternetAlert.show();
-        }
+		showProgressBar();
 		
+        // Make an asynchronous request for the JSON using the URL
+    	AsyncBrotherLoader loader = new AsyncBrotherLoader();
+    	loader.execute(urlString, sheetKey);
 		
 		// Inflate the View
 		view = inflater.inflate(R.layout.fragment_directory, container, false);
+		TextView header = (TextView) view.findViewById(R.id.directory_header);
+		header.setText(headerTitle);
 		return view;
 	}
 	
@@ -86,7 +83,7 @@ public class DirectoryFragment extends Fragment{
 
 	    @Override
 	    protected Brother[] doInBackground(String... params) {
-	    	Brother[] results = ReadJSON.getDirectoryData(params[0], params[1]);
+	    	Brother[] results = ReadJSON.getDirectoryData(params[0], params[1], getActivity());
 	    	return results;
 	    }
 	    
