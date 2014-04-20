@@ -17,6 +17,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.util.Log;
 
@@ -53,8 +54,20 @@ public class ReadJSON {
 		return brotherSheet;
 	}
 	
-	public static Brother[] getDirectoryData(String urlString, String sheetKey) {
-		return parseDirectoryJson(downloadJsonData(urlString), sheetKey);
+	public static Brother[] getDirectoryData(String urlString, String sheetKey, Context context) {
+		// If the JSON data is stored locally, pull it from preferences.
+		// Otherwise, download it from the Internet and cache it.
+		SharedPreferences prefs = context.getSharedPreferences("DirectoryFragment", Context.MODE_PRIVATE);
+		
+		String jsonString = prefs.getString(sheetKey, downloadJsonData(urlString));
+		
+		if (!prefs.contains(sheetKey)) {
+			SharedPreferences.Editor editor = prefs.edit();
+			editor.putString(sheetKey, jsonString);
+			editor.apply();
+		}
+		
+		return parseDirectoryJson(jsonString, sheetKey);
 	}
 	
 	private static Brother[] parseDirectoryJson(String jsonData, String sheetKey) {
