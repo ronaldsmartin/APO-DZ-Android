@@ -30,10 +30,38 @@
     <string name="title_section4">Pledges</string>
     <string name="title_section5">Links</string>
     
-    <!-- Brother Status Work in Progress Labels -->
+    <!-- Work in Progress Labels -->
     <string name="under_construction_header">Under Construction</string>
     <string name="brother_status_wip_header">work in progress</string>
     <string name="brother_status_wip_message">Please enjoy this picture instead.</string>
+    
+    <!-- Brother Status -->
+    	<!-- Brother Status Headers -->
+    	<string name="brother_status_header">Brother Status</string>
+    	<string name="service_header">Service</string>
+    	<string name="membership_header">Membership</string>
+    	<string name="fellowship_header">Fellowship</string>
+    	
+    	<!-- Categories -->
+    	<string name="cat_status">Status:</string>
+    	<string name="cat_req_completion">Reqs:</string>
+    	
+    	<string name="cat_service_hours">Hours:</string>
+    	<string name="cat_large_group_completion">Large Group:</string>
+    	<string name="cat_publicity_completion">Publicity:</string>
+    	<string name="cat_hosting_completion">Hosting:</string>
+    	
+    	<string name="cat_points">Points:</string>
+    	<string name="cat_pledge_comp">Pledge Comp.:</string>
+    	<string name="cat_bro_comp">Brother Comp.:</string>
+    	
+    	
+    	
+    	
+    	<!-- Completion Statuses -->
+    	<string name="req_complete">complete</string>
+    	<string name="req_incomplete">incomplete</string>
+    	<string name="zero_points">0</string>
     
     <!-- Calendar -->
     	<!-- Calendar Header -->
