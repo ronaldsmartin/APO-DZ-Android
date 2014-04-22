@@ -1,6 +1,7 @@
 package org.upennapo.app;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class BrotherStatusFragment extends Fragment {
@@ -28,8 +30,16 @@ public class BrotherStatusFragment extends Fragment {
 					 spreadsheetUrl = getArguments().getString(URL_KEY);
 		
 		getActivity().setProgressBarVisibility(true);
-		AsyncUserDataLoader loader = new AsyncUserDataLoader();
-		loader.execute(spreadsheetUrl, firstName, lastName);
+		if (ReadJSON.isNetworkAvailable(getActivity())) {
+			AsyncUserDataLoader loader = new AsyncUserDataLoader();
+			loader.execute(spreadsheetUrl, firstName, lastName);
+		} else {
+			// Notify the user that there is no connection. Tell them to try later.
+			Toast noConnectionToast = Toast.makeText(getActivity(),
+													 "Oops(ilon), there's no internet connection! Try again later.",
+													 Toast.LENGTH_LONG);
+			noConnectionToast.show();
+		}
 		
 		View view = inflater.inflate(R.layout.fragment_brother_status, container, false);
 		
@@ -37,6 +47,16 @@ public class BrotherStatusFragment extends Fragment {
 	}
 	
 	private void updateView() {
+		if (this.user == null) {
+			// Notify the user and do not update the view if the user wasn't on the spreadsheet.
+			AlertDialog.Builder nullUserAlert = new AlertDialog.Builder(getActivity());
+			nullUserAlert.setTitle("User data not found");
+			nullUserAlert.setMessage("We were unable to find your APO record. " +
+									 "Please log in with your name exactly as it appears on the Spreadsheet.");
+			nullUserAlert.show();
+			return;
+		}
+		
 		// Update Status Labels
 		TextView nameLabel = (TextView) getActivity().findViewById(R.id.name_label);
 		nameLabel.setText(this.user.First_Name + " " + this.user.Last_Name);
@@ -114,7 +134,7 @@ public class BrotherStatusFragment extends Fragment {
 	    
 	    @Override
 	    protected void onPostExecute(User result) {    
-	        user = result;
+	        BrotherStatusFragment.this.user = result;
 	        getActivity().setProgress(5000);
 	        updateView();
 	        getActivity().setProgress(10000);
