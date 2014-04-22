@@ -71,7 +71,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             // this tab is selected.
             actionBar.addTab(
                     actionBar.newTab()
-                            .setIcon(mSectionsPagerAdapter.getPageIcon(i))
+                            .setIcon(getPageIcon(i))
                             .setTabListener(this));
         }
     }
@@ -87,15 +87,74 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         // When the given tab is selected, switch to the corresponding page in
         // the ViewPager.
-        mViewPager.setCurrentItem(tab.getPosition());
+    	int position = tab.getPosition();
+    	tab.setIcon(getSelectedPageIcon(position));
+        mViewPager.setCurrentItem(position);
     }
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    	int position = tab.getPosition();
+    	tab.setIcon(getPageIcon(position));
+        mViewPager.setCurrentItem(position);
     }
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    }
+    
+    protected static int getPageIcon(int position) {
+    	int iconID = 0;
+    	switch (position) {
+    	case 0:
+    		// Brother Status
+    		iconID = R.drawable.ic_action_tick;
+    		break;
+    	case 1:
+    		// Calendar
+    		iconID = R.drawable.ic_action_calendar_day;
+    		break;
+    	case 2:
+    		// Brother Directory
+    		iconID = R.drawable.ic_action_users;
+    		break;
+    	case 3:
+    		// Pledge Directory
+    		iconID = R.drawable.ic_action_grow;
+    		break;
+    	case 4:
+    		// Helpful Links
+    		iconID = R.drawable.ic_action_bookmark;
+    		break;
+    	}
+    	return iconID;
+    }
+    
+    protected static int getSelectedPageIcon(int position) {
+    	int iconID = 0;
+    	switch (position) {
+    	case 0:
+    		// Brother Status
+    		iconID = R.drawable.ic_action_tick_selected;
+    		break;
+    	case 1:
+    		// Calendar
+    		iconID = R.drawable.ic_action_calendar_day_selected;
+    		break;
+    	case 2:
+    		// Brother Directory
+    		iconID = R.drawable.ic_action_users_selected;
+    		break;
+    	case 3:
+    		// Pledge Directory
+    		iconID = R.drawable.ic_action_grow_selected;
+    		break;
+    	case 4:
+    		// Helpful Links
+    		iconID = R.drawable.ic_action_bookmark_selected;
+    		break;
+    	}
+    	return iconID;
     }
 
 
@@ -200,33 +259,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 	break;
             }
             return sectionName;
-        }
-        
-        public int getPageIcon(int position) {
-        	int iconID = 0;
-        	switch (position) {
-        	case 0:
-        		// Brother Status
-        		iconID = R.drawable.ic_action_tick;
-        		break;
-        	case 1:
-        		// Calendar
-        		iconID = R.drawable.ic_action_calendar_day;
-        		break;
-        	case 2:
-        		// Brother Directory
-        		iconID = R.drawable.ic_action_users;
-        		break;
-        	case 3:
-        		// Pledge Directory
-        		iconID = R.drawable.ic_action_grow;
-        		break;
-        	case 4:
-        		// Helpful Links
-        		iconID = R.drawable.ic_action_bookmark;
-        		break;
-        	}
-        	return iconID;
         }
     }
 
