@@ -39,7 +39,8 @@
 		        android:id="@+id/name_label"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="@string/brother_status_header"
+		        android:text="@string/req_loading"
+		        android:textColor="@color/list_header"
 		        style="?android:attr/listSeparatorTextViewStyle" />
 		 	
 		
@@ -85,15 +86,15 @@
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
 		                android:fontFamily="sans-serif-light"
-		                android:textAllCaps="true"
-		                android:text="@string/req_incomplete" />
+		                android:textAllCaps="true" />
 			</LinearLayout>
 	
 	    <!-- Service -->
         <TextView 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:text="@string/service_header"
+	        android:text="@string/service_header" 
+		    android:textColor="@color/list_header"
 	        style="?android:attr/listSeparatorTextViewStyle" />
 	        
 	        <LinearLayout 
@@ -115,8 +116,7 @@
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
 		                android:textAllCaps="true"
-		                android:fontFamily="sans-serif-light"
-		                android:text="@string/req_incomplete" />
+		                android:fontFamily="sans-serif-light" />
 			</LinearLayout>
 			
 	        <LinearLayout 
@@ -137,8 +137,7 @@
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
-		                android:fontFamily="sans-serif-light"
-		                android:text="@string/zero_points" />
+		                android:fontFamily="sans-serif-light" />
 			</LinearLayout>
 			
 	        <LinearLayout 
@@ -160,8 +159,7 @@
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
 		                android:textAllCaps="true"
-		                android:fontFamily="sans-serif-light"
-		                android:text="@string/req_incomplete" />
+		                android:fontFamily="sans-serif-light" />
 			</LinearLayout>
 			
 	        <LinearLayout 
@@ -183,8 +181,7 @@
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
 		                android:fontFamily="sans-serif-light"
-		                android:textAllCaps="true"
-		                android:text="@string/req_incomplete" />
+		                android:textAllCaps="true" />
 			</LinearLayout>
 			
 	        <LinearLayout 
@@ -206,8 +203,7 @@
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
 		                android:fontFamily="sans-serif-light"
-		                android:textAllCaps="true"
-		                android:text="@string/req_incomplete" />
+		                android:textAllCaps="true" />
 			</LinearLayout>
 	        
 	    <!-- Membership -->
@@ -215,6 +211,7 @@
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
 		        android:text="@string/membership_header"
+		        android:textColor="@color/list_header"
 		        style="?android:attr/listSeparatorTextViewStyle" />
 	        
 	        <LinearLayout 
@@ -236,8 +233,7 @@
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
 		                android:fontFamily="sans-serif-light"
-		                android:textAllCaps="true"
-		                android:text="@string/req_incomplete" />
+		                android:textAllCaps="true" />
 			</LinearLayout>
 			
 	        <LinearLayout 
@@ -258,9 +254,7 @@
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
-		                android:fontFamily="sans-serif-light"
-		                android:textAllCaps="true"
-		                android:text="@string/zero_points" />
+		                android:fontFamily="sans-serif-light" />
 			</LinearLayout>
 			
 	        <LinearLayout 
@@ -282,8 +276,7 @@
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
 		                android:fontFamily="sans-serif-light"
-		                android:textAllCaps="true"
-		                android:text="@string/req_incomplete" />
+		                android:textAllCaps="true" />
 			</LinearLayout>
 			
 	        <LinearLayout 
@@ -305,8 +298,7 @@
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
 		                android:fontFamily="sans-serif-light"
-		                android:textAllCaps="true"
-		                android:text="@string/req_incomplete" />
+		                android:textAllCaps="true" />
 			</LinearLayout>
 			
 	        <LinearLayout 
@@ -328,8 +320,7 @@
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
 		                android:fontFamily="sans-serif-light"
-		                android:textAllCaps="true"
-		                android:text="@string/req_incomplete" />
+		                android:textAllCaps="true" />
 			</LinearLayout>
 	        
 	    <!-- Fellowship -->
@@ -337,6 +328,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:text="@string/fellowship_header"
+		    android:textColor="@color/list_header"
 	        style="?android:attr/listSeparatorTextViewStyle" />
 	        
         	<LinearLayout 
@@ -358,8 +350,7 @@
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
 		                android:textAllCaps="true"
-		                android:fontFamily="sans-serif-light"
-		                android:text="@string/req_incomplete" />
+		                android:fontFamily="sans-serif-light" />
 			</LinearLayout>
         
 	        <LinearLayout 
@@ -380,9 +371,7 @@
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
-		                android:fontFamily="sans-serif-light"
-		                android:textAllCaps="true"
-		                android:text="@string/zero_points" />
+		                android:fontFamily="sans-serif-light" />
 			</LinearLayout>
 			
 	        <LinearLayout 
@@ -404,8 +393,7 @@
 		                android:layout_height="wrap_content"
 		                android:layout_gravity="right"
 		                android:fontFamily="sans-serif-light"
-		                android:textAllCaps="true"
-		                android:text="@string/req_incomplete" />
+		                android:textAllCaps="true" />
 			</LinearLayout>
 	    </LinearLayout>
 	</ScrollView>

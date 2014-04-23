@@ -3,4 +3,5 @@
     <!-- Custom Colors for Background -->
     <color name="apo_blue" >#0033AB</color>
     <color name="apo_yellow" >#F7B512</color>
+    <color name="list_header">#0066CC</color>
 </resources>

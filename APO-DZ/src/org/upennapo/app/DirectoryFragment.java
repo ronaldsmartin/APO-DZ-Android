@@ -71,6 +71,36 @@ public class DirectoryFragment extends Fragment{
     public void hideProgressBar() {
     	getActivity().setProgressBarVisibility(false);
     }
+    
+    protected void updateDirectoryList(Brother[] result) {
+    	directoryList = new ArrayList<Brother>(Arrays.asList(result));
+        updateProgressValue(4000);
+        Collections.sort(directoryList, new BrotherComparator());        
+        updateProgressValue(7000);
+        
+        ArrayList<String> alphabetizedNames = new ArrayList<String>();
+       	for (Brother brother : directoryList) {
+			String firstName =
+				brother.Preferred_Name.equals("") ? brother.First_Name : brother.Preferred_Name;
+			alphabetizedNames.add(firstName + " " + brother.Last_Name);
+		}
+       	updateProgressValue(8500);
+
+		AlphabeticalAdapter adapter =
+			new AlphabeticalAdapter(getActivity(), R.layout.centered_textview, R.id.centered_text, alphabetizedNames);
+		ListView list = (ListView) view.findViewById(R.id.name_list);
+		list.setAdapter(adapter);
+		updateProgressValue(9000);
+		
+		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView <?> parent, View view, int position, long id) {
+				// Parcel the brother at this index to the details view.
+				Intent detailPage = new Intent(getActivity(), DirectoryDetails.class);
+				detailPage.putExtra(getString(R.string.dir_brother_data), directoryList.get(position));
+				getActivity().startActivity(detailPage);
+			}
+		});
+    }
 	
 	private class AsyncBrotherLoader extends AsyncTask<String, Void, Brother[]> {
 
@@ -89,40 +119,14 @@ public class DirectoryFragment extends Fragment{
 	    @Override
 	    protected void onPostExecute(Brother[] result) {
 	    	if (result == null) {
-	    		// If there is an error getting the result, break the loop and display an alert.
-	    		updateProgressValue(10000);
+	    		// If there is an error getting the result, display an alert.
 	    		
 	    		Toast failureAlert = Toast.makeText(getActivity(), "Unable to load at this time.", Toast.LENGTH_LONG);
 	    		failureAlert.show();
-	    		return;
+	    	} else {
+	    		updateDirectoryList(result);
 	    	}
-	        directoryList = new ArrayList<Brother>(Arrays.asList(result));
-	        updateProgressValue(4000);
-	        Collections.sort(directoryList, new BrotherComparator());        
-	        updateProgressValue(7000);
 	        
-	        ArrayList<String> alphabetizedNames = new ArrayList<String>();
-	       	for (Brother brother : directoryList) {
-				String firstName =
-					brother.Preferred_Name.equals("") ? brother.First_Name : brother.Preferred_Name;
-				alphabetizedNames.add(firstName + " " + brother.Last_Name);
-			}
-	       	updateProgressValue(8500);
-
-			AlphabeticalAdapter adapter =
-				new AlphabeticalAdapter(getActivity(), R.layout.centered_textview, R.id.centered_text, alphabetizedNames);
-			ListView list = (ListView) view.findViewById(R.id.name_list);
-			list.setAdapter(adapter);
-			updateProgressValue(9000);
-			
-			list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-				public void onItemClick(AdapterView <?> parent, View view, int position, long id) {
-					// Parcel the brother at this index to the details view.
-					Intent detailPage = new Intent(getActivity(), DirectoryDetails.class);
-					detailPage.putExtra(getString(R.string.dir_brother_data), directoryList.get(position));
-					getActivity().startActivity(detailPage);
-				}
-			});
 			updateProgressValue(10000);
 	    }
 	}
@@ -142,6 +146,5 @@ public class DirectoryFragment extends Fragment{
 			return firstName1.compareToIgnoreCase(firstName2);
 		}
 	}
-	
 }
 
