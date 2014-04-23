@@ -28,12 +28,17 @@ public class LoginActivity extends Activity {
 	public static final String LOGGED_IN_KEY      = "USER_LOGGED_IN";
 	public static final String USER_FIRSTNAME_KEY = "USER_FIRST_NAME";
 	public static final String USER_LASTNAME_KEY  = "USER_LAST_NAME";
+	public static final String LOGOUT_INTENT      = "USER_LOGOUT_INTENT";
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_activity);
 		
-		updateNameLabel();
+		if (getIntent().getBooleanExtra(LOGOUT_INTENT, false)) {
+			updateNameLabel();
+		} else if (userIsLoggedIn() && hasUsername()) {
+			proceedToApp();
+		}
 	}
 	
 	public void logout(View view) {
@@ -122,6 +127,7 @@ public class LoginActivity extends Activity {
 	private void proceedToApp() {
 		Intent openAppIntent = new Intent(this, MainActivity.class);
 		startActivity(openAppIntent);
+		finish();
 	}
 	
 	protected void showPasswordPrompt(String title) {

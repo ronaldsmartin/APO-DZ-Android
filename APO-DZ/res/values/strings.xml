@@ -2,7 +2,13 @@
 <resources>
 
     <string name="app_name">APO-DZ</string>
-    <string name="action_settings">Settings</string>
+    
+    <!-- Menu Options -->
+    <string name="menu_switch_user">Switch user</string>
+    <string name="menu_report_bug">Report an issue</string>
+    <string name="menu_about_app">About the app</string>
+    <string name="menu_report_bug_url">&quot;https://github.com/ronaldsmartin/APO-DZ-Android/issues/new&quot;</string>
+    <string name="menu_about_app_url">&quot;http://ronaldsmartin.github.io/APO-DZ-Android/&quot;</string>
     
     <!-- Title Screen -->
     <string name="login_screen_title"><b>DELTA ZETA CHAPTER</b></string>
@@ -55,14 +61,12 @@
     	<string name="cat_pledge_comp">Pledge Comp.:</string>
     	<string name="cat_bro_comp">Brother Comp.:</string>
     	
-    	
-    	
-    	
     	<!-- Completion Statuses -->
     	<string name="req_complete">complete</string>
     	<string name="req_incomplete">incomplete</string>
-    	<string name="zero_points">0</string>
+    	<string name="req_loading">Loading&#8230;</string>
     
+    	
     <!-- Calendar -->
     	<!-- Calendar Header -->
     	<string name="calendar_header">Delta Zeta Calendars</string> 
@@ -87,6 +91,7 @@
     <!-- Helpful Links -->
     
 	    <!-- Headers for Helpful Links -->
+	    <string name="helpful_links_header">Helpful Links</string>
 	    <string name="sheet_list_header">Spreadsheets</string>
 	    <string name="form_list_header">Forms</string>
 	    <string name="site_list_header">Websites</string>
