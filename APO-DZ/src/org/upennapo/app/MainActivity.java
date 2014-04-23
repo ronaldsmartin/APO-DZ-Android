@@ -4,6 +4,8 @@ import java.util.Locale;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -12,6 +14,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -81,6 +84,31 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_switch_user:
+            	Intent openLoginScreen = new Intent(this, LoginActivity.class);
+            	openLoginScreen.putExtra(LoginActivity.LOGOUT_INTENT, true);
+            	startActivity(openLoginScreen);
+            	finish();
+                return true;
+            case R.id.menu_report_bug:
+            	final String githubIssueUrl = getString(R.string.menu_report_bug_url);
+                Intent openGithubIssue = new Intent(Intent.ACTION_VIEW, Uri.parse(githubIssueUrl));
+                startActivity(openGithubIssue);
+                return true;
+            case R.id.menu_about_app:
+            	final String githubPageUrl = getString(R.string.menu_about_app_url);
+                Intent openGithubPage = new Intent(Intent.ACTION_VIEW, Uri.parse(githubPageUrl));
+                startActivity(openGithubPage);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
     
     @Override
