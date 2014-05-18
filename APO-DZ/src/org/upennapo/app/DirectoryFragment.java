@@ -1,10 +1,5 @@
 package org.upennapo.app;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Arrays;
-import java.util.Comparator;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -18,15 +13,32 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DirectoryFragment extends Fragment{
-	
-	public static final String HEADER_KEY = "HEADER";
-	public static final String URL_KEY   = "URL";
-	public static final String SHEET_KEY = "SHEET_KEY";
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+
+import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
+import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
+import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
+
+public class DirectoryFragment extends Fragment implements OnRefreshListener {
+
+    public static final String HEADER_KEY = "HEADER";
+    public static final String URL_KEY = "URL";
+    public static final String SHEET_KEY = "SHEET_KEY";
+
+    private String urlString;
+    private String sheetKey;
+    private String headerTitle;
+
+    private View view;
+    private PullToRefreshLayout mPullToRefreshLayout;
+
 	private ArrayList<Brother> directoryList;
-	private View view;
-	
-	public DirectoryFragment() {
+
+
+    public DirectoryFragment() {
     }
 
 	
@@ -34,24 +46,34 @@ public class DirectoryFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 		// Retrieve the arguments passed by the MainActivity
-        final String urlString   = getArguments().getString(URL_KEY);
-        final String sheetKey    = getArguments().getString(SHEET_KEY);
-        final String headerTitle = getArguments().getString(HEADER_KEY);
-		
+        this.urlString = getArguments().getString(URL_KEY);
+        this.sheetKey = getArguments().getString(SHEET_KEY);
+        this.headerTitle = getArguments().getString(HEADER_KEY);
+
         Activity context = getActivity();
         context.getActionBar();
         // Activate the progress view in the action bar.
         // Progress bar code is due to http://guides.thecodepath.com/android/Handling-ProgressBars
 		showProgressBar();
-		
-        // Make an asynchronous request for the JSON using the URL
-    	AsyncBrotherLoader loader = new AsyncBrotherLoader();
-    	loader.execute(urlString, sheetKey);
-		
-		// Inflate the View
-		view = inflater.inflate(R.layout.fragment_directory, container, false);
-		TextView header = (TextView) view.findViewById(R.id.directory_header);
-		header.setText(headerTitle);
+
+        refreshDirectory();
+
+        // Inflate the View
+        view = inflater.inflate(R.layout.fragment_directory, container, false);
+        TextView header = (TextView) view.findViewById(R.id.directory_header);
+        header.setText(headerTitle);
+
+        // Now find the PullToRefreshLayout to setup
+        this.mPullToRefreshLayout = (PullToRefreshLayout) view.findViewById(R.id.ptr_layout);
+        // Now setup the PullToRefreshLayout
+        ActionBarPullToRefresh.from(getActivity())
+                // Mark All Children as pullable
+                .allChildrenArePullable()
+                        // Set a OnRefreshListener
+                .listener(this)
+                        // Finally commit the setup to our PullToRefreshLayout
+                .setup(mPullToRefreshLayout);
+
 		return view;
 	}
 	
@@ -70,6 +92,18 @@ public class DirectoryFragment extends Fragment{
     // Should be called when an async task has finished
     public void hideProgressBar() {
     	getActivity().setProgressBarVisibility(false);
+    }
+
+    private void refreshDirectory() {
+        // Make an asynchronous request for the JSON using the URL
+        AsyncBrotherLoader loader = new AsyncBrotherLoader() {
+            @Override
+            protected void onPostExecute(Brother[] result) {
+                super.onPostExecute(result);
+                DirectoryFragment.this.mPullToRefreshLayout.setRefreshComplete();
+            }
+        };
+        loader.execute(urlString, sheetKey);
     }
     
     protected void updateDirectoryList(Brother[] result) {
@@ -101,8 +135,13 @@ public class DirectoryFragment extends Fragment{
 			}
 		});
     }
-	
-	private class AsyncBrotherLoader extends AsyncTask<String, Void, Brother[]> {
+
+    @Override
+    public void onRefreshStarted(View view) {
+        refreshDirectory();
+    }
+
+    private class AsyncBrotherLoader extends AsyncTask<String, Void, Brother[]> {
 
 	    @Override
 	    protected void onPreExecute() {        
@@ -112,12 +151,11 @@ public class DirectoryFragment extends Fragment{
 
 	    @Override
 	    protected Brother[] doInBackground(String... params) {
-	    	Brother[] results = ReadJSON.getDirectoryData(params[0], params[1], getActivity());
-	    	return results;
-	    }
-	    
-	    @Override
-	    protected void onPostExecute(Brother[] result) {
+            return ReadJSON.getDirectoryData(params[0], params[1], getActivity());
+        }
+
+        @Override
+        protected void onPostExecute(Brother[] result) {
 	    	if (result == null) {
 	    		// If there is an error getting the result, display an alert.
 	    		
