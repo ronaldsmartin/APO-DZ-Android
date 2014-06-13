@@ -1,24 +1,20 @@
 package org.upennapo.app;
 
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
-import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
-
-public class BrotherStatusFragment extends Fragment implements OnRefreshListener {
+public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     // Constants
     public static final String URL_KEY = "SPREADSHEET_URL";
@@ -27,7 +23,11 @@ public class BrotherStatusFragment extends Fragment implements OnRefreshListener
     private User user;
     private String firstName, lastName, spreadsheetUrl;
 
-    private PullToRefreshLayout mPullToRefreshLayout;
+    /**
+     * The {@link android.support.v4.widget.SwipeRefreshLayout} that detects swipe gestures and
+     * triggers callbacks in the app.
+     */
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     private static int completionStatusStringId(boolean complete) {
         if (complete)
@@ -45,56 +45,67 @@ public class BrotherStatusFragment extends Fragment implements OnRefreshListener
 
 		getActivity().setProgressBarVisibility(true);
 		if (ReadJSON.isNetworkAvailable(getActivity())) {
-            updateUserData();
+            getUserData();
         } else {
             // Notify the user that there is no connection. Tell them to try later.
             Toast noConnectionToast = Toast.makeText(getActivity(),
                     "Oops(ilon), there's no internet! Try again later.",
                     Toast.LENGTH_LONG);
             noConnectionToast.show();
+
+            getActivity().setProgressBarVisibility(false);
         }
 
         View view = inflater.inflate(R.layout.fragment_brother_status, container, false);
 
-        // Now find the PullToRefreshLayout to setup
-        this.mPullToRefreshLayout = (PullToRefreshLayout) view.findViewById(R.id.ptr_layout);
-        // Now setup the PullToRefreshLayout
-        ActionBarPullToRefresh.from(getActivity())
-                // Mark All Children as pullable
-                .allChildrenArePullable()
-                        // Set a OnRefreshListener
-                .listener(this)
-                        // Finally commit the setup to our PullToRefreshLayout
-                .setup(mPullToRefreshLayout);
+        // Set up SwipeToRefresh
+        this.mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
+        this.mSwipeRefreshLayout.setColorScheme(
+                R.color.apo_blue, R.color.apo_yellow, R.color.apo_blue, R.color.apo_yellow);
+        this.mSwipeRefreshLayout.setOnRefreshListener(this);
 
         return view;
     }
 
-    @Override
-    public void onRefreshStarted(View view) {
-        updateUserData();
-    }
 
-    private void updateUserData() {
+    @Override
+    public void onRefresh() {
         AsyncUserDataLoader loader = new AsyncUserDataLoader() {
             @Override
+            protected void onPreExecute() {
+                if (!mSwipeRefreshLayout.isRefreshing()) {
+                    mSwipeRefreshLayout.setRefreshing(true);
+                }
+            }
+
+            @Override
             protected void onPostExecute(User result) {
-                super.onPostExecute(result);
-                mPullToRefreshLayout.setRefreshComplete();
+                BrotherStatusFragment.this.user = result;
+                updateView();
+                BrotherStatusFragment.this.mSwipeRefreshLayout.setRefreshing(false);
             }
         };
+        loader.execute(spreadsheetUrl, firstName, lastName);
+    }
+
+    private void getUserData() {
+        AsyncUserDataLoader loader = new AsyncUserDataLoader();
         loader.execute(spreadsheetUrl, firstName, lastName);
     }
 
     @SuppressWarnings("ResourceType")
     private void updateView() {
         if (this.user == null) {
-            // Notify the user and do not update the view if the user wasn't on the spreadsheet.
+            // Notify the user and do not update all views if the user wasn't on the spreadsheet.
             AlertDialog.Builder nullUserAlert = new AlertDialog.Builder(getActivity());
             nullUserAlert.setTitle("User data not found");
             nullUserAlert.setMessage("We were unable to find your APO record. " +
                     "Please log in with your name exactly as it appears on the Spreadsheet.");
             nullUserAlert.show();
+
+            TextView nameLabel = (TextView) getActivity().findViewById(R.id.name_label);
+            nameLabel.setText("Unable to find user data.");
+
             return;
         }
 
@@ -155,7 +166,6 @@ public class BrotherStatusFragment extends Fragment implements OnRefreshListener
     }
 
     private class AsyncUserDataLoader extends AsyncTask<String, Void, User> {
-
 	    @Override
 	    protected void onPreExecute() {        
 	        super.onPreExecute();
@@ -168,7 +178,9 @@ public class BrotherStatusFragment extends Fragment implements OnRefreshListener
 	    }
 	    
 	    @Override
-	    protected void onPostExecute(User result) {    
+        protected void onPostExecute(User result) {
+            super.onPostExecute(result);
+
 	        BrotherStatusFragment.this.user = result;
 	        getActivity().setProgress(5000);
 	        updateView();
