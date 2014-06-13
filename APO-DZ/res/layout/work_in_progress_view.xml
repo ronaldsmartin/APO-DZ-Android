@@ -2,31 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="@color/apo_blue"
+    android:gravity="center"
     android:orientation="vertical" >
 
     <!-- Header -->
     <TextView android:id="@+id/under_construction_header"
+        style="@android:style/TextAppearance.Large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:padding="10dip"
-        android:gravity="center" 
         android:background="@android:color/black"
         android:fontFamily="sans-serif-condensed"
-        android:textStyle="bold"
-        android:textAllCaps="true"
-        android:textColor="@color/apo_yellow"    
+        android:gravity="center"
+        android:padding="10dip"
         android:text="@string/under_construction_header"
-        style="@android:style/TextAppearance.Large"  />
-	
+        android:textAllCaps="true"
+        android:textColor="@color/apo_yellow"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/inProgressHeader"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:textColor="@android:color/white"
-        android:text="@string/under_construction_message" />
+        android:text="@string/under_construction_message"
+        android:textColor="@android:color/white" />
 </LinearLayout>

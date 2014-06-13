@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
     android:layout_width="match_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
     android:background="@color/apo_blue" >
 	<LinearLayout
 	    android:layout_width="match_parent"
@@ -10,214 +10,225 @@
 	
 	    <!-- Header -->
 	    <TextView android:id="@+id/directory_details_header"
+            style="@android:style/TextAppearance.Large"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
 	        android:padding="10dip"
-	        android:gravity="center" 
-	        android:background="@android:color/black"
-	        android:fontFamily="sans-serif-condensed"
-	        android:textStyle="bold"
-	        android:textColor="@color/apo_yellow"    
 	        android:text="@string/directory_details_header"
-	        style="@android:style/TextAppearance.Large"  />
-	    
-	    <!-- Name -->
-	    <TextView 
-	       	android:paddingTop="@dimen/brother_detail_marginx2"
-		    android:paddingBottom="@dimen/brother_detail_margin"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
+            android:textColor="@color/apo_yellow"
+            android:textStyle="bold" />
+
+        <!-- Name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 	        android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:paddingBottom="@dimen/brother_detail_margin"
+            android:paddingTop="@dimen/brother_detail_marginx2"
 	        android:text="@string/name_dd"
-	        android:textSize="@dimen/text_size_dd"
 	        android:textAllCaps="true"
-	        android:textStyle="bold"
-	        android:fontFamily="sans-serif-condensed"
-	        android:textColor="@color/apo_yellow" />
-	    <TextView
+            android:textColor="@color/apo_yellow"
+            android:textSize="@dimen/text_size_dd"
+            android:textStyle="bold" />
+
+        <TextView
 	        android:id="@+id/name"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:paddingTop="@dimen/brother_detail_margin"
-		    android:paddingBottom="@dimen/brother_detail_margin"
-		    android:layout_gravity="center"
+            android:layout_gravity="center"
 		    android:fontFamily="sans-serif-light"
-		    android:textSize="@dimen/text_size_dd"
-	        android:textColor="@android:color/white" />
-	    
-	    
-	    <!-- Email -->
-	    <TextView 
-	       	android:paddingTop="@dimen/brother_detail_margin"
+            android:paddingBottom="@dimen/brother_detail_margin"
+            android:paddingTop="@dimen/brother_detail_margin"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_dd" />
+
+
+        <!-- Email -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 		    android:paddingBottom="@dimen/brother_detail_margin"
-		    android:paddingLeft="@dimen/left_margin_dd"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textColor="@color/apo_yellow"
+            android:paddingLeft="@dimen/left_margin_dd"
+            android:paddingTop="@dimen/brother_detail_margin"
+            android:text="@string/email_dd"
 	        android:textAllCaps="true"
-	        android:textStyle="bold"
-	        android:text= "@string/email_dd"
-	        android:textSize="@dimen/text_size_dd" />
-	    <RelativeLayout
+            android:textColor="@color/apo_yellow"
+            android:textSize="@dimen/text_size_dd"
+            android:textStyle="bold" />
+
+        <RelativeLayout
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
+            android:orientation="horizontal"
 	        android:paddingLeft="@dimen/left_margin_dd"
-	        android:paddingRight="@dimen/left_margin_dd"
-	        android:orientation="horizontal" >
-	        <TextView
+            android:paddingRight="@dimen/left_margin_dd">
+
+            <TextView
 	            android:id="@+id/email"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_alignParentLeft="true"
 	            android:layout_centerVertical="true"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@android:color/white"
 	            android:textIsSelectable="true"
-	            android:fontFamily="sans-serif-light"
-	            android:textColor="@android:color/white"
 	            android:textSize="@dimen/text_size_dd" />
 	        <Button 
 	            android:id="@+id/email_button"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
 	            android:text="@string/email_button_dd"
 	            android:textColor="@android:color/white"
-	            android:textSize="@dimen/button_text_size"
-	            android:layout_alignParentRight="true" />
-	    </RelativeLayout>
-	    
-	    
-	    <!-- Phone -->
-	    <TextView 
-	       	android:paddingTop="@dimen/brother_detail_margin"
+                android:textSize="@dimen/button_text_size" />
+        </RelativeLayout>
+
+
+        <!-- Phone -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 		    android:paddingBottom="@dimen/brother_detail_margin"
-		    android:paddingLeft="@dimen/left_margin_dd"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textAllCaps="true"
-	        android:textStyle="bold"
+            android:paddingLeft="@dimen/left_margin_dd"
+            android:paddingTop="@dimen/brother_detail_margin"
 	        android:text= "@string/phone_dd"
+            android:textAllCaps="true"
 	        android:textColor="@color/apo_yellow"
-	        android:textSize="@dimen/text_size_dd" />
-	    <RelativeLayout
+            android:textSize="@dimen/text_size_dd"
+            android:textStyle="bold" />
+
+        <RelativeLayout
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
+            android:orientation="horizontal"
 	        android:paddingLeft="@dimen/left_margin_dd"
-	        android:paddingRight="@dimen/left_margin_dd"
-	        android:orientation="horizontal" >
-	        <TextView
+            android:paddingRight="@dimen/left_margin_dd">
+
+            <TextView
 	            android:id="@+id/phone"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_alignParentLeft="true"
 	            android:layout_centerVertical="true"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@android:color/white"
 	            android:textIsSelectable="true"
-	            android:fontFamily="sans-serif-light"
-	            android:textColor="@android:color/white"
 	            android:textSize="@dimen/text_size_dd" />
 	        <Button 
 	            android:id="@+id/call_button"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
 	            android:text="@string/call_button_dd"
 	            android:textColor="@android:color/white"
-	            android:textSize="@dimen/button_text_size"
-	            android:layout_alignParentRight="true" />
-	        <Button 
+                android:textSize="@dimen/button_text_size" />
+
+            <Button
 	            android:id="@+id/text_button"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/call_button"
 	            android:text="@string/text_button_dd"
 	            android:textColor="@android:color/white"
-	            android:textSize="@dimen/button_text_size"
-	            android:layout_toLeftOf="@id/call_button" /> 
-	    </RelativeLayout>
-	    
-	    
-	    <!-- Year, Pledge Class, Major -->
-	    <LinearLayout
+                android:textSize="@dimen/button_text_size" />
+        </RelativeLayout>
+
+
+        <!-- Year, Pledge Class, Major -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 	        android:baselineAligned="false"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content" 
+            android:orientation="horizontal"
 	        android:paddingLeft="@dimen/left_margin_dd"
 	        android:paddingRight="@dimen/left_margin_dd"
-	        android:paddingTop="@dimen/brother_detail_margin"
-		    android:orientation="horizontal">
-	        
-	        <LinearLayout
+            android:paddingTop="@dimen/brother_detail_margin">
+
+            <LinearLayout
 		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content" 
-		        android:paddingLeft="@dimen/left_margin_dd"
-		        android:paddingRight="@dimen/left_margin_dd"
-			    android:layout_weight="1.5"
-		        android:orientation="vertical" >
-		    	<TextView
-		    	    android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/left_margin_dd"
+                android:paddingRight="@dimen/left_margin_dd">
+
+                <TextView
+                    android:layout_width="match_parent"
 		        	android:layout_height="wrap_content"
-		        	android:paddingTop="@dimen/brother_detail_margin"
+                    android:gravity="center"
 		    		android:paddingBottom="@dimen/brother_detail_margin"
+                    android:paddingTop="@dimen/brother_detail_margin"
+                    android:text="@string/year_dd"
 		    		android:textAllCaps="true"
-	        		android:textStyle="bold"
-		    		android:textColor="@color/apo_yellow"
-		        	android:text="@string/year_dd"
-		        	android:gravity="center" />
-		    	<TextView
+                    android:textColor="@color/apo_yellow"
+                    android:textStyle="bold" />
+
+                <TextView
 		    	    android:id="@+id/year"
-		    	    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
 		        	android:layout_height="wrap_content"
-		        	android:paddingTop="@dimen/brother_detail_margin"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center"
 		    		android:paddingBottom="@dimen/brother_detail_margin"
-		    		android:textColor="@android:color/white"
-		    		android:fontFamily="sans-serif-light"
-		        	android:gravity="center" />
-		    </LinearLayout> 
-		   	<LinearLayout
+                    android:paddingTop="@dimen/brother_detail_margin"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
 		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content" 
-		        android:paddingLeft="@dimen/left_margin_dd"
-		        android:paddingRight="@dimen/left_margin_dd"
-			    android:layout_weight="2"
-		        android:orientation="vertical" >
-		    	<TextView 
-		    	    android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/left_margin_dd"
+                android:paddingRight="@dimen/left_margin_dd">
+
+                <TextView
+                    android:layout_width="match_parent"
 		        	android:layout_height="wrap_content"
-		        	android:paddingTop="@dimen/brother_detail_margin"
+                    android:gravity="center"
 		    		android:paddingBottom="@dimen/brother_detail_margin"
-		    		android:textColor="@color/apo_yellow"
-		    		android:textAllCaps="true"
-	        		android:textStyle="bold"
-		        	android:text="@string/pledge_dd"
-		        	android:gravity="center" />
-		    	<TextView 
+                    android:paddingTop="@dimen/brother_detail_margin"
+                    android:text="@string/pledge_dd"
+                    android:textAllCaps="true"
+                    android:textColor="@color/apo_yellow"
+                    android:textStyle="bold" />
+
+                <TextView
 		    	    android:id="@+id/pledge_class"
-		    	    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
 		        	android:layout_height="wrap_content"
-		        	android:paddingTop="@dimen/brother_detail_margin"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center"
 		    		android:paddingBottom="@dimen/brother_detail_margin"
-		    		android:fontFamily="sans-serif-light"
-		    		android:textColor="@android:color/white"
-		        	android:gravity="center" />
-		    </LinearLayout>
-	    </LinearLayout>
-	    
-	    
-	   	<TextView 
-	   	    android:layout_width="fill_parent"
+                    android:paddingTop="@dimen/brother_detail_margin"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
 	       	android:layout_height="wrap_content"
-	       	android:paddingTop="@dimen/brother_detail_margin"
+            android:gravity="center"
 		    android:paddingBottom="@dimen/brother_detail_margin"
-		    android:textColor="@color/apo_yellow"
-		    android:textAllCaps="true"
-	        android:textStyle="bold"
-	       	android:text="@string/major_dd"
-	       	android:gravity="center" />
-	   	
-	   	<TextView 
+            android:paddingTop="@dimen/brother_detail_margin"
+            android:text="@string/major_dd"
+            android:textAllCaps="true"
+            android:textColor="@color/apo_yellow"
+            android:textStyle="bold" />
+
+        <TextView
 	   	    android:id="@+id/major"
-	   	    android:layout_width="fill_parent"
+            android:layout_width="match_parent"
 	       	android:layout_height="wrap_content"
-	       	android:paddingTop="@dimen/brother_detail_margin"
-		    android:paddingBottom="@dimen/brother_detail_margin"
-	       	android:gravity="center"
 	       	android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:paddingBottom="@dimen/brother_detail_margin"
+            android:paddingTop="@dimen/brother_detail_margin"
 	       	android:textColor="@android:color/white" />
 	
 	</LinearLayout>
