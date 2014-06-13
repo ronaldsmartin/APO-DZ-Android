@@ -31,3 +31,7 @@ proguard/
 
 # Mac
 *.DS_Store
+
+# Android Studio
+APO-DZ/.gradle/
+APO-DZ/build/
