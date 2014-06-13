@@ -1,436 +1,414 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
+<uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ptr_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <!-- Header -->
-    <TextView
-        android:id="@+id/brother_status_header"
-        style="@android:style/TextAppearance.Large"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/black"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center"
-        android:padding="10dip"
-        android:text="@string/brother_status_header"
-        android:textAllCaps="true"
-        android:textColor="@color/apo_yellow"
-        android:textStyle="bold" />
+    <ScrollView
+        android:id="@+id/status_scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <!-- Content -->
-    <uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout
-        android:id="@+id/ptr_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="16dip"
+            android:paddingRight="16dip">
 
-        <ScrollView
-            android:id="@+id/status_scrollview"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <LinearLayout
+            <!-- Name -->
+            <TextView
+                android:id="@+id/name_label"
+                style="?android:attr/listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingLeft="16dip"
-                android:paddingRight="16dip">
+                android:text="@string/req_loading"
+                android:textColor="@color/list_header" />
 
-                <!-- Name -->
+
+            <!-- Status -->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
                 <TextView
-                    android:id="@+id/name_label"
-                    style="?android:attr/listSeparatorTextViewStyle"
-                    android:layout_width="match_parent"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:text="@string/req_loading"
-                    android:textColor="@color/list_header" />
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_status" />
 
-
-                <!-- Status -->
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_status" />
-
-                    <TextView
-                        android:id="@+id/status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light"
-                        android:textAllCaps="true" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_req_completion" />
-
-                    <TextView
-                        android:id="@+id/all_reqs_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light"
-                        android:textAllCaps="true" />
-                </LinearLayout>
-
-                <!-- Service -->
                 <TextView
-                    style="?android:attr/listSeparatorTextViewStyle"
-                    android:layout_width="fill_parent"
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/service_header"
-                    android:textColor="@color/list_header" />
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_req_completion" />
-
-                    <TextView
-                        android:id="@+id/service_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light"
-                        android:textAllCaps="true" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_service_hours" />
-
-                    <TextView
-                        android:id="@+id/hours_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_large_group_completion" />
-
-                    <TextView
-                        android:id="@+id/large_group_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light"
-                        android:textAllCaps="true" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_publicity_completion" />
-
-                    <TextView
-                        android:id="@+id/publicity_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light"
-                        android:textAllCaps="true" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_hosting_completion" />
-
-                    <TextView
-                        android:id="@+id/service_hosting_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light"
-                        android:textAllCaps="true" />
-                </LinearLayout>
-
-                <!-- Membership -->
-                <TextView
-                    style="?android:attr/listSeparatorTextViewStyle"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/membership_header"
-                    android:textColor="@color/list_header" />
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_req_completion" />
-
-                    <TextView
-                        android:id="@+id/membership_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light"
-                        android:textAllCaps="true" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_points" />
-
-                    <TextView
-                        android:id="@+id/membership_points"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_bro_comp" />
-
-                    <TextView
-                        android:id="@+id/brother_comp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light"
-                        android:textAllCaps="true" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_pledge_comp" />
-
-                    <TextView
-                        android:id="@+id/pledge_comp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light"
-                        android:textAllCaps="true" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_hosting_completion" />
-
-                    <TextView
-                        android:id="@+id/membership_hosting"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light"
-                        android:textAllCaps="true" />
-                </LinearLayout>
-
-                <!-- Fellowship -->
-                <TextView
-                    style="?android:attr/listSeparatorTextViewStyle"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/fellowship_header"
-                    android:textColor="@color/list_header" />
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_req_completion" />
-
-                    <TextView
-                        android:id="@+id/fellowship_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light"
-                        android:textAllCaps="true" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_points" />
-
-                    <TextView
-                        android:id="@+id/fellowship_points"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/cat_hosting_completion" />
-
-                    <TextView
-                        android:id="@+id/fellowship_hosting"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:fontFamily="sans-serif-light"
-                        android:textAllCaps="true" />
-                </LinearLayout>
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light"
+                    android:textAllCaps="true" />
             </LinearLayout>
-        </ScrollView>
-    </uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout>
-</LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_req_completion" />
+
+                <TextView
+                    android:id="@+id/all_reqs_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light"
+                    android:textAllCaps="true" />
+            </LinearLayout>
+
+            <!-- Service -->
+            <TextView
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/service_header"
+                android:textColor="@color/list_header" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_req_completion" />
+
+                <TextView
+                    android:id="@+id/service_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light"
+                    android:textAllCaps="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_service_hours" />
+
+                <TextView
+                    android:id="@+id/hours_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_large_group_completion" />
+
+                <TextView
+                    android:id="@+id/large_group_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light"
+                    android:textAllCaps="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_publicity_completion" />
+
+                <TextView
+                    android:id="@+id/publicity_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light"
+                    android:textAllCaps="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_hosting_completion" />
+
+                <TextView
+                    android:id="@+id/service_hosting_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light"
+                    android:textAllCaps="true" />
+            </LinearLayout>
+
+            <!-- Membership -->
+            <TextView
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/membership_header"
+                android:textColor="@color/list_header" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_req_completion" />
+
+                <TextView
+                    android:id="@+id/membership_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light"
+                    android:textAllCaps="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_points" />
+
+                <TextView
+                    android:id="@+id/membership_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_bro_comp" />
+
+                <TextView
+                    android:id="@+id/brother_comp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light"
+                    android:textAllCaps="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_pledge_comp" />
+
+                <TextView
+                    android:id="@+id/pledge_comp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light"
+                    android:textAllCaps="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_hosting_completion" />
+
+                <TextView
+                    android:id="@+id/membership_hosting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light"
+                    android:textAllCaps="true" />
+            </LinearLayout>
+
+            <!-- Fellowship -->
+            <TextView
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/fellowship_header"
+                android:textColor="@color/list_header" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_req_completion" />
+
+                <TextView
+                    android:id="@+id/fellowship_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light"
+                    android:textAllCaps="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_points" />
+
+                <TextView
+                    android:id="@+id/fellowship_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dip">
+
+                <TextView
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/cat_hosting_completion" />
+
+                <TextView
+                    android:id="@+id/fellowship_hosting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="sans-serif-light"
+                    android:textAllCaps="true" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout>

@@ -1,38 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ptr_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    <!-- Header -->
-    <TextView android:id="@+id/directory_header"
-        style="@android:style/TextAppearance.Large"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/name_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/black"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center"
-        android:padding="10dip"
-        android:text="@string/brotherhood_directory_header"
-        android:textAllCaps="true"
-        android:textColor="@color/apo_yellow"
-        android:textStyle="bold" />
-
-    <!-- Directory List -->
-    <uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout
-        android:id="@+id/ptr_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ListView
-            android:id="@+id/name_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fastScrollEnabled="true"
-            android:paddingLeft="16dip"
-            android:paddingRight="16dip"
-            android:scrollbars="vertical" />
-    </uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout>
-</LinearLayout>
+        android:layout_gravity="center"
+        android:fastScrollEnabled="true"
+        android:paddingLeft="16dip"
+        android:paddingRight="16dip"
+        android:scrollbars="vertical" />
+</uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout>

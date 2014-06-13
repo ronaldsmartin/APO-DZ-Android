@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -24,13 +23,11 @@ import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
 public class DirectoryFragment extends Fragment implements OnRefreshListener {
 
-    public static final String HEADER_KEY = "HEADER";
     public static final String URL_KEY = "URL";
     public static final String SHEET_KEY = "SHEET_KEY";
 
     private String urlString;
     private String sheetKey;
-    private String headerTitle;
 
     private View view;
     private PullToRefreshLayout mPullToRefreshLayout;
@@ -48,7 +45,6 @@ public class DirectoryFragment extends Fragment implements OnRefreshListener {
 		// Retrieve the arguments passed by the MainActivity
         this.urlString = getArguments().getString(URL_KEY);
         this.sheetKey = getArguments().getString(SHEET_KEY);
-        this.headerTitle = getArguments().getString(HEADER_KEY);
 
         Activity context = getActivity();
         context.getActionBar();
@@ -60,8 +56,6 @@ public class DirectoryFragment extends Fragment implements OnRefreshListener {
 
         // Inflate the View
         view = inflater.inflate(R.layout.fragment_directory, container, false);
-        TextView header = (TextView) view.findViewById(R.id.directory_header);
-        header.setText(headerTitle);
 
         // Now find the PullToRefreshLayout to setup
         this.mPullToRefreshLayout = (PullToRefreshLayout) view.findViewById(R.id.ptr_layout);
@@ -115,9 +109,9 @@ public class DirectoryFragment extends Fragment implements OnRefreshListener {
         ArrayList<String> alphabetizedNames = new ArrayList<String>();
        	for (Brother brother : directoryList) {
 			String firstName =
-				brother.Preferred_Name.equals("") ? brother.First_Name : brother.Preferred_Name;
-			alphabetizedNames.add(firstName + " " + brother.Last_Name);
-		}
+                    brother.Preferred_Name.length() == 0 ? brother.First_Name : brother.Preferred_Name;
+            alphabetizedNames.add(firstName + " " + brother.Last_Name);
+        }
        	updateProgressValue(8500);
 
 		AlphabeticalAdapter adapter =
