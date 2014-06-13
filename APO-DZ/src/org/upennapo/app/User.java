@@ -5,7 +5,8 @@ public class User {
 	// Name and Status
 	public String First_Name;
 	public String Last_Name;
-	public String Status;
+    public String First_and_Last_Name;
+    public String Status;
 
 	// High-Level Completion
 	public boolean Complete;

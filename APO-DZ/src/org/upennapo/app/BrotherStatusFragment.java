@@ -73,6 +73,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
         AsyncUserDataLoader loader = new AsyncUserDataLoader() {
             @Override
             protected void onPreExecute() {
+                super.onPreExecute();
                 if (!mSwipeRefreshLayout.isRefreshing()) {
                     mSwipeRefreshLayout.setRefreshing(true);
                 }
@@ -80,6 +81,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
 
             @Override
             protected void onPostExecute(User result) {
+                super.onPostExecute(result);
                 BrotherStatusFragment.this.user = result;
                 updateView();
                 BrotherStatusFragment.this.mSwipeRefreshLayout.setRefreshing(false);
