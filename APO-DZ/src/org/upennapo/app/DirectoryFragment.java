@@ -112,7 +112,7 @@ public class DirectoryFragment extends Fragment implements OnRefreshListener {
                     brother.Preferred_Name.length() == 0 ? brother.First_Name : brother.Preferred_Name;
             alphabetizedNames.add(firstName + " " + brother.Last_Name);
         }
-       	updateProgressValue(8500);
+        updateProgressValue(8500);
 
 		AlphabeticalAdapter adapter =
 			new AlphabeticalAdapter(getActivity(), R.layout.centered_textview, R.id.centered_text, alphabetizedNames);
