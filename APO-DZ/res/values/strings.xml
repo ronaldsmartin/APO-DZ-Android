@@ -7,7 +7,7 @@
     <string name="menu_switch_user">Switch user</string>
     <string name="menu_report_bug">Report an issue</string>
     <string name="menu_about_app">About the app</string>
-    <string name="menu_report_bug_url">&quot;https://github.com/ronaldsmartin/APO-DZ-Android/issues/new&quot;</string>
+    <string name="menu_report_bug_url">&quot;https://docs.google.com/forms/d/1TvicaFVBNcVgoZbTqXt3YvzY_ds2L0qHhz2LDpi6wDQ/viewform&quot;</string>
     <string name="menu_about_app_url">&quot;http://ronaldsmartin.github.io/APO-DZ-Android/&quot;</string>
     
     <!-- Title Screen -->
@@ -30,12 +30,12 @@
 	
     
     <!-- Tab Names -->
-    <string name="title_section1">Me</string>
-    <string name="title_section2">Cal</string>
-    <string name="title_section3">Bros</string>
-    <string name="title_section4">Pledges</string>
-    <string name="title_section5">Links</string>
-    
+    <string name="title_section1">My Status</string>
+    <string name="title_section2">Calendars</string>
+    <string name="title_section3">Brother Directory</string>
+    <string name="title_section4">Pledge Directory</string>
+    <string name="title_section5">Helpful Links</string>
+
     <!-- Work in Progress Labels -->
     <string name="under_construction_header">Under Construction</string>
     <string name="under_construction_message">You have reached a section currently undergoing work.</string>
