@@ -1,16 +1,9 @@
 package org.upennapo.app;
 
-import java.util.Locale;
-
-import com.commonsware.cwac.merge.MergeAdapter;
-
-import android.support.v4.app.Fragment;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,21 +11,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.commonsware.cwac.merge.MergeAdapter;
+
 /**
  * @author Dean Wilhelmi & Ronald Martin
  * Based on tutorial from http://www.javacodegeeks.com/2013/06/android-asynctask-listview-json.html
  */
 
 public class HelpfulLinksFragment extends Fragment {
-	/**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
-    public static final String ARG_SECTION_NUMBER = "section_number";
-    public static final float HELPFUL_LINKS_HEADER_SIZE = 22;
-    private int HEADER_TEXT_COLOR;
-    private int HEADER_BACKGROUND_COLOR;
-    
 
     public HelpfulLinksFragment() {
     }
@@ -42,8 +29,6 @@ public class HelpfulLinksFragment extends Fragment {
             Bundle savedInstanceState) {
     	
     	View view = inflater.inflate(R.layout.fragment_helpful_links, container, false);
-    	this.HEADER_TEXT_COLOR = getActivity().getResources().getColor(R.color.apo_yellow);
-    	this.HEADER_BACKGROUND_COLOR = Color.BLACK;
     	ListView sheetList = (ListView) view.findViewById(R.id.sheet_list);
     	
     	// Populate the cells with the names of the links
@@ -64,34 +49,18 @@ public class HelpfulLinksFragment extends Fragment {
     			R.layout.centered_textview, R.id.centered_text, socials);
     	
     	// Set text for headers.
-    	TextView sheetHeaderView = new TextView(getActivity());
-    	sheetHeaderView.setText(R.string.sheet_list_header);
-    	
-    	TextView formHeaderView = new TextView(getActivity());
-    	formHeaderView.setText(R.string.form_list_header);
-    	
-    	TextView siteHeaderView = new TextView(getActivity());
-    	siteHeaderView.setText(R.string.site_list_header);
-    	
-    	TextView socialHeaderView = new TextView(getActivity());
-    	socialHeaderView.setText(R.string.social_list_header);
-    	
-    	// Set the layout for headers
-    	final Locale l = Locale.getDefault();
-    	final Typeface headerTypeface = Typeface.create("sans-serif-condensed", Typeface.BOLD);
-    	final float scale = getResources().getDisplayMetrics().density;
-    	final int padding = (int) (10*scale + 0.5f);
-    	final TextView[] headers = {sheetHeaderView, formHeaderView, siteHeaderView, socialHeaderView};
-    	for (TextView header : headers) {
-    		final String headerName = header.getText().toString().toUpperCase(l);
-    		header.setTypeface(headerTypeface);
-    		header.setText(headerName);
-    		header.setTextSize(HELPFUL_LINKS_HEADER_SIZE);
-        	header.setGravity(Gravity.CENTER);
-        	header.setTextColor(HEADER_TEXT_COLOR);
-        	header.setBackgroundColor(HEADER_BACKGROUND_COLOR);
-        	header.setPadding(0, padding, 0, padding);
-    	}
+        TextView sheetHeaderView = (TextView) inflater.inflate(R.layout.list_header, null);
+        sheetHeaderView.setText(R.string.sheet_list_header);
+
+        TextView formHeaderView = (TextView) inflater.inflate(R.layout.list_header, null);
+        formHeaderView.setText(R.string.form_list_header);
+
+        TextView siteHeaderView = (TextView) inflater.inflate(R.layout.list_header, null);
+        siteHeaderView.setText(R.string.site_list_header);
+
+        TextView socialHeaderView = (TextView) inflater.inflate(R.layout.list_header, null);
+        socialHeaderView.setText(R.string.social_list_header);
+
     	
     	// Convert Adapter to a TableView
     	MergeAdapter myMergeAdapter = new MergeAdapter();
