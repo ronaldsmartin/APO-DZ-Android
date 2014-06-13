@@ -38,8 +38,7 @@
     
     <!-- Work in Progress Labels -->
     <string name="under_construction_header">Under Construction</string>
-    <string name="brother_status_wip_header">work in progress</string>
-    <string name="brother_status_wip_message">Please enjoy this picture instead.</string>
+    <string name="under_construction_message">You have reached a section currently undergoing work.</string>
     
     <!-- Brother Status -->
     	<!-- Brother Status Headers -->

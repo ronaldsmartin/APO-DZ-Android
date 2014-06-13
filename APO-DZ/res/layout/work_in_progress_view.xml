@@ -10,6 +10,7 @@
     <TextView android:id="@+id/under_construction_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:padding="10dip"
         android:gravity="center" 
         android:background="@android:color/black"
@@ -19,30 +20,13 @@
         android:textColor="@color/apo_yellow"    
         android:text="@string/under_construction_header"
         style="@android:style/TextAppearance.Large"  />
-    
-    <ImageView
-        android:id="@+id/imageView1"
-        android:paddingTop="20dip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/in_progress" />
 	
     <TextView
         android:id="@+id/inProgressHeader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textColor="@color/apo_yellow"
-        android:textAllCaps="true"
-        android:text="@string/brother_status_wip_header" />
-    
-    <TextView
-        android:id="@+id/inProgressMessage"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:textStyle="italic"
+        android:layout_weight="1"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:text="@string/brother_status_wip_message" />
+        android:text="@string/under_construction_message" />
 </LinearLayout>
