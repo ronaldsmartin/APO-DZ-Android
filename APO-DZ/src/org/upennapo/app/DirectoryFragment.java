@@ -69,20 +69,27 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
 		return view;
 	}
-	
-	
-	private void showProgressBar() {
+
+    /**
+     * Show the ActionBar progress bar.
+     */
+    private void showProgressBar() {
         getActivity().setProgressBarVisibility(true);
     }
-	
-	private void updateProgressValue(int value) {
-        // Manage the progress (i.e within an AsyncTask)
-        // Valid ranges are from 0 to 10000 (both inclusive). 
-        // If 10000 is given, the progress bar will be completely filled and will fade out.
+
+    /**
+     * Set the progress value of the ActionBar progress bar.
+     *
+     * @param value of progress in range [0, 10000]
+     */
+    private void updateProgressValue(int value) {
 		getActivity().setProgress(value);
     }
-    
-    // Should be called when an async task has finished
+
+
+    /**
+     * Hide the ActionBar progress bar.
+     */
     public void hideProgressBar() {
     	getActivity().setProgressBarVisibility(false);
     }
@@ -128,6 +135,11 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
             }
 
             @Override
+            protected Brother[] doInBackground(String... params) {
+                return ReadJSON.getDirectoryData(params[0], params[1], getActivity(), true);
+            }
+
+            @Override
             protected void onPostExecute(Brother[] result) {
                 super.onPostExecute(result);
                 mSwipeRefreshLayout.setRefreshing(false);
@@ -146,22 +158,24 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
 	    @Override
 	    protected Brother[] doInBackground(String... params) {
-            return ReadJSON.getDirectoryData(params[0], params[1], getActivity());
+            return ReadJSON.getDirectoryData(params[0], params[1], getActivity(), false);
         }
 
         @Override
         protected void onPostExecute(Brother[] result) {
 	    	if (result == null) {
 	    		// If there is an error getting the result, display an alert.
-	    		
-	    		Toast failureAlert = Toast.makeText(getActivity(), "Unable to load at this time.", Toast.LENGTH_LONG);
-	    		failureAlert.show();
-	    	} else {
+
+                Toast failureAlert = Toast.makeText(getActivity(),
+                        "Unable to load at this time.", Toast.LENGTH_LONG);
+                failureAlert.show();
+            } else {
 	    		updateDirectoryList(result);
 	    	}
 	        
 			updateProgressValue(10000);
-	    }
+            hideProgressBar();
+        }
 	}
 	
 	public class BrotherComparator implements Comparator<Brother> {
