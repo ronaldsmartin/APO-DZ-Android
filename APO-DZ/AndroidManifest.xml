@@ -7,12 +7,20 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <!-- Permissions -->
     <!-- Used to prevent the app from crashing if when there's no network reachability -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Used to download directory and status data over the internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Used optionally to call or text directory contacts -->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
 
     <application
         android:allowBackup="true"
@@ -34,7 +42,7 @@
         </activity>
         
         <activity
-            android:name="org.upennapo.app.DirectoryDetails"
+            android:name="org.upennapo.app.DirectoryDetailsActivity"
             android:parentActivityName="org.upennapo.app.MainActivity" >
         </activity>
     </application>

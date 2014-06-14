@@ -117,8 +117,8 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			public void onItemClick(AdapterView <?> parent, View view, int position, long id) {
 				// Parcel the brother at this index to the details view.
-				Intent detailPage = new Intent(getActivity(), DirectoryDetails.class);
-				detailPage.putExtra(getString(R.string.dir_brother_data), directoryList.get(position));
+                Intent detailPage = new Intent(getActivity(), DirectoryDetailsActivity.class);
+                detailPage.putExtra(getString(R.string.dir_brother_data), directoryList.get(position));
 				getActivity().startActivity(detailPage);
 			}
 		});
