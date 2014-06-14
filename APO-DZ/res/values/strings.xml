@@ -36,13 +36,14 @@
     <string name="title_section4">Pledge Directory</string>
     <string name="title_section5">Helpful Links</string>
 
+
     <!-- Work in Progress Labels -->
     <string name="under_construction_header">Under Construction</string>
     <string name="under_construction_message">You have reached a section currently undergoing work.</string>
-    
+
+
     <!-- Brother Status -->
     	<!-- Brother Status Headers -->
-    	<string name="brother_status_header">Brother Status</string>
     	<string name="service_header">Service</string>
     	<string name="membership_header">Membership</string>
     	<string name="fellowship_header">Fellowship</string>
@@ -64,17 +65,9 @@
     	<string name="req_complete">complete</string>
     	<string name="req_incomplete">incomplete</string>
     	<string name="req_loading">Loading&#8230;</string>
-    
-    	
-    <!-- Calendar -->
-    	<!-- Calendar Header -->
-    	<string name="calendar_header">Delta Zeta Calendars</string> 
-    
-    
+
+
     <!-- Directories -->
-    	<!-- Directory Header -->
-    	<string name="brotherhood_directory_header">Delta Zeta Directory</string>
-	
         <!-- Directory Details -->
         <string name="directory_details_header">Brother Details</string>
 	    <string name="name_dd">name</string>
@@ -87,10 +80,9 @@
 	    <string name="pledge_dd">pledge class</string>
 		<string name="major_dd">major</string>
 
+
     <!-- Helpful Links -->
-    
 	    <!-- Headers for Helpful Links -->
-	    <string name="helpful_links_header">Helpful Links</string>
 	    <string name="sheet_list_header">Spreadsheets</string>
 	    <string name="form_list_header">Forms</string>
 	    <string name="site_list_header">Websites</string>
@@ -133,5 +125,7 @@
     
     <!-- Bundle keys -->
     <string name="dir_brother_data">Brother data</string>
-    
+
+    <!-- ...Other -->
+    <string name="apo_2048_url">&quot;http://games.usvsth3m.com/2048/apo-dz-edition/&quot;</string>
 </resources>
