@@ -3,7 +3,6 @@
  */
 package org.upennapo.app;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,23 +17,34 @@ import android.webkit.WebView;
 public class CalendarFragment extends Fragment {
 	
 	public static final String URL_KEY = "url";
-	
-	public CalendarFragment() {
-	}
+    private WebView mWebView;
 
-    @SuppressLint("SetJavaScriptEnabled")
-	@Override
-    public View onCreateView(LayoutInflater inflater,
-    			ViewGroup container, Bundle savedInstanceState) {
-        View calendarView = inflater.inflate(R.layout.fragment_webview, container, false);
-        
-        final String urlToLoad = getArguments().getString(URL_KEY);
-        if (urlToLoad != null) {
-            WebView calendarWebView = (WebView) calendarView.findViewById(R.id.webView);
-            calendarWebView.getSettings().setJavaScriptEnabled(true);
-            calendarWebView.loadUrl(urlToLoad);
+
+    public CalendarFragment() {
+        mWebView = new WebView(getActivity());
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+
+        init(savedInstanceState);
+
+        return mWebView;
+    }
+
+    private void init(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            mWebView.getSettings().setJavaScriptEnabled(true);
+            mWebView.loadUrl(getArguments().getString(URL_KEY));
+        } else {
+            mWebView.restoreState(savedInstanceState);
         }
+    }
 
-        return calendarView;
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
     }
 }
