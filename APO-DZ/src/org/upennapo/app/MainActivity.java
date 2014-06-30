@@ -3,6 +3,7 @@ package org.upennapo.app;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,10 +17,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
-	public static final int NUM_TABS = 5;
+    public static final int NUM_TABS = 5;
+    private static final int NUM_TAPS_ACTIVATE = 10;
+    private static final String EASTER_EGG_UNLOCKED = "2048_UNLOCKED";
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -29,12 +33,22 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
-
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+    /**
+     * Used to count the number of times the Helpful Links tab has been selected.
+     * When mNumTaps == NUM_TAPS_ACTIVATE, trigger the easter egg activity.
+     */
+    private int mNumTaps = 0;
 
+    /**
+     * Get the corresponding unselected tab icon ID for a tab.
+     *
+     * @param position for which to get the tab icon
+     * @return the unselected tab icon's resource ID for the tab at position
+     */
     protected static int getPageIcon(int position) {
         int iconID = 0;
         switch (position) {
@@ -62,6 +76,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         return iconID;
     }
 
+    /**
+     * Get the corresponding selected tab icon ID for a tab.
+     * @param position for which to get the tab icon
+     * @return the selected tab icon's resource ID for the tab at position
+     */
     protected static int getSelectedPageIcon(int position) {
         int iconID = 0;
         switch (position) {
@@ -88,7 +107,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         }
         return iconID;
     }
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,6 +155,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        // Enable the 2048 option if unlocked.
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
+        if (prefs.getBoolean(EASTER_EGG_UNLOCKED, false)) {
+            menu.findItem(R.id.menu_play_2048).setVisible(true);
+        }
         return true;
     }
 
@@ -143,22 +168,31 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+
+            case R.id.menu_play_2048:
+                Intent play2048 = new Intent(this, EasterEggActivity.class);
+                startActivity(play2048);
+                return true;
+
+            case R.id.menu_send_feedback:
+                final String feedbackFormUrl = getString(R.string.menu_report_bug_url);
+                Intent sendFeedback = new Intent(Intent.ACTION_VIEW, Uri.parse(feedbackFormUrl));
+                startActivity(sendFeedback);
+                return true;
+
+            case R.id.menu_about_app:
+                final String githubPageUrl = getString(R.string.menu_about_app_url);
+                Intent openGithubPage = new Intent(Intent.ACTION_VIEW, Uri.parse(githubPageUrl));
+                startActivity(openGithubPage);
+                return true;
+
             case R.id.menu_switch_user:
                 Intent openLoginScreen = new Intent(this, LoginActivity.class);
                 openLoginScreen.putExtra(LoginActivity.LOGOUT_INTENT, true);
                 startActivity(openLoginScreen);
                 finish();
                 return true;
-            case R.id.menu_report_bug:
-                final String githubIssueUrl = getString(R.string.menu_report_bug_url);
-                Intent openGithubIssue = new Intent(Intent.ACTION_VIEW, Uri.parse(githubIssueUrl));
-                startActivity(openGithubIssue);
-                return true;
-            case R.id.menu_about_app:
-                final String githubPageUrl = getString(R.string.menu_about_app_url);
-                Intent openGithubPage = new Intent(Intent.ACTION_VIEW, Uri.parse(githubPageUrl));
-                startActivity(openGithubPage);
-                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -169,6 +203,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         // When the given tab is selected, switch to the corresponding page in
         // the ViewPager.
         int position = tab.getPosition();
+
+        // Whenever the Helpful Links tab is selected, we edge closer to activating the Easter Egg!
+        if (position == 4) {
+            updateEasterEggStatus();
+        }
+
         setTitle(mSectionsPagerAdapter.getPageTitle(position));
         tab.setIcon(getSelectedPageIcon(position));
 
@@ -184,6 +224,23 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    }
+
+    private void updateEasterEggStatus() {
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
+        if (++mNumTaps == NUM_TAPS_ACTIVATE && !prefs.contains(EASTER_EGG_UNLOCKED)) {
+
+            // Remember that we've unlocked the easter egg.
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean(EASTER_EGG_UNLOCKED, true);
+            editor.apply();
+
+            invalidateOptionsMenu();
+
+            // Show user unlock message.
+            Toast t = Toast.makeText(this, R.string.apo_2048_unlock_msg, Toast.LENGTH_LONG);
+            t.show();
+        }
     }
 
     /**
@@ -212,15 +269,34 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        private final Fragment brotherStatusFragment = new BrotherStatusFragment();
-        private final Fragment calendarFragment = new CalendarFragment();
-        private final Fragment broDirectoryFragment = new DirectoryFragment();
-        private final Fragment pledgeDirectoryFragment = new DirectoryFragment();
-        private final Fragment linksFragment = new HelpfulLinksFragment();
+        /**
+         * Tags for fragment instance retrieval.
+         */
+        private static final String TAG_BROTHER_STATUS_FRAG = "BROTHER_STATUS";
+        private static final String TAG_CALENDAR_FRAG = "CALENDAR";
+        private static final String TAG_BROTHER_DIRECTORY_FRAG = "BROTHER_DIRECTORY";
+        private static final String TAG_PLEDGE_DIRECTORY_FRAG = "PLEDGE_DIRECTORY";
+
+
+        private Fragment brotherStatusFragment = new BrotherStatusFragment();
+        private Fragment calendarFragment = new CalendarFragment();
+        private Fragment broDirectoryFragment = new DirectoryFragment();
+        private Fragment pledgeDirectoryFragment = new DirectoryFragment();
+        private Fragment linksFragment = new HelpfulLinksFragment();
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
             init();
+        }
+
+        private boolean retrieveFragments(FragmentManager fm) {
+            // TODO: figure out how to use this
+            brotherStatusFragment = fm.findFragmentByTag(TAG_BROTHER_STATUS_FRAG);
+            calendarFragment = fm.findFragmentByTag(TAG_CALENDAR_FRAG);
+            broDirectoryFragment = fm.findFragmentByTag(TAG_BROTHER_DIRECTORY_FRAG);
+            pledgeDirectoryFragment = fm.findFragmentByTag(TAG_PLEDGE_DIRECTORY_FRAG);
+            return brotherStatusFragment != null && calendarFragment != null
+                    && broDirectoryFragment != null && pledgeDirectoryFragment != null;
         }
 
         private void init() {
