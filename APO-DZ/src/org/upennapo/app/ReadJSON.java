@@ -45,7 +45,7 @@ public class ReadJSON {
      * person is not found.
      */
     public static User getBrotherData(String urlString, String firstName, String lastName,
-                                      Context context, boolean isRefreshing) {
+                                      Context context, boolean forceDownload) {
         // If we cannot retrieve or find the requested person's data, return null.
         User user = null;
         SharedPreferences prefs =
@@ -55,7 +55,7 @@ public class ReadJSON {
 
         // If the status isn't cached or we are refreshing, download and parse the brother status
         // data, then save the corresponding JSON string in SharedPrefs.
-        if (!prefs.contains(BrotherStatusFragment.STORAGE_KEY) || isRefreshing) {
+        if (!prefs.contains(BrotherStatusFragment.STORAGE_KEY) || forceDownload) {
 
             String jsonString = downloadJsonData(urlString);
             for (User brother : parseSpreadsheetJson(jsonString)) {

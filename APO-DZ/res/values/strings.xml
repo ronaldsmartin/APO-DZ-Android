@@ -47,6 +47,10 @@
     <string name="service_header">Service</string>
     <string name="membership_header">Membership</string>
     <string name="fellowship_header">Fellowship</string>
+    <string name="dialog_user_not_found_title">Status not found</string>
+    <string name="dialog_user_not_found_msg">We were unable to find your APO record. Please sign out and log back in with your name exactly as it appears on the Spreadsheet.</string>
+    <string name="label_no_user_status">Unable to find user status.</string>
+
 
     <!-- Categories -->
     <string name="cat_status">Status:</string>

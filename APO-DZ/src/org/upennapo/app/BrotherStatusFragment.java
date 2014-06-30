@@ -24,7 +24,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
     private static final String LAST_NAME_KEY = "LAST_NAME";
 
     // Brother to Display
-    private User user;
+    private User mUser;
     private String firstName, lastName, spreadsheetUrl;
 
     /**
@@ -46,13 +46,10 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable(USER_KEY, user);
-        outState.putString(FIRST_NAME_KEY, firstName);
-        outState.putString(LAST_NAME_KEY, lastName);
-        outState.putString(URL_KEY, spreadsheetUrl);
-
-        super.onSaveInstanceState(outState);
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null)
+            updateViews();
     }
 
     @Override
@@ -72,38 +69,10 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (savedInstanceState != null)
-            updateViews();
-    }
-
-    @Override
     public void onRefresh() {
-        AsyncUserDataLoader loader = new AsyncUserDataLoader() {
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                if (!mSwipeRefreshLayout.isRefreshing()) {
-                    mSwipeRefreshLayout.setRefreshing(true);
-                }
-            }
-
-            @Override
-            protected User doInBackground(String... params) {
-                return ReadJSON.getBrotherData(params[0], params[1], params[2],
-                        getActivity(), true);
-            }
-
-            @Override
-            protected void onPostExecute(User result) {
-                super.onPostExecute(result);
-                BrotherStatusFragment.this.user = result;
-                updateViews();
-                BrotherStatusFragment.this.mSwipeRefreshLayout.setRefreshing(false);
-            }
-        };
-        loader.execute(spreadsheetUrl, firstName, lastName);
+        mSwipeRefreshLayout.setRefreshing(true);
+        AsyncUserDataLoader loader = new AsyncUserDataLoader();
+        loader.execute(spreadsheetUrl, firstName, lastName, "true");
     }
 
     private void init(Bundle savedInstanceState) {
@@ -114,23 +83,33 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
                 this.lastName = prefs.getString(LoginActivity.USER_LASTNAME_KEY, "");
                 this.spreadsheetUrl = getArguments().getString(URL_KEY);
 
-                getActivity().setProgressBarVisibility(true);
+                getActivity().setProgressBarIndeterminateVisibility(true);
                 getUserData();
             } else {
-                // Notify the user that there is no connection. Tell them to try later.
+                // Notify the mUser that there is no connection. Tell them to try later.
                 Toast noConnectionToast = Toast.makeText(getActivity(),
                         "Oops(ilon), there's no internet! Try again later.",
                         Toast.LENGTH_LONG);
                 noConnectionToast.show();
 
-                getActivity().setProgressBarVisibility(false);
+                getActivity().setProgressBarIndeterminateVisibility(false);
             }
         } else {
-            user = savedInstanceState.getParcelable(USER_KEY);
+            mUser = savedInstanceState.getParcelable(USER_KEY);
             firstName = savedInstanceState.getString(FIRST_NAME_KEY);
             lastName = savedInstanceState.getString(LAST_NAME_KEY);
             spreadsheetUrl = savedInstanceState.getString(URL_KEY);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(USER_KEY, mUser);
+        outState.putString(FIRST_NAME_KEY, firstName);
+        outState.putString(LAST_NAME_KEY, lastName);
+        outState.putString(URL_KEY, spreadsheetUrl);
+
+        super.onSaveInstanceState(outState);
     }
 
     /**
@@ -138,117 +117,111 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
      */
     private void getUserData() {
         AsyncUserDataLoader loader = new AsyncUserDataLoader();
-        loader.execute(spreadsheetUrl, firstName, lastName);
+        loader.execute(spreadsheetUrl, firstName, lastName, "false");
     }
 
-    @SuppressWarnings("ResourceType")
     private void updateViews() {
-        if (this.user == null) {
-            // Notify the user and do not update all views if the user wasn't on the spreadsheet.
+        if (this.mUser == null) {
+            // Notify the mUser and do not update all views if the mUser wasn't on the spreadsheet.
             AlertDialog.Builder nullUserAlert = new AlertDialog.Builder(getActivity());
-            nullUserAlert.setTitle("User data not found");
-            nullUserAlert.setMessage("We were unable to find your APO record. " +
-                    "Please log out and log back in with your name exactly as it appears on the Spreadsheet.");
+            nullUserAlert.setTitle(R.string.dialog_user_not_found_title);
+            nullUserAlert.setMessage(getString(R.string.dialog_user_not_found_msg));
             nullUserAlert.show();
 
             TextView nameLabel = (TextView) getActivity().findViewById(R.id.name_label);
-            nameLabel.setText("Unable to find user data.");
+            nameLabel.setText(R.string.label_no_user_status);
         } else {
             updateStatusLabels();
             updateServiceLabels();
             updateMembershipLabels();
             updateFellowshipLabels();
         }
+        mSwipeRefreshLayout.setRefreshing(false);
+        getActivity().setProgressBarIndeterminateVisibility(false);
     }
 
     /**
-     * Update labels associated with the user's meta-status.
+     * Update labels associated with the mUser's meta-status.
      */
     private void updateStatusLabels() {
         TextView nameLabel = (TextView) getActivity().findViewById(R.id.name_label);
-        nameLabel.setText(this.user.First_and_Last_Name);
+        nameLabel.setText(this.mUser.First_and_Last_Name);
 
         TextView statusLabel = (TextView) getActivity().findViewById(R.id.status);
-        statusLabel.setText(this.user.Status);
+        statusLabel.setText(this.mUser.Status);
 
         TextView allReqStatusLabel = (TextView) getActivity().findViewById(R.id.all_reqs_status);
-        allReqStatusLabel.setText(completionStatusStringId(this.user.Complete));
+        allReqStatusLabel.setText(completionStatusStringId(this.mUser.Complete));
     }
 
     /**
-     * Update labels associated with the user's service status.
+     * Update labels associated with the mUser's service status.
      */
     private void updateServiceLabels() {
         TextView serviceStatusLabel = (TextView) getActivity().findViewById(R.id.service_status);
-        serviceStatusLabel.setText(completionStatusStringId(this.user.Service));
+        serviceStatusLabel.setText(completionStatusStringId(this.mUser.Service));
 
         TextView serviceHoursLabel = (TextView) getActivity().findViewById(R.id.hours_label);
-        serviceHoursLabel.setText(this.user.Service_Hours + " of " + this.user.Required_Service_Hours);
+        serviceHoursLabel.setText(this.mUser.Service_Hours + " of " + this.mUser.Required_Service_Hours);
 
         TextView largeGroupStatusLabel = (TextView) getActivity().findViewById(R.id.large_group_status);
-        largeGroupStatusLabel.setText(completionStatusStringId(this.user.Large_Group_Project));
+        largeGroupStatusLabel.setText(completionStatusStringId(this.mUser.Large_Group_Project));
 
         TextView publicityStatusLabel = (TextView) getActivity().findViewById(R.id.publicity_status);
-        publicityStatusLabel.setText(completionStatusStringId(this.user.Publicity));
+        publicityStatusLabel.setText(completionStatusStringId(this.mUser.Publicity));
 
         TextView serviceHostingLabel = (TextView) getActivity().findViewById(R.id.service_hosting_status);
-        serviceHostingLabel.setText(completionStatusStringId(this.user.Service_Hosting));
+        serviceHostingLabel.setText(completionStatusStringId(this.mUser.Service_Hosting));
     }
 
     /**
-     * Update labels associated with the user's membership status.
+     * Update labels associated with the mUser's membership status.
      */
     private void updateMembershipLabels() {
         TextView membershipStatusLabel = (TextView) getActivity().findViewById(R.id.membership_status);
-        membershipStatusLabel.setText(completionStatusStringId(this.user.Membership));
+        membershipStatusLabel.setText(completionStatusStringId(this.mUser.Membership));
 
         TextView membershipPointsLabel = (TextView) getActivity().findViewById(R.id.membership_points);
-        membershipPointsLabel.setText(this.user.Membership_Points + " of " + this.user.Required_Membership_Points);
+        membershipPointsLabel.setText(this.mUser.Membership_Points + " of " + this.mUser.Required_Membership_Points);
 
         TextView brotherCompLabel = (TextView) getActivity().findViewById(R.id.brother_comp);
-        brotherCompLabel.setText(completionStatusStringId(this.user.Brother_Comp));
+        brotherCompLabel.setText(completionStatusStringId(this.mUser.Brother_Comp));
 
         TextView pledgeCompLabel = (TextView) getActivity().findViewById(R.id.pledge_comp);
-        pledgeCompLabel.setText(completionStatusStringId(this.user.Pledge_Comp));
+        pledgeCompLabel.setText(completionStatusStringId(this.mUser.Pledge_Comp));
 
         TextView allHostingLabel = (TextView) getActivity().findViewById(R.id.membership_hosting);
-        allHostingLabel.setText(completionStatusStringId(this.user.Service_Hosting && this.user.Fellowship_Hosting));
+        allHostingLabel.setText(completionStatusStringId(this.mUser.Service_Hosting && this.mUser.Fellowship_Hosting));
     }
 
     /**
-     * Update labels associated with the user's Fellowship status.
+     * Update labels associated with the mUser's Fellowship status.
      */
     private void updateFellowshipLabels() {
         TextView fellowshipStatusLabel = (TextView) getActivity().findViewById(R.id.fellowship_status);
-        fellowshipStatusLabel.setText(completionStatusStringId(this.user.Fellowship));
+        fellowshipStatusLabel.setText(completionStatusStringId(this.mUser.Fellowship));
 
         TextView fellowshipPointsLabel = (TextView) getActivity().findViewById(R.id.fellowship_points);
-        fellowshipPointsLabel.setText(this.user.Fellowship_Points + " of " + this.user.Required_Fellowship);
+        fellowshipPointsLabel.setText(this.mUser.Fellowship_Points + " of " + this.mUser.Required_Fellowship);
 
         TextView fellowshipHostingLabel = (TextView) getActivity().findViewById(R.id.fellowship_hosting);
-        fellowshipHostingLabel.setText(completionStatusStringId(this.user.Fellowship_Hosting));
+        fellowshipHostingLabel.setText(completionStatusStringId(this.mUser.Fellowship_Hosting));
     }
 
     private class AsyncUserDataLoader extends AsyncTask<String, Void, User> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            getActivity().setProgress(2000);
-        }
 
         @Override
         protected User doInBackground(String... params) {
-            return ReadJSON.getBrotherData(params[0], params[1], params[2], getActivity(), false);
+            return ReadJSON.getBrotherData(params[0], params[1], params[2],
+                    getActivity(), "true".equalsIgnoreCase(params[3]));
         }
 
         @Override
         protected void onPostExecute(User result) {
             super.onPostExecute(result);
 
-            BrotherStatusFragment.this.user = result;
-            getActivity().setProgress(5000);
+            BrotherStatusFragment.this.mUser = result;
             updateViews();
-            getActivity().setProgress(10000);
         }
     }
 }
