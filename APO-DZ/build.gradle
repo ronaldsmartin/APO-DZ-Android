@@ -3,22 +3,24 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.9.+'
+        classpath 'com.android.tools.build:gradle:0.12.+'
     }
 }
-apply plugin: 'android'
 
-dependencies {
-    repositories {
-        mavenCentral()
-    }
-    compile fileTree(dir: 'libs', include: '*.jar')
-    compile "com.android.support:support-v4:19.1.+"
-}
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.1"
+    buildToolsVersion "20"
+
+    defaultConfig {
+        applicationId 'org.upennapo.app'
+        minSdkVersion 14
+        targetSdkVersion 19
+        versionCode 3
+        versionName "1.6"
+    }
+
 
     sourceSets {
         main {
@@ -43,4 +45,35 @@ android {
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
     }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.dev'
+        }
+        release {
+            runProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),  \
+             'proguard-project.txt'
+
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://repo.commonsware.com.s3.amazonaws.com"
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+
+    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.android.support:cardview-v7:+'
+
+    compile 'com.google.code.gson:gson:2.2.4'
+
+    compile 'com.commonsware.cwac:merge:1.0.2'
+    compile 'com.commonsware.cwac:sacklist:1.0.0'
 }
