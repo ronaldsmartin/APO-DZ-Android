@@ -21,7 +21,6 @@ public class CalendarFragment extends Fragment {
 
 
     public CalendarFragment() {
-        mWebView = new WebView(getActivity());
     }
 
     @Override
@@ -35,6 +34,7 @@ public class CalendarFragment extends Fragment {
     }
 
     private void init(Bundle savedInstanceState) {
+        mWebView = new WebView(getActivity());
         if (savedInstanceState == null) {
             mWebView.getSettings().setJavaScriptEnabled(true);
             mWebView.loadUrl(getArguments().getString(URL_KEY));

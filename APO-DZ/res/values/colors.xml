@@ -4,4 +4,6 @@
     <color name="apo_blue" >#0033AB</color>
     <color name="apo_yellow" >#F7B512</color>
     <color name="list_header">#0066CC</color>
+    <color name="card_backdrop">#EDEDED</color>
+    <color name="card_item_divider">#E5E5E5</color>
 </resources>
