@@ -48,9 +48,7 @@ public class ReadJSON {
                                       Context context, boolean forceDownload) {
         // If we cannot retrieve or find the requested person's data, return null.
         User user = null;
-        SharedPreferences prefs =
-                context.getSharedPreferences(context.getString(R.string.app_name),
-                        context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
         Gson gson = new Gson();
 
         // If the status isn't cached or we are refreshing, download and parse the brother status
@@ -112,8 +110,7 @@ public class ReadJSON {
         // If the JSON data is stored locally, pull it from preferences.
         // Otherwise, download it from the Internet and cache it.
         SharedPreferences prefs =
-                context.getSharedPreferences(context.getString(R.string.app_name),
-                        context.MODE_PRIVATE);
+                context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
 
         String jsonString = isRefreshing ? downloadJsonData(urlString) :
                 prefs.getString(sheetKey, downloadJsonData(urlString));
