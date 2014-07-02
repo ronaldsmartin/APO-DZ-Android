@@ -15,21 +15,17 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     public static final String URL_KEY = "URL";
     public static final String SHEET_KEY = "SHEET_KEY";
-
+    private static final String LIST_KEY = "DIRECTORY_LIST";
+    protected ArrayList<Brother> mBrothers;
     private String urlString;
-    private String sheetKey;
-
-    private View view;
+    private String mSheetKey;
+    private View mView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-
-	private ArrayList<Brother> directoryList;
 
 
     public DirectoryFragment() {
@@ -41,7 +37,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
         // Retrieve the arguments passed by the MainActivity
         this.urlString = getArguments().getString(URL_KEY);
-        this.sheetKey = getArguments().getString(SHEET_KEY);
+        this.mSheetKey = getArguments().getString(SHEET_KEY);
     }
 
 	
@@ -50,25 +46,45 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
             Bundle savedInstanceState) {
         Activity context = getActivity();
         context.getActionBar();
-        // Activate the progress view in the action bar.
-        // Progress bar code is due to http://guides.thecodepath.com/android/Handling-ProgressBars
-		showProgressBar();
 
         // Inflate the View
-        view = inflater.inflate(R.layout.fragment_directory, container, false);
+        mView = inflater.inflate(R.layout.fragment_directory, container, false);
 
-        // Make an asynchronous request for the JSON using the URL
-        AsyncBrotherLoader loader = new AsyncBrotherLoader();
-        loader.execute(urlString, sheetKey);
+        init(savedInstanceState);
 
-        // Now find the PullToRefreshLayout to setup
-        this.mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
+        return mView;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArrayList(LIST_KEY, mBrothers);
+        super.onSaveInstanceState(outState);
+    }
+
+    protected void init(Bundle savedInstanceState) {
+        // Set up PullToRefresh.
+        this.mSwipeRefreshLayout = (SwipeRefreshLayout) mView.findViewById(R.id.swipe_layout);
         this.mSwipeRefreshLayout.setColorScheme(
                 R.color.apo_blue, R.color.apo_yellow, R.color.apo_blue, R.color.apo_yellow);
         this.mSwipeRefreshLayout.setOnRefreshListener(this);
 
-		return view;
-	}
+        // Retrieve directory data from internet, memory, or Bundle.
+        if (savedInstanceState == null) {
+            if (DataManager.isNetworkAvailable(getActivity())) {
+                // Make an asynchronous request for the JSON using the URL
+                new AsyncBrotherLoader().execute(urlString, mSheetKey, "false");
+            } else {
+                // Notify the user that there is no connection. Tell them to try later.
+                Toast noConnectionToast = Toast.makeText(getActivity(),
+                        R.string.no_internet_toast_msg,
+                        Toast.LENGTH_LONG);
+                noConnectionToast.show();
+            }
+        } else {
+            mBrothers = savedInstanceState.getParcelableArrayList(LIST_KEY);
+            updateListView();
+        }
+    }
 
     /**
      * Show the ActionBar progress bar.
@@ -90,62 +106,40 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     /**
      * Hide the ActionBar progress bar.
      */
-    public void hideProgressBar() {
-    	getActivity().setProgressBarVisibility(false);
+    private void hideProgressBar() {
+        getActivity().setProgressBarVisibility(false);
     }
-    
-    protected void updateDirectoryList(Brother[] result) {
-    	directoryList = new ArrayList<Brother>(Arrays.asList(result));
-        updateProgressValue(4000);
-        Collections.sort(directoryList, new BrotherComparator());        
-        updateProgressValue(7000);
-        
-        ArrayList<String> alphabetizedNames = new ArrayList<String>();
-       	for (Brother brother : directoryList) {
-			String firstName =
-                    brother.Preferred_Name.length() == 0 ? brother.First_Name : brother.Preferred_Name;
-            alphabetizedNames.add(firstName + " " + brother.Last_Name);
-        }
-        updateProgressValue(8500);
 
-		AlphabeticalAdapter adapter =
-			new AlphabeticalAdapter(getActivity(), R.layout.centered_textview, R.id.centered_text, alphabetizedNames);
-		ListView list = (ListView) view.findViewById(R.id.name_list);
-		list.setAdapter(adapter);
-		updateProgressValue(9000);
-		
-		list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			public void onItemClick(AdapterView <?> parent, View view, int position, long id) {
-				// Parcel the brother at this index to the details view.
+    protected AdapterView.OnItemClickListener onItemClickListener() {
+        return new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Parcel the brother at this index to the details view.
                 Intent detailPage = new Intent(getActivity(), DirectoryDetailsActivity.class);
-                detailPage.putExtra(getString(R.string.dir_brother_data), directoryList.get(position));
-				getActivity().startActivity(detailPage);
-			}
-		});
+                detailPage.putExtra(getString(R.string.dir_brother_data), mBrothers.get(position));
+                getActivity().startActivity(detailPage);
+            }
+        };
+    }
+
+    private void updateListView() {
+        ArrayList<String> names = new ArrayList<String>(mBrothers.size());
+        for (Brother brother : mBrothers) {
+            names.add(brother.toString());
+        }
+
+        AlphabeticalAdapter adapter =
+                new AlphabeticalAdapter(getActivity(), R.layout.centered_textview, R.id.centered_text, names);
+        ListView list = (ListView) mView.findViewById(R.id.name_list);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(onItemClickListener());
     }
 
     @Override
     public void onRefresh() {
         // Make an asynchronous request for the JSON using the URL
-        AsyncBrotherLoader loader = new AsyncBrotherLoader() {
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                mSwipeRefreshLayout.setRefreshing(true);
-            }
-
-            @Override
-            protected Brother[] doInBackground(String... params) {
-                return ReadJSON.getDirectoryData(params[0], params[1], getActivity(), true);
-            }
-
-            @Override
-            protected void onPostExecute(Brother[] result) {
-                super.onPostExecute(result);
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
-        };
-        loader.execute(urlString, sheetKey);
+        mSwipeRefreshLayout.setRefreshing(true);
+        new AsyncBrotherLoader().execute(urlString, mSheetKey, "true");
     }
 
     private class AsyncBrotherLoader extends AsyncTask<String, Void, Brother[]> {
@@ -153,45 +147,34 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 	    @Override
 	    protected void onPreExecute() {        
 	        super.onPreExecute();
+            // Activate the progress view in the action bar.
+            // Progress bar code is due to http://guides.thecodepath.com/android/Handling-ProgressBars
+            showProgressBar();
+
 	        updateProgressValue(1000);
 	    }
 
 	    @Override
 	    protected Brother[] doInBackground(String... params) {
-            return ReadJSON.getDirectoryData(params[0], params[1], getActivity(), false);
+            return DataManager.getDirectoryData(params[0], params[1],
+                    getActivity(), "true".equals(params[2]));
         }
 
         @Override
         protected void onPostExecute(Brother[] result) {
 	    	if (result == null) {
 	    		// If there is an error getting the result, display an alert.
-
                 Toast failureAlert = Toast.makeText(getActivity(),
                         "Unable to load at this time.", Toast.LENGTH_LONG);
                 failureAlert.show();
             } else {
-	    		updateDirectoryList(result);
-	    	}
-	        
-			updateProgressValue(10000);
-            hideProgressBar();
+                Arrays.sort(result);
+                mBrothers = new ArrayList<Brother>(Arrays.asList(result));
+                updateListView();
+            }
+            updateProgressValue(10000);
+            mSwipeRefreshLayout.setRefreshing(false);
         }
-	}
-	
-	public class BrotherComparator implements Comparator<Brother> {
-		@Override
-		public int compare(Brother b1, Brother b2) {
-			// Retrieve brother 1's first name.
-			final String preferredName1 = b1.Preferred_Name;
-			final String firstName1 = preferredName1.length() == 0 ? b1.First_Name : preferredName1;
-			
-			// Retrieve brother 2's first name.
-			final String preferredName2 = b2.Preferred_Name;
-			final String firstName2 = preferredName2.length() == 0 ? b2.First_Name : preferredName2;
-			
-			// Compare and return lexographic ordering.
-			return firstName1.compareToIgnoreCase(firstName2);
-		}
 	}
 }
 

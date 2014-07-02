@@ -77,7 +77,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
 
     private void init(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            if (ReadJSON.isNetworkAvailable(getActivity())) {
+            if (DataManager.isNetworkAvailable(getActivity())) {
                 SharedPreferences prefs = getActivity().getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
                 this.firstName = prefs.getString(LoginActivity.USER_FIRSTNAME_KEY, "");
                 this.lastName = prefs.getString(LoginActivity.USER_LASTNAME_KEY, "");
@@ -86,9 +86,9 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
                 getActivity().setProgressBarIndeterminateVisibility(true);
                 getUserData();
             } else {
-                // Notify the mUser that there is no connection. Tell them to try later.
+                // Notify the user that there is no connection. Tell them to try later.
                 Toast noConnectionToast = Toast.makeText(getActivity(),
-                        "Oops(ilon), there's no internet! Try again later.",
+                        R.string.no_internet_toast_msg,
                         Toast.LENGTH_LONG);
                 noConnectionToast.show();
 
@@ -212,7 +212,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
 
         @Override
         protected User doInBackground(String... params) {
-            return ReadJSON.getBrotherData(params[0], params[1], params[2],
+            return DataManager.getBrotherData(params[0], params[1], params[2],
                     getActivity(), "true".equalsIgnoreCase(params[3]));
         }
 

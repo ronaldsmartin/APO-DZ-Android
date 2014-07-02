@@ -28,12 +28,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * ReadJSON provides a means to download and parse information from the Google Docs backend.
+ * DataManager provides a means to download and parse information from the Google Sheets backend.
  *
  * @author Ronald Martin
  *         Using tutorial from http://www.vogella.com/tutorials/AndroidJSON/article.html
  */
-public class ReadJSON {
+public class DataManager {
+
+    private static final String TAG = "DataManager";
 
     /**
      * Downloads brotherhood requirement data for the requested person.
@@ -166,7 +168,7 @@ public class ReadJSON {
                 reader.close();
                 content.close();
             } else {
-                Log.d("ReadJSON", "HttpResponse code error");
+                Log.d(TAG, "HttpResponse code error");
             }
         } catch (ClientProtocolException e) {
             e.printStackTrace();
