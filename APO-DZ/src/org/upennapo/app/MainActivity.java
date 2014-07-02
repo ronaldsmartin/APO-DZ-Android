@@ -2,6 +2,7 @@ package org.upennapo.app;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -186,6 +187,24 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 final String githubPageUrl = getString(R.string.menu_about_app_url);
                 Intent openGithubPage = new Intent(Intent.ACTION_VIEW, Uri.parse(githubPageUrl));
                 startActivity(openGithubPage);
+                return true;
+
+            case R.id.menu_rate_app:
+                // Get the package name, removing the suffix if we're in debug mode.
+                String packageName = getPackageName();
+                if (packageName.endsWith(".dev"))
+                    packageName = packageName.substring(0, packageName.length() - 4);
+
+                // Open the app page in the Google Play app or website.
+                Uri uri = Uri.parse("market://details?id=" + packageName);
+                Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                try {
+                    startActivity(goToMarket);
+                } catch (ActivityNotFoundException e) {
+                    uri = Uri.parse("http://play.google.com/store/apps/details?id=" + packageName);
+                    goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(goToMarket);
+                }
                 return true;
 
             case R.id.menu_switch_user:

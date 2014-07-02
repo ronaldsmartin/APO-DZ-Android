@@ -3,12 +3,16 @@
 
     <string name="app_name">APO-DZ</string>
 
+    <string name="no_internet_toast_msg">Oops(ilon), there\'s no internet! Try again later.</string>
+
     <!-- Menu Options -->
     <string name="menu_switch_user">Sign out</string>
     <string name="menu_report_bug">Send feedback</string>
     <string name="menu_about_app">About</string>
     <string name="menu_report_bug_url">https://docs.google.com/forms/d/1TvicaFVBNcVgoZbTqXt3YvzY_ds2L0qHhz2LDpi6wDQ/viewform</string>
     <string name="menu_about_app_url">http://ronaldsmartin.github.io/APO-DZ-Android/</string>
+    <string name="menu_add_contact">Add/edit contact</string>
+
 
     <!-- Title Screen -->
     <string name="login_screen_title"><b>DELTA ZETA CHAPTER</b></string>
@@ -19,7 +23,6 @@
     <string name="login_button">Defend the Portal</string>
     <string name="logout_button">Logout</string>
 
-
     <!-- Name Entry Dialog -->
     <string name="name_entry_title">Who comes there?</string>
     <string name="name_entry_instructions">Enter your name exactly as it appears on the Spreadsheet.</string>
@@ -28,10 +31,12 @@
     <string name="name_entry_last_name_prompt">Last Name</string>
     <string name="name_entry_last_name_hint">Ever</string>
 
+    <string name="dialog_enter_password_msg">Please enter the chapter app password to continue.</string>
+
 
     <!-- Tab Names -->
-    <string name="title_section1">DZ Status</string>
-    <string name="title_section2">Calendars</string>
+    <string name="title_section1">My Status</string>
+    <string name="title_section2">Delta Zeta Calendars</string>
     <string name="title_section3">Brother Directory</string>
     <string name="title_section4">Pledge Directory</string>
     <string name="title_section5">Helpful Links</string>
@@ -51,16 +56,13 @@
     <string name="dialog_user_not_found_msg">We were unable to find your APO record. Please sign out and log back in with your name exactly as it appears on the Spreadsheet.</string>
     <string name="label_no_user_status">Unable to find user status.</string>
 
-
     <!-- Categories -->
     <string name="cat_status">Status:</string>
     <string name="cat_req_completion">Reqs:</string>
-
     <string name="cat_service_hours">Hours:</string>
     <string name="cat_large_group_completion">Large Group:</string>
     <string name="cat_publicity_completion">Publicity:</string>
     <string name="cat_hosting_completion">Hosting:</string>
-
     <string name="cat_points">Points:</string>
     <string name="cat_pledge_comp">Pledge Comp.:</string>
     <string name="cat_bro_comp">Brother Comp.:</string>
@@ -68,7 +70,7 @@
     <!-- Completion Statuses -->
     <string name="req_complete">complete</string>
     <string name="req_incomplete">incomplete</string>
-    <string name="req_loading">Loading&#8230;</string>
+    <string name="req_loading">Loading…</string>
 
 
     <!-- Directories -->
@@ -76,11 +78,8 @@
     <string name="directory_details_header">Brother Details</string>
     <string name="name_dd">name</string>
     <string name="email_dd">e-mail</string>
-    <string name="email_button_dd">e-mail</string>
     <string name="phone_dd">phone</string>
-    <string name="call_button_dd">call</string>
     <string name="text_button_dd">text</string>
-    <string name="year_dd">year</string>
     <string name="pledge_dd">pledge class</string>
     <string name="major_dd">major</string>
 
@@ -126,12 +125,18 @@
         <item>APOut of Context</item>
     </string-array>
 
-
-    <!-- Bundle keys -->
-    <string name="dir_brother_data">Brother data</string>
-
     <!-- ...Other -->
     <string name="apo_2048_url">http://games.usvsth3m.com/2048/apo-dz-edition/</string>
     <string name="apo_2048_label">DZ 2048!</string>
     <string name="apo_2048_unlock_msg">You\'ve unlocked an easter egg! Check Settings to play.</string>
+
+
+    <string name="title_activity_alumni_links">DZ Alum Links</string>
+
+    <!-- Nav Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_rate_app">Rate app</string>
 </resources>
