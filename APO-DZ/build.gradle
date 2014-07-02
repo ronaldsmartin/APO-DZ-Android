@@ -49,11 +49,11 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix '.dev'
+            versionNameSuffix '-DEBUG'
         }
         release {
             runProguard true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),  \
-             'proguard-project.txt'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
 
         }
     }
@@ -69,11 +69,10 @@ repositories {
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
 
+    // You must install or update the Support Repository through the SDK manager to use this dependency.
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.android.support:cardview-v7:+'
-
     compile 'com.google.code.gson:gson:2.2.4'
-
     compile 'com.commonsware.cwac:merge:1.0.2'
     compile 'com.commonsware.cwac:sacklist:1.0.0'
 }

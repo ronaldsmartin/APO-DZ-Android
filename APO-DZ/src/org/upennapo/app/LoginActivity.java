@@ -29,6 +29,8 @@ public class LoginActivity extends Activity {
     public static final String USER_LASTNAME_KEY = "USER_LAST_NAME";
     public static final String LOGOUT_INTENT = "USER_LOGOUT_INTENT";
 
+    private static final String ALUM_LOGGED_IN = "ALUM_LOG_IN";
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
@@ -37,12 +39,14 @@ public class LoginActivity extends Activity {
             updateNameLabel();
         } else if (userIsLoggedIn() && hasUsername()) {
             proceedToApp();
+        } else if (alumIsLoggedIn()) {
+            proceedToAlumApp();
         }
     }
 
     public void logout(View view) {
         // Thanks to http://stackoverflow.com/questions/2115758/how-to-display-alert-dialog-in-android
-        if (userIsLoggedIn() || hasUsername()) {
+        if (userIsLoggedIn() || hasUsername() || alumIsLoggedIn()) {
             // Confirm logout before proceeding.
             new AlertDialog.Builder(this)
                     .setTitle("Confirm Logout")
@@ -82,6 +86,8 @@ public class LoginActivity extends Activity {
         if (hasUsername()) {
             if (userIsLoggedIn()) {
                 proceedToApp();
+            } else if (alumIsLoggedIn()) {
+                proceedToAlumApp();
             } else {
                 showPasswordPrompt("Enter Password");
             }
@@ -116,6 +122,11 @@ public class LoginActivity extends Activity {
         nameLabel.setText("");
     }
 
+    private boolean alumIsLoggedIn() {
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
+        return prefs.getBoolean(ALUM_LOGGED_IN, false);
+    }
+
     private boolean userIsLoggedIn() {
         SharedPreferences prefs = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
         return prefs.getBoolean(LOGGED_IN_KEY, false);
@@ -132,13 +143,19 @@ public class LoginActivity extends Activity {
         finish();
     }
 
+    private void proceedToAlumApp() {
+        Intent openAppIntent = new Intent(this, AlumniModeActivity.class);
+        startActivity(openAppIntent);
+        finish();
+    }
+
     protected void showPasswordPrompt(String title) {
         // This code snippet is thanks to
         // http://www.androidsnippets.com/prompt-user-input-with-an-alertdialog
 
         AlertDialog.Builder prompt = new AlertDialog.Builder(this);
         prompt.setTitle(title);
-        prompt.setMessage("Please enter the chapter app password to continue.");
+        prompt.setMessage(R.string.dialog_enter_password_msg);
 
         // Create an EditText view to get user input that censors the input password.
         final EditText input = new EditText(this);
@@ -161,6 +178,15 @@ public class LoginActivity extends Activity {
 
                     // Continue to the main view.
                     proceedToApp();
+                } else if (getString(R.string.app_password_alum).equals(value)) {
+                    // Store that we have logged in as an alum.
+                    SharedPreferences.Editor editor =
+                            getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE).edit();
+                    editor.putBoolean(ALUM_LOGGED_IN, true);
+                    editor.apply();
+
+                    // Continue to the main view.
+                    proceedToAlumApp();
                 } else {
                     // User entered incorrect password. Try again with new prompt.
                     showPasswordPrompt("Incorrect Password.");

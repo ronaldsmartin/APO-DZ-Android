@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="org.upennapo.app">
 
-    <uses-sdk tools:node="replace" />
+    <uses-sdk xmlns:tools="http://schemas.android.com/tools"
+        tools:node="replace" />
 
     <!-- Permissions -->
     <!-- Used to prevent the app from crashing if when there's no network reachability -->
@@ -18,42 +18,42 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.Apo_dz_actionbar">
         <activity
-            android:name="org.upennapo.app.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="org.upennapo.app.MainActivity"
-            android:label="@string/app_name"></activity>
-
+            android:name=".MainActivity"
+            android:label="@string/app_name" />
         <activity
-            android:name="org.upennapo.app.DirectoryDetailsActivity"
-            android:parentActivityName="org.upennapo.app.MainActivity">
+            android:name=".DirectoryDetailsActivity"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.upennapo.app.MainActivity" />
         </activity>
-
         <activity
-            android:name="org.upennapo.app.EasterEggActivity"
+            android:name=".EasterEggActivity"
             android:label="@string/apo_2048_label"
-
-            android:parentActivityName="org.upennapo.app.MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.upennapo.app.MainActivity" />
         </activity>
+        <activity
+            android:name=".AlumniModeActivity"
+            android:label="@string/title_activity_alumni_links"></activity>
     </application>
 
 </manifest>

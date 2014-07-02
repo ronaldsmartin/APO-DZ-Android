@@ -112,6 +112,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
     protected AdapterView.OnItemClickListener onItemClickListener() {
         return new AdapterView.OnItemClickListener() {
+            @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Parcel the brother at this index to the details view.
                 Intent detailPage = new Intent(getActivity(), DirectoryDetailsActivity.class);
@@ -122,16 +123,11 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     }
 
     private void updateListView() {
-        ArrayList<String> names = new ArrayList<String>(mBrothers.size());
-        for (Brother brother : mBrothers) {
-            names.add(brother.toString());
-        }
-
         AlphabeticalAdapter adapter =
-                new AlphabeticalAdapter(getActivity(), R.layout.centered_textview, R.id.centered_text, names);
-        ListView list = (ListView) mView.findViewById(R.id.name_list);
+                new AlphabeticalAdapter(getActivity(), mBrothers);
+        final ListView list = (ListView) mView.findViewById(R.id.name_list);
         list.setAdapter(adapter);
-
+        list.setItemsCanFocus(false);
         list.setOnItemClickListener(onItemClickListener());
     }
 

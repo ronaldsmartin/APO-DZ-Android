@@ -78,6 +78,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
     /**
      * Get the corresponding selected tab icon ID for a tab.
+     *
      * @param position for which to get the tab icon
      * @return the selected tab icon's resource ID for the tab at position
      */
@@ -314,12 +315,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             // Set up Directories
             Bundle broDirectoryArgs = new Bundle();
             broDirectoryArgs.putString(DirectoryFragment.URL_KEY, getString(R.string.brother_directory_json_url));
-            broDirectoryArgs.putString(DirectoryFragment.SHEET_KEY, "ActiveBrotherDirectory");
+            broDirectoryArgs.putString(DirectoryFragment.SHEET_KEY, getString(R.string.brother_directory_sheet_key));
             this.broDirectoryFragment.setArguments(broDirectoryArgs);
 
             Bundle pledgeDirectoryArgs = new Bundle();
             pledgeDirectoryArgs.putString(DirectoryFragment.URL_KEY, getString(R.string.pledge_directory_json_url));
-            pledgeDirectoryArgs.putString(DirectoryFragment.SHEET_KEY, "PledgeDirectory");
+            pledgeDirectoryArgs.putString(DirectoryFragment.SHEET_KEY, getString(R.string.pledge_directory_sheet_key));
             this.pledgeDirectoryFragment.setArguments(pledgeDirectoryArgs);
         }
 
