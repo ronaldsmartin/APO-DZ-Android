@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
@@ -9,6 +10,6 @@
     <dimen name="left_margin_dd">15dip</dimen>
     <dimen name="button_text_size">13sp</dimen>
     <dimen name="text_size_dd">15sp</dimen>
-    
+    <dimen name="navigation_drawer_width">240dp</dimen>
 
 </resources>
