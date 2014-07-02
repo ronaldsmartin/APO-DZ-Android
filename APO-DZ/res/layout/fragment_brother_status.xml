@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,7 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@android:color/white">
+                android:background="@android:color/white"
+                card_view:cardCornerRadius="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -106,7 +108,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@android:color/white">
+                android:background="@android:color/white"
+                card_view:cardCornerRadius="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -120,7 +123,7 @@
                         android:fontFamily="sans-serif-light"
                         android:padding="16dp"
                         android:text="@string/service_header"
-                        android:textColor="@color/list_header" />
+                        android:textColor="@android:color/holo_green_dark" />
 
                     <include layout="@layout/card_item_divider" />
 
@@ -257,7 +260,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@android:color/white"
-                android:fontFamily="sans-serif-light">
+                android:fontFamily="sans-serif-light"
+                card_view:cardCornerRadius="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -271,7 +275,7 @@
                         android:fontFamily="sans-serif-light"
                         android:padding="16dip"
                         android:text="@string/membership_header"
-                        android:textColor="@color/list_header" />
+                        android:textColor="@android:color/holo_purple" />
 
                     <include layout="@layout/card_item_divider" />
 
@@ -407,7 +411,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@android:color/white">
+                android:background="@android:color/white"
+                card_view:cardCornerRadius="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -421,7 +426,7 @@
                         android:fontFamily="sans-serif-light"
                         android:padding="16dp"
                         android:text="@string/fellowship_header"
-                        android:textColor="@color/list_header" />
+                        android:textColor="@android:color/holo_orange_dark" />
 
                     <include layout="@layout/card_item_divider" />
 

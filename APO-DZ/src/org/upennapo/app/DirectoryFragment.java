@@ -1,6 +1,5 @@
 package org.upennapo.app;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -40,12 +39,10 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
         this.mSheetKey = getArguments().getString(SHEET_KEY);
     }
 
-	
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        Activity context = getActivity();
-        context.getActionBar();
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
         // Inflate the View
         mView = inflater.inflate(R.layout.fragment_directory, container, false);
@@ -99,7 +96,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
      * @param value of progress in range [0, 10000]
      */
     private void updateProgressValue(int value) {
-		getActivity().setProgress(value);
+        getActivity().setProgress(value);
     }
 
 
@@ -116,7 +113,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Parcel the brother at this index to the details view.
                 Intent detailPage = new Intent(getActivity(), DirectoryDetailsActivity.class);
-                detailPage.putExtra(getString(R.string.dir_brother_data), mBrothers.get(position));
+                detailPage.putExtra(DirectoryDetailsActivity.TAG_BROTHER_DATA, mBrothers.get(position));
                 getActivity().startActivity(detailPage);
             }
         };
@@ -140,26 +137,26 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
     private class AsyncBrotherLoader extends AsyncTask<String, Void, Brother[]> {
 
-	    @Override
-	    protected void onPreExecute() {        
-	        super.onPreExecute();
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
             // Activate the progress view in the action bar.
             // Progress bar code is due to http://guides.thecodepath.com/android/Handling-ProgressBars
             showProgressBar();
 
-	        updateProgressValue(1000);
-	    }
+            updateProgressValue(1000);
+        }
 
-	    @Override
-	    protected Brother[] doInBackground(String... params) {
+        @Override
+        protected Brother[] doInBackground(String... params) {
             return DataManager.getDirectoryData(params[0], params[1],
                     getActivity(), "true".equals(params[2]));
         }
 
         @Override
         protected void onPostExecute(Brother[] result) {
-	    	if (result == null) {
-	    		// If there is an error getting the result, display an alert.
+            if (result == null) {
+                // If there is an error getting the result, display an alert.
                 Toast failureAlert = Toast.makeText(getActivity(),
                         "Unable to load at this time.", Toast.LENGTH_LONG);
                 failureAlert.show();
@@ -171,6 +168,6 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
             updateProgressValue(10000);
             mSwipeRefreshLayout.setRefreshing(false);
         }
-	}
+    }
 }
 

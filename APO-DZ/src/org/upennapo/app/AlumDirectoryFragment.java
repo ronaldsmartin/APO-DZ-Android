@@ -32,7 +32,7 @@ public class AlumDirectoryFragment extends DirectoryFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Parcel the brother at this index to the details view.
                 Intent detailPage = new Intent(getActivity(), DirectoryDetailsActivity.class);
-                detailPage.putExtra(getString(R.string.dir_brother_data), mBrothers.get(position));
+                detailPage.putExtra(DirectoryDetailsActivity.TAG_BROTHER_DATA, mBrothers.get(position));
                 getActivity().startActivity(detailPage);
             }
         };
