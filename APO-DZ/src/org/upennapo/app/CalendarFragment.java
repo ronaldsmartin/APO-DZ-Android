@@ -6,6 +6,8 @@ package org.upennapo.app;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -18,7 +20,6 @@ import android.webkit.WebView;
 public class CalendarFragment extends Fragment {
 
     public static final String URL_KEY = "url";
-    private WebView mWebView;
 
 
     public CalendarFragment() {
@@ -29,29 +30,15 @@ public class CalendarFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        init(savedInstanceState);
+        WebView mWebView = new WebView(getActivity());
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.loadUrl(getArguments().getString(URL_KEY));
 
         return mWebView;
     }
 
-    private void init(Bundle savedInstanceState) {
-        mWebView = new WebView(getActivity());
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        if (savedInstanceState == null) {
-            mWebView.loadUrl(getArguments().getString(URL_KEY));
-        } else {
-            mWebView.restoreState(savedInstanceState);
-        }
-    }
-
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        mWebView.saveState(outState);
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void onViewStateRestored(Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }
