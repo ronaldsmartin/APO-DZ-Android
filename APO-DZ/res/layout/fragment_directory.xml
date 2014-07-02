@@ -9,8 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fastScrollAlwaysVisible="true"
         android:fastScrollEnabled="true"
+        android:paddingBottom="10dp"
         android:paddingLeft="16dip"
         android:paddingRight="16dip"
+        android:scrollbarStyle="outsideOverlay"
         android:scrollbars="vertical" />
 </android.support.v4.widget.SwipeRefreshLayout>

@@ -6,4 +6,4 @@
     android:layout_height="wrap_content"
     android:fontFamily="sans-serif-light"
     android:gravity="center"
-    android:padding="10dip" />
+    android:padding="16dip" />
