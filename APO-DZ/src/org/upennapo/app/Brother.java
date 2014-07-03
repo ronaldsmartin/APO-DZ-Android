@@ -37,7 +37,10 @@ public class Brother implements Parcelable, Comparable<Brother> {
     public String Major;
     public String Birthday;
 
-    private Brother(Parcel in) {
+    public Brother() {
+    }
+
+    protected Brother(Parcel in) {
         // Parcelable tutorial due to: http://guides.thecodepath.com/android/Using-Parcelable
         this.Last_Name = in.readString();
         this.First_Name = in.readString();

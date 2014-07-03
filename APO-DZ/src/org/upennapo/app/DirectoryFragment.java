@@ -17,12 +17,13 @@ import java.util.Arrays;
 
 public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    public static final String URL_KEY = "URL";
     public static final String SHEET_KEY = "SHEET_KEY";
     private static final String LIST_KEY = "DIRECTORY_LIST";
+
     protected ArrayList<Brother> mBrothers;
-    private String urlString;
+    private String mScriptUrl;
     private String mSheetKey;
+
     private View mView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -35,8 +36,8 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
         super.onCreate(savedInstanceState);
 
         // Retrieve the arguments passed by the MainActivity
-        this.urlString = getArguments().getString(URL_KEY);
         this.mSheetKey = getArguments().getString(SHEET_KEY);
+        this.mScriptUrl = getString(R.string.directory_script) + mSheetKey;
     }
 
 
@@ -69,7 +70,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
         if (savedInstanceState == null) {
             if (DataManager.isNetworkAvailable(getActivity())) {
                 // Make an asynchronous request for the JSON using the URL
-                new AsyncBrotherLoader().execute(urlString, mSheetKey, "false");
+                new AsyncBrotherLoader().execute(mScriptUrl, mSheetKey, "false");
             } else {
                 // Notify the user that there is no connection. Tell them to try later.
                 Toast noConnectionToast = Toast.makeText(getActivity(),
@@ -132,7 +133,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     public void onRefresh() {
         // Make an asynchronous request for the JSON using the URL
         mSwipeRefreshLayout.setRefreshing(true);
-        new AsyncBrotherLoader().execute(urlString, mSheetKey, "true");
+        new AsyncBrotherLoader().execute(mScriptUrl, mSheetKey, "true");
     }
 
     private class AsyncBrotherLoader extends AsyncTask<String, Void, Brother[]> {

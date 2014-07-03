@@ -3,7 +3,7 @@
     <item
         android:id="@+id/menu_play_2048"
         android:icon="@drawable/ic_action_joypad"
-        android:orderInCategory="100"
+        android:orderInCategory="105"
         android:showAsAction="ifRoom|withText"
         android:title="@string/apo_2048_label"
         android:visible="false" />

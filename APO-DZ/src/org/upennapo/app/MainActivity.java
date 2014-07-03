@@ -300,7 +300,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 
         private Fragment brotherStatusFragment = new BrotherStatusFragment();
-        private Fragment calendarFragment = new CalendarFragment();
+        private Fragment calendarFragment = new WebFragment();
         private Fragment broDirectoryFragment = new DirectoryFragment();
         private Fragment pledgeDirectoryFragment = new DirectoryFragment();
         private Fragment linksFragment = new HelpfulLinksFragment();
@@ -328,17 +328,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
             // Set up Calendar
             Bundle calendarUrlArgs = new Bundle();
-            calendarUrlArgs.putString(CalendarFragment.URL_KEY, getString(R.string.calendar_url));
+            calendarUrlArgs.putString(WebFragment.URL_KEY, getString(R.string.calendar_url));
             this.calendarFragment.setArguments(calendarUrlArgs);
 
             // Set up Directories
             Bundle broDirectoryArgs = new Bundle();
-            broDirectoryArgs.putString(DirectoryFragment.URL_KEY, getString(R.string.brother_directory_json_url));
             broDirectoryArgs.putString(DirectoryFragment.SHEET_KEY, getString(R.string.brother_directory_sheet_key));
             this.broDirectoryFragment.setArguments(broDirectoryArgs);
 
             Bundle pledgeDirectoryArgs = new Bundle();
-            pledgeDirectoryArgs.putString(DirectoryFragment.URL_KEY, getString(R.string.pledge_directory_json_url));
             pledgeDirectoryArgs.putString(DirectoryFragment.SHEET_KEY, getString(R.string.pledge_directory_sheet_key));
             this.pledgeDirectoryFragment.setArguments(pledgeDirectoryArgs);
         }

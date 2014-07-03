@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.upennapo.app">
 
-    <uses-sdk xmlns:tools="http://schemas.android.com/tools"
-        tools:node="replace" />
+    <uses-sdk tools:node="replace" />
 
     <!-- Permissions -->
     <!-- Used to prevent the app from crashing if when there's no network reachability -->
@@ -53,7 +53,7 @@
         </activity>
         <activity
             android:name=".AlumniModeActivity"
-            android:label="@string/title_activity_alumni_links"></activity>
+            android:label="@string/title_activity_alumni_mode"></activity>
     </application>
 
 </manifest>
