@@ -16,10 +16,17 @@
         android:title="@string/menu_about_app" />
 
     <item
+        android:id="@+id/menu_switch_mode"
+        android:icon="@drawable/ic_action_turn_right"
+        android:orderInCategory="115"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_switch_mode" />
+
+    <item
         android:id="@+id/menu_send_feedback"
         android:icon="@drawable/ic_action_bug"
         android:orderInCategory="120"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="never"
         android:title="@string/menu_report_bug" />
 
     <item

@@ -2,17 +2,16 @@ package org.upennapo.app;
 
 
 import android.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.view.LayoutInflater;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 
 public class AlumniModeActivity extends FragmentActivity implements ActionBar.OnNavigationListener {
@@ -26,6 +25,7 @@ public class AlumniModeActivity extends FragmentActivity implements ActionBar.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_alumni_mode);
 
         // Set up the action bar to show a dropdown list.
@@ -108,6 +108,12 @@ public class AlumniModeActivity extends FragmentActivity implements ActionBar.On
                 }
                 return true;
 
+            case R.id.menu_switch_mode:
+                Intent switchMode = new Intent(this, MainActivity.class);
+                startActivity(switchMode);
+                finish();
+                return true;
+
             case R.id.menu_switch_user:
                 Intent openLoginScreen = new Intent(this, LoginActivity.class);
                 openLoginScreen.putExtra(LoginActivity.LOGOUT_INTENT, true);
@@ -122,12 +128,20 @@ public class AlumniModeActivity extends FragmentActivity implements ActionBar.On
 
     @Override
     public boolean onNavigationItemSelected(int position, long id) {
+
         // When the given dropdown item is selected, show its contents in the
         // container view.
+
+        FragmentManager fm = getSupportFragmentManager();
+
         Fragment item;
         switch (position) {
             case 0:
-                item = AlumDirectoryFragment.newInstance(this);
+                item = fm.findFragmentByTag(AlumDirectoryFragment.TAG);
+                if (item == null) {
+                    item = AlumDirectoryFragment.newInstance(this);
+                    fm.beginTransaction().add(item, AlumDirectoryFragment.TAG);
+                }
                 break;
             case 1:
                 item = WebFragment.newCalendarInstance(this);
@@ -139,45 +153,11 @@ public class AlumniModeActivity extends FragmentActivity implements ActionBar.On
                 item = WebFragment.new2048Instance(this);
                 break;
             default:
-                item = PlaceholderFragment.newInstance(position + 1);
+                item = new MainActivity.DummySectionFragment();
         }
-        getSupportFragmentManager().beginTransaction()
+        fm.beginTransaction()
                 .replace(R.id.container, item)
                 .commit();
         return true;
     }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_alumni_mode, container, false);
-            return rootView;
-        }
-    }
-
 }

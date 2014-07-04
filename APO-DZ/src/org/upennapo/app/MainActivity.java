@@ -113,7 +113,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_PROGRESS);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_main);
 
@@ -187,6 +186,12 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 final String githubPageUrl = getString(R.string.menu_about_app_url);
                 Intent openGithubPage = new Intent(Intent.ACTION_VIEW, Uri.parse(githubPageUrl));
                 startActivity(openGithubPage);
+                return true;
+
+            case R.id.menu_switch_mode:
+                Intent switchMode = new Intent(this, AlumniModeActivity.class);
+                startActivity(switchMode);
+                finish();
                 return true;
 
             case R.id.menu_rate_app:
@@ -327,9 +332,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             this.brotherStatusFragment.setArguments(broStatusArgs);
 
             // Set up Calendar
-            Bundle calendarUrlArgs = new Bundle();
-            calendarUrlArgs.putString(WebFragment.URL_KEY, getString(R.string.calendar_url));
-            this.calendarFragment.setArguments(calendarUrlArgs);
+            calendarFragment = WebFragment.newCalendarInstance(MainActivity.this);
 
             // Set up Directories
             Bundle broDirectoryArgs = new Bundle();
