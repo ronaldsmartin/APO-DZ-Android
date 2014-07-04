@@ -48,7 +48,7 @@ public class DirectoryDetailsActivity extends Activity {
         phone.setText(mBrother.Phone_Number);
 
         TextView yearLabel = (TextView) findViewById(R.id.year);
-        yearLabel.setText(mBrother.Expected_Graduation_Year);
+        yearLabel.setText(mBrother.Graduation_Year);
 
         TextView pledgeClassLabel = (TextView) findViewById(R.id.pledge_class);
         pledgeClassLabel.setText(mBrother.Pledge_Class);

@@ -58,7 +58,7 @@ class AlphabeticalAdapter extends ArrayAdapter<Brother> implements SectionIndexe
 
         final Brother brother = getItem(position);
         viewHolder.nameLabel.setText(brother.toString());
-        viewHolder.pledgeClassLabel.setText(brother.Pledge_Class);
+        viewHolder.pledgeClassLabel.setText(brother.Pledge_Class + " | " + brother.gradAbbreviation());
         viewHolder.phoneNumLabel.setText(brother.Phone_Number);
         return convertView;
     }

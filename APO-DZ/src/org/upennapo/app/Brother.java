@@ -32,7 +32,6 @@ public class Brother implements Parcelable, Comparable<Brother> {
     public String Email_Address;
     public String Phone_Number;
     public String Pledge_Class;
-    public String Expected_Graduation_Year;
     public String Graduation_Year;
     public String School;
     public String Major;
@@ -52,7 +51,7 @@ public class Brother implements Parcelable, Comparable<Brother> {
         this.Phone_Number = in.readString();
 
         this.Pledge_Class = in.readString();
-        this.Expected_Graduation_Year = in.readString();
+        this.Graduation_Year = in.readString();
 
         this.School = in.readString();
         this.Major = in.readString();
@@ -64,6 +63,41 @@ public class Brother implements Parcelable, Comparable<Brother> {
     public String toString() {
         final String firstName = Preferred_Name.length() == 0 ? First_Name : Preferred_Name;
         return firstName + " " + Last_Name;
+    }
+
+    /**
+     * Provides a shortening of this person's School and Year. If multiple schools are found,
+     * separate them by forward-slash. This abbreviation is specific to the University of Pennsylvania.
+     * <p/>
+     * e.g. (College of Arts & Sciences, 2014) -> CAS'14
+     *
+     * @return abbreviation of person's school info
+     */
+    public String gradAbbreviation() {
+        // Make a school abbreviation.
+        final String[] schools = this.School.split(", ");
+        StringBuilder abbrevBuilder = new StringBuilder();
+        for (int i = 0, length = schools.length; i < length; ++i) {
+            final String school = schools[i];
+
+            if ("College of Arts and Sciences".equals(school))
+                abbrevBuilder.append("CAS");
+            else if ("The Wharton School".equals(school))
+                abbrevBuilder.append("W");
+            else if ("School of Engineering and Applied Science".equals(school))
+                abbrevBuilder.append("SEAS");
+            else if ("School of Nursing".equals(school))
+                abbrevBuilder.append("NURS");
+
+            // Add the '/' separator if we haven't reached the end.
+            if (i < length - 1) abbrevBuilder.append("/");
+        }
+        final String schoolAbbrev = abbrevBuilder.toString();
+
+        // Make a year abbreviation.
+        final String yearSuffix = "'" + this.Graduation_Year.substring(2);
+
+        return schoolAbbrev + yearSuffix;
     }
 
     @Override
@@ -81,7 +115,7 @@ public class Brother implements Parcelable, Comparable<Brother> {
         out.writeString(Phone_Number);
 
         out.writeString(Pledge_Class);
-        out.writeString(Expected_Graduation_Year);
+        out.writeString(Graduation_Year);
 
         out.writeString(School);
         out.writeString(Major);
