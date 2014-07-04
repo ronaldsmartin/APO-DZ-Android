@@ -49,8 +49,8 @@ public class LoginActivity extends Activity {
         if (userIsLoggedIn() || hasUsername() || alumIsLoggedIn()) {
             // Confirm logout before proceeding.
             new AlertDialog.Builder(this)
-                    .setTitle("Confirm Logout")
-                    .setMessage("Are you sure you want to logout?")
+                    .setTitle("Logout")
+                    .setMessage("Logging out will clear all app data from your phone.")
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
