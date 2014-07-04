@@ -101,29 +101,47 @@ public class DataManager {
      * Retrieves and parses directory data from the specified source, returning it as an array of
      * Brother objects.
      *
-     * @param urlString    from which to download JSON data
      * @param sheetKey     the sheet whose data to retrieve
      * @param context      the parent activity, used to access shared preferences
      * @param isRefreshing whether or not this is a network-refresh request or a standard retrieval
      * @return the requested directory data as an array of brothers
      */
-    public static Brother[] getDirectoryData(String urlString, String sheetKey, Context context,
+    public static Brother[] getDirectoryData(String sheetKey, Context context,
                                              boolean isRefreshing) {
+        if (context == null) return null;
+
+        final String url = context.getString(R.string.directory_script) + sheetKey;
+        final String jsonString = loadJson(url, sheetKey, context, isRefreshing);
+        return parseDirectoryJson(jsonString, sheetKey);
+    }
+
+    /**
+     * Retrieves directory data from the specified source, returning it as a String of JSON objects
+     * and caching it.
+     *
+     * @param urlString     from which to download JSON data
+     * @param sheetKey      the sheet whose data to retrieve
+     * @param context       the parent activity, used to access shared preferences
+     * @param forceDownload whether or not this is a network-refresh request or a standard retrieval
+     * @return the requested directory data as a JSON-formatted String
+     */
+    private static String loadJson(String urlString, String sheetKey, Context context,
+                                   boolean forceDownload) {
         // If the JSON data is stored locally, pull it from preferences.
         // Otherwise, download it from the Internet and cache it.
         SharedPreferences prefs =
                 context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
 
-        String jsonString = isRefreshing ? downloadJsonData(urlString) :
+        final String jsonString = forceDownload ? downloadJsonData(urlString) :
                 prefs.getString(sheetKey, downloadJsonData(urlString));
 
-        if (!prefs.contains(sheetKey) || isRefreshing) {
+        if (!prefs.contains(sheetKey) || forceDownload) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString(sheetKey, jsonString);
             editor.apply();
         }
 
-        return parseDirectoryJson(jsonString, sheetKey);
+        return jsonString;
     }
 
     /**
