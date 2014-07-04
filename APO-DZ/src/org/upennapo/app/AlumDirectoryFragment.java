@@ -7,6 +7,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
@@ -38,38 +39,18 @@ public class AlumDirectoryFragment extends DirectoryFragment {
     /**
      * Returns new instance of AlumDirectoryFragment with arguments set.
      *
-     * @param c - context used to access String resources
+     * @param context - context used to access String resources
      * @return primed instance of AlumDirectoryFragment
      */
-    public static AlumDirectoryFragment newInstance(Context c) {
+    public static AlumDirectoryFragment newInstance(Context context) {
         AlumDirectoryFragment instance = new AlumDirectoryFragment();
 
-        final String sheetKey = c.getString(R.string.alumni_directory_sheet_key);
+        final String sheetKey = context.getString(R.string.alumni_directory_sheet_key);
         Bundle args = new Bundle();
         args.putString(SHEET_KEY, sheetKey);
         instance.setArguments(args);
 
         return instance;
-    }
-
-    /**
-     * Concatenate two arrays, treating null as the empty array.
-     *
-     * @param arr1 first array of items to put in the new array
-     * @param arr2 second array of items to put in the new array
-     * @return the concatenation arr1 + arr2
-     */
-    private static Brother[] mergeArrays(Brother[] arr1, Brother[] arr2) {
-        if (arr1 == null && arr2 == null) return null;
-        else if (arr1 == null) return arr2;
-        else if (arr2 == null) return arr1;
-        else {
-            Brother[] merge = new Brother[arr1.length + arr2.length];
-            System.arraycopy(arr1, 0, merge, 0, arr1.length);
-            System.arraycopy(arr2, 0, merge, arr1.length, arr2.length);
-
-            return merge;
-        }
     }
 
     @Override
@@ -164,8 +145,7 @@ public class AlumDirectoryFragment extends DirectoryFragment {
         new AsyncBrotherLoader() {
             @Override
             protected void onPostExecute(Brother[] result) {
-                for (Brother brother : result)
-                    mStudentList.add(brother);
+                mStudentList.addAll(Arrays.asList(result));
             }
         }.execute(sheetKey, "" + forceDownload);
     }

@@ -19,8 +19,6 @@ import java.util.Arrays;
 
 public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    // Keys
-    public static final String TAG = "DirectoryFragment";
     public static final String SHEET_KEY = "SHEET_KEY";
     private static final String LIST_KEY = "DIRECTORY_LIST";
 
@@ -180,6 +178,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
     /**
      * Asynchronously load directory data and update the ListView.
+     *
      * @param forceDownload whether or not to load data from the Internet.
      */
     protected void loadData(boolean forceDownload) {
@@ -187,7 +186,9 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
         new AsyncBrotherLoader().execute(mSheetKey, "" + forceDownload);
     }
 
-    /** Getters & Setters **/
+    /**
+     * Getters & Setters *
+     */
 
     public ArrayList<Brother> getDirectoryList() {
         return mDirectoryList;
@@ -222,8 +223,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
             } else {
                 Arrays.sort(result);
                 mDirectoryList.clear();
-                for (Brother brother : result)
-                    mDirectoryList.add(brother);
+                mDirectoryList.addAll(Arrays.asList(result));
                 updateListView();
             }
         }
