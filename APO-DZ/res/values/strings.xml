@@ -14,6 +14,9 @@
     <string name="menu_add_contact">Add/edit contact</string>
     <string name="menu_switch_mode">Switch mode</string>
 
+    <string name="menu_directory_show_alumni">Alum</string>
+    <string name="menu_directory_show_students">Students</string>
+
 
     <!-- Title Screen -->
     <string name="login_screen_title"><b>DELTA ZETA CHAPTER</b></string>
