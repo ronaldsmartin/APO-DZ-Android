@@ -148,6 +148,7 @@ public class AlumDirectoryFragment extends DirectoryFragment {
         }.execute(getString(R.string.alumni_directory_sheet_key), "" + forceDownload);
 
         // Load and save brother and pledge data, too.
+        mStudentList.clear();
         loadDataInBackground(getString(R.string.brother_directory_sheet_key), forceDownload);
         loadDataInBackground(getString(R.string.pledge_directory_sheet_key), forceDownload);
     }
@@ -163,7 +164,6 @@ public class AlumDirectoryFragment extends DirectoryFragment {
         new AsyncBrotherLoader() {
             @Override
             protected void onPostExecute(Brother[] result) {
-                mStudentList.clear();
                 for (Brother brother : result)
                     mStudentList.add(brother);
             }
