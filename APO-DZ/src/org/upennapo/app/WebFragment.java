@@ -16,6 +16,7 @@ import android.webkit.WebView;
 
 /**
  * WebFragment uses a WebView to load a webpage. Classic.
+ * This Fragment has JavaScript enabled by default.
  *
  * @author Ronald Martin
  */
@@ -30,8 +31,8 @@ public class WebFragment extends Fragment {
     /**
      * Get an instance of WebFragment that loads the Google Calendars.
      *
-     * @param context
-     * @return
+     * @param context in which to load the WebView
+     * @return Google Calendar Fragment
      */
     public static WebFragment newCalendarInstance(Context context) {
         WebFragment instance = new WebFragment();
@@ -44,6 +45,12 @@ public class WebFragment extends Fragment {
         return instance;
     }
 
+    /**
+     * Get an instance of WebFragment that loads the APO 2048 game.
+     *
+     * @param context in which to load the WebView
+     * @return 2048 Fragment
+     */
     public static WebFragment new2048Instance(Context context) {
         WebFragment instance = new WebFragment();
 
@@ -82,11 +89,22 @@ public class WebFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_reload:
+                mWebView.clearCache(true);
                 mWebView.reload();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
 
+    @Override
+    public void onDestroy() {
+        if (mWebView != null) {
+            // Prevent memory leaks.
+            mWebView.clearCache(true);
+            mWebView.destroy();
+            mWebView = null;
+        }
+        super.onDestroy();
     }
 }
