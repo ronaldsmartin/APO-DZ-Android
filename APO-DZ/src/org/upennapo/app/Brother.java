@@ -33,8 +33,10 @@ public class Brother implements Parcelable, Comparable<Brother> {
     public String Phone_Number;
     public String Pledge_Class;
     public String Expected_Graduation_Year;
+    public String Graduation_Year;
     public String School;
     public String Major;
+    public String Location;
     public String Birthday;
 
     public Brother() {
