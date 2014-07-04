@@ -252,6 +252,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
+    /**
+     * Increments the number of times we've entered the last tab. If it reaches the requisite number,
+     * we unlock the easter egg.
+     */
     private void updateEasterEggStatus() {
         SharedPreferences prefs = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
         if (++mNumTaps == NUM_TAPS_ACTIVATE && !prefs.contains(EASTER_EGG_UNLOCKED)) {
@@ -295,73 +299,39 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        /**
-         * Tags for fragment instance retrieval.
-         */
-        private static final String TAG_BROTHER_STATUS_FRAG = "BROTHER_STATUS";
-        private static final String TAG_CALENDAR_FRAG = "CALENDAR";
-        private static final String TAG_BROTHER_DIRECTORY_FRAG = "BROTHER_DIRECTORY";
-        private static final String TAG_PLEDGE_DIRECTORY_FRAG = "PLEDGE_DIRECTORY";
-
-
-        private Fragment brotherStatusFragment = new BrotherStatusFragment();
-        private Fragment calendarFragment = new WebFragment();
-        private Fragment broDirectoryFragment = new DirectoryFragment();
-        private Fragment pledgeDirectoryFragment = new DirectoryFragment();
-        private Fragment linksFragment = new HelpfulLinksFragment();
+        FragmentManager mManager;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
-            init();
+            mManager = fm;
         }
 
-        private boolean retrieveFragments(FragmentManager fm) {
-            // TODO: figure out how to use this
-            brotherStatusFragment = fm.findFragmentByTag(TAG_BROTHER_STATUS_FRAG);
-            calendarFragment = fm.findFragmentByTag(TAG_CALENDAR_FRAG);
-            broDirectoryFragment = fm.findFragmentByTag(TAG_BROTHER_DIRECTORY_FRAG);
-            pledgeDirectoryFragment = fm.findFragmentByTag(TAG_PLEDGE_DIRECTORY_FRAG);
-            return brotherStatusFragment != null && calendarFragment != null
-                    && broDirectoryFragment != null && pledgeDirectoryFragment != null;
-        }
-
-        private void init() {
-            // Set up Brother Status
-            Bundle broStatusArgs = new Bundle();
-            broStatusArgs.putString(BrotherStatusFragment.URL_KEY, getString(R.string.spreadsheet_url));
-            this.brotherStatusFragment.setArguments(broStatusArgs);
-
-            // Set up Calendar
-            calendarFragment = WebFragment.newCalendarInstance(MainActivity.this);
-
-            // Set up Directories
-            Bundle broDirectoryArgs = new Bundle();
-            broDirectoryArgs.putString(DirectoryFragment.SHEET_KEY, getString(R.string.brother_directory_sheet_key));
-            this.broDirectoryFragment.setArguments(broDirectoryArgs);
-
-            Bundle pledgeDirectoryArgs = new Bundle();
-            pledgeDirectoryArgs.putString(DirectoryFragment.SHEET_KEY, getString(R.string.pledge_directory_sheet_key));
-            this.pledgeDirectoryFragment.setArguments(pledgeDirectoryArgs);
-        }
 
         @Override
         public Fragment getItem(int position) {
+            // For Fragments with AsyncTasks, attempt to retrieve the retained Fragment. If this
+            // isn't possible, use the FragmentManager to attach it to a tag.
             switch (position) {
                 case 0:
                     // Brother Status
-                    return this.brotherStatusFragment;
+                    return BrotherStatusFragment.newInstance(MainActivity.this);
+
                 case 1:
                     // Calendar WebView
-                    return this.calendarFragment;
+                    return WebFragment.newCalendarInstance(MainActivity.this);
+
                 case 2:
                     // Brother Directory
-                    return this.broDirectoryFragment;
+                    return DirectoryFragment.newBrotherDirectoryInstance(MainActivity.this);
+
                 case 3:
                     // Pledge Directory
-                    return this.pledgeDirectoryFragment;
+                    return DirectoryFragment.newPledgeDirectoryInstance(MainActivity.this);
+
                 case 4:
                     // Helpful Links
-                    return this.linksFragment;
+                    return new HelpfulLinksFragment();
+
                 default:
                     // getItem is called to instantiate the fragment for the given page.
                     // Return a DummySectionFragment (defined as a static inner class

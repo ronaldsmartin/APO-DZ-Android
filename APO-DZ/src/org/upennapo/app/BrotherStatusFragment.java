@@ -22,7 +22,12 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
     private static final String USER_KEY = "USER";
     private static final String FIRST_NAME_KEY = "FIRST_NAME";
     private static final String LAST_NAME_KEY = "LAST_NAME";
-
+    private static final String TAG_FAILED_SEARCH = "SEARCH_FAILED";
+    /**
+     * Flag is set in BrotherLoader when the result is null. This is used to ensure the user is only
+     * notified of the failure once.
+     */
+    private boolean mFlagFailedSearch = false;
     // Brother to Display
     private User mUser;
     private String firstName, lastName, spreadsheetUrl;
@@ -32,6 +37,17 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
      * triggers callbacks in the app.
      */
     private SwipeRefreshLayout mSwipeRefreshLayout;
+
+    public static BrotherStatusFragment newInstance(Context context) {
+        BrotherStatusFragment instance = new BrotherStatusFragment();
+
+        Bundle broStatusArgs = new Bundle();
+        broStatusArgs.putString(BrotherStatusFragment.URL_KEY,
+                context.getString(R.string.spreadsheet_url));
+
+        instance.setArguments(broStatusArgs);
+        return instance;
+    }
 
     /**
      * Get the appropriate message resource ID for a completion status
@@ -46,8 +62,9 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
         if (savedInstanceState != null)
             updateViews();
     }
@@ -99,6 +116,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
             firstName = savedInstanceState.getString(FIRST_NAME_KEY);
             lastName = savedInstanceState.getString(LAST_NAME_KEY);
             spreadsheetUrl = savedInstanceState.getString(URL_KEY);
+            mFlagFailedSearch = savedInstanceState.getBoolean(TAG_FAILED_SEARCH);
         }
     }
 
@@ -108,6 +126,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
         outState.putString(FIRST_NAME_KEY, firstName);
         outState.putString(LAST_NAME_KEY, lastName);
         outState.putString(URL_KEY, spreadsheetUrl);
+        outState.putBoolean(TAG_FAILED_SEARCH, mFlagFailedSearch);
 
         super.onSaveInstanceState(outState);
     }
@@ -122,11 +141,16 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
 
     private void updateViews() {
         if (this.mUser == null) {
-            // Notify the mUser and do not update all views if the mUser wasn't on the spreadsheet.
-            AlertDialog.Builder nullUserAlert = new AlertDialog.Builder(getActivity());
-            nullUserAlert.setTitle(R.string.dialog_user_not_found_title);
-            nullUserAlert.setMessage(getString(R.string.dialog_user_not_found_msg));
-            nullUserAlert.show();
+            if (!mFlagFailedSearch) {
+                // Notify the mUser and do not update all views if the mUser wasn't on the spreadsheet.
+                AlertDialog.Builder nullUserAlert = new AlertDialog.Builder(getActivity());
+                nullUserAlert.setTitle(R.string.dialog_user_not_found_title);
+                nullUserAlert.setMessage(getString(R.string.dialog_user_not_found_msg));
+                nullUserAlert.show();
+
+                // Set that we have informed the user of the failure.
+                mFlagFailedSearch = true;
+            }
 
             TextView nameLabel = (TextView) getActivity().findViewById(R.id.name_label);
             nameLabel.setText(R.string.label_no_user_status);
@@ -135,6 +159,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
             updateServiceLabels();
             updateMembershipLabels();
             updateFellowshipLabels();
+            mFlagFailedSearch = false;
         }
         mSwipeRefreshLayout.setRefreshing(false);
         getActivity().setProgressBarIndeterminateVisibility(false);
@@ -219,7 +244,6 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
         @Override
         protected void onPostExecute(User result) {
             super.onPostExecute(result);
-
             BrotherStatusFragment.this.mUser = result;
             updateViews();
         }

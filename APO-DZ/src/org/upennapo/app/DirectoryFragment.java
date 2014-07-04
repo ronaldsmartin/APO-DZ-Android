@@ -1,6 +1,7 @@
 package org.upennapo.app;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -38,12 +39,51 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
 
+    /**
+     * Empty constructor for Fragment intialization
+     */
     public DirectoryFragment() {
+    }
+
+    /**
+     * Returns new instance of DirectoryFragment with arguments set to load Active Brother
+     * directory.
+     *
+     * @param context used to access String resources
+     * @return primed instance of DirectoryFragment
+     */
+    public static DirectoryFragment newBrotherDirectoryInstance(Context context) {
+        DirectoryFragment instance = new DirectoryFragment();
+
+        Bundle broStatusArgs = new Bundle();
+        broStatusArgs.putString(DirectoryFragment.SHEET_KEY,
+                context.getString(R.string.brother_directory_sheet_key));
+        instance.setArguments(broStatusArgs);
+
+        return instance;
+    }
+
+    /**
+     * Returns new instance of DirectoryFragment with arguments set to load pledge directory.
+     *
+     * @param context used to access String resources
+     * @return primed instance of DirectoryFragment
+     */
+    public static DirectoryFragment newPledgeDirectoryInstance(Context context) {
+        DirectoryFragment instance = new DirectoryFragment();
+
+        Bundle broStatusArgs = new Bundle();
+        broStatusArgs.putString(DirectoryFragment.SHEET_KEY,
+                context.getString(R.string.pledge_directory_sheet_key));
+        instance.setArguments(broStatusArgs);
+
+        return instance;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
 
         // Retrieve the arguments passed by the MainActivity
         this.mSheetKey = getArguments().getString(SHEET_KEY);
@@ -92,7 +132,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     }
 
     protected void init(Bundle savedInstanceState) {
-        // Retrieve directory data from internet, memory, or Bundle.
+        // Retrieve directory data from internet or memory.
         if (savedInstanceState == null) {
             if (DataManager.isNetworkAvailable(getActivity())) {
                 // Make an asynchronous request for the JSON using the URL
@@ -108,15 +148,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
         updateListView();
     }
 
-
-    /**
-     * Hide the ActionBar progress bar.
-     */
-    private void hideProgressBar() {
-        getActivity().setProgressBarVisibility(false);
-    }
-
-    protected AdapterView.OnItemClickListener onItemClickListener() {
+    private AdapterView.OnItemClickListener onItemClickListener() {
         return new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -130,13 +162,12 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
     protected void updateListView() {
         // We create a new adapter so that it can reinitialize the fastScroll section index.
-        if (getActivity() != null)
+        if (getActivity() != null) {
             mAdapter = new AlphabeticalAdapter(getActivity(), mDirectoryList);
-        mListView.setAdapter(mAdapter);
-
-        // Set indicators as finished.
-        if (getActivity() != null)
+            mListView.setAdapter(mAdapter);
             getActivity().setProgressBarIndeterminateVisibility(false);
+        }
+
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
@@ -148,6 +179,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     }
 
     /**
+     * Asynchronously load directory data and update the ListView.
      * @param forceDownload whether or not to load data from the Internet.
      */
     protected void loadData(boolean forceDownload) {
@@ -156,7 +188,6 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     }
 
     /** Getters & Setters **/
-
 
     public ArrayList<Brother> getDirectoryList() {
         return mDirectoryList;
@@ -177,14 +208,6 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     protected class AsyncBrotherLoader extends AsyncTask<String, Void, Brother[]> {
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // Activate the progress view in the action bar.
-            // Progress bar code is due to http://guides.thecodepath.com/android/Handling-ProgressBars
-            getActivity().setProgressBarIndeterminateVisibility(true);
-        }
-
-        @Override
         protected Brother[] doInBackground(String... params) {
             return DataManager.getDirectoryData(params[0], getActivity(), "true".equals(params[1]));
         }
@@ -194,7 +217,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
             if (result == null) {
                 // If there is an error getting the result, display an alert.
                 Toast failureAlert = Toast.makeText(getActivity(),
-                        "Unable to load at this time.", Toast.LENGTH_LONG);
+                        "Something went wrong. Try refreshing.", Toast.LENGTH_LONG);
                 failureAlert.show();
             } else {
                 Arrays.sort(result);
