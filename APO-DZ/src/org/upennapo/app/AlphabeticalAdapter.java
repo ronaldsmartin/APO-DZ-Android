@@ -19,12 +19,12 @@ class AlphabeticalAdapter extends ArrayAdapter<Brother> implements SectionIndexe
     private HashMap<String, Integer> alphaIndexer;
     private String[] sections;
 
-    public AlphabeticalAdapter(Context context, ArrayList<Brother> brothers) {
+    public AlphabeticalAdapter(Context context, List<Brother> brothers) {
         super(context, R.layout.item_brother, R.id.txt_name, brothers);
-        init(brothers);
+        setupSections(brothers);
     }
 
-    private void init(List<Brother> data) {
+    private void setupSections(List<? extends Brother> data) {
         alphaIndexer = new HashMap<String, Integer>();
         for (int i = 0; i < data.size(); i++) {
             String s = data.get(i).toString().substring(0, 1).toUpperCase();
