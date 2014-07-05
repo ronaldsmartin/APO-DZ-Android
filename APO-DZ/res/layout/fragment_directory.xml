@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipe_layout"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/card_backdrop">
+    android:background="@color/card_backdrop"
+    android:gravity="center">
 
-    <ListView
-        android:id="@+id/name_list"
+    <!-- Content -->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_layout"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ListView
+            android:id="@+id/name_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clipToPadding="false"
+            android:divider="#00000000"
+            android:dividerHeight="5dp"
+            android:fastScrollAlwaysVisible="true"
+            android:fastScrollEnabled="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="16dip"
+            android:paddingRight="16dip"
+            android:paddingTop="10dp"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="vertical" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <!-- Loading Progress Indicator -->
+    <ProgressBar
+        android:id="@+id/directory_progress_bar"
+        style="?android:progressBarStyleLarge"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:divider="#00000000"
-        android:dividerHeight="5dp"
-        android:fastScrollAlwaysVisible="true"
-        android:fastScrollEnabled="true"
-        android:paddingBottom="10dp"
-        android:paddingLeft="16dip"
+        android:indeterminate="true" />
 
-        android:paddingRight="16dip"
-        android:paddingTop="10dp"
-        android:scrollbarStyle="outsideOverlay"
-        android:scrollbars="vertical" />
-</android.support.v4.widget.SwipeRefreshLayout>
+    <!-- Reload button appears when there's no internet. -->
+    <Button
+        android:id="@+id/directory_reload_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-thin"
+        android:text="Reload"
+        android:visibility="gone" />
+
+</FrameLayout>

@@ -1,6 +1,5 @@
 package org.upennapo.app;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -35,6 +34,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     private AlphabeticalAdapter mAdapter;
     private ListView mListView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private View mProgressBar, mReloadButton;
 
 
     /**
@@ -99,28 +99,26 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the View
-        final View mView = inflater.inflate(R.layout.fragment_directory, container, false);
+        final View view = inflater.inflate(R.layout.fragment_directory, container, false);
+
+        // Attach ProgressBar and Button
+        mProgressBar = view.findViewById(R.id.directory_progress_bar);
+        mReloadButton = view.findViewById(R.id.directory_reload_button);
 
         // Set up PullToRefresh.
-        mSwipeRefreshLayout = (SwipeRefreshLayout) mView.findViewById(R.id.swipe_layout);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
         mSwipeRefreshLayout.setColorScheme(
                 R.color.apo_blue, R.color.apo_yellow, R.color.apo_blue, R.color.apo_yellow);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
         // Set up ListView
-        mListView = (ListView) mView.findViewById(R.id.name_list);
+        mListView = (ListView) view.findViewById(R.id.name_list);
         mListView.setItemsCanFocus(false);
         mListView.setOnItemClickListener(onItemClickListener());
 
         init(savedInstanceState);
 
-        return mView;
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        activity.setProgressBarIndeterminateVisibility(true);
+        return view;
     }
 
     @Override
@@ -132,18 +130,16 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     protected void init(Bundle savedInstanceState) {
         // Retrieve directory data from internet or memory.
         if (savedInstanceState == null) {
-            if (DataManager.isNetworkAvailable(getActivity())) {
-                // Make an asynchronous request for the JSON using the URL
-                loadData(false);
-            } else {
-                // Notify the user that there is no connection. Tell them to try later.
-                Toast noConnectionToast = Toast.makeText(getActivity(),
-                        R.string.no_internet_toast_msg,
-                        Toast.LENGTH_LONG);
-                noConnectionToast.show();
-            }
+            loadData(false);
+            mReloadButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    loadData(false);
+                    mReloadButton.setVisibility(View.GONE);
+                    mProgressBar.setVisibility(View.VISIBLE);
+                }
+            });
         }
-        updateListView();
     }
 
     private AdapterView.OnItemClickListener onItemClickListener() {
@@ -163,9 +159,16 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
         if (getActivity() != null) {
             mAdapter = new AlphabeticalAdapter(getActivity(), mDirectoryList);
             mListView.setAdapter(mAdapter);
+
+            if (mReloadButton.getVisibility() == View.VISIBLE)
+                mReloadButton.setVisibility(View.GONE);
+
+            if (mSwipeRefreshLayout.getVisibility() == View.GONE) {
+                mProgressBar.setVisibility(View.GONE);
+                mSwipeRefreshLayout.setVisibility(View.VISIBLE);
+            }
             getActivity().setProgressBarIndeterminateVisibility(false);
         }
-
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
@@ -182,7 +185,6 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
      * @param forceDownload whether or not to load data from the Internet.
      */
     protected void loadData(boolean forceDownload) {
-        getActivity().setProgressBarIndeterminateVisibility(!forceDownload);
         new AsyncBrotherLoader().execute(mSheetKey, "" + forceDownload);
     }
 
@@ -222,9 +224,16 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
             if (result == null) {
                 // If there is an error getting the result, display an alert.
-                Toast failureAlert = Toast.makeText(getActivity(),
-                        "Something went wrong. Try refreshing.", Toast.LENGTH_LONG);
-                failureAlert.show();
+                Toast.makeText(getActivity(),
+                        "Something went wrong. Try refreshing.",
+                        Toast.LENGTH_SHORT)
+                        .show();
+
+                if (mSwipeRefreshLayout.getVisibility() == View.GONE) {
+                    mProgressBar.setVisibility(View.GONE);
+                    mReloadButton.setVisibility(View.VISIBLE);
+                }
+                getActivity().setProgressBarIndeterminateVisibility(false);
             } else {
                 Arrays.sort(result);
                 mDirectoryList.clear();

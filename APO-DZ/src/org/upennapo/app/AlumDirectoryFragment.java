@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 
 /**
@@ -20,8 +22,6 @@ public class AlumDirectoryFragment extends DirectoryFragment {
 
     public static final String TAG = "AlumDirectoryFragment";
 
-    private static final int[] MENU_IDs =
-            {R.id.menu_about_app, R.id.menu_send_feedback, R.id.menu_switch_user};
 
     /**
      * Keys allow storage and retrieval of data during Fragment lifecycle.
@@ -77,11 +77,6 @@ public class AlumDirectoryFragment extends DirectoryFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
-        // Hide all menu items except the directory options.
-        for (int id : MENU_IDs) {
-            menu.findItem(id).setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_NEVER);
-        }
         inflater.inflate(R.menu.directory, menu);
     }
 
@@ -89,14 +84,14 @@ public class AlumDirectoryFragment extends DirectoryFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_show_alumni:
-                if (getAdapter().getCount() != mAlumList.size()) {
+                if (getAdapter() != null && getAdapter().getCount() != mAlumList.size()) {
                     setDirectoryList(mAlumList);
                     updateListView();
                 }
                 return true;
 
             case R.id.menu_show_brothers:
-                if (getAdapter().getCount() != mStudentList.size()) {
+                if (getAdapter() != null && getAdapter().getCount() != mStudentList.size()) {
                     setDirectoryList(mStudentList);
                     updateListView();
                 }
@@ -116,8 +111,6 @@ public class AlumDirectoryFragment extends DirectoryFragment {
 
     @Override
     protected void loadData(final boolean forceDownload) {
-        getActivity().setProgressBarIndeterminateVisibility(!forceDownload);
-
         // Populate list with alumni data and save a reference to it.
         new AsyncBrotherLoader() {
             @Override
@@ -132,6 +125,7 @@ public class AlumDirectoryFragment extends DirectoryFragment {
         mStudentList.clear();
         loadDataInBackground(getString(R.string.brother_directory_sheet_key), forceDownload);
         loadDataInBackground(getString(R.string.pledge_directory_sheet_key), forceDownload);
+        Collections.sort(mStudentList);
     }
 
     /**
@@ -145,7 +139,11 @@ public class AlumDirectoryFragment extends DirectoryFragment {
         new AsyncBrotherLoader() {
             @Override
             protected void onPostExecute(Brother[] result) {
-                mStudentList.addAll(Arrays.asList(result));
+                if (result == null) {
+                    Toast.makeText(getActivity(), R.string.no_internet_toast_msg, Toast.LENGTH_LONG);
+                } else {
+                    mStudentList.addAll(Arrays.asList(result));
+                }
             }
         }.execute(sheetKey, "" + forceDownload);
     }

@@ -108,8 +108,6 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
                         R.string.no_internet_toast_msg,
                         Toast.LENGTH_LONG);
                 noConnectionToast.show();
-
-                getActivity().setProgressBarIndeterminateVisibility(false);
             }
         } else {
             mUser = savedInstanceState.getParcelable(USER_KEY);
