@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 /**
  * WebFragment uses a WebView to load a webpage. Classic.
@@ -71,13 +72,16 @@ public class WebFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
+        if (DataManager.isNetworkAvailable(getActivity())) {
+            mWebView = new WebView(getActivity());
+            mWebView.getSettings().setJavaScriptEnabled(true);
+            mWebView.loadUrl(getArguments().getString(URL_KEY));
 
-        mWebView = new WebView(getActivity());
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.loadUrl(getArguments().getString(URL_KEY));
-
-        return mWebView;
+            return mWebView;
+        } else {
+            Toast.makeText(getActivity(), R.string.no_internet_toast_msg, Toast.LENGTH_SHORT).show();
+            return super.onCreateView(inflater, container, savedInstanceState);
+        }
     }
 
     @Override
