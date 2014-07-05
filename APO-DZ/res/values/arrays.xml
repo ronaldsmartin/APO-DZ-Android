@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Alumni Mode Section Titles -->
+    <string-array name="titles_alumni_mode">
+        <item>@string/title_am_section1</item>
+        <item>@string/title_am_section2</item>
+        <item>@string/title_am_section3</item>
+        <item>@string/title_am_section3</item>
+    </string-array>
+
+    <!-- Names of Helpful Links -->
+    <!-- To make these link somewhere, you need to edit the array "helpful-links" below. Just make
+         sure that the indices of the items match the indices of the urls. -->
+    <string-array name="sheet_link_names">
+        <item>Brotherhood</item>
+        <item>Pledges</item>
+        <item>Big-Little</item>
+        <item>Food Groups</item>
+    </string-array>
+    <string-array name="form_link_names">
+        <item>Report a project</item>
+        <item>Reflect on service</item>
+        <item>Withdraw from a project</item>
+        <item>Create a fellowship</item>
+        <item>Report your fellowship</item>
+        <item>Report your food group</item>
+        <item>Report big-little hangout</item>
+        <item>Give a (de-)merit</item>
+        <item>Request a reimbursement</item>
+        <item>Send a shoutout</item>
+        <item>Tell Board</item>
+    </string-array>
+    <string-array name="site_link_names">
+        <item>APO Nationals</item>
+        <item>Section 92 Home</item>
+        <item>UPenn APO</item>
+        <item>Service Calendar</item>
+        <item>Ye Olde Service Forum</item>
+        <item>1925 Club</item>
+    </string-array>
+    <string-array name="social_link_names">
+        <item>Facebook Group</item>
+        <item>APOut of Context</item>
+        <item>Instagram</item>
+        <item>Tumblr</item>
+        <item>YouTube Channel</item>
+        <item>LinkedIn</item>
+    </string-array>
+
+    <!-- URIs for Helpful Links -->
+    <!-- Make sure that the indices of the items match the indices of their names! -->
+    <string-array name="helpful_links">
+        <!-- Spreadsheets -->
+        <item>header</item>
+        <item>@string/sheet_brothers</item>
+        <item>@string/sheet_pledges</item>
+        <item>@string/sheet_big_little</item>
+        <item>@string/sheet_food_groups</item>
+
+        <!-- Forms -->
+        <item>header</item>
+        <item>@string/form_service_reporting</item>
+        <item>@string/form_service_reflection</item>
+        <item>@string/form_service_withdraw</item>
+        <item>@string/form_fellowship_hosting</item>
+        <item>@string/form_fellowship_reporting</item>
+        <item>@string/form_food_group_reporting</item>
+        <item>@string/form_big_little_reporting</item>
+        <item>@string/form_merit_reporting</item>
+        <item>@string/form_reimbursement</item>
+        <item>@string/form_dz_shoutout</item>
+        <item>@string/form_board_feedback</item>
+
+        <!-- Sites -->
+        <item>header</item>
+        <item>@string/sites_national_homepage</item>
+        <item>@string/sites_section_92</item>
+        <item>@string/sites_chapter_homepage</item>
+        <item>@string/sites_service_calendar</item>
+        <item>@string/sites_old_service_forum</item>
+        <item>@string/sites_national_1925_club</item>
+
+        <!-- Social Media -->
+        <item>header</item>
+        <item>@string/social_fb_active_group</item>
+        <item>@string/social_apoutofcontext</item>
+        <item>@string/social_chapter_instagram</item>
+        <item>@string/social_chapter_tumblr</item>
+        <item>@string/social_chapter_youtube</item>
+        <item>@string/social_chapter_linkedin</item>
+    </string-array>
+
+    <string-array name="alumni_res_titles">
+        <item>People</item>
+        <item>historian@upennapo.org</item>
+        <item>president@upennapo.org</item>
+        <item>developer@upennapo.org</item>
+
+        <item>The App</item>
+        <item>about</item>
+        <item>view on google play</item>
+        <item>sources on gitHub</item>
+        <item>suggest feature/report bug</item>
+
+        <item>Delta Zeta</item>
+        <item>upennapo.org</item>
+        <item>the service forum</item>
+        <item>linkedIn</item>
+        <item>youTube</item>
+        <item>instagram</item>
+        <item>outOfContext</item>
+        <item>the delta zeta</item>
+        <item>send shoutout</item>
+
+        <item>APO National</item>
+        <item>apo.org</item>
+        <item>alumni resources (login required)</item>
+        <item>society of life members</item>
+
+        <item>APO Facebook Groups</item>
+        <item>dz alumni</item>
+        <item>section 92</item>
+        <item>region two</item>
+        <item>national alumni</item>
+    </string-array>
+
+    <!-- OnClick targets for the above items -->
+    <string-array name="alumni_res_targets">
+        <item>People</item>
+        <item>historian@upennapo.org</item>
+        <item>president@upennapo.org</item>
+        <item>developer@upennapo.org</item>
+
+        <item>The App</item>
+        <item>about</item>
+        <item>view on google play</item>
+        <item>sources on gitHub</item>
+        <item>suggest feature/report bug</item>
+
+        <item>Delta Zeta</item>
+        <item>upennapo.org</item>
+        <item>the service forum</item>
+        <item>linkedIn</item>
+        <item>youTube</item>
+        <item>instagram</item>
+        <item>outOfContext</item>
+        <item>the delta zeta</item>
+        <item>send shoutout</item>
+
+        <item>APO National</item>
+        <item>apo.org</item>
+        <item>alumni resources (login required)</item>
+        <item>society of life members</item>
+
+        <item>APO Facebook Groups</item>
+        <item>dz alumni</item>
+        <item>section 92</item>
+        <item>region two</item>
+        <item>national alumni</item>
+    </string-array>
+</resources>

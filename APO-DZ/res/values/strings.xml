@@ -9,8 +9,8 @@
     <string name="menu_report_bug">Send feedback</string>
     <string name="menu_about_app">About</string>
     <string name="menu_rate_app">Rate app</string>
-    <string name="menu_report_bug_url">https://docs.google.com/forms/d/1TvicaFVBNcVgoZbTqXt3YvzY_ds2L0qHhz2LDpi6wDQ/viewform</string>
-    <string name="menu_about_app_url">http://ronaldsmartin.github.io/APO-DZ-Android/</string>
+    <string name="menu_report_bug_url">@string/app_suggestion_box</string>
+    <string name="menu_about_app_url">@string/app_about</string>
     <string name="menu_add_contact">Add/edit contact</string>
     <string name="menu_switch_mode">Switch mode</string>
 
@@ -89,57 +89,47 @@
     <string name="site_list_header">Websites</string>
     <string name="social_list_header">Social Media</string>
 
-    <!-- Names of Helpful Links -->
-    <!-- To make these link somewhere, you need to add a string arrays with the same length as this -->
-    <!-- with the actual URLs instead of just the names below. See previous commits for more info. -->
-    <string-array name="sheet_link_names">
-        <item>Brotherhood</item>
-        <item>Pledges</item>
-        <item>Big-Little</item>
-        <item>Food Groups</item>
-    </string-array>
-    <string-array name="form_link_names">
-        <item>Service Reporting</item>
-        <item>Service Reflection</item>
-        <item>Fellowship Hosting</item>
-        <item>Fellowship Reporting</item>
-        <item>Food Group Reporting</item>
-        <item>Big-Little Reporting</item>
-        <item>Merit-Demerit Reporting</item>
-        <item>Reimbursement Reporting</item>
-        <item>DZ Shoutout Submission</item>
-        <item>Board Feedback</item>
-    </string-array>
-    <string-array name="site_link_names">
-        <item>National Site</item>
-        <item>Chapter Site</item>
-        <item>Service Calendar</item>
-        <item>Ye Olde Service Forum</item>
-    </string-array>
-    <string-array name="social_link_names">
-        <item>YouTube Channel</item>
-        <item>Instagram</item>
-        <item>Tumblr</item>
-        <item>APOut of Context</item>
-    </string-array>
+    <!-- Actual Links -->
+    <string name="sites_national_homepage">http://apo.org/</string>
+    <string name="sites_national_resources">http://www.apo.org/SiteResources</string>
+    <string name="sites_section_92">http://www.apor2.org/sections/section-92</string>
+    <string name="sites_chapter_homepage">http://upennapo.org/</string>
+    <string name="sites_old_service_forum">http://pennapo.forumotion.net/</string>
+    <string name="sites_national_alum_res">http://www.apo.org/memberinfo/alumni/resources</string>
+    <string name="sites_national_soc_of_life">http://www.apo.org/give/societyoflifemembers</string>
+    <string name="sites_national_1925_club">http://www.apo.org/give/1925club</string>
+
+    <string name="social_chapter_youtube">http://www.youtube.com/user/DZHistorian</string>
+    <string name="social_chapter_instagram">http://instagram.com/upennapo</string>
+    <string name="social_chapter_tumblr">http://upennapo.tumblr.com/</string>
+    <string name="social_apoutofcontext">http://apoutofcontext.tumblr.com/</string>
+    <string name="social_chapter_linkedin">http://www.linkedin.com/groups?home=&amp;trk=&amp;gid=4491214</string>
+
+    <string name="social_fb_national_page">https://www.facebook.com/AlphaPhiOmega.USA</string>
+    <string name="social_fb_national_alum_page">https://www.facebook.com/groups/apodzalumni/</string>
+    <string name="social_fb_region_II">https://www.facebook.com/groups/2226737587/</string>
+    <string name="social_fb_section_92">https://www.facebook.com/groups/2217167569/</string>
+    <string name="social_fb_active_group">https://www.facebook.com/groups/apodz1/</string>
+    <string name="social_fb_alum_group">https://www.facebook.com/groups/apodzalumni/</string>
+
+
+    <string name="app_about">http://ronaldsmartin.github.io/APO-DZ-Android/</string>
+    <string name="app_google_play">https://play.google.com/store/apps/details?id=org.upennapo.app</string>
+    <string name="app_beta_invite">https://play.google.com/apps/testing/org.upennapo.app</string>
+    <string name="app_suggestion_box">https://docs.google.com/forms/d/1TvicaFVBNcVgoZbTqXt3YvzY_ds2L0qHhz2LDpi6wDQ/viewform</string>
+
 
     <!-- ...Other -->
     <string name="apo_2048_url">http://games.usvsth3m.com/2048/apo-dz-edition/</string>
     <string name="apo_2048_label">DZ 2048!</string>
     <string name="apo_2048_unlock_msg">You\'ve unlocked an easter egg! Check Settings to play.</string>
-    <string name="title_activity_alumni_links">DZ Alum Links</string>
 
 
     <!-- Alumni Mode -->
+    <string name="title_activity_alumni_links">DZ Alum Links</string>
     <!-- I henceforth declare that 'am' will signify alumni mode -->
     <string name="title_activity_alumni_mode">APO-DZ-Alum</string>
     <string name="title_am_section1">Directory</string>
     <string name="title_am_section2">@string/title_section2</string>
     <string name="title_am_section3">Resources</string>
-
-    <string-array name="titles_alumni_mode">
-        <item>@string/title_am_section1</item>
-        <item>@string/title_am_section2</item>
-        <item>@string/title_am_section3</item>
-    </string-array>
 </resources>
