@@ -57,6 +57,7 @@ public class Brother implements Parcelable, Comparable<Brother> {
         this.Major = in.readString();
 
         this.Birthday = in.readString();
+        this.Location = in.readString();
     }
 
     @Override
@@ -95,7 +96,8 @@ public class Brother implements Parcelable, Comparable<Brother> {
         final String schoolAbbrev = abbrevBuilder.toString();
 
         // Make a year abbreviation.
-        final String yearSuffix = "'" + this.Graduation_Year.substring(2);
+        final String yearSuffix = this.Graduation_Year.length() == 4 ?
+                "'" + this.Graduation_Year.substring(2) : this.Graduation_Year;
 
         return schoolAbbrev + yearSuffix;
     }
@@ -121,6 +123,7 @@ public class Brother implements Parcelable, Comparable<Brother> {
         out.writeString(Major);
 
         out.writeString(Birthday);
+        out.writeString(Location);
     }
 
     @Override
