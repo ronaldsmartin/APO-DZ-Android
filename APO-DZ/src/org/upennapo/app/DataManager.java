@@ -49,37 +49,59 @@ public class DataManager {
     public static User getBrotherData(String urlString, String firstName, String lastName,
                                       Context context, boolean forceDownload) {
         // If we cannot retrieve or find the requested person's data, return null.
-        User user = null;
-        SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
+        User user;
+        SharedPreferences prefs =
+                context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
         Gson gson = new Gson();
 
         // If the status isn't cached or we are refreshing, download and parse the brother status
         // data, then save the corresponding JSON string in SharedPrefs.
-        if (!prefs.contains(BrotherStatusFragment.STORAGE_KEY) || forceDownload) {
-
+        if ((!prefs.contains(BrotherStatusFragment.STORAGE_KEY) || forceDownload)
+                && isNetworkAvailable(context)) {
             String jsonString = downloadJsonData(urlString);
-            for (User brother : parseSpreadsheetJson(jsonString)) {
-                if (brother.Last_Name.equalsIgnoreCase(lastName) &&
-                        (brother.First_Name.equalsIgnoreCase(firstName))) {
-                    user = brother;
+            user = findUserInArray(firstName, lastName, parseSpreadsheetJson(jsonString));
 
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putString(BrotherStatusFragment.STORAGE_KEY, gson.toJson(user));
-                    editor.apply();
-                    break;
-                }
+            if (user != null) {
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString(BrotherStatusFragment.STORAGE_KEY, gson.toJson(user));
+                editor.apply();
             }
-
         } else {
             // Otherwise, retrieve the existing user JSON object and parse it.
-
-            String userJson =
-                    prefs.getString(BrotherStatusFragment.STORAGE_KEY, null);
-            user = gson.fromJson(userJson, User.class);
-
+            user = retrieveUser(prefs, gson);
         }
 
         return user;
+    }
+
+    /**
+     * Iterate over the array of Users, returning the User with matching firstName and lastName
+     *
+     * @param firstName of person to find
+     * @param lastName  of person to find
+     * @param users     array of Users in which to find this person
+     * @return the User with name "firstName lastName" or null if no such person exists
+     */
+    private static User findUserInArray(String firstName, String lastName, User[] users) {
+        for (User user : users) {
+            if (user.Last_Name.equalsIgnoreCase(lastName) &&
+                    (user.First_Name.equalsIgnoreCase(firstName)))
+                return user;
+        }
+        return null;
+    }
+
+    /**
+     * Attempt to find retrieve a JSON-formatted User person from SharedPreferences
+     *
+     * @param prefs in which to search for the person
+     * @param gson  JSON parser for retrieved data
+     * @return the requested User object or null if none exists
+     */
+    private static User retrieveUser(SharedPreferences prefs, Gson gson) {
+        String userJson =
+                prefs.getString(BrotherStatusFragment.STORAGE_KEY, null);
+        return userJson == null ? null : gson.fromJson(userJson, User.class);
     }
 
     /**
@@ -101,17 +123,17 @@ public class DataManager {
      * Retrieves and parses directory data from the specified source, returning it as an array of
      * Brother objects.
      *
-     * @param sheetKey     the sheet whose data to retrieve
-     * @param context      the parent activity, used to access shared preferences
-     * @param isRefreshing whether or not this is a network-refresh request or a standard retrieval
+     * @param sheetKey      the sheet whose data to retrieve
+     * @param context       the parent activity, used to access shared preferences
+     * @param forceDownload whether or not to force a download from the internet
      * @return the requested directory data as an array of brothers
      */
     public static Brother[] getDirectoryData(String sheetKey, Context context,
-                                             boolean isRefreshing) {
+                                             boolean forceDownload) {
         if (context == null) return null;
 
         final String url = context.getString(R.string.directory_script) + sheetKey;
-        final String jsonString = loadJson(url, sheetKey, context, isRefreshing);
+        final String jsonString = loadJson(url, sheetKey, context, forceDownload);
         return parseDirectoryJson(jsonString, sheetKey);
     }
 
@@ -123,7 +145,7 @@ public class DataManager {
      * @param sheetKey      the sheet whose data to retrieve
      * @param context       the parent activity, used to access shared preferences
      * @param forceDownload whether or not this is a network-refresh request or a standard retrieval
-     * @return the requested directory data as a JSON-formatted String
+     * @return the requested directory data as a JSON-formatted String or null if we could not load
      */
     private static String loadJson(String urlString, String sheetKey, Context context,
                                    boolean forceDownload) {
@@ -132,13 +154,17 @@ public class DataManager {
         SharedPreferences prefs =
                 context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
 
-        final String jsonString = forceDownload ? downloadJsonData(urlString) :
-                prefs.getString(sheetKey, downloadJsonData(urlString));
+        // Attempt to retrieve the string from memory.
+        String jsonString = prefs.getString(sheetKey, null);
 
-        if (!prefs.contains(sheetKey) || forceDownload) {
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putString(sheetKey, jsonString);
-            editor.apply();
+        if (jsonString == null || forceDownload) {
+            if (isNetworkAvailable(context)) {
+                jsonString = downloadJsonData(urlString);
+
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString(sheetKey, jsonString);
+                editor.apply();
+            }
         }
 
         return jsonString;
@@ -149,9 +175,11 @@ public class DataManager {
      *
      * @param jsonData - raw JSON-formatted String of objects to parse
      * @param sheetKey - spreadsheet key for information retrieval
-     * @return the parsed array of Brother objects
+     * @return the parsed array of Brother objects or null if any of the arguments is null
      */
     private static Brother[] parseDirectoryJson(String jsonData, String sheetKey) {
+        if (jsonData == null || sheetKey == null) return null;
+
         Gson gson = new Gson();
         JsonParser parser = new JsonParser();
         JsonObject map = parser.parse(jsonData).getAsJsonObject();
