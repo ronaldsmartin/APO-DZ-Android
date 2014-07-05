@@ -16,8 +16,8 @@ import java.util.Set;
 
 class AlphabeticalAdapter extends ArrayAdapter<Brother> implements SectionIndexer {
 
-    private HashMap<String, Integer> alphaIndexer;
-    private String[] sections;
+    private HashMap<String, Integer> mAlphaIndexer;
+    private String[] mSections;
 
     public AlphabeticalAdapter(Context context, List<Brother> brothers) {
         super(context, R.layout.item_brother, R.id.txt_name, brothers);
@@ -25,19 +25,19 @@ class AlphabeticalAdapter extends ArrayAdapter<Brother> implements SectionIndexe
     }
 
     private void setupSections(List<? extends Brother> data) {
-        alphaIndexer = new HashMap<String, Integer>();
+        mAlphaIndexer = new HashMap<String, Integer>();
         for (int i = 0; i < data.size(); i++) {
             String s = data.get(i).toString().substring(0, 1).toUpperCase();
-            if (!alphaIndexer.containsKey(s))
-                alphaIndexer.put(s, i);
+            if (!mAlphaIndexer.containsKey(s))
+                mAlphaIndexer.put(s, i);
         }
 
-        Set<String> sectionLetters = alphaIndexer.keySet();
+        Set<String> sectionLetters = mAlphaIndexer.keySet();
         ArrayList<String> sectionList = new ArrayList<String>(sectionLetters);
         Collections.sort(sectionList);
-        sections = new String[sectionList.size()];
+        mSections = new String[sectionList.size()];
         for (int i = 0; i < sectionList.size(); i++)
-            sections[i] = sectionList.get(i);
+            mSections[i] = sectionList.get(i);
     }
 
     @Override
@@ -64,7 +64,7 @@ class AlphabeticalAdapter extends ArrayAdapter<Brother> implements SectionIndexe
     }
 
     public int getPositionForSection(int section) {
-        return alphaIndexer.get(sections[section]);
+        return mAlphaIndexer.get(mSections[section]);
     }
 
     public int getSectionForPosition(int position) {
@@ -72,7 +72,7 @@ class AlphabeticalAdapter extends ArrayAdapter<Brother> implements SectionIndexe
     }
 
     public Object[] getSections() {
-        return sections;
+        return mSections;
     }
 
     private static class ViewHolder {
