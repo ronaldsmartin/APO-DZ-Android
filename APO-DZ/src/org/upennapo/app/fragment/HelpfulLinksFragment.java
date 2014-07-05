@@ -1,4 +1,4 @@
-package org.upennapo.app;
+package org.upennapo.app.fragment;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.commonsware.cwac.merge.MergeAdapter;
+
+import org.upennapo.app.R;
 
 /**
  * @author Dean Wilhelmi & Ronald Martin

@@ -1,4 +1,4 @@
-package org.upennapo.app;
+package org.upennapo.app.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,13 +8,16 @@ import android.widget.ArrayAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
+import org.upennapo.app.R;
+import org.upennapo.app.model.Brother;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-class AlphabeticalAdapter extends ArrayAdapter<Brother> implements SectionIndexer {
+public class AlphabeticalAdapter extends ArrayAdapter<Brother> implements SectionIndexer {
 
     private HashMap<String, Integer> mAlphaIndexer;
     private String[] mSections;

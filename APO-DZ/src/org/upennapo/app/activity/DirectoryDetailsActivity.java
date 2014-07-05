@@ -1,4 +1,4 @@
-package org.upennapo.app;
+package org.upennapo.app.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.upennapo.app.R;
+import org.upennapo.app.model.Brother;
 
 public class DirectoryDetailsActivity extends Activity {
 

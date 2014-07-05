@@ -1,4 +1,4 @@
-package org.upennapo.app;
+package org.upennapo.app.activity;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -19,6 +19,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toast;
+
+import org.upennapo.app.R;
+import org.upennapo.app.fragment.BrotherStatusFragment;
+import org.upennapo.app.fragment.DirectoryFragment;
+import org.upennapo.app.fragment.HelpfulLinksFragment;
+import org.upennapo.app.fragment.WebFragment;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 

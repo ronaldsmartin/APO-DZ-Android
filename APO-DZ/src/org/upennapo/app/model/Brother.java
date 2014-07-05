@@ -1,7 +1,7 @@
 /**
  *
  */
-package org.upennapo.app;
+package org.upennapo.app.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

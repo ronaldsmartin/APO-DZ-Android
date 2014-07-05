@@ -1,7 +1,7 @@
 /**
  *
  */
-package org.upennapo.app;
+package org.upennapo.app.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -21,6 +21,8 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.upennapo.app.R;
+import org.upennapo.app.fragment.BrotherStatusFragment;
 
 import java.io.BufferedReader;
 import java.io.IOException;

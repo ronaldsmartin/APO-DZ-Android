@@ -1,4 +1,4 @@
-package org.upennapo.app;
+package org.upennapo.app.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import org.upennapo.app.R;
+import org.upennapo.app.model.Brother;
 
 import java.util.ArrayList;
 import java.util.Arrays;

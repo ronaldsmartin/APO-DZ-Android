@@ -1,4 +1,4 @@
-package org.upennapo.app;
+package org.upennapo.app.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import org.upennapo.app.R;
+import org.upennapo.app.activity.DirectoryDetailsActivity;
+import org.upennapo.app.adapter.AlphabeticalAdapter;
+import org.upennapo.app.model.Brother;
+import org.upennapo.app.model.DataManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;

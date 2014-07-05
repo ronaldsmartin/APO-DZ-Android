@@ -1,8 +1,10 @@
-package org.upennapo.app;
+package org.upennapo.app.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.webkit.WebView;
+
+import org.upennapo.app.R;
 
 /**
  * An easter egg activity that contains the APO-DZ Edition of 2048.

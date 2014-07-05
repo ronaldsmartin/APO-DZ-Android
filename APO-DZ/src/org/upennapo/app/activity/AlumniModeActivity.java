@@ -1,4 +1,4 @@
-package org.upennapo.app;
+package org.upennapo.app.activity;
 
 
 import android.app.ActionBar;
@@ -13,6 +13,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+
+import org.upennapo.app.R;
+import org.upennapo.app.fragment.AlumDirectoryFragment;
+import org.upennapo.app.fragment.HelpfulLinksFragment;
+import org.upennapo.app.fragment.LinkFragment;
+import org.upennapo.app.fragment.WebFragment;
 
 public class AlumniModeActivity extends FragmentActivity implements ActionBar.OnNavigationListener {
 
@@ -150,7 +156,7 @@ public class AlumniModeActivity extends FragmentActivity implements ActionBar.On
                 item = new HelpfulLinksFragment();
                 break;
             case 3:
-                item = WebFragment.new2048Instance(this);
+                item = LinkFragment.newInstance();
                 break;
             default:
                 item = new MainActivity.DummySectionFragment();

@@ -1,7 +1,7 @@
 /**
  *
  */
-package org.upennapo.app;
+package org.upennapo.app.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,6 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Toast;
+
+import org.upennapo.app.R;
+import org.upennapo.app.model.DataManager;
 
 /**
  * WebFragment uses a WebView to load a webpage. Classic.

@@ -1,4 +1,4 @@
-package org.upennapo.app;
+package org.upennapo.app.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,6 +21,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+
+import org.upennapo.app.R;
 
 public class LoginActivity extends Activity {
 
