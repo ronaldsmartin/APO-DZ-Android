@@ -244,6 +244,10 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
         @Override
         protected void onPostExecute(User result) {
             super.onPostExecute(result);
+
+            // Short circuit if our context is gone.
+            if (getActivity() == null) return;
+
             BrotherStatusFragment.this.mUser = result;
             updateViews();
         }

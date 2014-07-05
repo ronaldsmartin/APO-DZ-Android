@@ -215,6 +215,11 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
         @Override
         protected void onPostExecute(Brother[] result) {
+            super.onPostExecute(result);
+
+            // Short circuit if our context is gone.
+            if (getActivity() == null) return;
+
             if (result == null) {
                 // If there is an error getting the result, display an alert.
                 Toast failureAlert = Toast.makeText(getActivity(),
