@@ -143,6 +143,7 @@ public class AlumDirectoryFragment extends DirectoryFragment {
                     Toast.makeText(getActivity(), R.string.no_internet_toast_msg, Toast.LENGTH_LONG);
                 } else {
                     mStudentList.addAll(Arrays.asList(result));
+                    Collections.sort(mStudentList);
                 }
             }
         }.execute(sheetKey, "" + forceDownload);
