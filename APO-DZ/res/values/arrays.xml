@@ -109,7 +109,7 @@
         <item>youTube</item>
         <item>instagram</item>
         <item>outOfContext</item>
-        <item>the delta zeta</item>
+        <item>&quot;the dz&quot; archive</item>
         <item>send shoutout</item>
 
         <item>APO National</item>
@@ -119,6 +119,8 @@
 
         <item>APO Facebook Groups</item>
         <item>dz alumni</item>
+        <item>dz alumni - philly</item>
+        <item>dz alumni - nyc</item>
         <item>section 92</item>
         <item>region two</item>
         <item>national alumni</item>
@@ -126,36 +128,38 @@
 
     <!-- OnClick targets for the above items -->
     <string-array name="alumni_res_targets">
-        <item>People</item>
-        <item>historian@upennapo.org</item>
-        <item>president@upennapo.org</item>
-        <item>developer@upennapo.org</item>
+        <item>header-people</item>
+        <item>mailto:historian@upennapo.org</item>
+        <item>mailto:president@upennapo.org</item>
+        <item>mailto:developer@upennapo.org</item>
 
-        <item>The App</item>
-        <item>about</item>
-        <item>view on google play</item>
-        <item>sources on gitHub</item>
-        <item>suggest feature/report bug</item>
+        <item>header-App</item>
+        <item>@string/app_about</item>
+        <item>@string/app_google_play</item>
+        <item>@string/app_github_source</item>
+        <item>@string/app_suggestion_box</item>
 
-        <item>Delta Zeta</item>
-        <item>upennapo.org</item>
-        <item>the service forum</item>
-        <item>linkedIn</item>
-        <item>youTube</item>
-        <item>instagram</item>
-        <item>outOfContext</item>
-        <item>the delta zeta</item>
-        <item>send shoutout</item>
+        <item>header-DeltaZeta</item>
+        <item>@string/sites_chapter_homepage</item>
+        <item>@string/sites_old_service_forum</item>
+        <item>@string/social_chapter_linkedin</item>
+        <item>@string/social_chapter_youtube</item>
+        <item>@string/social_chapter_instagram</item>
+        <item>@string/social_apoutofcontext</item>
+        <item>@string/sites_chapter_homepage</item>
+        <item>@string/form_dz_shoutout</item>
 
-        <item>APO National</item>
-        <item>apo.org</item>
-        <item>alumni resources (login required)</item>
-        <item>society of life members</item>
+        <item>header-APO National</item>
+        <item>@string/sites_national_homepage</item>
+        <item>@string/sites_national_alum_res</item>
+        <item>@string/sites_national_soc_of_life</item>
 
-        <item>APO Facebook Groups</item>
-        <item>dz alumni</item>
-        <item>section 92</item>
-        <item>region two</item>
-        <item>national alumni</item>
+        <item>header-Facebook</item>
+        <item>@string/social_fb_alum_group</item>
+        <item>@string/social_fb_alum_group_phl</item>
+        <item>@string/social_fb_alum_group_nyc</item>
+        <item>@string/social_fb_section_92</item>
+        <item>@string/social_fb_region_II</item>
+        <item>@string/social_fb_national_alum_page</item>
     </string-array>
 </resources>

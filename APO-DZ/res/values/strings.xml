@@ -106,17 +106,20 @@
     <string name="social_chapter_linkedin">http://www.linkedin.com/groups?home=&amp;trk=&amp;gid=4491214</string>
 
     <string name="social_fb_national_page">https://www.facebook.com/AlphaPhiOmega.USA</string>
-    <string name="social_fb_national_alum_page">https://www.facebook.com/groups/apodzalumni/</string>
+    <string name="social_fb_national_alum_page">https://www.facebook.com/APOAlumni</string>
     <string name="social_fb_region_II">https://www.facebook.com/groups/2226737587/</string>
     <string name="social_fb_section_92">https://www.facebook.com/groups/2217167569/</string>
     <string name="social_fb_active_group">https://www.facebook.com/groups/apodz1/</string>
     <string name="social_fb_alum_group">https://www.facebook.com/groups/apodzalumni/</string>
+    <string name="social_fb_alum_group_phl">https://www.facebook.com/groups/144765955661778/</string>
+    <string name="social_fb_alum_group_nyc">https://www.facebook.com/groups/399467616784608/</string>
 
 
     <string name="app_about">http://ronaldsmartin.github.io/APO-DZ-Android/</string>
     <string name="app_google_play">https://play.google.com/store/apps/details?id=org.upennapo.app</string>
     <string name="app_beta_invite">https://play.google.com/apps/testing/org.upennapo.app</string>
     <string name="app_suggestion_box">https://docs.google.com/forms/d/1TvicaFVBNcVgoZbTqXt3YvzY_ds2L0qHhz2LDpi6wDQ/viewform</string>
+    <string name="app_github_source">https://github.com/ronaldsmartin/APO-DZ-Android</string>
 
 
     <!-- ...Other -->
