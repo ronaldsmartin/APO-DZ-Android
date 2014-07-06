@@ -142,7 +142,7 @@ public class AlumDirectoryFragment extends DirectoryFragment {
         new AsyncBrotherLoader() {
             @Override
             protected void onPostExecute(Brother[] result) {
-                if (result == null) {
+                if (getActivity() != null && result == null) {
                     Toast.makeText(getActivity(), R.string.no_internet_toast_msg, Toast.LENGTH_LONG);
                 } else {
                     mStudentList.addAll(Arrays.asList(result));
