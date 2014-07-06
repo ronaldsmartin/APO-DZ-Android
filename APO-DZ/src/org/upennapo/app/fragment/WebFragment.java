@@ -6,6 +6,7 @@ package org.upennapo.app.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import org.upennapo.app.R;
@@ -27,6 +29,7 @@ import org.upennapo.app.model.DataManager;
 public class WebFragment extends Fragment {
 
     public static final String URL_KEY = "url";
+    private String mUrl;
     private WebView mWebView;
 
     public WebFragment() {
@@ -70,6 +73,7 @@ public class WebFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        this.mUrl = getArguments().getString(URL_KEY);
     }
 
     @Override
@@ -77,8 +81,9 @@ public class WebFragment extends Fragment {
                              Bundle savedInstanceState) {
         if (DataManager.isNetworkAvailable(getActivity())) {
             mWebView = new WebView(getActivity());
+            mWebView.setWebViewClient(new NoRedirectWebViewClient());
             mWebView.getSettings().setJavaScriptEnabled(true);
-            mWebView.loadUrl(getArguments().getString(URL_KEY));
+            mWebView.loadUrl(mUrl);
 
             return mWebView;
         } else {
@@ -97,7 +102,7 @@ public class WebFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menu_reload:
                 mWebView.clearCache(true);
-                mWebView.reload();
+                mWebView.loadUrl(mUrl);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -113,5 +118,22 @@ public class WebFragment extends Fragment {
             mWebView = null;
         }
         super.onDestroy();
+    }
+
+    /**
+     * Custom WebViewClient prevents hosts from overriding loads, thus circumventing Google
+     * Calendar's tendency to prevent loading embeddable calendar feeds outside of iframes.
+     */
+    private class NoRedirectWebViewClient extends WebViewClient {
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            return false;
+        }
+
+        @Override
+        public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event) {
+            return false;
+        }
     }
 }

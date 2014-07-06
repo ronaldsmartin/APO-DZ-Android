@@ -12,11 +12,7 @@
 
 # Add any project specific keep options here:
 
--keep public class android.net.http.SslError
--keep public class android.webkit.WebViewClient
 
--dontwarn android.net.http.SslError
--dontwarn android.webkit.WebViewClient
 
 ##---------------Begin: proguard configuration common for all Android apps ----------
 # This is a configuration file for ProGuard.
