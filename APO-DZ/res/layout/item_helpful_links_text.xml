@@ -9,4 +9,5 @@
     android:gravity="start"
     android:paddingBottom="16dip"
     android:paddingStart="8dp"
-    android:paddingTop="16dip" />
+    android:paddingTop="16dip"
+    android:textColor="@color/primary" />

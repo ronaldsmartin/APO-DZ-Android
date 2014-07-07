@@ -92,7 +92,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
         // Retrieve the arguments passed by the MainActivity
         this.mSheetKey = getArguments().getString(SHEET_KEY);
 
-        // Prepare Adapter
+        // If possible, retrieve saved data. Otherwise, initialize new list.
         if (savedInstanceState == null) {
             this.mDirectoryList = new ArrayList<Brother>();
         } else {
@@ -107,6 +107,18 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
         // Inflate the View
         final View view = inflater.inflate(R.layout.fragment_directory, container, false);
 
+        init(savedInstanceState, view);
+
+        return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList(LIST_KEY, mDirectoryList);
+    }
+
+    protected void init(Bundle savedInstanceState, View view) {
         // Attach ProgressBar and Button
         mProgressBar = view.findViewById(R.id.directory_progress_bar);
         mReloadButton = view.findViewById(R.id.directory_reload_button);
@@ -122,18 +134,6 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
         mListView.setItemsCanFocus(false);
         mListView.setOnItemClickListener(onItemClickListener());
 
-        init(savedInstanceState);
-
-        return view;
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList(LIST_KEY, mDirectoryList);
-    }
-
-    protected void init(Bundle savedInstanceState) {
         // Retrieve directory data from internet or memory.
         if (savedInstanceState == null) {
             loadData(false);
@@ -162,9 +162,15 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
     protected void updateListView() {
         // We create a new adapter so that it can reinitialize the fastScroll section index.
+        // Additionally, we need to toggle FastScroll so that the index will redraw.
         if (getActivity() != null) {
             mAdapter = new AlphabeticalAdapter(getActivity(), mDirectoryList);
+            mListView.setFastScrollEnabled(false);
+
+
             mListView.setAdapter(mAdapter);
+
+            mListView.setFastScrollEnabled(true);
 
             if (mReloadButton.getVisibility() == View.VISIBLE)
                 mReloadButton.setVisibility(View.GONE);
@@ -208,6 +214,10 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
     public AlphabeticalAdapter getAdapter() {
         return mAdapter;
+    }
+
+    public View getProgressBar() {
+        return mProgressBar;
     }
 
     /**

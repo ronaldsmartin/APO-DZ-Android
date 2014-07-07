@@ -36,19 +36,19 @@ public class HelpfulLinksFragment extends Fragment {
         // Populate the cells with the names of the links
         final String[] sheets = getResources().getStringArray(R.array.sheet_link_names);
         ArrayAdapter<String> sheetsAdapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.helpful_links_text, R.id.centered_text, sheets);
+                R.layout.item_helpful_links_text, R.id.centered_text, sheets);
 
         final String[] forms = getResources().getStringArray(R.array.form_link_names);
         ArrayAdapter<String> formsAdapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.helpful_links_text, R.id.centered_text, forms);
+                R.layout.item_helpful_links_text, R.id.centered_text, forms);
 
         final String[] sites = getResources().getStringArray(R.array.site_link_names);
         ArrayAdapter<String> sitesAdapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.helpful_links_text, R.id.centered_text, sites);
+                R.layout.item_helpful_links_text, R.id.centered_text, sites);
 
         final String[] socials = getResources().getStringArray(R.array.social_link_names);
         ArrayAdapter<String> socialsAdapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.helpful_links_text, R.id.centered_text, socials);
+                R.layout.item_helpful_links_text, R.id.centered_text, socials);
 
         // Set text for headers.
         TextView sheetHeaderView = (TextView) inflater.inflate(R.layout.list_header, null);

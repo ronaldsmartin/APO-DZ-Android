@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- File created by the Android Action Bar Style Generator
+<?xml version="1.0" encoding="utf-8"?><!-- File created by the Android Action Bar Style Generator
 
      Copyright (C) 2011 The Android Open Source Project
      Copyright (C) 2012 readyState Software Ltd
@@ -20,25 +19,32 @@
 <resources>
 
     <style name="Theme.Apo_dz_actionbar" parent="@android:style/Theme.Holo.Light.DarkActionBar">
-        <item name="android:actionBarItemBackground">@drawable/selectable_background_apo_dz_actionbar</item>
+        <item name="android:actionBarItemBackground">
+            @drawable/selectable_background_apo_dz_actionbar
+        </item>
         <item name="android:popupMenuStyle">@style/PopupMenu.Apo_dz_actionbar</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Apo_dz_actionbar</item>
         <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Apo_dz_actionbar</item>
         <item name="android:actionDropDownStyle">@style/DropDownNav.Apo_dz_actionbar</item>
         <item name="android:actionBarStyle">@style/ActionBar.Solid.Apo_dz_actionbar</item>
-        <item name="android:actionModeBackground">@drawable/cab_background_top_apo_dz_actionbar</item>
-        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_apo_dz_actionbar</item>
-        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Apo_dz_actionbar</item>
-        
-                <!-- Light.DarkActionBar specific -->
+        <item name="android:actionModeBackground">@drawable/cab_background_top_apo_dz_actionbar
+        </item>
+        <item name="android:actionModeSplitBackground">
+            @drawable/cab_background_bottom_apo_dz_actionbar
+        </item>
+        <item name="android:actionModeCloseButtonStyle">
+            @style/ActionButton.CloseMode.Apo_dz_actionbar
+        </item>
+
+        <!-- Light.DarkActionBar specific -->
         <item name="android:actionBarWidgetTheme">@style/Theme.Apo_dz_actionbar.Widget</item>
 
     </style>
 
     <style name="ActionBar.Solid.Apo_dz_actionbar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@drawable/ab_background_textured_apo_dz_actionbar</item>
+        <item name="android:background">@drawable/ab_solid_apo_dz_actionbar</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_apo_dz_actionbar</item>
-        <item name="android:backgroundSplit">@drawable/ab_background_textured_apo_dz_actionbar</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_apo_dz_actionbar</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Apo_dz_actionbar</item>
     </style>
 
@@ -48,7 +54,7 @@
     </style>
 
     <style name="PopupMenu.Apo_dz_actionbar" parent="@android:style/Widget.Holo.ListPopupWindow">
-        <item name="android:popupBackground">@drawable/menu_dropdown_panel_apo_dz_actionbar</item>	
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_apo_dz_actionbar</item>
     </style>
 
     <style name="DropDownListView.Apo_dz_actionbar" parent="@android:style/Widget.Holo.ListView.DropDown">
@@ -62,13 +68,14 @@
     <style name="DropDownNav.Apo_dz_actionbar" parent="@android:style/Widget.Holo.Spinner">
         <item name="android:background">@drawable/spinner_background_ab_apo_dz_actionbar</item>
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_apo_dz_actionbar</item>
-        <item name="android:dropDownSelector">@drawable/selectable_background_apo_dz_actionbar</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_apo_dz_actionbar
+        </item>
     </style>
-    
+
     <style name="ProgressBar.Apo_dz_actionbar" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/progress_horizontal_apo_dz_actionbar</item>
     </style>
-    
+
     <style name="ActionButton.CloseMode.Apo_dz_actionbar" parent="@android:style/Widget.Holo.ActionButton.CloseMode">
         <item name="android:background">@drawable/btn_cab_done_apo_dz_actionbar</item>
     </style>

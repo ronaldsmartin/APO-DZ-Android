@@ -7,4 +7,13 @@
     <color name="card_backdrop">#EDEDED</color>
     <color name="card_item_divider">#E5E5E5</color>
     <drawable name="transparent_color">#00000000</drawable>
+
+    <!-- Material design colors -->
+    <color name="primary">#303f9f</color>
+    <color name="primary_light">#7986cb</color>
+    <color name="primary_dark">#1a237e</color>
+    <color name="accent">#ffc400</color>
+    <color name="accent_fallback_lightest">#ffe57f</color>
+    <color name="accent_fallback_light">#ffd740</color>
+    <color name="accent_fallback_dark">#ffab00</color>
 </resources>

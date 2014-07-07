@@ -38,7 +38,7 @@
 
     <!-- Brother Mode Tab Names -->
     <string name="title_section1">My Status</string>
-    <string name="title_section2">Delta Zeta Calendars</string>
+    <string name="title_section2">Calendar</string>
     <string name="title_section3">Brother Directory</string>
     <string name="title_section4">Pledge Directory</string>
     <string name="title_section5">Helpful Links</string>

@@ -2,9 +2,10 @@ package org.upennapo.app.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import org.upennapo.app.R;
@@ -21,7 +22,7 @@ import java.util.Collections;
  *
  * @author Ronald Martin
  */
-public class AlumDirectoryFragment extends DirectoryFragment {
+public class AlumDirectoryFragment extends DirectoryFragment implements View.OnClickListener {
 
     public static final String TAG = "AlumDirectoryFragment";
 
@@ -36,8 +37,9 @@ public class AlumDirectoryFragment extends DirectoryFragment {
      * Store entries independently of directory list. This allows us to dynamically pick which class
      * of entries to view (via ActionItems).
      */
-    private ArrayList<Brother> mStudentList;
-    private ArrayList<Brother> mAlumList;
+    private ArrayList<Brother> mStudentList, mAlumList;
+
+    private Button mShowAlumBtn, mShowStudentBtn;
 
     /**
      * Returns new instance of AlumDirectoryFragment with arguments set.
@@ -59,13 +61,8 @@ public class AlumDirectoryFragment extends DirectoryFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-        setRetainInstance(true);
-    }
 
-    @Override
-    protected void init(Bundle savedInstanceState) {
-        // If possible, retrieve saved data.
+        // If possible, retrieve saved data. Otherwise, initialize new lists.
         if (savedInstanceState == null) {
             mAlumList = new ArrayList<Brother>();
             mStudentList = new ArrayList<Brother>();
@@ -73,36 +70,23 @@ public class AlumDirectoryFragment extends DirectoryFragment {
             mAlumList = savedInstanceState.getParcelableArrayList(LIST_ALUM);
             mStudentList = savedInstanceState.getParcelableArrayList(LIST_BROS);
         }
-
-        super.init(savedInstanceState);
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.directory, menu);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_alumni_directory, container, false);
+        init(savedInstanceState, view);
+        return view;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_show_alumni:
-                if (getAdapter() != null && getAdapter().getCount() != mAlumList.size()) {
-                    setDirectoryList(mAlumList);
-                    updateListView();
-                }
-                return true;
+    protected void init(Bundle savedInstanceState, View view) {
+        super.init(savedInstanceState, view);
+        mShowAlumBtn = (Button) view.findViewById(R.id.btn_show_alum);
+        mShowStudentBtn = (Button) view.findViewById(R.id.btn_show_students);
 
-            case R.id.menu_show_brothers:
-                if (getAdapter() != null && getAdapter().getCount() != mStudentList.size()) {
-                    setDirectoryList(mStudentList);
-                    updateListView();
-                }
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        mShowAlumBtn.setOnClickListener(this);
+        mShowStudentBtn.setOnClickListener(this);
     }
 
     @Override
@@ -150,5 +134,40 @@ public class AlumDirectoryFragment extends DirectoryFragment {
                 }
             }
         }.execute(sheetKey, "" + forceDownload);
+    }
+
+    @Override
+    protected void updateListView() {
+        super.updateListView();
+        View view = getView();
+        if (view != null) {
+            View content = view.findViewById(R.id.content);
+            if (content.getVisibility() == View.GONE) {
+                getProgressBar().setVisibility(View.GONE);
+                content.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_show_alum:
+                if (getAdapter() != null && getAdapter().getCount() != mAlumList.size()) {
+                    setDirectoryList(mAlumList);
+                    updateListView();
+                    mShowAlumBtn.setTextColor(getResources().getColor(R.color.accent_fallback_dark));
+                    mShowStudentBtn.setTextColor(getResources().getColor(android.R.color.white));
+                }
+                break;
+            case R.id.btn_show_students:
+                if (getAdapter() != null && getAdapter().getCount() != mStudentList.size()) {
+                    setDirectoryList(mStudentList);
+                    updateListView();
+                    mShowStudentBtn.setTextColor(getResources().getColor(R.color.accent_fallback_dark));
+                    mShowAlumBtn.setTextColor(getResources().getColor(android.R.color.white));
+                }
+                break;
+        }
     }
 }

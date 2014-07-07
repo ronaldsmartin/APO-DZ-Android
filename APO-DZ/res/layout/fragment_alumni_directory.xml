@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http:schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context="org.upennapo.app.fragment.AlumDirectoryFragment">
+
+    <!-- Content -->
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <!-- List -->
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/name_list_footer">
+
+            <ListView
+                android:id="@+id/name_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clipToPadding="false"
+                android:fastScrollAlwaysVisible="true"
+                android:fastScrollEnabled="true"
+                android:paddingBottom="8dp"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <!-- Footer -->
+        <LinearLayout
+            android:id="@id/name_list_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/primary"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_show_alum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/transparent_color"
+                android:text="Alumni"
+                android:textAllCaps="true"
+                android:textColor="@color/accent_fallback_light" />
+
+            <Button
+                android:id="@+id/btn_show_students"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/transparent_color"
+                android:text="Students"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Loading Progress Indicator -->
+    <ProgressBar
+        android:id="@+id/directory_progress_bar"
+        style="?android:progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true" />
+
+    <!-- Reload button appears when there's no internet. -->
+    <Button
+        android:id="@+id/directory_reload_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-thin"
+        android:text="Reload"
+        android:visibility="gone" />
+
+</FrameLayout>

@@ -38,10 +38,11 @@
                         style="@android:style/TextAppearance.Large"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/accent_fallback_dark"
                         android:fontFamily="sans-serif-light"
                         android:padding="16dp"
                         android:text="@string/req_loading"
-                        android:textColor="@color/list_header" />
+                        android:textColor="@android:color/white" />
 
                     <include layout="@layout/card_item_divider" />
 
@@ -120,10 +121,11 @@
                         style="@android:style/TextAppearance.Large"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/accent"
                         android:fontFamily="sans-serif-light"
                         android:padding="16dp"
                         android:text="@string/service_header"
-                        android:textColor="@android:color/holo_green_dark" />
+                        android:textColor="@android:color/white" />
 
                     <include layout="@layout/card_item_divider" />
 
@@ -272,10 +274,11 @@
                         style="@android:style/TextAppearance.Large"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/accent_fallback_light"
                         android:fontFamily="sans-serif-light"
                         android:padding="16dip"
                         android:text="@string/membership_header"
-                        android:textColor="@android:color/holo_purple" />
+                        android:textColor="@android:color/white" />
 
                     <include layout="@layout/card_item_divider" />
 
@@ -423,10 +426,11 @@
                         style="@android:style/TextAppearance.Large"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/accent_fallback_lightest"
                         android:fontFamily="sans-serif-light"
                         android:padding="16dp"
                         android:text="@string/fellowship_header"
-                        android:textColor="@android:color/holo_orange_dark" />
+                        android:textColor="@android:color/white" />
 
                     <include layout="@layout/card_item_divider" />
 

@@ -1,66 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/item_card"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:background="@android:color/white"
-    android:clickable="false"
+    android:layout_height="88dp"
     android:descendantFocusability="blocksDescendants"
-    card_view:cardCornerRadius="4dp">
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp">
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/txt_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="10dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp">
+        android:layout_alignEnd="@+id/info_icon"
+        android:clickable="false"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/primary_dark"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txt_name"
-            style="@android:style/TextAppearance.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/info_icon"
-            android:clickable="false"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@color/apo_blue"
-            android:textStyle="bold" />
+    <ImageView
+        android:id="@id/info_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:contentDescription="brother info"
+        android:src="@drawable/ic_action_info_light" />
 
-        <ImageView
-            android:id="@id/info_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:contentDescription="brother info"
-            android:src="@drawable/ic_action_info_btn" />
+    <TextView
+        android:id="@+id/txt_pledge_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/txt_name"
+        android:clickable="false"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/txt_pledge_class"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/txt_name"
-            android:layout_marginTop="4dp"
-            android:clickable="false"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@android:color/darker_gray" />
-
-        <TextView
-            android:id="@+id/txt_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/txt_name"
-            android:layout_marginEnd="4dp"
-            android:layout_marginTop="4dp"
-            android:autoLink="phone"
-            android:fontFamily="sans-serif-light" />
-    </RelativeLayout>
-</android.support.v7.widget.CardView>
+    <TextView
+        android:id="@+id/txt_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/txt_pledge_class"
+        android:autoLink="phone"
+        android:fontFamily="sans-serif-light"
+        android:textColorLink="@color/primary_light" />
+</RelativeLayout>
