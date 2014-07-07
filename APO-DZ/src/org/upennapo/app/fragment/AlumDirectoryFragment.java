@@ -127,7 +127,10 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
             @Override
             protected void onPostExecute(Brother[] result) {
                 if (getActivity() != null && result == null) {
-                    Toast.makeText(getActivity(), R.string.no_internet_toast_msg, Toast.LENGTH_LONG);
+                    Toast.makeText(getActivity(),
+                            R.string.no_internet_toast_msg,
+                            Toast.LENGTH_LONG)
+                            .show();
                 } else {
                     mStudentList.addAll(Arrays.asList(result));
                     Collections.sort(mStudentList);
