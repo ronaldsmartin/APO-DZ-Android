@@ -156,7 +156,7 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
                 if (getAdapter() != null && getAdapter().getCount() != mAlumList.size()) {
                     setDirectoryList(mAlumList);
                     updateListView();
-                    mShowAlumBtn.setTextColor(getResources().getColor(R.color.accent_fallback_dark));
+                    mShowAlumBtn.setTextColor(getResources().getColor(R.color.accent_fallback_light));
                     mShowStudentBtn.setTextColor(getResources().getColor(android.R.color.white));
                 }
                 break;
@@ -164,7 +164,7 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
                 if (getAdapter() != null && getAdapter().getCount() != mStudentList.size()) {
                     setDirectoryList(mStudentList);
                     updateListView();
-                    mShowStudentBtn.setTextColor(getResources().getColor(R.color.accent_fallback_dark));
+                    mShowStudentBtn.setTextColor(getResources().getColor(R.color.accent_fallback_light));
                     mShowAlumBtn.setTextColor(getResources().getColor(android.R.color.white));
                 }
                 break;
