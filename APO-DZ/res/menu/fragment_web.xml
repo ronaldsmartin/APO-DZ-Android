@@ -4,6 +4,6 @@
         android:id="@+id/menu_reload"
         android:icon="@drawable/ic_action_reload"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom"
         android:title="Reload" />
 </menu>
