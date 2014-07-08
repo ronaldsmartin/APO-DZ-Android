@@ -23,7 +23,7 @@ import android.widget.Toast;
 import org.upennapo.app.R;
 import org.upennapo.app.fragment.BrotherStatusFragment;
 import org.upennapo.app.fragment.DirectoryFragment;
-import org.upennapo.app.fragment.HelpfulLinksFragment;
+import org.upennapo.app.fragment.LinkListFragment;
 import org.upennapo.app.fragment.WebFragment;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -336,7 +336,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
                 case 4:
                     // Helpful Links
-                    return new HelpfulLinksFragment();
+                    return LinkListFragment.newBrotherLinksInstance(MainActivity.this);
 
                 default:
                     // getItem is called to instantiate the fragment for the given page.

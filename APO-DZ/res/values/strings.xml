@@ -88,6 +88,7 @@
     <string name="form_list_header">Forms</string>
     <string name="site_list_header">Websites</string>
     <string name="social_list_header">Social Media</string>
+    <string name="link_header_flag">LINK_HEADER</string>
 
     <!-- Actual Links -->
     <string name="sites_national_homepage">http://apo.org/</string>

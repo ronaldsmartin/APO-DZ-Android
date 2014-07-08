@@ -16,8 +16,7 @@ import android.widget.ArrayAdapter;
 
 import org.upennapo.app.R;
 import org.upennapo.app.fragment.AlumDirectoryFragment;
-import org.upennapo.app.fragment.HelpfulLinksFragment;
-import org.upennapo.app.fragment.LinkFragment;
+import org.upennapo.app.fragment.LinkListFragment;
 import org.upennapo.app.fragment.WebFragment;
 
 public class AlumniModeActivity extends FragmentActivity implements ActionBar.OnNavigationListener {
@@ -47,7 +46,8 @@ public class AlumniModeActivity extends FragmentActivity implements ActionBar.On
                         android.R.layout.simple_list_item_1,
                         android.R.id.text1,
                         getResources().getStringArray(R.array.titles_alumni_mode)),
-                this);
+                this
+        );
     }
 
     @Override
@@ -153,10 +153,7 @@ public class AlumniModeActivity extends FragmentActivity implements ActionBar.On
                 item = WebFragment.newCalendarInstance(this);
                 break;
             case 2:
-                item = new HelpfulLinksFragment();
-                break;
-            case 3:
-                item = LinkFragment.newInstance();
+                item = LinkListFragment.newAlumLinksInstance(this);
                 break;
             default:
                 item = new MainActivity.DummySectionFragment();
