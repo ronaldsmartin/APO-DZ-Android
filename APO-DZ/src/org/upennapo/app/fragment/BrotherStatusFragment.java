@@ -23,7 +23,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
 
     // Constants
     public static final String STORAGE_KEY = "BROTHER_STATUS";
-    public static final String URL_KEY = "SPREADSHEET_URL";
+    private static final String URL_KEY = "SPREADSHEET_URL";
     private static final String USER_KEY = "USER";
     private static final String FIRST_NAME_KEY = "FIRST_NAME";
     private static final String LAST_NAME_KEY = "LAST_NAME";
@@ -42,6 +42,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
      * triggers callbacks in the app.
      */
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private View mProgressBar;
 
     public static BrotherStatusFragment newInstance(Context context) {
         BrotherStatusFragment instance = new BrotherStatusFragment();
@@ -70,8 +71,14 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        if (savedInstanceState != null)
+        if (savedInstanceState != null) {
+            mUser = savedInstanceState.getParcelable(USER_KEY);
+            firstName = savedInstanceState.getString(FIRST_NAME_KEY);
+            lastName = savedInstanceState.getString(LAST_NAME_KEY);
+            spreadsheetUrl = savedInstanceState.getString(URL_KEY);
+            mFlagFailedSearch = savedInstanceState.getBoolean(TAG_FAILED_SEARCH);
             updateViews();
+        }
     }
 
     @Override
@@ -79,13 +86,16 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_brother_status, container, false);
 
+        // Attach ProgressBar
+        this.mProgressBar = view.findViewById(R.id.brother_status_progress_bar);
+
         // Set up SwipeToRefresh
         this.mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
         this.mSwipeRefreshLayout.setColorScheme(
                 R.color.apo_blue, R.color.apo_yellow, R.color.apo_blue, R.color.apo_yellow);
         this.mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        init(savedInstanceState);
+        init(savedInstanceState, view);
 
         return view;
     }
@@ -97,15 +107,20 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
         loader.execute(spreadsheetUrl, firstName, lastName, "true");
     }
 
-    private void init(Bundle savedInstanceState) {
+    private void init(Bundle savedInstanceState, View view) {
         if (savedInstanceState == null) {
-            if (DataManager.isNetworkAvailable(getActivity())) {
+            this.mFlagFailedSearch = getActivity()
+                    .getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
+                    .getBoolean(TAG_FAILED_SEARCH, false);
+            if (mFlagFailedSearch) {
+                mProgressBar.setVisibility(View.GONE);
+                view.findViewById(R.id.status_fail_txt).setVisibility(View.VISIBLE);
+            } else if (DataManager.isNetworkAvailable(getActivity())) {
                 SharedPreferences prefs = getActivity().getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
                 this.firstName = prefs.getString(LoginActivity.USER_FIRSTNAME_KEY, "");
                 this.lastName = prefs.getString(LoginActivity.USER_LASTNAME_KEY, "");
                 this.spreadsheetUrl = getArguments().getString(URL_KEY);
 
-                getActivity().setProgressBarIndeterminateVisibility(true);
                 getUserData();
             } else {
                 // Notify the user that there is no connection. Tell them to try later.
@@ -113,13 +128,11 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
                         R.string.no_internet_toast_msg,
                         Toast.LENGTH_LONG);
                 noConnectionToast.show();
+
+                // Setting the SwipeRefresh visibility to invisible allows users to access its
+                // functionality without displaying its contents.
+                this.mSwipeRefreshLayout.setVisibility(View.INVISIBLE);
             }
-        } else {
-            mUser = savedInstanceState.getParcelable(USER_KEY);
-            firstName = savedInstanceState.getString(FIRST_NAME_KEY);
-            lastName = savedInstanceState.getString(LAST_NAME_KEY);
-            spreadsheetUrl = savedInstanceState.getString(URL_KEY);
-            mFlagFailedSearch = savedInstanceState.getBoolean(TAG_FAILED_SEARCH);
         }
     }
 
@@ -142,6 +155,9 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
         loader.execute(spreadsheetUrl, firstName, lastName, "false");
     }
 
+    /**
+     * Update the view based on the result of the brother query.
+     */
     private void updateViews() {
         if (this.mUser == null) {
             if (!mFlagFailedSearch) {
@@ -157,15 +173,32 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
 
             TextView nameLabel = (TextView) getActivity().findViewById(R.id.name_label);
             nameLabel.setText(R.string.label_no_user_status);
+            getView().findViewById(R.id.status_fail_txt).setVisibility(View.VISIBLE);
         } else {
             updateStatusLabels();
             updateServiceLabels();
             updateMembershipLabels();
             updateFellowshipLabels();
             mFlagFailedSearch = false;
+            mSwipeRefreshLayout.setVisibility(View.VISIBLE);
         }
+        storeUserSearchFail();
+        mProgressBar.setVisibility(View.GONE);
         mSwipeRefreshLayout.setRefreshing(false);
-        getActivity().setProgressBarIndeterminateVisibility(false);
+    }
+
+    /**
+     * Remembers in SharedPreferences whether there is no spreadsheet data for the person with the
+     * currently logged-in (user)name.
+     */
+    private void storeUserSearchFail() {
+        if (getActivity() != null) {
+            SharedPreferences.Editor editor = getActivity()
+                    .getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
+                    .edit();
+            editor.putBoolean(TAG_FAILED_SEARCH, mFlagFailedSearch);
+            editor.apply();
+        }
     }
 
     /**

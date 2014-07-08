@@ -179,7 +179,6 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
                 mProgressBar.setVisibility(View.GONE);
                 mSwipeRefreshLayout.setVisibility(View.VISIBLE);
             }
-            getActivity().setProgressBarIndeterminateVisibility(false);
         }
         mSwipeRefreshLayout.setRefreshing(false);
     }
@@ -249,7 +248,6 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
                     mProgressBar.setVisibility(View.GONE);
                     mReloadButton.setVisibility(View.VISIBLE);
                 }
-                getActivity().setProgressBarIndeterminateVisibility(false);
             } else {
                 Arrays.sort(result);
                 mDirectoryList.clear();

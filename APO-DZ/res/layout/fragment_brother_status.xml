@@ -1,513 +1,541 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/swipe_layout"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/card_backdrop">
+    android:background="@color/card_backdrop"
+    android:fitsSystemWindows="true"
+    android:gravity="center">
 
-    <ScrollView
+    <ProgressBar
+        android:id="@+id/brother_status_progress_bar"
+        style="?android:progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true" />
+
+    <TextView
+        android:id="@+id/status_fail_txt"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/accent"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:text="@string/label_no_user_status"
+        android:textColor="@color/primary_dark"
+        android:visibility="gone" />
 
-        <LinearLayout
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingBottom="10dp"
-            android:paddingLeft="16dip"
-            android:paddingRight="16dip"
-            android:paddingTop="10dp">
+            android:layout_height="match_parent">
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@android:color/white"
-                card_view:cardCornerRadius="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <!-- Name -->
-                    <TextView
-                        android:id="@+id/name_label"
-                        style="@android:style/TextAppearance.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/accent_fallback_dark"
-                        android:fontFamily="sans-serif-light"
-                        android:padding="16dp"
-                        android:text="@string/req_loading"
-                        android:textColor="@android:color/white" />
-
-                    <include layout="@layout/card_item_divider" />
-
-                    <!-- Status -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
-
-                        <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_status" />
-
-                        <TextView
-                            android:id="@+id/status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light"
-                            android:textAllCaps="true" />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
-
-                        <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_req_completion" />
-
-                        <TextView
-                            android:id="@+id/all_reqs_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light"
-                            android:textAllCaps="true" />
-                    </LinearLayout>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-
-            <!-- Service -->
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@android:color/white"
-                card_view:cardCornerRadius="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/accent"
-                        android:fontFamily="sans-serif-light"
-                        android:padding="16dp"
-                        android:text="@string/service_header"
-                        android:textColor="@android:color/white" />
-
-                    <include layout="@layout/card_item_divider" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
-
-                        <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_req_completion" />
-
-                        <TextView
-                            android:id="@+id/service_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light"
-                            android:textAllCaps="true" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
-
-                        <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_service_hours" />
-
-                        <TextView
-                            android:id="@+id/hours_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
-
-                        <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_large_group_completion" />
-
-                        <TextView
-                            android:id="@+id/large_group_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light"
-                            android:textAllCaps="true" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
-
-                        <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_publicity_completion" />
-
-                        <TextView
-                            android:id="@+id/publicity_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light"
-                            android:textAllCaps="true" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
-
-                        <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_hosting_completion" />
-
-                        <TextView
-                            android:id="@+id/service_hosting_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light"
-                            android:textAllCaps="true" />
-                    </LinearLayout>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-
-            <!-- Membership -->
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@android:color/white"
                 android:fontFamily="sans-serif-light"
-                card_view:cardCornerRadius="4dp">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="16dip"
+                android:paddingRight="16dip"
+                android:paddingTop="10dp">
 
-                <LinearLayout
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/accent_fallback_light"
-                        android:fontFamily="sans-serif-light"
-                        android:padding="16dip"
-                        android:text="@string/membership_header"
-                        android:textColor="@android:color/white" />
-
-                    <include layout="@layout/card_item_divider" />
+                    android:layout_gravity="center"
+                    android:background="@android:color/white"
+                    card_view:cardCornerRadius="4dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
-
+                        android:orientation="vertical">
+                        <!-- Name -->
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
+                            android:id="@+id/name_label"
+                            style="@android:style/TextAppearance.Large"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
+                            android:background="@color/accent_fallback_dark"
                             android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_req_completion" />
+                            android:padding="16dp"
+                            android:text="@string/req_loading"
+                            android:textColor="@android:color/white" />
 
-                        <TextView
-                            android:id="@+id/membership_status"
-                            android:layout_width="wrap_content"
+                        <include layout="@layout/card_item_divider" />
+
+                        <!-- Status -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light"
-                            android:textAllCaps="true" />
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_status" />
+
+                            <TextView
+                                android:id="@+id/status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light"
+                                android:textAllCaps="true" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_req_completion" />
+
+                            <TextView
+                                android:id="@+id/all_reqs_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light"
+                                android:textAllCaps="true" />
+                        </LinearLayout>
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
-
-                        <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_points" />
-
-                        <TextView
-                            android:id="@+id/membership_points"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
-
-                        <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_bro_comp" />
-
-                        <TextView
-                            android:id="@+id/brother_comp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light"
-                            android:textAllCaps="true" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
-
-                        <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_pledge_comp" />
-
-                        <TextView
-                            android:id="@+id/pledge_comp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light"
-                            android:textAllCaps="true" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
-
-                        <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_hosting_completion" />
-
-                        <TextView
-                            android:id="@+id/membership_hosting"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light"
-                            android:textAllCaps="true" />
-                    </LinearLayout>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                </android.support.v7.widget.CardView>
 
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
 
 
-            <!-- Fellowship -->
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@android:color/white"
-                card_view:cardCornerRadius="4dp">
-
-                <LinearLayout
+                <!-- Service -->
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@android:style/TextAppearance.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/accent_fallback_lightest"
-                        android:fontFamily="sans-serif-light"
-                        android:padding="16dp"
-                        android:text="@string/fellowship_header"
-                        android:textColor="@android:color/white" />
-
-                    <include layout="@layout/card_item_divider" />
+                    android:layout_gravity="center"
+                    android:background="@android:color/white"
+                    card_view:cardCornerRadius="4dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
+                        android:orientation="vertical">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
+                            style="@android:style/TextAppearance.Large"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
+                            android:background="@color/accent"
                             android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_req_completion" />
+                            android:padding="16dp"
+                            android:text="@string/service_header"
+                            android:textColor="@android:color/white" />
 
-                        <TextView
-                            android:id="@+id/fellowship_status"
-                            android:layout_width="wrap_content"
+                        <include layout="@layout/card_item_divider" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light"
-                            android:textAllCaps="true" />
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_req_completion" />
+
+                            <TextView
+                                android:id="@+id/service_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light"
+                                android:textAllCaps="true" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_service_hours" />
+
+                            <TextView
+                                android:id="@+id/hours_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_large_group_completion" />
+
+                            <TextView
+                                android:id="@+id/large_group_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light"
+                                android:textAllCaps="true" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_publicity_completion" />
+
+                            <TextView
+                                android:id="@+id/publicity_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light"
+                                android:textAllCaps="true" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_hosting_completion" />
+
+                            <TextView
+                                android:id="@+id/service_hosting_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light"
+                                android:textAllCaps="true" />
+                        </LinearLayout>
                     </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+
+                <!-- Membership -->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/white"
+                    android:fontFamily="sans-serif-light"
+                    card_view:cardCornerRadius="4dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
+                        android:orientation="vertical">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
+                            style="@android:style/TextAppearance.Large"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
+                            android:background="@color/accent_fallback_light"
                             android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_points" />
+                            android:padding="16dip"
+                            android:text="@string/membership_header"
+                            android:textColor="@android:color/white" />
 
-                        <TextView
-                            android:id="@+id/fellowship_points"
-                            android:layout_width="wrap_content"
+                        <include layout="@layout/card_item_divider" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light" />
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_req_completion" />
+
+                            <TextView
+                                android:id="@+id/membership_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light"
+                                android:textAllCaps="true" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_points" />
+
+                            <TextView
+                                android:id="@+id/membership_points"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_bro_comp" />
+
+                            <TextView
+                                android:id="@+id/brother_comp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light"
+                                android:textAllCaps="true" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_pledge_comp" />
+
+                            <TextView
+                                android:id="@+id/pledge_comp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light"
+                                android:textAllCaps="true" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_hosting_completion" />
+
+                            <TextView
+                                android:id="@+id/membership_hosting"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light"
+                                android:textAllCaps="true" />
+                        </LinearLayout>
                     </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+
+                <!-- Fellowship -->
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/white"
+                    card_view:cardCornerRadius="4dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dip">
+                        android:orientation="vertical">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
+                            style="@android:style/TextAppearance.Large"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="left"
-                            android:layout_weight="1"
+                            android:background="@color/accent_fallback_lightest"
                             android:fontFamily="sans-serif-light"
-                            android:text="@string/cat_hosting_completion" />
+                            android:padding="16dp"
+                            android:text="@string/fellowship_header"
+                            android:textColor="@android:color/white" />
 
-                        <TextView
-                            android:id="@+id/fellowship_hosting"
-                            android:layout_width="wrap_content"
+                        <include layout="@layout/card_item_divider" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:fontFamily="sans-serif-light"
-                            android:textAllCaps="true" />
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_req_completion" />
+
+                            <TextView
+                                android:id="@+id/fellowship_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light"
+                                android:textAllCaps="true" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_points" />
+
+                            <TextView
+                                android:id="@+id/fellowship_points"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dip">
+
+                            <TextView
+                                style="@android:style/TextAppearance.Medium"
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/cat_hosting_completion" />
+
+                            <TextView
+                                android:id="@+id/fellowship_hosting"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:fontFamily="sans-serif-light"
+                                android:textAllCaps="true" />
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                </android.support.v7.widget.CardView>
 
 
-        </LinearLayout>
-    </ScrollView>
-</android.support.v4.widget.SwipeRefreshLayout>
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</FrameLayout>
