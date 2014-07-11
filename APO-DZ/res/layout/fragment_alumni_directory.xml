@@ -47,20 +47,20 @@
 
             <Button
                 android:id="@+id/btn_show_alum"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/transparent_color"
                 android:text="Alumni"
                 android:textAllCaps="true"
                 android:textColor="@color/accent_fallback_light" />
 
             <Button
                 android:id="@+id/btn_show_students"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/transparent_color"
                 android:text="Students"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white" />

@@ -39,6 +39,7 @@ public class LoginActivity extends Activity {
 
         if (getIntent().getBooleanExtra(LOGOUT_INTENT, false)) {
             updateNameLabel();
+            findViewById(R.id.logout_button).setVisibility(View.VISIBLE);
         } else if (userIsLoggedIn() && hasUsername()) {
             proceedToApp();
         } else if (alumIsLoggedIn()) {
@@ -62,6 +63,7 @@ public class LoginActivity extends Activity {
                             editor.clear();
                             if (editor.commit()) {
                                 resetNameLabel();
+                                findViewById(R.id.logout_button).setVisibility(View.INVISIBLE);
 
                                 // Tell the user logout is complete.
                                 Toast logoutNotification = Toast.makeText(LoginActivity.this, "Logout successful!", Toast.LENGTH_SHORT);
@@ -109,7 +111,13 @@ public class LoginActivity extends Activity {
                     getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
             String firstName = prefs.getString(USER_FIRSTNAME_KEY, "");
             String lastName = prefs.getString(USER_LASTNAME_KEY, "");
-            nameLabel.setText(firstName + " " + lastName);
+            nameLabel.setText(" " + firstName + " " + lastName);
+        } else if (alumIsLoggedIn()) {
+            welcomeLabel.setText(R.string.login_status_logged_in);
+
+            // Add "as alumni".
+            TextView nameLabel = (TextView) findViewById(R.id.name);
+            nameLabel.setText(" alum.");
         } else {
             resetNameLabel();
         }

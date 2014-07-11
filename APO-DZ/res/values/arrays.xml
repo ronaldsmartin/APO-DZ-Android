@@ -177,12 +177,12 @@
         <item>because even apps have origin stories</item>
         <item><i>if you like it then you shoulda put some stars on it</i></item>
         <item>you c0d3? get involved with the project!</item>
-        <item>all feedback is welcome. no flames though.</item>
+        <item>all feedback is welcome. no flames though</item>
         <!-- Delta Zeta -->
         <item>@string/link_header_flag</item>
         <item>our charming chapter homepage</item>
         <item>lovingly retired in 2014</item>
-        <item>managed by Charlie \'12 &amp; Nikila \'14</item>
+        <item>managed by charlie \'12 &amp; nikila \'14</item>
         <item />
         <item />
         <item>curated by emma b. \'15</item>
@@ -190,7 +190,7 @@
         <item>to be featured in the next DZ</item>
         <!-- National -->
         <item>@string/link_header_flag</item>
-        <item>our charming chapter homepage</item>
+        <item />
         <item>features member lookup, alum discounts, etc.</item>
         <item />
         <!-- Facebook -->
