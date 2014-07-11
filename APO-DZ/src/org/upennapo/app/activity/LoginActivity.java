@@ -85,16 +85,14 @@ public class LoginActivity extends Activity {
      * @param view - the button in login_activity.xml
      */
     public void login(View view) {
-        if (hasUsername()) {
-            if (userIsLoggedIn()) {
-                proceedToApp();
-            } else if (alumIsLoggedIn()) {
-                proceedToAlumApp();
-            } else {
-                showPasswordPrompt("Enter Password");
-            }
-        } else {
+        if (alumIsLoggedIn()) {
+            proceedToAlumApp();
+        } else if (userIsLoggedIn() && hasUsername()) {
+            proceedToApp();
+        } else if (userIsLoggedIn() && !hasUsername()) {
             showNamePrompt();
+        } else {
+            showPasswordPrompt("Enter Password");
         }
     }
 
@@ -170,20 +168,19 @@ public class LoginActivity extends Activity {
                 // Retrieve the user input.
                 String value = input.getText().toString();
 
+                SharedPreferences.Editor editor =
+                        getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE).edit();
+
                 // User entered password correctly.
                 if (value.equals(getString(R.string.app_password))) {
                     // Store that we have logged in.
-                    SharedPreferences.Editor editor =
-                            getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE).edit();
                     editor.putBoolean(LOGGED_IN_KEY, true);
                     editor.apply();
 
                     // Continue to the main view.
-                    proceedToApp();
+                    showNamePrompt();
                 } else if (getString(R.string.app_password_alum).equals(value)) {
                     // Store that we have logged in as an alum.
-                    SharedPreferences.Editor editor =
-                            getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE).edit();
                     editor.putBoolean(ALUM_LOGGED_IN, true);
                     editor.apply();
 
