@@ -4,67 +4,67 @@
     android:layout_height="match_parent"
     android:background="@color/primary">
 
-<LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-    android:orientation="vertical">
+        android:orientation="vertical">
 
-    <ImageView
-	        android:id="@+id/logo_image"
-	        android:layout_width="wrap_content"
-        android:layout_height="180dip"
-        android:layout_marginBottom="10dip"
-	        android:layout_marginTop="40dip"
+        <ImageView
+            android:id="@+id/logo_image"
+            android:layout_width="wrap_content"
+            android:layout_height="180dip"
+            android:layout_marginBottom="10dip"
+            android:layout_marginTop="40dip"
             android:contentDescription="@string/logo_description"
-	        android:src="@drawable/apologofull" />
-	
-	    <TextView
-	        android:id="@+id/title"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
+            android:src="@drawable/apologofull" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="40dip"
             android:fontFamily="sans-serif-condensed"
             android:text="@string/login_screen_title"
             android:textAppearance="?android:attr/textAppearanceLarge"
-	        android:textColor="@color/apo_yellow"
+            android:textColor="@color/apo_yellow"
             android:textStyle="bold" />
 
         <TextView
-	        android:id="@+id/welcome_msg"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="10dip"
-	        android:fontFamily="sans-serif-light"
-	        android:text="@string/welcome_message"
+            android:id="@+id/welcome_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/welcome_message"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/white" />
 
         <!-- Login status: "Please log in to continue" or "Logged in as" -->
         <LinearLayout
-	        android:id="@+id/login_message"
+            android:id="@+id/login_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-	        android:orientation="horizontal"
+            android:orientation="horizontal"
             android:textColor="@android:color/white">
 
             <TextView
-		        android:id="@+id/login_status"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:fontFamily="sans-serif-light"
+                android:id="@+id/login_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
                 android:text="@string/login_status_logged_out"
                 android:textColor="@android:color/white" />
 
             <Space
-	            android:layout_width="5dip"
-	            android:layout_height="match_parent" />
-	        
-	        <TextView
-		        android:id="@+id/name"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
+                android:layout_width="5dip"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
                 android:textColor="@android:color/white" />
 
@@ -74,23 +74,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-	        android:orientation="horizontal"
+            android:orientation="horizontal"
             android:textColor="@android:color/white">
 
             <Space
                 android:layout_width="match_parent"
-	            android:layout_height="20dip" />
-	        
-	    </LinearLayout>
-	    
-	    <Button
-	        android:id="@+id/login_button"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
+                android:layout_height="20dip" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-	        android:background="@color/apo_yellow"
-	        android:fontFamily="sans-serif-thin"
-	        android:gravity="center"
+            android:background="@color/apo_yellow"
+            android:fontFamily="sans-serif-thin"
+            android:gravity="center"
             android:onClick="login"
             android:paddingLeft="15dip"
             android:paddingRight="15dip"
@@ -98,20 +98,20 @@
 
         <Space
             android:layout_width="match_parent"
-	   		android:layout_height="10dip" />
-	    
-	    <Button
-	        android:id="@+id/logout_button"
+            android:layout_height="10dip" />
+
+        <Button
+            android:id="@+id/logout_button"
             android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:fontFamily="sans-serif-thin"
-	        android:gravity="center"
+            android:gravity="center"
             android:onClick="logout"
             android:paddingLeft="15dip"
             android:paddingRight="15dip"
             android:text="@string/logout_button"
             android:textColor="@android:color/white"
             android:visibility="gone" />
-</LinearLayout>
+    </LinearLayout>
 </ScrollView>

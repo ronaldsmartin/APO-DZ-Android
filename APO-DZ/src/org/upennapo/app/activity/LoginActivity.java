@@ -35,7 +35,7 @@ public class LoginActivity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_activity);
+        setContentView(R.layout.activity_login);
 
         if (getIntent().getBooleanExtra(LOGOUT_INTENT, false)) {
             updateNameLabel();
@@ -84,7 +84,7 @@ public class LoginActivity extends Activity {
     /**
      * Opened when clicking login button in the LoginView
      *
-     * @param view - the button in login_activity.xml
+     * @param view - the button in activity_login.xml
      */
     public void login(View view) {
         if (alumIsLoggedIn()) {
