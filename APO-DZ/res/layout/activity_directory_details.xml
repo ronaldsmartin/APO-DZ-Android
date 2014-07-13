@@ -64,7 +64,8 @@
                     style="?android:listSeparatorTextViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/major_dd" />
+                    android:text="@string/major_dd"
+                    android:textColor="@color/primary_dark" />
 
 
                 <TextView
@@ -95,7 +96,8 @@
                     style="?android:listSeparatorTextViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/phone_dd" />
+                    android:text="@string/phone_dd"
+                    android:textColor="@color/primary_dark" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -152,7 +154,8 @@
                     style="?android:listSeparatorTextViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/email_dd" />
+                    android:text="@string/email_dd"
+                    android:textColor="@color/primary_dark" />
 
                 <TextView
                     android:id="@+id/email"

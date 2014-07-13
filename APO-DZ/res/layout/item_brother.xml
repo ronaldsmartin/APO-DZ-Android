@@ -49,5 +49,5 @@
         android:layout_below="@id/txt_pledge_class"
         android:autoLink="phone"
         android:fontFamily="sans-serif-light"
-        android:textColorLink="@color/primary_light" />
+        android:textColorLink="@color/primary" />
 </RelativeLayout>

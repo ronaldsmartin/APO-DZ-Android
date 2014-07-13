@@ -67,8 +67,6 @@
                         android:text="@string/req_loading"
                         android:textColor="@android:color/white" />
 
-                    <include layout="@layout/card_item_divider" />
-
                     <!-- Status -->
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -137,7 +135,7 @@
                         style="@android:style/TextAppearance.Large"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/primary"
+                        android:background="@color/accent_fallback_dark"
                         android:fontFamily="sans-serif-light"
                         android:padding="16dp"
                         android:text="@string/service_header"
@@ -282,7 +280,7 @@
                         style="@android:style/TextAppearance.Large"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/primary"
+                        android:background="@color/accent_fallback_dark"
                         android:fontFamily="sans-serif-light"
                         android:padding="16dip"
                         android:text="@string/membership_header"
@@ -427,7 +425,7 @@
                         style="@android:style/TextAppearance.Large"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/primary"
+                        android:background="@color/accent_fallback_dark"
                         android:fontFamily="sans-serif-light"
                         android:padding="16dp"
                         android:text="@string/fellowship_header"

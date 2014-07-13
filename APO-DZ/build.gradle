@@ -18,7 +18,9 @@ android {
         minSdkVersion 14
         targetSdkVersion 19
         versionCode 6
-        versionName "1.7"
+        versionName "1.7.1"
+
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
     }
 
 
@@ -50,17 +52,14 @@ android {
         debug {
             applicationIdSuffix '.dev'
             versionNameSuffix '-DEBUG'
-
             runProguard false
         }
         beta {
             versionNameSuffix '-beta'
             runProguard true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
         }
         release {
             runProguard true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
         }
     }
 }
