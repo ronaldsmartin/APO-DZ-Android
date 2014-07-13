@@ -18,7 +18,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 19
         versionCode 6
-        versionName "1.6.9"
+        versionName "1.7"
     }
 
 
@@ -74,6 +74,5 @@ dependencies {
 
     // You must install or update the Support Repository through the SDK manager to use this dependency.
     compile 'com.android.support:support-v4:19.1.0'
-    compile 'com.android.support:cardview-v7:+'
     compile 'com.google.code.gson:gson:2.2.4'
 }

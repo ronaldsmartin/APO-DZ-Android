@@ -39,8 +39,8 @@
     <!-- Brother Mode Tab Names -->
     <string name="title_section1">My Status</string>
     <string name="title_section2">Calendar</string>
-    <string name="title_section3">Brother Directory</string>
-    <string name="title_section4">Pledge Directory</string>
+    <string name="title_section3">Brothers</string>
+    <string name="title_section4">Pledges</string>
     <string name="title_section5">Helpful Links</string>
 
     <!-- Work in Progress Labels -->
@@ -74,13 +74,11 @@
 
     <!-- Directories -->
     <!-- Directory Details -->
-    <string name="directory_details_header">Brother Details</string>
-    <string name="name_dd">name</string>
     <string name="email_dd">e-mail</string>
     <string name="phone_dd">phone</string>
-    <string name="text_button_dd">text</string>
-    <string name="pledge_dd">pledge class</string>
     <string name="major_dd">major</string>
+    <string name="btn_text_content_desc">send text</string>
+    <string name="btn_dz_shoutout">Send a DZ Shoutout!</string>
 
     <!-- Helpful Links -->
     <!-- Headers for Helpful Links -->

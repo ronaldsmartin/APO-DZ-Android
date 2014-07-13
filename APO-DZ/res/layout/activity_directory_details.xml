@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/card_backdrop"
@@ -53,138 +52,121 @@
             android:orientation="vertical">
 
             <!-- Major -->
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@android:color/white"
-                android:clickable="false"
+                android:background="@drawable/card_background"
                 android:descendantFocusability="blocksDescendants"
-                card_view:cardCornerRadius="4dp">
+                android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
+                    style="?android:listSeparatorTextViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="?android:listSeparatorTextViewStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/major_dd" />
+                    android:text="@string/major_dd" />
 
 
-                    <TextView
-                        android:id="@+id/major"
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:paddingBottom="16dp"
-                        android:paddingLeft="8dp"
-                        android:paddingTop="16dp"
-                        android:textColor="@android:color/black" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                <TextView
+                    android:id="@+id/major"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="16dp"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
 
             <!-- Phone -->
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@android:color/white"
-                card_view:cardCornerRadius="4dp">
+                android:background="@drawable/card_background"
+                android:orientation="vertical">
+
+                <TextView
+                    style="?android:listSeparatorTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone_dd" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <TextView
-                        style="?android:listSeparatorTextViewStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/phone_dd" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/phone"
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:autoLink="phone"
-                            android:clickable="true"
-                            android:fontFamily="sans-serif-light"
-                            android:paddingBottom="16dp"
-                            android:paddingLeft="8dp"
-                            android:paddingTop="16dp"
-                            android:textIsSelectable="true" />
-
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginBottom="16dp"
-                            android:layout_marginTop="16dp"
-                            android:background="@android:drawable/divider_horizontal_bright" />
-
-                        <ImageButton
-                            android:id="@+id/text_button"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:onClick="onSmsBtnClick"
-                            android:padding="16dp"
-                            android:src="@drawable/ic_action_sms" />
-                    </LinearLayout>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
-
-            <!-- Email -->
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@android:color/white"
-                card_view:cardCornerRadius="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="?android:listSeparatorTextViewStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/email_dd" />
-
-                    <TextView
-                        android:id="@+id/email"
+                        android:id="@+id/phone"
                         style="@android:style/TextAppearance.Medium"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:autoLink="email"
+                        android:layout_weight="1"
+                        android:autoLink="phone"
                         android:clickable="true"
                         android:fontFamily="sans-serif-light"
                         android:paddingBottom="16dp"
                         android:paddingLeft="8dp"
                         android:paddingTop="16dp"
                         android:textIsSelectable="true" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@android:drawable/divider_horizontal_bright" />
+
+                    <ImageButton
+                        android:id="@+id/text_button"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:contentDescription="@string/btn_text_content_desc"
+                        android:onClick="onSmsBtnClick"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_action_sms" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <!-- Email -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/card_background"
+                android:orientation="vertical">
+
+                <TextView
+                    style="?android:listSeparatorTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email_dd" />
+
+                <TextView
+                    android:id="@+id/email"
+                    style="@android:style/TextAppearance.Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autoLink="email"
+                    android:clickable="true"
+                    android:fontFamily="sans-serif-light"
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="16dp"
+                    android:textIsSelectable="true" />
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
@@ -200,7 +182,7 @@
                 android:onClick="onShoutoutBtnClick"
                 android:paddingBottom="16dp"
                 android:paddingTop="16dp"
-                android:text="Send a DZ Shoutout!" />
+                android:text="@string/btn_dz_shoutout" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
