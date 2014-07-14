@@ -61,6 +61,7 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
 
         // If possible, retrieve saved data. Otherwise, initialize new lists.
         if (savedInstanceState == null) {

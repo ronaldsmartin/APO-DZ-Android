@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="org.upennapo.app">
 
-    <uses-sdk tools:node="replace" />
 
     <!-- Permissions -->
     <!-- Used to prevent the app from crashing if when there's no network reachability -->
@@ -28,7 +26,6 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -36,11 +33,18 @@
             android:name=".activity.MainActivity"
             android:label="@string/app_name" />
         <activity
+            android:name=".activity.DirectoryActivity"
+            android:parentActivityName=".activity.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.MainActivity" />
+        </activity>
+        <activity
             android:name=".activity.DirectoryDetailsActivity"
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.upennapo.app.MainActivity" />
+                android:value=".activity.MainActivity" />
         </activity>
         <activity
             android:name=".activity.EasterEggActivity"
@@ -49,7 +53,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.upennapo.app.MainActivity" />
+                android:value=".activity.MainActivity" />
         </activity>
         <activity
             android:name=".activity.AlumniModeActivity"

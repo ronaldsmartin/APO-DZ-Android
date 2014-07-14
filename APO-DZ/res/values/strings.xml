@@ -13,10 +13,8 @@
     <string name="menu_about_app_url">@string/app_about</string>
     <string name="menu_add_contact">Add/edit contact</string>
     <string name="menu_switch_mode">Switch mode</string>
-
     <string name="menu_directory_show_alumni">Alum</string>
     <string name="menu_directory_show_students">Students</string>
-
 
     <!-- Title Screen -->
     <string name="login_screen_title"><b>DELTA ZETA CHAPTER</b></string>
@@ -97,13 +95,11 @@
     <string name="sites_national_alum_res">http://www.apo.org/memberinfo/alumni/resources</string>
     <string name="sites_national_soc_of_life">http://www.apo.org/give/societyoflifemembers</string>
     <string name="sites_national_1925_club">http://www.apo.org/give/1925club</string>
-
     <string name="social_chapter_youtube">http://www.youtube.com/user/DZHistorian</string>
     <string name="social_chapter_instagram">http://instagram.com/upennapo</string>
     <string name="social_chapter_tumblr">http://upennapo.tumblr.com/</string>
     <string name="social_apoutofcontext">http://apoutofcontext.tumblr.com/</string>
     <string name="social_chapter_linkedin">http://www.linkedin.com/groups?home=&amp;trk=&amp;gid=4491214</string>
-
     <string name="social_fb_national_page">https://www.facebook.com/AlphaPhiOmega.USA</string>
     <string name="social_fb_national_alum_page">https://www.facebook.com/APOAlumni</string>
     <string name="social_fb_region_II">https://www.facebook.com/groups/2226737587/</string>
@@ -112,20 +108,16 @@
     <string name="social_fb_alum_group">https://www.facebook.com/groups/apodzalumni/</string>
     <string name="social_fb_alum_group_phl">https://www.facebook.com/groups/144765955661778/</string>
     <string name="social_fb_alum_group_nyc">https://www.facebook.com/groups/399467616784608/</string>
-
-
     <string name="app_about">http://ronaldsmartin.github.io/APO-DZ-Android/</string>
     <string name="app_google_play">https://play.google.com/store/apps/details?id=org.upennapo.app</string>
     <string name="app_beta_invite">https://play.google.com/apps/testing/org.upennapo.app</string>
     <string name="app_suggestion_box">https://docs.google.com/forms/d/1TvicaFVBNcVgoZbTqXt3YvzY_ds2L0qHhz2LDpi6wDQ/viewform</string>
     <string name="app_github_source">https://github.com/ronaldsmartin/APO-DZ-Android</string>
 
-
     <!-- ...Other -->
     <string name="apo_2048_url">http://games.usvsth3m.com/2048/apo-dz-edition/</string>
     <string name="apo_2048_label">DZ 2048!</string>
     <string name="apo_2048_unlock_msg">You\'ve unlocked an easter egg! Check Settings to play.</string>
-
 
     <!-- Alumni Mode -->
     <string name="title_activity_alumni_links">DZ Alum Links</string>
@@ -134,4 +126,10 @@
     <string name="title_am_section1">Directory</string>
     <string name="title_am_section2">@string/title_section2</string>
     <string name="title_am_section3">Resources</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_activity_my">MyActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
 </resources>

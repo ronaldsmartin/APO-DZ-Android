@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,6 +17,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import org.upennapo.app.R;
+import org.upennapo.app.activity.DirectoryActivity;
 import org.upennapo.app.activity.DirectoryDetailsActivity;
 import org.upennapo.app.adapter.AlphabeticalAdapter;
 import org.upennapo.app.model.Brother;
@@ -50,6 +54,24 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     }
 
     /**
+     * Returns new instance of DirectoryFragment with arguments set to load alum
+     * directory.
+     *
+     * @param context used to access String resources
+     * @return primed instance of DirectoryFragment
+     */
+    public static DirectoryFragment newAlumDirectoryInstance(Context context) {
+        DirectoryFragment instance = new DirectoryFragment();
+
+        Bundle args = new Bundle();
+        args.putString(DirectoryFragment.SHEET_KEY,
+                context.getString(R.string.alumni_directory_sheet_key));
+        instance.setArguments(args);
+
+        return instance;
+    }
+
+    /**
      * Returns new instance of DirectoryFragment with arguments set to load Active Brother
      * directory.
      *
@@ -59,10 +81,10 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     public static DirectoryFragment newBrotherDirectoryInstance(Context context) {
         DirectoryFragment instance = new DirectoryFragment();
 
-        Bundle broStatusArgs = new Bundle();
-        broStatusArgs.putString(DirectoryFragment.SHEET_KEY,
+        Bundle args = new Bundle();
+        args.putString(DirectoryFragment.SHEET_KEY,
                 context.getString(R.string.brother_directory_sheet_key));
-        instance.setArguments(broStatusArgs);
+        instance.setArguments(args);
 
         return instance;
     }
@@ -76,10 +98,10 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     public static DirectoryFragment newPledgeDirectoryInstance(Context context) {
         DirectoryFragment instance = new DirectoryFragment();
 
-        Bundle broStatusArgs = new Bundle();
-        broStatusArgs.putString(DirectoryFragment.SHEET_KEY,
+        Bundle args = new Bundle();
+        args.putString(DirectoryFragment.SHEET_KEY,
                 context.getString(R.string.pledge_directory_sheet_key));
-        instance.setArguments(broStatusArgs);
+        instance.setArguments(args);
 
         return instance;
     }
@@ -91,6 +113,10 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
         // Retrieve the arguments passed by the MainActivity
         this.mSheetKey = getArguments().getString(SHEET_KEY);
+
+        // Show Alum option in ActionBar on Brother tab only
+        if (getString(R.string.brother_directory_sheet_key).equals(this.mSheetKey))
+            setHasOptionsMenu(true);
 
         // If possible, retrieve saved data. Otherwise, initialize new list.
         if (savedInstanceState == null) {
@@ -110,6 +136,27 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
         init(savedInstanceState, view);
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.directory, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_show_alumni:
+                showAlumDirectory();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showAlumDirectory() {
+        Intent intent = new Intent(getActivity(), DirectoryActivity.class);
+        intent.putExtra(SHEET_KEY, getString(R.string.alumni_directory_sheet_key));
+        startActivity(intent);
     }
 
     @Override

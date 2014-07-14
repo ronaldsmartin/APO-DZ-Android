@@ -5,10 +5,4 @@
         android:id="@+id/menu_show_alumni"
         android:showAsAction="always|withText"
         android:title="@string/menu_directory_show_alumni" />
-
-    <item
-        android:id="@+id/menu_show_brothers"
-        android:showAsAction="always|withText"
-        android:title="@string/menu_directory_show_students" />
-
 </menu>
