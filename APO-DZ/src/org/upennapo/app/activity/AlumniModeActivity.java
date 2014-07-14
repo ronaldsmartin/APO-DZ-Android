@@ -2,7 +2,6 @@ package org.upennapo.app.activity;
 
 
 import android.app.ActionBar;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,6 +34,7 @@ public class AlumniModeActivity extends FragmentActivity implements ActionBar.On
 
         // Set up the action bar to show a dropdown list.
         final ActionBar actionBar = getActionBar();
+        assert actionBar != null;
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
@@ -53,7 +53,8 @@ public class AlumniModeActivity extends FragmentActivity implements ActionBar.On
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         // Restore the previously serialized current dropdown position.
-        if (savedInstanceState.containsKey(STATE_SELECTED_NAVIGATION_ITEM)) {
+        if (savedInstanceState.containsKey(STATE_SELECTED_NAVIGATION_ITEM)
+                && getActionBar() != null) {
             getActionBar().setSelectedNavigationItem(
                     savedInstanceState.getInt(STATE_SELECTED_NAVIGATION_ITEM));
         }
@@ -84,34 +85,10 @@ public class AlumniModeActivity extends FragmentActivity implements ActionBar.On
                 startActivity(play2048);
                 return true;
 
-            case R.id.menu_send_feedback:
-                final String feedbackFormUrl = getString(R.string.menu_report_bug_url);
-                Intent sendFeedback = new Intent(Intent.ACTION_VIEW, Uri.parse(feedbackFormUrl));
-                startActivity(sendFeedback);
-                return true;
-
             case R.id.menu_about_app:
                 final String githubPageUrl = getString(R.string.menu_about_app_url);
                 Intent openGithubPage = new Intent(Intent.ACTION_VIEW, Uri.parse(githubPageUrl));
                 startActivity(openGithubPage);
-                return true;
-
-            case R.id.menu_rate_app:
-                // Get the package name, removing the suffix if we're in debug mode.
-                String packageName = getPackageName();
-                if (packageName.endsWith(".dev"))
-                    packageName = packageName.substring(0, packageName.length() - 4);
-
-                // Open the app page in the Google Play app or website.
-                Uri uri = Uri.parse("market://details?id=" + packageName);
-                Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-                try {
-                    startActivity(goToMarket);
-                } catch (ActivityNotFoundException e) {
-                    uri = Uri.parse("http://play.google.com/store/apps/details?id=" + packageName);
-                    goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(goToMarket);
-                }
                 return true;
 
             case R.id.menu_switch_mode:

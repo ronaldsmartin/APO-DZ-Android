@@ -2,9 +2,9 @@ package org.upennapo.app.activity;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public static final int NUM_TABS = 5;
     private static final int NUM_TAPS_ACTIVATE = 10;
     private static final String EASTER_EGG_UNLOCKED = "2048_UNLOCKED";
+    private static final String TAG = "MainActivity";
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -168,6 +170,17 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         if (prefs.getBoolean(EASTER_EGG_UNLOCKED, false)) {
             menu.findItem(R.id.menu_play_2048).setVisible(true);
         }
+
+        // Disable switch mode feature for active brothers.
+        try {
+            final String appVersion =
+                    getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+            if (!(appVersion.endsWith("-DEBUG") || LoginActivity.alumIsLoggedIn(this))) {
+                menu.findItem(R.id.menu_switch_mode).setVisible(false);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.v(TAG, e.getMessage());
+        }
         return true;
     }
 
@@ -181,12 +194,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 startActivity(play2048);
                 return true;
 
-            case R.id.menu_send_feedback:
-                final String feedbackFormUrl = getString(R.string.menu_report_bug_url);
-                Intent sendFeedback = new Intent(Intent.ACTION_VIEW, Uri.parse(feedbackFormUrl));
-                startActivity(sendFeedback);
-                return true;
-
             case R.id.menu_about_app:
                 final String githubPageUrl = getString(R.string.menu_about_app_url);
                 Intent openGithubPage = new Intent(Intent.ACTION_VIEW, Uri.parse(githubPageUrl));
@@ -197,24 +204,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 Intent switchMode = new Intent(this, AlumniModeActivity.class);
                 startActivity(switchMode);
                 finish();
-                return true;
-
-            case R.id.menu_rate_app:
-                // Get the package name, removing the suffix if we're in debug mode.
-                String packageName = getPackageName();
-                if (packageName.endsWith(".dev"))
-                    packageName = packageName.substring(0, packageName.length() - 4);
-
-                // Open the app page in the Google Play app or website.
-                Uri uri = Uri.parse("market://details?id=" + packageName);
-                Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-                try {
-                    startActivity(goToMarket);
-                } catch (ActivityNotFoundException e) {
-                    uri = Uri.parse("http://play.google.com/store/apps/details?id=" + packageName);
-                    goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(goToMarket);
-                }
                 return true;
 
             case R.id.menu_switch_user:

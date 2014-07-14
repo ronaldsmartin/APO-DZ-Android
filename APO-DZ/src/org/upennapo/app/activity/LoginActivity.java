@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +33,12 @@ public class LoginActivity extends Activity {
     public static final String LOGOUT_INTENT = "USER_LOGOUT_INTENT";
 
     private static final String ALUM_LOGGED_IN = "ALUM_LOG_IN";
+
+    public static boolean alumIsLoggedIn(Context context) {
+        SharedPreferences prefs =
+                context.getSharedPreferences(context.getString(R.string.app_name), MODE_PRIVATE);
+        return prefs.getBoolean(ALUM_LOGGED_IN, false);
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +105,6 @@ public class LoginActivity extends Activity {
         }
     }
 
-
     private void updateNameLabel() {
         // Change the prefix.
         TextView welcomeLabel = (TextView) findViewById(R.id.login_status);
@@ -131,8 +137,7 @@ public class LoginActivity extends Activity {
     }
 
     private boolean alumIsLoggedIn() {
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
-        return prefs.getBoolean(ALUM_LOGGED_IN, false);
+        return alumIsLoggedIn(this);
     }
 
     private boolean userIsLoggedIn() {
