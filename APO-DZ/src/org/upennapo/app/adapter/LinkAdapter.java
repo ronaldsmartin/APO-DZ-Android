@@ -74,7 +74,9 @@ public class LinkAdapter extends ArrayAdapter<String> {
                 && mDescriptions[position].length() > 0 && itemType != TYPE_HEADER) {
             description.setText(mDescriptions[position]);
             description.setVisibility(View.VISIBLE);
-        } else if (description != null && description.getVisibility() == View.VISIBLE) {
+        } else if (description != null && description.getVisibility() == View.VISIBLE
+                && mDescriptions != null && mDescriptions.length == mTitles.length
+                && mDescriptions[position].length() == 0) {
             description.setVisibility(View.GONE);
         }
 

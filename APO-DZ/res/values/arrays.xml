@@ -12,13 +12,8 @@
     <!-- To make these link somewhere, you need to edit the array "brother_link_targets" below. Just make
          sure that the indices of the items match the indices of the urls. -->
     <string-array name="brother_link_titles">
-        <item>Spreadsheets</item>
-        <item>Brotherhood</item>
-        <item>Pledges</item>
-        <item>Big-Little</item>
-        <item>Food Groups</item>
-
-        <item>Forms</item>
+        <!-- Forms -->
+        <item>@string/form_list_header</item>
         <item>Report a project</item>
         <item>Reflect on service</item>
         <item>Withdraw from a project</item>
@@ -31,32 +26,93 @@
         <item>Send a shoutout</item>
         <item>Tell Board</item>
 
-        <item>Websites</item>
+        <!-- Spreadsheets -->
+        <item>@string/sheet_list_header</item>
+        <item>Brotherhood</item>
+        <item>Pledges</item>
+        <item>Big-Little</item>
+        <item>Food Groups</item>
+
+        <!-- Websites -->
+        <item>@string/site_list_header</item>
         <item>APO Nationals</item>
         <item>Section 92 Home</item>
         <item>UPenn APO</item>
         <item>Service Calendar</item>
         <item>1925 Club</item>
 
-        <item>Social Media</item>
-        <item>Facebook Group</item>
+        <!-- Social Media -->
+        <item>@string/social_list_header</item>
+        <item>DZ Facebook Group</item>
+        <item>Section 92 Facebook Group</item>
+        <item>Region II Facebook Group</item>
         <item>APOut of Context</item>
         <item>Instagram</item>
         <item>Tumblr</item>
         <item>YouTube Channel</item>
         <item>LinkedIn</item>
+
+        <!-- About App -->
+        <item>@string/app_list_header</item>
+        <item>@string/links_app_title_about</item>
+        <item>@string/links_app_title_play_link</item>
+        <item>@string/links_app_title_repo</item>
+        <item>@string/links_app_title_suggestion_box</item>
+    </string-array>
+
+    <!-- Descriptions for Brother Links -->
+    <string-array name="brother_link_descr">
+        <!-- Forms -->
+        <item>@string/link_header_flag</item>
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+
+        <!-- Spreadsheets -->
+        <item>@string/link_header_flag</item>
+        <item />
+        <item />
+        <item />
+        <item />
+
+        <!-- Websites -->
+        <item>@string/link_header_flag</item>
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+
+        <!-- Social Media -->
+        <item>@string/link_header_flag</item>
+        <item />
+        <item />
+        <item />
+        <item>curated by Emma B.</item>
+        <item />
+        <item />
+        <item />
+        <item />
+
+        <!-- About App -->
+        <item>@string/link_header_flag</item>
+        <item>@string/links_app_descr_about</item>
+        <item>@string/links_app_descr_play_link</item>
+        <item>@string/links_app_descr_repo</item>
+        <item>@string/links_app_descr_suggestion_box</item>
     </string-array>
 
     <!-- URIs for Helpful Links -->
     <!-- Make sure that the indices of the items match the indices of their names! -->
     <string-array name="brother_link_targets">
-        <!-- Spreadsheets -->
-        <item>@string/link_header_flag</item>
-        <item>@string/sheet_brothers</item>
-        <item>@string/sheet_pledges</item>
-        <item>@string/sheet_big_little</item>
-        <item>@string/sheet_food_groups</item>
-
         <!-- Forms -->
         <item>@string/link_header_flag</item>
         <item>@string/form_service_reporting</item>
@@ -71,6 +127,13 @@
         <item>@string/form_dz_shoutout</item>
         <item>@string/form_board_feedback</item>
 
+        <!-- Spreadsheets -->
+        <item>@string/link_header_flag</item>
+        <item>@string/sheet_brothers</item>
+        <item>@string/sheet_pledges</item>
+        <item>@string/sheet_big_little</item>
+        <item>@string/sheet_food_groups</item>
+
         <!-- Sites -->
         <item>@string/link_header_flag</item>
         <item>@string/sites_national_homepage</item>
@@ -82,11 +145,20 @@
         <!-- Social Media -->
         <item>@string/link_header_flag</item>
         <item>@string/social_fb_active_group</item>
+        <item>@string/social_fb_section_92</item>
+        <item>@string/social_fb_region_II</item>
         <item>@string/social_apoutofcontext</item>
         <item>@string/social_chapter_instagram</item>
         <item>@string/social_chapter_tumblr</item>
         <item>@string/social_chapter_youtube</item>
         <item>@string/social_chapter_linkedin</item>
+
+        <!-- About App -->
+        <item>@string/link_header_flag</item>
+        <item>@string/app_about</item>
+        <item>@string/app_google_play</item>
+        <item>@string/app_github_source</item>
+        <item>@string/app_suggestion_box</item>
     </string-array>
 
 
@@ -97,11 +169,12 @@
         <item>president@upennapo.org</item>
         <item>developer@upennapo.org</item>
 
-        <item>The App</item>
-        <item>about</item>
-        <item>view on google play</item>
-        <item>sources on gitHub</item>
-        <item>suggest feature/report bug</item>
+        <!-- About app -->
+        <item>@string/app_list_header</item>
+        <item>@string/links_app_title_about</item>
+        <item>@string/links_app_title_play_link</item>
+        <item>@string/links_app_title_repo</item>
+        <item>@string/links_app_title_suggestion_box</item>
 
         <item>Delta Zeta</item>
         <item>upennapo.org</item>
@@ -172,15 +245,17 @@
         <item>alumni relations coordinator</item>
         <item />
         <item>a.k.a. Dean &amp; Ronald \'14</item>
+
         <!-- About App -->
         <item>@string/link_header_flag</item>
-        <item>because even apps have origin stories</item>
-        <item><i>if you like it then you shoulda put some stars on it</i></item>
-        <item>you c0d3? get involved with the project!</item>
-        <item>all feedback is welcome. no flames though</item>
+        <item>@string/links_app_descr_about</item>
+        <item>@string/links_app_descr_play_link</item>
+        <item>@string/links_app_descr_repo</item>
+        <item>@string/links_app_descr_suggestion_box</item>
+
         <!-- Delta Zeta -->
         <item>@string/link_header_flag</item>
-        <item>our charming chapter homepage</item>
+        <item />
         <item>lovingly retired in 2014</item>
         <item>managed by charlie \'12 &amp; nikila \'14</item>
         <item />
@@ -188,17 +263,19 @@
         <item>curated by emma b. \'15</item>
         <item>one day it\'ll happen</item>
         <item>to be featured in the next DZ</item>
+
         <!-- National -->
         <item>@string/link_header_flag</item>
         <item />
         <item>features member lookup, alum discounts, etc.</item>
         <item />
+
         <!-- Facebook -->
         <item>@string/link_header_flag</item>
         <item>main group</item>
         <item>home is where the heart is</item>
         <item>cosmopolitan swag</item>
-        <item>more philly swag</item>
+        <item />
         <item>northeast represent</item>
         <item>this is a page, not a group!</item>
     </string-array>

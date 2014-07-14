@@ -84,7 +84,20 @@
     <string name="form_list_header">Forms</string>
     <string name="site_list_header">Websites</string>
     <string name="social_list_header">Social Media</string>
+    <string name="app_list_header">The App</string>
     <string name="link_header_flag">LINK_HEADER</string>
+
+    <!-- App Section Titles -->
+    <string name="links_app_title_about">about</string>
+    <string name="links_app_title_play_link">view on google play</string>
+    <string name="links_app_title_repo">source on gitHub</string>
+    <string name="links_app_title_suggestion_box">suggest feature/report bug</string>
+
+    <!-- App Section Descriptions -->
+    <string name="links_app_descr_about">because even apps have origin stories</string>
+    <string name="links_app_descr_play_link"><i>if you like it then you shoulda put some stars on it</i></string>
+    <string name="links_app_descr_repo">you c0d3? get involved with the project!</string>
+    <string name="links_app_descr_suggestion_box">all feedback is welcome. no flames though</string>
 
     <!-- Actual Links -->
     <string name="sites_national_homepage">http://apo.org/</string>

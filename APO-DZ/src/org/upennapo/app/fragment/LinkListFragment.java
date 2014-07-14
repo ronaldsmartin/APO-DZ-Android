@@ -39,6 +39,7 @@ public class LinkListFragment extends ListFragment {
     public static LinkListFragment newBrotherLinksInstance(Context context) {
         Bundle args = new Bundle();
         args.putStringArray(TITLES, context.getResources().getStringArray(R.array.brother_link_titles));
+        args.putStringArray(DESCRIPTIONS, context.getResources().getStringArray(R.array.brother_link_descr));
         args.putStringArray(TARGETS, context.getResources().getStringArray(R.array.brother_link_targets));
 
         LinkListFragment instance = new LinkListFragment();
