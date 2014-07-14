@@ -55,18 +55,6 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
         return instance;
     }
 
-    /**
-     * Get the appropriate message resource ID for a completion status
-     *
-     * @param complete - the completion status to get the message for
-     * @return the completion status message for this status
-     */
-    private static int completionStatusStringId(boolean complete) {
-        if (complete)
-            return R.string.req_complete;
-        else return R.string.req_incomplete;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -211,62 +199,68 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
         TextView statusLabel = (TextView) getActivity().findViewById(R.id.status);
         statusLabel.setText(this.mUser.Status);
 
-        TextView allReqStatusLabel = (TextView) getActivity().findViewById(R.id.all_reqs_status);
-        allReqStatusLabel.setText(completionStatusStringId(this.mUser.Complete));
+        updateStatusText(R.id.all_reqs_status, this.mUser.Complete);
     }
 
     /**
      * Update labels associated with the mUser's service status.
      */
     private void updateServiceLabels() {
-        TextView serviceStatusLabel = (TextView) getActivity().findViewById(R.id.service_status);
-        serviceStatusLabel.setText(completionStatusStringId(this.mUser.Service));
+        updateStatusText(R.id.service_status, this.mUser.Service);
 
         TextView serviceHoursLabel = (TextView) getActivity().findViewById(R.id.hours_label);
         serviceHoursLabel.setText(this.mUser.Service_Hours + " of " + this.mUser.Required_Service_Hours);
 
-        TextView largeGroupStatusLabel = (TextView) getActivity().findViewById(R.id.large_group_status);
-        largeGroupStatusLabel.setText(completionStatusStringId(this.mUser.Large_Group_Project));
+        updateStatusText(R.id.large_group_status, this.mUser.Large_Group_Project);
 
-        TextView publicityStatusLabel = (TextView) getActivity().findViewById(R.id.publicity_status);
-        publicityStatusLabel.setText(completionStatusStringId(this.mUser.Publicity));
+        updateStatusText(R.id.publicity_status, this.mUser.Publicity);
 
-        TextView serviceHostingLabel = (TextView) getActivity().findViewById(R.id.service_hosting_status);
-        serviceHostingLabel.setText(completionStatusStringId(this.mUser.Service_Hosting));
+        updateStatusText(R.id.service_hosting_status, this.mUser.Service_Hosting);
     }
 
     /**
      * Update labels associated with the mUser's membership status.
      */
     private void updateMembershipLabels() {
-        TextView membershipStatusLabel = (TextView) getActivity().findViewById(R.id.membership_status);
-        membershipStatusLabel.setText(completionStatusStringId(this.mUser.Membership));
+        updateStatusText(R.id.membership_status, this.mUser.Membership);
 
         TextView membershipPointsLabel = (TextView) getActivity().findViewById(R.id.membership_points);
         membershipPointsLabel.setText(this.mUser.Membership_Points + " of " + this.mUser.Required_Membership_Points);
 
-        TextView brotherCompLabel = (TextView) getActivity().findViewById(R.id.brother_comp);
-        brotherCompLabel.setText(completionStatusStringId(this.mUser.Brother_Comp));
+        updateStatusText(R.id.brother_comp, this.mUser.Brother_Comp);
 
-        TextView pledgeCompLabel = (TextView) getActivity().findViewById(R.id.pledge_comp);
-        pledgeCompLabel.setText(completionStatusStringId(this.mUser.Pledge_Comp));
+        updateStatusText(R.id.pledge_comp, this.mUser.Pledge_Comp);
 
-        TextView allHostingLabel = (TextView) getActivity().findViewById(R.id.membership_hosting);
-        allHostingLabel.setText(completionStatusStringId(this.mUser.Service_Hosting && this.mUser.Fellowship_Hosting));
+        updateStatusText(R.id.membership_hosting,
+                this.mUser.Service_Hosting && this.mUser.Fellowship_Hosting);
     }
 
     /**
      * Update labels associated with the mUser's Fellowship status.
      */
     private void updateFellowshipLabels() {
-        TextView fellowshipStatusLabel = (TextView) getActivity().findViewById(R.id.fellowship_status);
-        fellowshipStatusLabel.setText(completionStatusStringId(this.mUser.Fellowship));
+        updateStatusText(R.id.fellowship_status, this.mUser.Fellowship);
 
         TextView fellowshipPointsLabel = (TextView) getActivity().findViewById(R.id.fellowship_points);
         fellowshipPointsLabel.setText(this.mUser.Fellowship_Points + " of " + this.mUser.Required_Fellowship);
 
-        TextView fellowshipHostingLabel = (TextView) getActivity().findViewById(R.id.fellowship_hosting);
-        fellowshipHostingLabel.setText(completionStatusStringId(this.mUser.Fellowship_Hosting));
+        updateStatusText(R.id.fellowship_hosting, this.mUser.Fellowship_Hosting);
+    }
+
+    /**
+     * Set a TextView's text and color based on a status.
+     *
+     * @param viewId for the TextView to update
+     * @param status that determines how to update the TextView
+     */
+    private void updateStatusText(int viewId, boolean status) {
+        TextView textView = (TextView) getActivity().findViewById(viewId);
+        if (status) {
+            textView.setText(R.string.req_complete);
+            textView.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+        } else {
+            textView.setText(R.string.req_incomplete);
+        }
     }
 
     private class AsyncUserDataLoader extends AsyncTask<String, Void, User> {

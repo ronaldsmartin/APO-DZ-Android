@@ -57,15 +57,15 @@
     <string name="label_no_user_status">Unable to find user status.</string>
 
     <!-- Categories -->
-    <string name="cat_status">Status:</string>
-    <string name="cat_req_completion">Reqs:</string>
-    <string name="cat_service_hours">Hours:</string>
-    <string name="cat_large_group_completion">Large Group:</string>
-    <string name="cat_publicity_completion">Publicity:</string>
-    <string name="cat_hosting_completion">Hosting:</string>
-    <string name="cat_points">Points:</string>
-    <string name="cat_pledge_comp">Pledge Comp.:</string>
-    <string name="cat_bro_comp">Brother Comp.:</string>
+    <string name="cat_status">Status</string>
+    <string name="cat_req_completion">Reqs</string>
+    <string name="cat_service_hours">Hours</string>
+    <string name="cat_large_group_completion">Large Group</string>
+    <string name="cat_publicity_completion">Publicity</string>
+    <string name="cat_hosting_completion">Hosting</string>
+    <string name="cat_points">Points</string>
+    <string name="cat_pledge_comp">Pledge Comp.</string>
+    <string name="cat_bro_comp">Brother Comp.</string>
 
     <!-- Completion Statuses -->
     <string name="req_complete">complete</string>

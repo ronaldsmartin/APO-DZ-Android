@@ -241,6 +241,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         }
 
         setTitle(mSectionsPagerAdapter.getPageTitle(position));
+        tab.setIcon(getSelectedPageIcon(position));
 
         mViewPager.setCurrentItem(position);
     }
