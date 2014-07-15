@@ -61,7 +61,7 @@ public class DataManager {
         if ((!prefs.contains(BrotherStatusFragment.STORAGE_KEY) || forceDownload)
                 && isNetworkAvailable(context)) {
             String jsonString = downloadJsonData(urlString);
-            user = findUserInArray(firstName, lastName, parseSpreadsheetJson(jsonString));
+            user = findUserInArray(context, firstName, lastName, parseSpreadsheetJson(jsonString));
 
             if (user != null) {
                 SharedPreferences.Editor editor = prefs.edit();
@@ -77,18 +77,29 @@ public class DataManager {
     }
 
     /**
-     * Iterate over the array of Users, returning the User with matching firstName and lastName
+     * Iterate over the array of Users, returning the User with matching firstName and lastName and
+     * saving the row number
      *
      * @param firstName of person to find
      * @param lastName  of person to find
      * @param users     array of Users in which to find this person
      * @return the User with name "firstName lastName" or null if no such person exists
      */
-    private static User findUserInArray(String firstName, String lastName, User[] users) {
-        for (User user : users) {
+    private static User findUserInArray(Context context, String firstName, String lastName,
+                                        User[] users) {
+        for (int i = 0; i < users.length; ++i) {
+            User user = users[i];
             if (user.Last_Name.equalsIgnoreCase(lastName) &&
-                    (user.First_Name.equalsIgnoreCase(firstName)))
+                    (user.First_Name.equalsIgnoreCase(firstName))) {
+                SharedPreferences.Editor editor =
+                        context.getSharedPreferences(context.getString(R.string.app_name),
+                                Context.MODE_PRIVATE)
+                                .edit();
+                editor.putInt(BrotherStatusFragment.ROW_KEY, i);
+                editor.apply();
+
                 return user;
+            }
         }
         return null;
     }
@@ -227,6 +238,41 @@ public class DataManager {
         }
 
         return builder.toString();
+    }
+
+    /**
+     * Get the URL for the webpage for a specific row on the Brother spreadsheet.
+     *
+     * @param context used to access string resources
+     * @param sheetId gid for the sheet to get
+     * @return the URL for the user's row page on sheet with sheetId
+     */
+    public static String userSpreadsheetRowUrl(Context context, int sheetId) {
+        final String baseUrl = context.getString(R.string.spreadsheet_row_script),
+                sheetKey = context.getString(R.string.spreadsheet_id);
+
+        int rowNum =
+                context.getSharedPreferences(context.getString(R.string.app_name),
+                        Context.MODE_PRIVATE)
+                        .getInt(BrotherStatusFragment.ROW_KEY, 0);
+
+        // On the membership spreadsheet, we need to go one extra row down.
+        if (sheetId == context.getResources().getInteger(R.integer.spreadsheet_sheet_num_membership))
+            ++rowNum;
+
+        return spreadsheetRowUrl(baseUrl, sheetKey, rowNum, sheetId);
+    }
+
+    /**
+     * Get the URL for the webpage for a specific row on a Google spreadsheet.
+     *
+     * @param rowNum which row to get (zero-indexed by first non-header row)
+     * @param gid    id for the sheet to get
+     * @return the URL for the page for rowNum on the spreadsheet with sheetKey and sheet gid
+     */
+    public static String spreadsheetRowUrl(final String baseUrl, final String sheetKey,
+                                           final int rowNum, final int gid) {
+        return String.format(baseUrl, rowNum, sheetKey, gid);
     }
 
     /**

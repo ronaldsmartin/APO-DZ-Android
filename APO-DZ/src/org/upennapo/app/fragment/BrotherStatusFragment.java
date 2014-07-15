@@ -2,7 +2,9 @@ package org.upennapo.app.fragment;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,10 +21,12 @@ import org.upennapo.app.model.DataManager;
 import org.upennapo.app.model.User;
 
 
-public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
+        View.OnClickListener {
 
     // Constants
     public static final String STORAGE_KEY = "BROTHER_STATUS";
+    public static final String ROW_KEY = "USER_ROW";
     private static final String URL_KEY = "SPREADSHEET_URL";
     private static final String USER_KEY = "USER";
     private static final String FIRST_NAME_KEY = "FIRST_NAME";
@@ -83,6 +87,11 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
                 R.color.apo_blue, R.color.apo_yellow, R.color.apo_blue, R.color.apo_yellow);
         this.mSwipeRefreshLayout.setOnRefreshListener(this);
 
+        // Attach buttons
+        view.findViewById(R.id.btn_show_service_details).setOnClickListener(this);
+        view.findViewById(R.id.btn_show_membership_details).setOnClickListener(this);
+        view.findViewById(R.id.btn_show_fellowship_details).setOnClickListener(this);
+
         init(savedInstanceState, view);
 
         return view;
@@ -133,6 +142,35 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
         outState.putBoolean(TAG_FAILED_SEARCH, mFlagFailedSearch);
 
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onClick(View view) {
+        int sheetId = 0;
+        switch (view.getId()) {
+            case R.id.btn_show_service_details:
+                sheetId = getResources().getInteger(R.integer.spreadsheet_sheet_num_service);
+                break;
+
+            case R.id.btn_show_membership_details:
+                sheetId = getResources().getInteger(R.integer.spreadsheet_sheet_num_membership);
+                break;
+
+            case R.id.btn_show_fellowship_details:
+                sheetId = getResources().getInteger(R.integer.spreadsheet_sheet_num_fellowship);
+                break;
+        }
+        openUserSpreadsheetRow(sheetId);
+    }
+
+    /**
+     * Open the spreadsheet web page for the sheet with sheetId at the current user's row.
+     *
+     * @param sheetId gid for the sheet to open on the brotherhood spreadsheet
+     */
+    private void openUserSpreadsheetRow(int sheetId) {
+        final String url = DataManager.userSpreadsheetRowUrl(getActivity(), sheetId);
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
     }
 
     /**

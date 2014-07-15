@@ -70,6 +70,8 @@
     <string name="req_incomplete">incomplete</string>
     <string name="req_loading">Loading…</string>
 
+    <string name="btn_bro_status_show_details">Show details</string>
+
     <!-- Directories -->
     <!-- Directory Details -->
     <string name="email_dd">e-mail</string>
