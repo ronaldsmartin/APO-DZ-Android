@@ -57,6 +57,8 @@
         <item>@string/links_app_title_about</item>
         <item>@string/links_app_title_play_link</item>
         <item>@string/links_app_title_repo</item>
+        <item>@string/links_app_title_g_plus</item>
+        <item>@string/links_app_title_beta_link</item>
         <item>@string/links_app_title_suggestion_box</item>
     </string-array>
 
@@ -107,6 +109,8 @@
         <item>@string/links_app_descr_about</item>
         <item>@string/links_app_descr_play_link</item>
         <item>@string/links_app_descr_repo</item>
+        <item>@string/links_app_descr_g_plus</item>
+        <item>@string/links_app_descr_beta_link</item>
         <item>@string/links_app_descr_suggestion_box</item>
     </string-array>
 
@@ -158,6 +162,8 @@
         <item>@string/app_about</item>
         <item>@string/app_google_play</item>
         <item>@string/app_github_source</item>
+        <item>@string/app_google_plus</item>
+        <item>@string/app_beta_invite</item>
         <item>@string/app_suggestion_box</item>
     </string-array>
 
@@ -174,6 +180,8 @@
         <item>@string/links_app_title_about</item>
         <item>@string/links_app_title_play_link</item>
         <item>@string/links_app_title_repo</item>
+        <item>@string/links_app_title_g_plus</item>
+        <item>@string/links_app_title_beta_link</item>
         <item>@string/links_app_title_suggestion_box</item>
 
         <item>Delta Zeta</item>
@@ -212,6 +220,8 @@
         <item>@string/app_about</item>
         <item>@string/app_google_play</item>
         <item>@string/app_github_source</item>
+        <item>@string/app_google_plus</item>
+        <item>@string/app_beta_invite</item>
         <item>@string/app_suggestion_box</item>
         <!-- Delta Zeta -->
         <item>@string/link_header_flag</item>
@@ -251,6 +261,8 @@
         <item>@string/links_app_descr_about</item>
         <item>@string/links_app_descr_play_link</item>
         <item>@string/links_app_descr_repo</item>
+        <item>@string/links_app_descr_g_plus</item>
+        <item>@string/links_app_descr_beta_link</item>
         <item>@string/links_app_descr_suggestion_box</item>
 
         <!-- Delta Zeta -->

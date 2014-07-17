@@ -93,12 +93,16 @@
     <string name="links_app_title_about">about</string>
     <string name="links_app_title_play_link">view on google play</string>
     <string name="links_app_title_repo">source on gitHub</string>
+    <string name="links_app_title_g_plus">apo-dz beta</string>
+    <string name="links_app_title_beta_link">opt in/out of app beta</string>
     <string name="links_app_title_suggestion_box">suggest feature/report bug</string>
 
     <!-- App Section Descriptions -->
     <string name="links_app_descr_about">because even apps have origin stories</string>
     <string name="links_app_descr_play_link"><i>if you like it then you shoulda put some stars on it</i></string>
     <string name="links_app_descr_repo">you c0d3? get involved with the project!</string>
+    <string name="links_app_descr_g_plus">google+ community for beta channel</string>
+    <string name="links_app_descr_beta_link">google+ membership required</string>
     <string name="links_app_descr_suggestion_box">all feedback is welcome. no flames though</string>
 
     <!-- Actual Links -->
@@ -125,6 +129,7 @@
     <string name="social_fb_alum_group_nyc">https://www.facebook.com/groups/399467616784608/</string>
     <string name="app_about">http://ronaldsmartin.github.io/APO-DZ-Android/</string>
     <string name="app_google_play">https://play.google.com/store/apps/details?id=org.upennapo.app</string>
+    <string name="app_google_plus">https://plus.google.com/communities/114564304317252202845</string>
     <string name="app_beta_invite">https://play.google.com/apps/testing/org.upennapo.app</string>
     <string name="app_suggestion_box">https://docs.google.com/forms/d/1TvicaFVBNcVgoZbTqXt3YvzY_ds2L0qHhz2LDpi6wDQ/viewform</string>
     <string name="app_github_source">https://github.com/ronaldsmartin/APO-DZ-Android</string>
@@ -132,7 +137,7 @@
     <!-- ...Other -->
     <string name="apo_2048_url">http://games.usvsth3m.com/2048/apo-dz-edition/</string>
     <string name="apo_2048_label">DZ 2048!</string>
-    <string name="apo_2048_unlock_msg">You\'ve unlocked an easter egg! Check Settings to play.</string>
+    <string name="apo_2048_unlock_msg">You\'ve unlocked an easter egg! Click the joypad to play.</string>
 
     <!-- Alumni Mode -->
     <string name="title_activity_alumni_links">DZ Alum Links</string>
