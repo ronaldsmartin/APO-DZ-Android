@@ -8,13 +8,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- Used to download directory and status data over the internet -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Used optionally to call or text directory contacts -->
-    <uses-feature
-        android:name="android.hardware.telephony"
-        android:required="false" />
-
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
