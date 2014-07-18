@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary">
+    android:background="@color/primary"
+    android:fitsSystemWindows="true"
+    tools:context="org.upennapo.app.activity.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +22,14 @@
             android:contentDescription="@string/logo_description"
             android:src="@drawable/apologofull" />
 
+        <View xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="250dp"
+            android:layout_height="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/apo_yellow" />
+
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -27,7 +38,7 @@
             android:fontFamily="sans-serif-condensed"
             android:text="@string/login_screen_title"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/apo_yellow"
+            android:textColor="@android:color/white"
             android:textStyle="bold" />
 
         <TextView

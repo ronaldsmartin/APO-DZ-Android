@@ -12,13 +12,15 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/primary"
         android:visibility="gone">
         <!-- List -->
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipe_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/name_list_footer">
+            android:layout_above="@+id/name_list_footer"
+            android:background="@color/card_backdrop">
 
             <ListView
                 android:id="@+id/name_list"

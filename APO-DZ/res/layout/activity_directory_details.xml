@@ -2,12 +2,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/card_backdrop"
-    android:clickable="true">
+    android:background="@color/primary"
+    android:clickable="true"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/card_backdrop"
         android:orientation="vertical">
 
         <!-- Pledge Class -->
