@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="widgets_accent_color" parent="@style/_widgets_accent_color" />
+
+    <style name="_widgets_accent_color" parent="android:Theme.Holo.Light.DarkActionBar">
+
+        <item name="android:editTextBackground">
+            @drawable/widgets_accent_color_edit_text_holo_light
+        </item>
+
+        <item name="android:textColorHighlight">#99f7b512</item>
+        <item name="android:textSelectHandleLeft">
+            @drawable/widgets_accent_color_text_select_handle_left
+        </item>
+        <item name="android:textSelectHandleRight">
+            @drawable/widgets_accent_color_text_select_handle_right
+        </item>
+        <item name="android:textSelectHandle">
+            @drawable/widgets_accent_color_text_select_handle_middle
+        </item>
+
+        <item name="android:buttonStyle">@style/Buttonwidgets_accent_color</item>
+
+        <item name="android:imageButtonStyle">@style/ImageButtonwidgets_accent_color</item>
+
+        <item name="android:fastScrollThumbDrawable">
+            @drawable/widgets_accent_color_fastscroll_thumb_holo
+        </item>
+
+    </style>
+
+</resources>
