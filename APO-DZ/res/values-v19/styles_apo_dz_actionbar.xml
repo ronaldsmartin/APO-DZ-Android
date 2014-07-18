@@ -17,7 +17,6 @@
 -->
 
 <resources>
-
     <style name="Theme.Apo_dz_actionbar" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarItemBackground">
             @drawable/selectable_background_apo_dz_actionbar
@@ -40,9 +39,10 @@
         <item name="android:actionBarWidgetTheme">@style/Theme.Apo_dz_actionbar.Widget</item>
 
         <!-- Transparency -->
+        <item name="android:windowBackground">@color/primary</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
-
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 
     <style name="ActionBar.Solid.Apo_dz_actionbar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
