@@ -6,7 +6,7 @@
     -->
 
     <!-- LoginActivity Layout -->
-    <dimen name="logo_padding_top">50dp</dimen>
+    <dimen name="logo_padding_top">60dp</dimen>
     <dimen name="logo_padding_bottom">30dp</dimen>
     <dimen name="logo_padding_sides">80dp</dimen>
     <dimen name="logo_divider_padding_sides">120dp</dimen>

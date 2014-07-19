@@ -7,7 +7,6 @@
     android:fitsSystemWindows="true"
     android:gravity="center_horizontal"
     android:paddingBottom="@dimen/logo_padding_bottom"
-    android:paddingTop="@dimen/logo_padding_top"
     tools:context=".activity.LoginActivity">
 
     <!-- Logo (Header) -->
@@ -17,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="@dimen/logo_padding_top"
         android:adjustViewBounds="true"
         android:contentDescription="@string/logo_description"
         android:paddingLeft="@dimen/logo_padding_sides"
