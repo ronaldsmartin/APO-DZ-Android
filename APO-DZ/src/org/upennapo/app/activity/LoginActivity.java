@@ -109,21 +109,16 @@ public class LoginActivity extends Activity {
         // Change the prefix.
         TextView welcomeLabel = (TextView) findViewById(R.id.login_status);
         if (hasUsername()) {
-            welcomeLabel.setText(R.string.login_status_logged_in);
-
             // Add the name.
-            TextView nameLabel = (TextView) findViewById(R.id.name);
             SharedPreferences prefs =
                     getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
             String firstName = prefs.getString(USER_FIRSTNAME_KEY, "");
             String lastName = prefs.getString(USER_LASTNAME_KEY, "");
-            nameLabel.setText(" " + firstName + " " + lastName);
+            final String newText =
+                    getString(R.string.login_status_logged_in) + " " + firstName + " " + lastName;
+            welcomeLabel.setText(newText);
         } else if (alumIsLoggedIn()) {
-            welcomeLabel.setText(R.string.login_status_logged_in);
-
-            // Add "as alumni".
-            TextView nameLabel = (TextView) findViewById(R.id.name);
-            nameLabel.setText(" alum.");
+            welcomeLabel.setText(R.string.login_status_logged_in_alum);
         } else {
             resetNameLabel();
         }
@@ -132,8 +127,6 @@ public class LoginActivity extends Activity {
     private void resetNameLabel() {
         TextView welcomeLabel = (TextView) findViewById(R.id.login_status);
         welcomeLabel.setText(R.string.login_status_logged_out);
-        TextView nameLabel = (TextView) findViewById(R.id.name);
-        nameLabel.setText("");
     }
 
     private boolean alumIsLoggedIn() {

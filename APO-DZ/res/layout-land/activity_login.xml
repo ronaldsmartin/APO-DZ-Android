@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:orientation="horizontal"
+    tools:context=".activity.LoginActivity">
+
+    <!-- Logo (Left) -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/logo_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/logo_description"
+            android:paddingLeft="@dimen/logo_padding_sides"
+            android:paddingRight="@dimen/logo_padding_sides"
+            android:src="@drawable/apologofull" />
+
+        <View xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="@dimen/logo_divider_padding_sides"
+            android:layout_marginRight="@dimen/logo_divider_padding_sides"
+            android:background="@color/apo_yellow" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/login_screen_title"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/logo_subtitle"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <!-- Content (Right) -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/welcome_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/welcome_message"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/welcome_text_size" />
+
+        <TextView
+            android:id="@id/login_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:paddingBottom="10dp"
+            android:text="@string/login_status_logged_out"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/login_status_text_size" />
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="sans-serif-thin"
+            android:onClick="login"
+            android:padding="16dp"
+            android:text="@string/login_button"
+            android:textSize="@dimen/login_status_text_size" />
+
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:onClick="logout"
+            android:padding="16dp"
+            android:text="@string/logout_button"
+            android:textSize="@dimen/login_status_text_size"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</LinearLayout>

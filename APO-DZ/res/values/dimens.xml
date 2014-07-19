@@ -12,4 +12,15 @@
     <dimen name="text_size_dd">15sp</dimen>
     <dimen name="navigation_drawer_width">240dp</dimen>
 
+    <!-- LoginActivity Layout -->
+    <dimen name="logo_padding_top">20dp</dimen>
+    <dimen name="logo_padding_bottom">10dp</dimen>
+    <dimen name="logo_padding_sides">30dp</dimen>
+    <dimen name="logo_divider_padding_sides">45dp</dimen>
+    <dimen name="logo_subtitle">28sp</dimen>
+
+    <dimen name="welcome_text_size">24sp</dimen>
+    <dimen name="login_status_text_size">18sp</dimen>
+    <dimen name="login_btn_text_size">20sp</dimen>
+
 </resources>
