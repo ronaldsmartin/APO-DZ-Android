@@ -12,6 +12,10 @@
     <color name="primary">#01579b</color>
     <color name="primary_light">#0288d1</color>
     <color name="primary_dark">#00345c</color>
+    <!-- Alumni Directory Toolbar adds 25% transparency to the primary color. -->
+    <!-- via http://stackoverflow.com/questions/11285961/how-to-make-a-background-transparent-20-in-android -->
+    <color name="primary_translucent">#D901579b</color>
+
     <color name="accent">#ffc400</color>
     <color name="accent_fallback_lightest">#ffe57f</color>
     <color name="accent_fallback_light">#ffd740</color>

@@ -8,20 +8,19 @@
     tools:context="org.upennapo.app.fragment.AlumDirectoryFragment">
 
     <!-- Content -->
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary"
         android:visibility="gone">
         <!-- List -->
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipe_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/name_list_footer"
             android:background="@color/card_backdrop">
 
+            <!-- TODO: change padding after quick return is implemented -->
             <ListView
                 android:id="@+id/name_list"
                 android:layout_width="match_parent"
@@ -30,20 +29,20 @@
                 android:clipToPadding="false"
                 android:fastScrollAlwaysVisible="true"
                 android:fastScrollEnabled="true"
-                android:paddingBottom="8dp"
+                android:paddingBottom="48dp"
                 android:paddingStart="16dp"
-                android:paddingTop="8dp"
+                android:paddingTop="@dimen/list_padding_vertical"
                 android:scrollbarStyle="insideInset"
                 android:scrollbars="vertical" />
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <!-- Footer -->
         <LinearLayout
-            android:id="@id/name_list_footer"
+            android:id="@+id/name_list_footer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@color/primary"
+            android:layout_gravity="bottom"
+            android:background="@color/primary_translucent"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -53,9 +52,16 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Alumni"
+                android:text="@string/btn_am_alum_dir_show_alumni"
                 android:textAllCaps="true"
                 android:textColor="@color/accent_fallback_light" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/item_padding_default"
+                android:layout_marginTop="@dimen/item_padding_default"
+                android:background="@color/card_backdrop" />
 
             <Button
                 android:id="@+id/btn_show_students"
@@ -63,12 +69,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Students"
+                android:text="@string/btn_am_alum_dir_show_students"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>
-    </RelativeLayout>
+    </FrameLayout>
 
     <!-- Loading Progress Indicator -->
     <ProgressBar
@@ -86,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-thin"
-        android:text="Reload"
+        android:text="@string/btn_reload"
         android:visibility="gone" />
 
 </FrameLayout>

@@ -3,6 +3,7 @@
 
     <string name="app_name">APO-DZ</string>
     <string name="no_internet_toast_msg">Oops(ilon), there\'s no internet! Try again later.</string>
+    <string name="btn_reload">Reload</string>
 
     <!-- Menu Options -->
     <string name="menu_switch_user">Sign out</string>
@@ -15,6 +16,7 @@
     <string name="menu_switch_mode">Switch mode</string>
     <string name="menu_directory_show_alumni">Alum</string>
     <string name="menu_directory_show_students">Students</string>
+    <string name="menu_directory_update_form">Update your info</string>
 
     <!-- Title Screen -->
     <string name="login_screen_title"><b>DELTA ZETA CHAPTER</b></string>
@@ -141,16 +143,14 @@
     <string name="apo_2048_unlock_msg">You\'ve unlocked an easter egg! Click the joypad to play.</string>
 
     <!-- Alumni Mode -->
-    <string name="title_activity_alumni_links">DZ Alum Links</string>
     <!-- I henceforth declare that 'am' will signify alumni mode -->
     <string name="title_activity_alumni_mode">APO-DZ-Alum</string>
+
     <string name="title_am_section1">Directory</string>
     <string name="title_am_section2">@string/title_section2</string>
     <string name="title_am_section3">Resources</string>
-    <string name="title_item_list">Items</string>
-    <string name="title_item_detail">Item Detail</string>
-    <string name="title_activity_my">MyActivity</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+
+    <string name="btn_am_alum_dir_show_alumni">alumni</string>
+    <string name="btn_am_alum_dir_show_students">students</string>
 
 </resources>

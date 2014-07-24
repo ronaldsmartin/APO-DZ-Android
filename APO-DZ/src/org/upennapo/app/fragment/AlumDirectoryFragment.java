@@ -61,7 +61,6 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(false);
 
         // If possible, retrieve saved data. Otherwise, initialize new lists.
         if (savedInstanceState == null) {
@@ -157,21 +156,37 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_show_alum:
-                if (getAdapter() != null && getAdapter().getCount() != mAlumList.size()) {
-                    setDirectoryList(mAlumList);
-                    updateListView();
-                    mShowAlumBtn.setTextColor(getResources().getColor(R.color.accent_fallback_light));
-                    mShowStudentBtn.setTextColor(getResources().getColor(android.R.color.white));
-                }
+                switchToAlumList();
                 break;
             case R.id.btn_show_students:
-                if (getAdapter() != null && getAdapter().getCount() != mStudentList.size()) {
-                    setDirectoryList(mStudentList);
-                    updateListView();
-                    mShowStudentBtn.setTextColor(getResources().getColor(R.color.accent_fallback_light));
-                    mShowAlumBtn.setTextColor(getResources().getColor(android.R.color.white));
-                }
+                switchToStudentList();
                 break;
+        }
+    }
+
+    /**
+     * If we are currently displaying the student directory, switch to show the alumni directory and
+     * change button colors accordingly.
+     */
+    private void switchToAlumList() {
+        if (getAdapter() != null && getAdapter().getCount() != mAlumList.size()) {
+            setDirectoryList(mAlumList);
+            updateListView();
+            mShowAlumBtn.setTextColor(getResources().getColor(R.color.accent_fallback_light));
+            mShowStudentBtn.setTextColor(getResources().getColor(android.R.color.white));
+        }
+    }
+
+    /**
+     * If we are currently displaying the alumni directory, switch to show the student directory and
+     * change button colors accordingly.
+     */
+    private void switchToStudentList() {
+        if (getAdapter() != null && getAdapter().getCount() != mStudentList.size()) {
+            setDirectoryList(mStudentList);
+            updateListView();
+            mShowStudentBtn.setTextColor(getResources().getColor(R.color.accent_fallback_light));
+            mShowAlumBtn.setTextColor(getResources().getColor(android.R.color.white));
         }
     }
 }

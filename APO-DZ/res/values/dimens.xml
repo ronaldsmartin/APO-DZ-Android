@@ -4,12 +4,9 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="helpful_links_header_size">30sp</dimen>
-    <dimen name="brother_detail_margin">10dip</dimen>
-    <dimen name="brother_detail_marginx2">20dip</dimen>
-    <dimen name="left_margin_dd">15dip</dimen>
+    <dimen name="list_padding_vertical">8dp</dimen>
+    <dimen name="item_padding_default">16dp</dimen>
     <dimen name="button_text_size">13sp</dimen>
-    <dimen name="text_size_dd">15sp</dimen>
     <dimen name="navigation_drawer_width">240dp</dimen>
 
     <!-- LoginActivity Layout -->
