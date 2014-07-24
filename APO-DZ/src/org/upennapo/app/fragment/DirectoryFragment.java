@@ -43,6 +43,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     private ArrayList<Brother> mDirectoryList;
 
     private AlphabeticalAdapter mAdapter;
+
     private ListView mListView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private View mProgressBar, mReloadButton;
@@ -191,7 +192,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
         // Set up PullToRefresh.
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
-        mSwipeRefreshLayout.setColorScheme(
+        mSwipeRefreshLayout.setColorSchemeResources(
                 R.color.apo_blue, R.color.apo_yellow, R.color.apo_blue, R.color.apo_yellow);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
@@ -283,6 +284,10 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
     public View getProgressBar() {
         return mProgressBar;
+    }
+
+    public ListView getListView() {
+        return mListView;
     }
 
     /**

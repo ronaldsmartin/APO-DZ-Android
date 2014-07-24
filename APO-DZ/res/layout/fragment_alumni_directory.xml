@@ -11,7 +11,7 @@
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:visibility="gone">
         <!-- List -->
         <android.support.v4.widget.SwipeRefreshLayout
@@ -20,16 +20,16 @@
             android:layout_height="match_parent"
             android:background="@color/card_backdrop">
 
-            <!-- TODO: change padding after quick return is implemented -->
             <ListView
                 android:id="@+id/name_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:clipToPadding="false"
                 android:fastScrollAlwaysVisible="true"
                 android:fastScrollEnabled="true"
-                android:paddingBottom="48dp"
+                android:footerDividersEnabled="false"
+                android:paddingBottom="@dimen/list_padding_vertical"
                 android:paddingStart="16dp"
                 android:paddingTop="@dimen/list_padding_vertical"
                 android:scrollbarStyle="insideInset"
@@ -38,7 +38,7 @@
 
         <!-- Footer -->
         <LinearLayout
-            android:id="@+id/name_list_footer"
+            android:id="@+id/quick_return_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
