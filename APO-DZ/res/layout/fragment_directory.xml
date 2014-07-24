@@ -21,9 +21,9 @@
             android:descendantFocusability="blocksDescendants"
             android:fastScrollAlwaysVisible="true"
             android:fastScrollEnabled="true"
-            android:paddingBottom="8dp"
+            android:paddingBottom="@dimen/list_padding_vertical"
             android:paddingStart="16dp"
-            android:paddingTop="8dp"
+            android:paddingTop="@dimen/list_padding_vertical"
             android:scrollbarStyle="outsideInset"
             android:scrollbars="vertical" />
     </android.support.v4.widget.SwipeRefreshLayout>
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-thin"
-        android:text="Reload"
+        android:text="@string/btn_reload"
         android:visibility="gone" />
 
 </FrameLayout>
