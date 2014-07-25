@@ -57,11 +57,11 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
     /**
      * Animates the quick return bar off of the screen
      */
-    private ObjectAnimator mQuickReturnBarHideAnimator;
+    private ObjectAnimator mQuickReturnBarReturnAnimator;
     /**
      * Animates the quick return bar onto the screen
      */
-    private ObjectAnimator mQuickReturnBarReturnAnimator;
+    private ObjectAnimator mQuickReturnBarHideAnimator;
 
     /**
      * Returns new instance of AlumDirectoryFragment with arguments set.
@@ -244,10 +244,11 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
         final View quickReturnBar = rootView.findViewById(R.id.quick_return_bar);
         final String animationPropertyName = "translationY";
 
-        mQuickReturnBarReturnAnimator =
+        mQuickReturnBarHideAnimator =
                 ObjectAnimator.ofFloat(quickReturnBar, animationPropertyName, 0)
-                        .setDuration(64);
-        mQuickReturnBarReturnAnimator.addListener(new Animator.AnimatorListener() {
+                        .setDuration(210);
+
+        mQuickReturnBarHideAnimator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
                 mQuickReturnState = QuickReturnState.RETURNING;
@@ -268,9 +269,12 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
             }
         });
 
-        mQuickReturnBarHideAnimator = ObjectAnimator.ofFloat(quickReturnBar, animationPropertyName,
-                getResources().getDimension(R.dimen.quick_return_bar_height));
-        mQuickReturnBarHideAnimator.addListener(new Animator.AnimatorListener() {
+        mQuickReturnBarReturnAnimator =
+                ObjectAnimator.ofFloat(quickReturnBar,
+                        animationPropertyName,
+                        getResources().getDimension(R.dimen.quick_return_bar_height))
+                        .setDuration(128);
+        mQuickReturnBarReturnAnimator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
                 mQuickReturnState = QuickReturnState.HIDING;
@@ -302,9 +306,8 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
      * @return {@code true} indicates that the quick return bar is returning
      */
     private boolean quickReturnBarIsReturning() {
-        return mQuickReturnBarReturnAnimator != null
-                && (mQuickReturnBarReturnAnimator.isRunning()
-                || mQuickReturnBarReturnAnimator.isStarted());
+        return (mQuickReturnBarHideAnimator.isRunning()
+                || mQuickReturnBarHideAnimator.isStarted());
     }
 
     /**
@@ -313,8 +316,8 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
      * @return {@code true} indicates that the quick return bar is going away
      */
     private boolean quickReturnBarIsGoingAway() {
-        return mQuickReturnBarHideAnimator.isRunning()
-                || mQuickReturnBarHideAnimator.isStarted();
+        return mQuickReturnBarReturnAnimator.isRunning()
+                || mQuickReturnBarReturnAnimator.isStarted();
     }
 
     @Override
@@ -327,34 +330,36 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
             case OFF_SCREEN:
                 if (!quickReturnBarIsReturning()
                         && (firstVisibleItem == mLastFirstVisibleItemIndex && firstChildY > mLastFirstVisibleChildYPos)
-                        || firstVisibleItem < mLastFirstVisibleItemIndex)
-                    mQuickReturnBarReturnAnimator.start();
-                Log.d(TAG, "Return animation started.");
+                        || firstVisibleItem < mLastFirstVisibleItemIndex) {
+                    mQuickReturnBarHideAnimator.start();
+                    Log.d(TAG, "Hide animation started.");
+                }
                 break;
 
             case ON_SCREEN:
                 if (!quickReturnBarIsGoingAway()
                         && (firstVisibleItem == mLastFirstVisibleItemIndex && firstChildY < mLastFirstVisibleChildYPos)
-                        || firstVisibleItem > mLastFirstVisibleItemIndex)
-                    mQuickReturnBarHideAnimator.start();
-                Log.d(TAG, "Hide animation started.");
+                        || firstVisibleItem > mLastFirstVisibleItemIndex) {
+                    mQuickReturnBarReturnAnimator.start();
+                    Log.d(TAG, "Return animation started.");
+                }
                 break;
 
             case RETURNING:
                 if ((firstVisibleItem == mLastFirstVisibleItemIndex && firstChildY < mLastFirstVisibleChildYPos)
                         || firstVisibleItem > mLastFirstVisibleItemIndex) {
-                    mQuickReturnBarReturnAnimator.cancel();
-                    mQuickReturnBarHideAnimator.start();
-                    Log.d(TAG, "Hide animation started.");
+                    mQuickReturnBarHideAnimator.cancel();
+                    mQuickReturnBarReturnAnimator.start();
+                    Log.d(TAG, "Return cancelled, hide animation started.");
                 }
                 break;
 
             case HIDING:
                 if ((firstVisibleItem == mLastFirstVisibleItemIndex && firstChildY > mLastFirstVisibleChildYPos)
                         || firstVisibleItem < mLastFirstVisibleItemIndex) {
-                    mQuickReturnBarHideAnimator.cancel();
-                    mQuickReturnBarReturnAnimator.start();
-                    Log.d(TAG, "Return animation started.");
+                    mQuickReturnBarReturnAnimator.cancel();
+                    mQuickReturnBarHideAnimator.start();
+                    Log.d(TAG, "Hide cancelled, return animation started.");
                 }
                 break;
         }
