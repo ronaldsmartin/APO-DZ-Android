@@ -266,7 +266,12 @@
                             android:textColor="@android:color/holo_red_light" />
                     </LinearLayout>
 
-                    <include layout="@layout/card_item_divider" />
+                    <include
+                        layout="@layout/card_item_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp" />
 
                     <Button
                         android:id="@+id/btn_show_service_details"
@@ -427,7 +432,12 @@
                             android:textColor="@android:color/holo_red_light" />
                     </LinearLayout>
 
-                    <include layout="@layout/card_item_divider" />
+                    <include
+                        layout="@layout/card_item_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp" />
 
                     <Button
                         android:id="@+id/btn_show_membership_details"
@@ -538,7 +548,12 @@
                             android:textColor="@android:color/holo_red_light" />
                     </LinearLayout>
 
-                    <include layout="@layout/card_item_divider" />
+                    <include
+                        layout="@layout/card_item_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp" />
 
                     <Button
                         android:id="@+id/btn_show_fellowship_details"

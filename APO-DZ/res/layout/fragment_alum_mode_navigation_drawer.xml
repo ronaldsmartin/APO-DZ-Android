@@ -1,9 +1,87 @@
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#cccc"
-    android:choiceMode="singleChoice"
-    android:divider="@android:color/transparent"
-    android:dividerHeight="0dp"
-    tools:context="org.upennapo.app.fragment.NavigationDrawerFragment" />
+    android:background="@color/card_backdrop"
+    android:orientation="vertical"
+    tools:context="org.upennapo.app.fragment.NavigationDrawerFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_light"
+        android:padding="16dp"
+        android:text="Alumni Mode"
+        android:textColor="@android:color/white"
+        android:textSize="30sp" />
+
+    <ListView
+        android:id="@+id/navigation_drawer_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:choiceMode="singleChoice"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:paddingBottom="@dimen/list_padding_vertical"
+        android:paddingTop="@dimen/list_padding_vertical" />
+
+    <include
+        layout="@layout/card_item_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <Button
+        android:id="@+id/btn_about"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:padding="16dp"
+        android:text="About"
+        android:textAllCaps="true"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="12sp" />
+
+    <include
+        layout="@layout/card_item_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <Button
+        android:id="@+id/btn_switch_modes"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:padding="16dp"
+        android:text="Switch modes"
+        android:textAllCaps="true"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="12sp" />
+
+    <include
+        layout="@layout/card_item_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <Button
+        android:id="@+id/btn_sign_out"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:padding="16dp"
+        android:text="Sign out"
+        android:textAllCaps="true"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="12sp" />
+
+    <include
+        layout="@layout/card_item_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+</LinearLayout>
+

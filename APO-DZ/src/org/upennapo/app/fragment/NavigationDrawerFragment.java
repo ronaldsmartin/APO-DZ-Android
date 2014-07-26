@@ -3,8 +3,11 @@ package org.upennapo.app.fragment;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -20,15 +23,18 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.upennapo.app.R;
+import org.upennapo.app.activity.LoginActivity;
+import org.upennapo.app.activity.MainActivity;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class NavigationDrawerFragment extends Fragment implements View.OnClickListener {
 
     /**
      * Remember the position of the selected item.
@@ -56,6 +62,7 @@ public class NavigationDrawerFragment extends Fragment {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerListView;
     private View mFragmentContainerView;
+    private TextView mLastCheckedItem;
 
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
@@ -95,8 +102,16 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mDrawerListView = (ListView) inflater.inflate(
-                R.layout.fragment_alum_mode_navigation_drawer, container, false);
+        View rootView =
+                inflater.inflate(R.layout.fragment_alum_mode_navigation_drawer, container, false);
+
+        // Attach buttons.
+        rootView.findViewById(R.id.btn_about).setOnClickListener(this);
+        rootView.findViewById(R.id.btn_switch_modes).setOnClickListener(this);
+        rootView.findViewById(R.id.btn_sign_out).setOnClickListener(this);
+
+        // Set up drawer list items.
+        mDrawerListView = (ListView) rootView.findViewById(R.id.navigation_drawer_items);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -104,15 +119,25 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
-
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
-                getActionBar().getThemedContext(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                mDrawerTitles));
+        // Set adapter for nav bar, using dependency injection to bold the currently selected item.
+        mDrawerListView.setAdapter(new ArrayAdapter<String>(getActivity(),
+                R.layout.item_nav_drawer, R.id.text1, mDrawerTitles) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView textView = (TextView) super.getView(position, convertView, parent);
+                if (mCurrentSelectedPosition == position) {
+                    textView.setTypeface(Typeface.DEFAULT_BOLD);
+                    textView.setTextColor(getResources().getColor(R.color.primary_dark));
+                } else {
+                    textView.setTypeface(Typeface.DEFAULT);
+                    textView.setTextColor(getResources().getColor(android.R.color.primary_text_light));
+                }
+                return textView;
+            }
+        });
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
-        return mDrawerListView;
+        return rootView;
     }
 
     public boolean isDrawerOpen() {
@@ -256,6 +281,30 @@ public class NavigationDrawerFragment extends Fragment {
 
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_about:
+                final String githubPageUrl = getString(R.string.menu_about_app_url);
+                Intent openGithubPage = new Intent(Intent.ACTION_VIEW, Uri.parse(githubPageUrl));
+                startActivity(openGithubPage);
+                break;
+
+            case R.id.btn_switch_modes:
+                Intent switchMode = new Intent(getActivity(), MainActivity.class);
+                startActivity(switchMode);
+                getActivity().finish();
+                break;
+
+            case R.id.btn_sign_out:
+                Intent openLoginScreen = new Intent(getActivity(), LoginActivity.class);
+                openLoginScreen.putExtra(LoginActivity.LOGOUT_INTENT, true);
+                startActivity(openLoginScreen);
+                getActivity().finish();
+                break;
         }
     }
 
