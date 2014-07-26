@@ -4,13 +4,15 @@
 
     <item
         android:id="@+id/menu_show_alumni"
+        android:icon="@drawable/ic_action_alum"
         android:showAsAction="always|withText"
         android:title="@string/menu_directory_show_alumni"
         android:visible="false" />
 
     <item
         android:id="@+id/menu_directory_update_form"
-        android:showAsAction="never"
+        android:icon="@drawable/ic_action_drive_form"
+        android:showAsAction="ifRoom|withText"
         android:title="@string/menu_directory_update_form" />
 
 </menu>

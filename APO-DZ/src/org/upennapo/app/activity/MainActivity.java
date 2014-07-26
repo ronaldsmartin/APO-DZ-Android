@@ -62,15 +62,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         switch (position) {
             case 0:
                 // Brother Status
-                iconID = R.drawable.ic_action_tick;
+                iconID = R.drawable.ic_tab_user;
                 break;
             case 1:
                 // Calendar
-                iconID = R.drawable.ic_action_calendar_day;
+                iconID = R.drawable.ic_tab_calendar_day;
                 break;
             case 2:
                 // Brother Directory
-                iconID = R.drawable.ic_action_users;
+                iconID = R.drawable.ic_tab_people;
                 break;
             case 3:
                 // Pledge Directory
@@ -78,7 +78,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 break;
             case 4:
                 // Helpful Links
-                iconID = R.drawable.ic_action_bookmark;
+                iconID = R.drawable.ic_tab_bookmark;
                 break;
         }
         return iconID;
@@ -95,15 +95,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         switch (position) {
             case 0:
                 // Brother Status
-                iconID = R.drawable.ic_action_tick_selected;
+                iconID = R.drawable.ic_tab_user_selected;
                 break;
             case 1:
                 // Calendar
-                iconID = R.drawable.ic_action_calendar_day_selected;
+                iconID = R.drawable.ic_tab_calendar_day_selected;
                 break;
             case 2:
                 // Brother Directory
-                iconID = R.drawable.ic_action_users_selected;
+                iconID = R.drawable.ic_tab_people_selected;
                 break;
             case 3:
                 // Pledge Directory
@@ -111,7 +111,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 break;
             case 4:
                 // Helpful Links
-                iconID = R.drawable.ic_action_bookmark_selected;
+                iconID = R.drawable.ic_tab_bookmark_selected;
                 break;
         }
         return iconID;

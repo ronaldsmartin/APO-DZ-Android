@@ -27,4 +27,53 @@
         <item name="android:background">@color/apo_blue</item>
     </style>
 
+    <!-- Brother Status -->
+    <style name="BrotherStatusHeader" parent="@android:style/TextAppearance.Large">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@color/accent_fallback_dark</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="BrotherStatusCategory" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:textColor">@android:color/tertiary_text_light</item>
+    </style>
+
+    <style name="BrotherStatusValue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:textColor">@color/primary_light</item>
+    </style>
+
+    <style name="BrotherStatusValue.Boolean">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+    </style>
+
+    <style name="CardSectionDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+
+    <style name="BtnBrotherStatusDetails" parent="@android:style/Widget.Holo.Button.Borderless">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textColor">@color/primary_light</item>
+    </style>
+
+    <style name="BtnBrotherStatusDetails.WithIcon">
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:drawableLeft">@drawable/ic_action_drive_spreadsheet</item>
+    </style>
+
 </resources>

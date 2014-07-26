@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Brother Status -->
+    <style name="BrotherStatusHeader" parent="@android:style/TextAppearance.Large">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@color/accent_fallback_dark</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="BtnBrotherStatusDetails.WithIcon">
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:drawableStart">@drawable/ic_action_drive_spreadsheet</item>
+    </style>
+
+</resources>
