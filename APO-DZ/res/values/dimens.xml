@@ -6,6 +6,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="list_padding_vertical">8dp</dimen>
     <dimen name="item_padding_default">16dp</dimen>
+    <dimen name="navigation_drawer_width">240dp</dimen>
 
     <!-- LoginActivity Layout -->
     <dimen name="logo_padding_top">20dp</dimen>
@@ -13,11 +14,9 @@
     <dimen name="logo_padding_sides">30dp</dimen>
     <dimen name="logo_divider_padding_sides">45dp</dimen>
     <dimen name="logo_subtitle">28sp</dimen>
-
     <dimen name="welcome_text_size">24sp</dimen>
     <dimen name="login_status_text_size">18sp</dimen>
     <dimen name="login_btn_text_size">20sp</dimen>
-
     <dimen name="quick_return_bar_height">48dp</dimen>
 
 </resources>

@@ -6,6 +6,7 @@
     <string name="btn_reload">Reload</string>
 
     <!-- Menu Options -->
+    <string name="action_settings">Settings</string>
     <string name="menu_switch_user">Sign out</string>
     <string name="menu_report_bug">Send feedback</string>
     <string name="menu_about_app">About</string>
@@ -72,7 +73,6 @@
     <string name="req_complete">complete</string>
     <string name="req_incomplete">incomplete</string>
     <string name="req_loading">Loading…</string>
-
     <string name="btn_bro_status_show_details">Show details</string>
 
     <!-- Directories -->
@@ -139,18 +139,23 @@
 
     <!-- ...Other -->
     <string name="apo_2048_url">http://games.usvsth3m.com/2048/apo-dz-edition/</string>
-    <string name="apo_2048_label">DZ 2048!</string>
+    <string name="apo_2048_label">DZ 2048</string>
     <string name="apo_2048_unlock_msg">You\'ve unlocked an easter egg! Click the joypad to play.</string>
 
     <!-- Alumni Mode -->
     <!-- I henceforth declare that 'am' will signify alumni mode -->
     <string name="title_activity_alumni_mode">APO-DZ-Alum</string>
-
     <string name="title_am_section1">Directory</string>
     <string name="title_am_section2">@string/title_section2</string>
     <string name="title_am_section3">Resources</string>
+    <string name="title_am_section4">@string/apo_2048_label</string>
 
+    <!-- AlumDirectory quick-return directory toggle bar-->
     <string name="btn_am_alum_dir_show_alumni">alumni</string>
     <string name="btn_am_alum_dir_show_students">students</string>
+
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 </resources>

@@ -201,7 +201,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 return true;
 
             case R.id.menu_switch_mode:
-                Intent switchMode = new Intent(this, AlumniModeActivity.class);
+                Intent switchMode = new Intent(this, AlumModeActivity.class);
                 startActivity(switchMode);
                 finish();
                 return true;

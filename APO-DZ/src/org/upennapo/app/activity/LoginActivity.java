@@ -150,7 +150,7 @@ public class LoginActivity extends Activity {
     }
 
     private void proceedToAlumApp() {
-        Intent openAppIntent = new Intent(this, AlumniModeActivity.class);
+        Intent openAppIntent = new Intent(this, AlumModeActivity.class);
         startActivity(openAppIntent);
         finish();
     }
