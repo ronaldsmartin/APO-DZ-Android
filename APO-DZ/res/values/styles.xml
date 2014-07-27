@@ -1,32 +1,5 @@
 <resources>
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
-    </style>
-
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style>
-
-    <!-- the theme applied to the application or activity -->
-    <style name="CustomActionBarTheme" parent="android:style/Theme.Holo.Light.DarkActionBar">
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
-    </style>
-
-    <!-- ActionBar styles -->
-    <style name="MyActionBar" parent="android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/apo_blue</item>
-    </style>
-
     <!-- Brother Status -->
     <style name="BrotherStatusHeader" parent="@android:style/TextAppearance.Large">
         <item name="android:layout_width">match_parent</item>
@@ -75,5 +48,71 @@
         <item name="android:layout_marginLeft">4dp</item>
         <item name="android:drawableLeft">@drawable/ic_action_drive_spreadsheet</item>
     </style>
+
+
+    <!-- Directory -->
+    <style name="DirectoryItemText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+
+    <style name="DirectoryItemText.Name">
+        <item name="android:textColor">@color/primary_dark</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="DirectoryItemText.Subtitle">
+        <item name="android:textColor">@android:color/secondary_text_light</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="DirectoryItemText.Phone">
+        <item name="android:autoLink">phone</item>
+        <item name="android:textColorLink">@color/primary</item>
+    </style>
+
+    <style name="DirectoryItemIcon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="DirectoryItemIcon.End">
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+
+    <!-- Helpful Links/Resources -->
+    <style name="LinkContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/item_padding_default</item>
+        <item name="android:paddingBottom">@dimen/item_padding_default</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- Overridable style allows use of 'start' in API 17+ -->
+    <style name="LinkContainer.Start">
+        <item name="android:layout_gravity">left</item>
+        <item name="android:paddingLeft">8dp</item>
+    </style>
+
+    <style name="LinkText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="LinkText.Primary">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="LinkText.Secondary">
+        <item name="android:textColor">@android:color/secondary_text_light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
 
 </resources>

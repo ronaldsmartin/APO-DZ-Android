@@ -76,6 +76,7 @@
     <string name="btn_bro_status_show_details">Show details</string>
 
     <!-- Directories -->
+    <string name="directory_item_icon">Brother Info</string>
     <!-- Directory Details -->
     <string name="email_dd">e-mail</string>
     <string name="phone_dd">phone</string>

@@ -16,4 +16,24 @@
         <item name="android:drawableStart">@drawable/ic_action_drive_spreadsheet</item>
     </style>
 
+
+    <!-- Directory -->
+    <style name="DirectoryItemText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentStart">true</item>
+    </style>
+
+    <style name="DirectoryItemIcon.End">
+        <item name="android:layout_alignParentEnd">true</item>
+    </style>
+
+
+    <!-- Helpful Links/Resources -->
+    <style name="LinkContainer.Start">
+        <item name="android:layout_gravity">start</item>
+        <item name="android:paddingStart">8dp</item>
+    </style>
+
+
 </resources>
