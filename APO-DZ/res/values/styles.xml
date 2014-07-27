@@ -114,5 +114,14 @@
         <item name="android:visibility">gone</item>
     </style>
 
+    <style name="NavDrawerSection">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">start</item>
+        <item name="android:padding">@dimen/item_padding_default</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@color/nav_bar_item_text</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 
 </resources>

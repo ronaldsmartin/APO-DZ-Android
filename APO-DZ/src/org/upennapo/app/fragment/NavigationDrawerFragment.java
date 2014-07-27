@@ -22,7 +22,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import org.upennapo.app.R;
@@ -34,7 +36,8 @@ import org.upennapo.app.activity.MainActivity;
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
-public class NavigationDrawerFragment extends Fragment implements View.OnClickListener {
+public class NavigationDrawerFragment extends Fragment implements View.OnClickListener,
+        CompoundButton.OnCheckedChangeListener {
 
     /**
      * Remember the position of the selected item.
@@ -62,7 +65,6 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerListView;
     private View mFragmentContainerView;
-    private TextView mLastCheckedItem;
 
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
@@ -107,8 +109,12 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
 
         // Attach buttons.
         rootView.findViewById(R.id.btn_about).setOnClickListener(this);
-        rootView.findViewById(R.id.btn_switch_modes).setOnClickListener(this);
         rootView.findViewById(R.id.btn_sign_out).setOnClickListener(this);
+
+        Switch alumModeToggle = (Switch) rootView.findViewById(R.id.switch_alum_mode);
+        alumModeToggle.setChecked(LoginActivity.alumIsLoggedIn(getActivity()));
+        alumModeToggle.setOnCheckedChangeListener(this);
+
 
         // Set up drawer list items.
         mDrawerListView = (ListView) rootView.findViewById(R.id.navigation_drawer_items);
@@ -293,18 +299,25 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
                 startActivity(openGithubPage);
                 break;
 
-            case R.id.btn_switch_modes:
-                Intent switchMode = new Intent(getActivity(), MainActivity.class);
-                startActivity(switchMode);
-                getActivity().finish();
-                break;
-
             case R.id.btn_sign_out:
                 Intent openLoginScreen = new Intent(getActivity(), LoginActivity.class);
                 openLoginScreen.putExtra(LoginActivity.LOGOUT_INTENT, true);
                 startActivity(openLoginScreen);
                 getActivity().finish();
                 break;
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        Activity parentActivity = getActivity();
+        LoginActivity.setAlumLoggedIn(parentActivity, isChecked);
+
+        if (!isChecked) {
+            // Switch to active brother mode
+            Intent openAppIntent = new Intent(parentActivity, MainActivity.class);
+            startActivity(openAppIntent);
+            parentActivity.finish();
         }
     }
 

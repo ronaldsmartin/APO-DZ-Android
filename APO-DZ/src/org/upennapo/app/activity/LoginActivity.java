@@ -40,6 +40,22 @@ public class LoginActivity extends Activity {
         return prefs.getBoolean(ALUM_LOGGED_IN, false);
     }
 
+    /**
+     * Toggle default activity (Brother or Alum Mode) by recording whether or not we are logged into
+     * alumni mode.
+     *
+     * @param context The context used to access SharedPreferences
+     * @param isLoggedIn Whether or not to default to Alumni Mode
+     */
+    public static void setAlumLoggedIn(Context context, boolean isLoggedIn) {
+        SharedPreferences.Editor editor = context
+                .getSharedPreferences(context.getString(R.string.app_name), MODE_PRIVATE).edit();
+
+        // Store that we have logged in as an alum.
+        editor.putBoolean(ALUM_LOGGED_IN, isLoggedIn);
+        editor.apply();
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -47,10 +63,10 @@ public class LoginActivity extends Activity {
         if (getIntent().getBooleanExtra(LOGOUT_INTENT, false)) {
             updateNameLabel();
             findViewById(R.id.logout_button).setVisibility(View.VISIBLE);
-        } else if (userIsLoggedIn() && hasUsername()) {
-            proceedToApp();
         } else if (alumIsLoggedIn()) {
             proceedToAlumApp();
+        } else if (userIsLoggedIn() && hasUsername()) {
+            proceedToApp();
         }
     }
 

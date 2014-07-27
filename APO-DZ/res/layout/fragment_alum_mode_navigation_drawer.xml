@@ -10,10 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary_light"
+        android:drawablePadding="6dp"
+        android:drawableStart="@drawable/ic_action_alum"
         android:padding="16dp"
-        android:text="Alumni Mode"
+        android:text="@string/title_activity_alumni_mode"
         android:textColor="@android:color/white"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <ListView
         android:id="@+id/navigation_drawer_items"
@@ -27,6 +29,35 @@
         android:paddingBottom="@dimen/list_padding_vertical"
         android:paddingTop="@dimen/list_padding_vertical" />
 
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:checkedButton="@+id/btn_section1"
+        android:visibility="gone">
+
+        <RadioButton
+            android:id="@id/btn_section1"
+            style="@style/NavDrawerSection"
+            android:text="@string/title_am_section1" />
+
+        <RadioButton
+            android:id="@+id/btn_section2"
+            style="@style/NavDrawerSection"
+            android:text="@string/title_am_section2" />
+
+        <RadioButton
+            android:id="@+id/btn_section3"
+            style="@style/NavDrawerSection"
+            android:text="@string/title_am_section3" />
+
+        <RadioButton
+            android:id="@+id/btn_section4"
+            style="@style/NavDrawerSection"
+            android:text="@string/title_am_section4" />
+
+    </RadioGroup>
+
     <include
         layout="@layout/card_item_divider"
         android:layout_width="match_parent"
@@ -39,7 +70,7 @@
         android:layout_height="wrap_content"
         android:gravity="start"
         android:padding="16dp"
-        android:text="About"
+        android:text="@string/menu_about_app"
         android:textAllCaps="true"
         android:textColor="@android:color/secondary_text_light"
         android:textSize="12sp" />
@@ -49,14 +80,13 @@
         android:layout_width="match_parent"
         android:layout_height="1dp" />
 
-    <Button
-        android:id="@+id/btn_switch_modes"
-        style="?android:attr/borderlessButtonStyle"
+    <Switch
+        android:id="@+id/switch_alum_mode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
+        android:checked="true"
         android:padding="16dp"
-        android:text="Switch modes"
+        android:text="@string/title_activity_alumni_mode"
         android:textAllCaps="true"
         android:textColor="@android:color/secondary_text_light"
         android:textSize="12sp" />
@@ -73,7 +103,7 @@
         android:layout_height="wrap_content"
         android:gravity="start"
         android:padding="16dp"
-        android:text="Sign out"
+        android:text="@string/menu_switch_user"
         android:textAllCaps="true"
         android:textColor="@android:color/secondary_text_light"
         android:textSize="12sp" />

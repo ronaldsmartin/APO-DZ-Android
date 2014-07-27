@@ -145,7 +145,7 @@
 
     <!-- Alumni Mode -->
     <!-- I henceforth declare that 'am' will signify alumni mode -->
-    <string name="title_activity_alumni_mode">APO-DZ-Alum</string>
+    <string name="title_activity_alumni_mode">Alumni Mode</string>
     <string name="title_am_section1">Directory</string>
     <string name="title_am_section2">@string/title_section2</string>
     <string name="title_am_section3">Resources</string>

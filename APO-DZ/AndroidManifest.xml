@@ -53,7 +53,7 @@
             android:label="@string/title_activity_alumni_mode" />
         <activity
             android:name=".activity.AlumModeActivity"
-            android:label="@string/title_activity_alumni_mode" />
+            android:label="@string/app_name" />
     </application>
 
 </manifest>
