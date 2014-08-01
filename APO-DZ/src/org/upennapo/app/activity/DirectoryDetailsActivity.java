@@ -1,5 +1,6 @@
 package org.upennapo.app.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -41,7 +42,12 @@ public class DirectoryDetailsActivity extends Activity {
     }
 
     private void setupViews() {
-        getActionBar().setTitle(mBrother.toString());
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowHomeEnabled(false);
+            actionBar.setDisplayUseLogoEnabled(false);
+            actionBar.setTitle(mBrother.toString());
+        }
 
         // Set all labels.
         TextView emailLabel = (TextView) findViewById(R.id.email);

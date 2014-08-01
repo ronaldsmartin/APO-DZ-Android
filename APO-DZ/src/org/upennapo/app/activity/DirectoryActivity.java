@@ -21,7 +21,7 @@ public class DirectoryActivity extends FragmentActivity {
 
         if (actionBar != null) {
             actionBar.setTitle(directoryName);
-            actionBar.setLogo(R.drawable.ic_action_people);
+            actionBar.setLogo(R.drawable.ab_logo_activity_directory);
         }
 
         if (savedInstanceState == null) {
