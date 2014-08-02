@@ -106,7 +106,9 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
 
     private void init(Bundle savedInstanceState, View view) {
         if (savedInstanceState == null) {
-            this.mFlagFailedSearch = getActivity()
+            // Automatically fail the search for alumni.
+            this.mFlagFailedSearch = LoginActivity.isAlumLoggedIn(getActivity())
+                    || getActivity()
                     .getSharedPreferences(getString(R.string.app_global_storage_key), Context.MODE_PRIVATE)
                     .getBoolean(TAG_FAILED_SEARCH, false);
             if (mFlagFailedSearch) {
