@@ -112,7 +112,7 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
         rootView.findViewById(R.id.btn_sign_out).setOnClickListener(this);
 
         Switch alumModeToggle = (Switch) rootView.findViewById(R.id.switch_alum_mode);
-        alumModeToggle.setChecked(LoginActivity.alumIsLoggedIn(getActivity()));
+        alumModeToggle.setChecked(LoginActivity.isAlumniModeDefault(getActivity()));
         alumModeToggle.setOnCheckedChangeListener(this);
 
 
@@ -311,7 +311,7 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         Activity parentActivity = getActivity();
-        LoginActivity.setAlumLoggedIn(parentActivity, isChecked);
+        LoginActivity.setAlumniModeDefault(parentActivity, isChecked);
 
         if (!isChecked) {
             // Switch to active brother mode
@@ -333,7 +333,7 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setTitle(R.string.app_name);
+        actionBar.setTitle(R.string.app_global_storage_key);
     }
 
     private ActionBar getActionBar() {

@@ -83,7 +83,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
 
         // Set up SwipeToRefresh
         this.mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
-        this.mSwipeRefreshLayout.setColorScheme(
+        this.mSwipeRefreshLayout.setColorSchemeResources(
                 R.color.apo_blue, R.color.apo_yellow, R.color.apo_blue, R.color.apo_yellow);
         this.mSwipeRefreshLayout.setOnRefreshListener(this);
 
@@ -107,13 +107,13 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
     private void init(Bundle savedInstanceState, View view) {
         if (savedInstanceState == null) {
             this.mFlagFailedSearch = getActivity()
-                    .getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
+                    .getSharedPreferences(getString(R.string.app_global_storage_key), Context.MODE_PRIVATE)
                     .getBoolean(TAG_FAILED_SEARCH, false);
             if (mFlagFailedSearch) {
                 mProgressBar.setVisibility(View.GONE);
                 view.findViewById(R.id.status_fail_txt).setVisibility(View.VISIBLE);
             } else if (DataManager.isNetworkAvailable(getActivity())) {
-                SharedPreferences prefs = getActivity().getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
+                SharedPreferences prefs = getActivity().getSharedPreferences(getString(R.string.app_global_storage_key), Context.MODE_PRIVATE);
                 this.firstName = prefs.getString(LoginActivity.USER_FIRSTNAME_KEY, "");
                 this.lastName = prefs.getString(LoginActivity.USER_LASTNAME_KEY, "");
                 this.spreadsheetUrl = getArguments().getString(URL_KEY);
@@ -199,7 +199,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
 
             TextView nameLabel = (TextView) getActivity().findViewById(R.id.name_label);
             nameLabel.setText(R.string.label_no_user_status);
-            getView().findViewById(R.id.status_fail_txt).setVisibility(View.VISIBLE);
+            getActivity().findViewById(R.id.status_fail_txt).setVisibility(View.VISIBLE);
         } else {
             updateStatusLabels();
             updateServiceLabels();
@@ -220,7 +220,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
     private void storeUserSearchFail() {
         if (getActivity() != null) {
             SharedPreferences.Editor editor = getActivity()
-                    .getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
+                    .getSharedPreferences(getString(R.string.app_global_storage_key), Context.MODE_PRIVATE)
                     .edit();
             editor.putBoolean(TAG_FAILED_SEARCH, mFlagFailedSearch);
             editor.apply();

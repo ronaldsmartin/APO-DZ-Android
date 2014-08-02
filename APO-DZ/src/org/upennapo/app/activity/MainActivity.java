@@ -166,7 +166,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         getMenuInflater().inflate(R.menu.main, menu);
 
         // Enable the 2048 option if unlocked.
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_global_storage_key), MODE_PRIVATE);
         if (prefs.getBoolean(EASTER_EGG_UNLOCKED, false)) {
             menu.findItem(R.id.menu_play_2048).setVisible(true);
         }
@@ -175,7 +175,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         try {
             final String appVersion =
                     getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-            if (!(appVersion.endsWith("-DEBUG") || LoginActivity.alumIsLoggedIn(this))) {
+            boolean isTestingMode = appVersion.endsWith("-DEBUG") || appVersion.endsWith("-beta");
+            if (!(isTestingMode || LoginActivity.isAlumLoggedIn(this))) {
                 menu.findItem(R.id.menu_switch_mode).setVisible(false);
             }
         } catch (PackageManager.NameNotFoundException e) {
@@ -251,7 +252,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
      * we unlock the easter egg.
      */
     private void updateEasterEggStatus() {
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_global_storage_key), MODE_PRIVATE);
         if (++mNumTaps == NUM_TAPS_ACTIVATE && !prefs.contains(EASTER_EGG_UNLOCKED)) {
 
             // Remember that we've unlocked the easter egg.
