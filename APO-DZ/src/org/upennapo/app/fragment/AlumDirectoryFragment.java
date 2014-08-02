@@ -163,7 +163,7 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
                             R.string.no_internet_toast_msg,
                             Toast.LENGTH_LONG)
                             .show();
-                } else {
+                } else if (result != null) {
                     mStudentList.addAll(Arrays.asList(result));
                     Collections.sort(mStudentList);
                 }

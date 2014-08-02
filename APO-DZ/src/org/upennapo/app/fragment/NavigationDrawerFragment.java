@@ -20,12 +20,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
-import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
-import android.widget.TextView;
 
 import org.upennapo.app.R;
 import org.upennapo.app.activity.LoginActivity;
@@ -37,7 +35,7 @@ import org.upennapo.app.activity.MainActivity;
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
 public class NavigationDrawerFragment extends Fragment implements View.OnClickListener,
-        CompoundButton.OnCheckedChangeListener {
+        CompoundButton.OnCheckedChangeListener, RadioGroup.OnCheckedChangeListener {
 
     /**
      * Remember the position of the selected item.
@@ -55,18 +53,16 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
      */
     private NavigationDrawerCallbacks mCallbacks;
 
-    private String[] mDrawerTitles;
-
     /**
      * Helper component that ties the action bar to the navigation drawer.
      */
     private ActionBarDrawerToggle mDrawerToggle;
 
     private DrawerLayout mDrawerLayout;
-    private ListView mDrawerListView;
     private View mFragmentContainerView;
 
-    private int mCurrentSelectedPosition = 0;
+    private CharSequence mCurrentTitle;
+    private int mCurrentSelectedPosition = R.id.btn_section1;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
 
@@ -87,10 +83,7 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
             mFromSavedInstanceState = true;
         }
 
-        // Retrieve titles for the navigation drawer.
-        mDrawerTitles = getResources().getStringArray(R.array.titles_alumni_mode);
-
-        // Select either the default item (0) or the last selected item.
+        // Select either the default item (R.id.btn_section1) or the last selected item.
         selectItem(mCurrentSelectedPosition);
     }
 
@@ -107,6 +100,17 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
         View rootView =
                 inflater.inflate(R.layout.fragment_alum_mode_navigation_drawer, container, false);
 
+        // Set up sections
+        RadioGroup sections = (RadioGroup) rootView.findViewById(R.id.nav_sections);
+        sections.setOnCheckedChangeListener(this);
+        sections.check(mCurrentSelectedPosition);
+
+        // Bold the currently selected item.
+        RadioButton currentSection = (RadioButton) sections.findViewById(mCurrentSelectedPosition);
+        currentSection.setTypeface(Typeface.DEFAULT_BOLD);
+
+        mCurrentTitle = currentSection.getText();
+
         // Attach buttons.
         rootView.findViewById(R.id.btn_about).setOnClickListener(this);
         rootView.findViewById(R.id.btn_sign_out).setOnClickListener(this);
@@ -114,34 +118,6 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
         Switch alumModeToggle = (Switch) rootView.findViewById(R.id.switch_alum_mode);
         alumModeToggle.setChecked(LoginActivity.isAlumniModeDefault(getActivity()));
         alumModeToggle.setOnCheckedChangeListener(this);
-
-
-        // Set up drawer list items.
-        mDrawerListView = (ListView) rootView.findViewById(R.id.navigation_drawer_items);
-        mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position);
-            }
-        });
-
-        // Set adapter for nav bar, using dependency injection to bold the currently selected item.
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                R.layout.item_nav_drawer, R.id.text1, mDrawerTitles) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                TextView textView = (TextView) super.getView(position, convertView, parent);
-                if (mCurrentSelectedPosition == position) {
-                    textView.setTypeface(Typeface.DEFAULT_BOLD);
-                    textView.setTextColor(getResources().getColor(R.color.primary_dark));
-                } else {
-                    textView.setTypeface(Typeface.DEFAULT);
-                    textView.setTextColor(getResources().getColor(android.R.color.primary_text_light));
-                }
-                return textView;
-            }
-        });
-        mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
         return rootView;
     }
@@ -221,15 +197,10 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
         });
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        setTitle(mDrawerTitles[mCurrentSelectedPosition]);
     }
 
     private void selectItem(int position) {
         mCurrentSelectedPosition = position;
-        if (mDrawerListView != null) {
-            mDrawerListView.setItemChecked(position, true);
-        }
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
@@ -299,6 +270,12 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
                 startActivity(openGithubPage);
                 break;
 
+            case R.id.btn_send_feedback:
+                final String feedbackFormUrl = getString(R.string.menu_report_bug_url);
+                Intent openFeedbackForm = new Intent(Intent.ACTION_VIEW, Uri.parse(feedbackFormUrl));
+                startActivity(openFeedbackForm);
+                break;
+
             case R.id.btn_sign_out:
                 Intent openLoginScreen = new Intent(getActivity(), LoginActivity.class);
                 openLoginScreen.putExtra(LoginActivity.LOGOUT_INTENT, true);
@@ -321,8 +298,22 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
         }
     }
 
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+        // Reset checked item.
+        RadioButton lastChecked = (RadioButton) radioGroup.findViewById(mCurrentSelectedPosition);
+        lastChecked.setTypeface(Typeface.DEFAULT);
+
+        // Bold current item.
+        RadioButton newChecked = (RadioButton) radioGroup.findViewById(checkedId);
+        newChecked.setTypeface(Typeface.DEFAULT_BOLD);
+        mCurrentTitle = newChecked.getText();
+
+        selectItem(checkedId);
+    }
+
     public CharSequence getCurrentItemTitle() {
-        return mDrawerTitles[mCurrentSelectedPosition];
+        return mCurrentTitle;
     }
 
     /**
@@ -333,7 +324,7 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setTitle(R.string.app_global_storage_key);
+        actionBar.setTitle(R.string.app_name);
     }
 
     private ActionBar getActionBar() {

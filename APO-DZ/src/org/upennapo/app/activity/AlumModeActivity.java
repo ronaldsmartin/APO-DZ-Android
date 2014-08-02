@@ -68,6 +68,24 @@ public class AlumModeActivity extends FragmentActivity
             case 3:
                 item = WebFragment.new2048Instance(this);
                 break;
+
+            case R.id.btn_section1:
+                item = fm.findFragmentByTag(AlumDirectoryFragment.TAG);
+                if (item == null) {
+                    item = AlumDirectoryFragment.newInstance(this);
+                    fm.beginTransaction().add(item, AlumDirectoryFragment.TAG);
+                }
+                break;
+            case R.id.btn_section2:
+                item = WebFragment.newCalendarInstance(this);
+                break;
+            case R.id.btn_section3:
+                item = LinkListFragment.newAlumLinksInstance(this);
+                break;
+            case R.id.btn_section4:
+                item = WebFragment.new2048Instance(this);
+                break;
+
             default:
                 item = new MainActivity.DummySectionFragment();
         }
@@ -89,9 +107,11 @@ public class AlumModeActivity extends FragmentActivity
 
     public void restoreActionBar() {
         ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
+        if (actionBar != null) {
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setTitle(mTitle);
+        }
     }
 
 
