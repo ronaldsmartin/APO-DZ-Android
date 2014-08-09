@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/card_backdrop"
@@ -12,7 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:indeterminate="true" />
+        android:indeterminate="true"
+        tools:visibility="gone" />
 
     <!-- Empty Layout -->
     <TextView
@@ -33,7 +35,8 @@
         android:id="@+id/swipe_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -80,7 +83,8 @@
                         <TextView
                             android:id="@+id/status"
                             style="@style/BrotherStatusValue"
-                            android:textAllCaps="true" />
+                            android:textAllCaps="true"
+                            tools:text="Early Alum" />
                     </LinearLayout>
 
 
@@ -96,7 +100,8 @@
 
                         <TextView
                             android:id="@+id/all_reqs_status"
-                            style="@style/BrotherStatusValue.Boolean" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="false" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -129,7 +134,8 @@
 
                         <TextView
                             android:id="@+id/service_status"
-                            style="@style/BrotherStatusValue.Boolean" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="false" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -144,7 +150,8 @@
 
                         <TextView
                             android:id="@+id/hours_label"
-                            style="@style/BrotherStatusValue" />
+                            style="@style/BrotherStatusValue"
+                            tools:text="19.0 of 20.0" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -159,7 +166,8 @@
 
                         <TextView
                             android:id="@+id/large_group_status"
-                            style="@style/BrotherStatusValue.Boolean" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="false" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -174,7 +182,8 @@
 
                         <TextView
                             android:id="@+id/publicity_status"
-                            style="@style/BrotherStatusValue.Boolean" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="true" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -189,7 +198,8 @@
 
                         <TextView
                             android:id="@+id/service_hosting_status"
-                            style="@style/BrotherStatusValue.Boolean" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="true" />
                     </LinearLayout>
 
                     <include
@@ -231,7 +241,8 @@
 
                         <TextView
                             android:id="@+id/membership_status"
-                            style="@style/BrotherStatusValue.Boolean" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="false" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -246,7 +257,8 @@
 
                         <TextView
                             android:id="@+id/membership_points"
-                            style="@style/BrotherStatusValue" />
+                            style="@style/BrotherStatusValue"
+                            tools:text="5.0 of 10.0" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -261,7 +273,8 @@
 
                         <TextView
                             android:id="@+id/brother_comp"
-                            style="@style/BrotherStatusValue.Boolean" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="false" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -276,7 +289,8 @@
 
                         <TextView
                             android:id="@+id/pledge_comp"
-                            style="@style/BrotherStatusValue.Boolean" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="true" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -291,7 +305,8 @@
 
                         <TextView
                             android:id="@+id/membership_hosting"
-                            style="@style/BrotherStatusValue.Boolean" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="false" />
                     </LinearLayout>
 
                     <include
@@ -333,7 +348,8 @@
 
                         <TextView
                             android:id="@+id/fellowship_status"
-                            style="@style/BrotherStatusValue.Boolean" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="true" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -348,7 +364,8 @@
 
                         <TextView
                             android:id="@+id/fellowship_points"
-                            style="@style/BrotherStatusValue" />
+                            style="@style/BrotherStatusValue"
+                            tools:text="7.0 of 7.0" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -363,7 +380,8 @@
 
                         <TextView
                             android:id="@+id/fellowship_hosting"
-                            style="@style/BrotherStatusValue.Boolean" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="true" />
                     </LinearLayout>
 
                     <include
