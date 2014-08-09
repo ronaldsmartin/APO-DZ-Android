@@ -1,4 +1,12 @@
 <resources>
+    <!-- App Theme -->
+    <style name="AppThemeBase" parent="@style/widgets_accent_color">
+        <item name="android:actionOverflowButtonStyle">@style/ActionOverFlow</item>
+    </style>
+
+    <style name="ActionOverFlow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_action_more</item>
+    </style>
 
     <!-- Brother Status -->
     <style name="BrotherStatusHeader" parent="@android:style/TextAppearance.Large">
