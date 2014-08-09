@@ -234,7 +234,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
      */
     private void updateStatusLabels() {
         TextView nameLabel = (TextView) getActivity().findViewById(R.id.name_label);
-        nameLabel.setText(this.mUser.First_and_Last_Name);
+        nameLabel.setText(this.mUser.First_Name + " " + this.mUser.Last_Name);
 
         TextView statusLabel = (TextView) getActivity().findViewById(R.id.status);
         statusLabel.setText(this.mUser.Status);

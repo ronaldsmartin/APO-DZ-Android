@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">APO Delta Zeta</string>
+    <string name="app_name">APO - Delta Zeta</string>
     <string name="app_global_storage_key">APO-DZ</string>
     <string name="no_internet_toast_msg">Oops(ilon), there\'s no internet! Try again later.</string>
     <string name="btn_reload">Reload</string>

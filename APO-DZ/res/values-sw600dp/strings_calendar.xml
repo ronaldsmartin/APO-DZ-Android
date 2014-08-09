@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- This allows us to load the calendar in WEEK mode on tablets, which utilize the extra space
+        more effectively. -->
     <string name="calendar_url">@string/calendar_url_mode_week</string>
 </resources>

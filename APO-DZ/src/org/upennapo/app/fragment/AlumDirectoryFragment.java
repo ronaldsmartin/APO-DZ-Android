@@ -42,6 +42,8 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
     private ArrayList<Brother> mStudentList, mAlumList;
     /* Toggle buttons for switching directory lists. */
     private Button mShowAlumBtn, mShowStudentBtn;
+
+    //region QuickReturnBarState
     /**
      * The current state of the quick return bar
      */
@@ -62,6 +64,7 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
      * Animates the quick return bar onto the screen
      */
     private ObjectAnimator mQuickReturnBarHideAnimator;
+    //endregion
 
     /**
      * Returns new instance of AlumDirectoryFragment with arguments set.
@@ -227,6 +230,8 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
         }
     }
 
+    //region QuickReturnBar
+
     /**
      * Set up the Quick Return Bar's animations.
      *
@@ -297,8 +302,6 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
 
         listView.setOnScrollListener(this);
     }
-
-    /** Quick Return Bar **/
 
     /**
      * Checks if the quick return bar is transitioning back onto the screen.
@@ -392,4 +395,5 @@ public class AlumDirectoryFragment extends DirectoryFragment implements View.OnC
          */
         HIDING
     }
+    //endregion
 }
