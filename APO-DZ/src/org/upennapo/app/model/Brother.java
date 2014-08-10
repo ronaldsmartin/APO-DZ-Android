@@ -25,6 +25,7 @@ public class Brother implements Parcelable, Comparable<Brother> {
             return new Brother[size];
         }
     };
+
     // Instance Variables
     public String Last_Name;
     public String First_Name;
@@ -35,6 +36,7 @@ public class Brother implements Parcelable, Comparable<Brother> {
     public String Graduation_Year;
     public String School;
     public String Major;
+    public String Minor;
     public String Location;
     public String Birthday;
 
@@ -55,6 +57,7 @@ public class Brother implements Parcelable, Comparable<Brother> {
 
         this.School = in.readString();
         this.Major = in.readString();
+        this.Minor = in.readString();
 
         this.Birthday = in.readString();
         this.Location = in.readString();
@@ -121,6 +124,7 @@ public class Brother implements Parcelable, Comparable<Brother> {
 
         out.writeString(School);
         out.writeString(Major);
+        out.writeString(Minor);
 
         out.writeString(Birthday);
         out.writeString(Location);

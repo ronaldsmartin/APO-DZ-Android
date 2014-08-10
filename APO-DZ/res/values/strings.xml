@@ -79,9 +79,10 @@
     <!-- Directories -->
     <string name="directory_item_icon">Brother Info</string>
     <!-- Directory Details -->
-    <string name="email_dd">e-mail</string>
-    <string name="phone_dd">phone</string>
-    <string name="major_dd">major</string>
+    <string name="email">e-mail</string>
+    <string name="phone">phone</string>
+    <string name="major">major</string>
+    <string name="minor">minor</string>
     <string name="btn_text_content_desc">send text</string>
     <string name="btn_dz_shoutout">Send a DZ Shoutout!</string>
 

@@ -59,23 +59,23 @@
 
 
     <!-- Directory -->
-    <style name="DirectoryItemText">
+    <style name="DirectoryItem">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentLeft">true</item>
     </style>
 
-    <style name="DirectoryItemText.Name">
+    <style name="DirectoryItem.Name">
         <item name="android:textColor">@color/primary_dark</item>
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="DirectoryItemText.Subtitle">
+    <style name="DirectoryItem.Subtitle">
         <item name="android:textColor">@android:color/secondary_text_light</item>
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="DirectoryItemText.Phone">
+    <style name="DirectoryItem.Phone">
         <item name="android:autoLink">phone</item>
         <item name="android:textColorLink">@color/primary</item>
     </style>
@@ -88,6 +88,42 @@
 
     <style name="DirectoryItemIcon.End">
         <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <!-- Directory Details -->
+    <style name="DirectoryDetails">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">72dp</item>
+        <item name="android:layout_marginStart">72dp</item>
+    </style>
+
+    <style name="DirectoryDetails.Text">
+        <item name="android:paddingTop">@dimen/item_padding_default</item>
+        <item name="android:textColorLink">@android:color/secondary_text_light</item>
+        <item name="android:textColor">@android:color/secondary_text_light</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="DirectoryDetails.Subtitle">
+        <item name="android:paddingBottom">@dimen/item_padding_default</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@android:color/secondary_text_light</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="DirectoryDetails.Divider">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="DirectoryDetailsIcon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentTop">true</item>
     </style>
 
 

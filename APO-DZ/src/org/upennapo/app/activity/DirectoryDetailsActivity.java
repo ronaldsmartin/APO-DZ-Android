@@ -65,6 +65,16 @@ public class DirectoryDetailsActivity extends Activity {
         TextView majorLabel = (TextView) findViewById(R.id.major);
         majorLabel.setText(mBrother.Major);
 
+        // If a minor exists, un-hide the view and display it.
+        final String minor = mBrother.Minor;
+        if (minor != null && minor.length() > 1 && !minor.contains("N/A")) {
+            TextView minorLabel = (TextView) findViewById(R.id.minor);
+            minorLabel.setText(minor);
+            minorLabel.setVisibility(View.VISIBLE);
+
+            findViewById(R.id.minor_subtitle).setVisibility(View.VISIBLE);
+        }
+
         TextView schoolLabel = (TextView) findViewById(R.id.school);
         schoolLabel.setText(mBrother.School);
 

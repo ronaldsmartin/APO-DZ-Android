@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/txt_name"
-        style="@style/DirectoryItemText.Name"
+        style="@style/DirectoryItem.Name"
         tools:text="Frank Reed Horton" />
 
     <ImageView
@@ -19,13 +19,13 @@
 
     <TextView
         android:id="@+id/txt_pledge_class"
-        style="@style/DirectoryItemText.Subtitle"
+        style="@style/DirectoryItem.Subtitle"
         android:layout_below="@id/txt_name"
         tools:text="Delta Zeta | CAS'10" />
 
     <TextView
         android:id="@+id/txt_phone"
-        style="@style/DirectoryItemText.Phone"
+        style="@style/DirectoryItem.Phone"
         android:layout_below="@id/txt_pledge_class"
         tools:text="215-555-1234" />
 </RelativeLayout>
