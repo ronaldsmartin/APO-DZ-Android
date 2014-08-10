@@ -113,6 +113,7 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
 
         // Attach buttons.
         rootView.findViewById(R.id.btn_about).setOnClickListener(this);
+        rootView.findViewById(R.id.btn_send_feedback).setOnClickListener(this);
         rootView.findViewById(R.id.btn_sign_out).setOnClickListener(this);
 
         Switch alumModeToggle = (Switch) rootView.findViewById(R.id.switch_alum_mode);
