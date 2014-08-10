@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:clickable="true"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".activity.DirectoryDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,10 +21,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primary_light"
-            android:fontFamily="sans-serif-light"
             android:gravity="center"
             android:paddingTop="40dp"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            tools:text="Pledge Class" />
 
         <!-- Year -->
         <TextView
@@ -31,9 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/apo_yellow"
-            android:fontFamily="sans-serif-light"
             android:gravity="center"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            tools:text="2014" />
 
         <!-- School -->
         <TextView
@@ -41,152 +43,143 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primary_light"
-            android:fontFamily="sans-serif-light"
             android:gravity="center"
             android:paddingBottom="40dp"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            tools:text="College of Arts &amp; Sciences, The Wharton School" />
 
         <!-- Rows -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/activity_horizontal_margin"
             android:orientation="vertical">
 
             <!-- Major -->
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/card_background"
-                android:descendantFocusability="blocksDescendants"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    style="?android:listSeparatorTextViewStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/major_dd"
-                    android:textColor="@color/primary_dark" />
-
+                <ImageView
+                    style="@style/DirectoryDetailsIcon"
+                    android:contentDescription="@string/major"
+                    android:src="@drawable/ic_action_school" />
 
                 <TextView
                     android:id="@+id/major"
-                    style="@android:style/TextAppearance.Medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:paddingBottom="16dp"
-                    android:paddingLeft="8dp"
-                    android:paddingTop="16dp"
-                    android:textColor="@android:color/black" />
-            </LinearLayout>
+                    style="@style/DirectoryDetails.Text"
+                    android:layout_alignParentTop="true"
+                    tools:text="Logic, Information, &amp; Computation" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
+                <TextView
+                    android:id="@+id/major_subtitle"
+                    style="@style/DirectoryDetails.Subtitle"
+                    android:layout_below="@id/major"
+                    android:text="@string/major" />
+
+                <TextView
+                    android:id="@+id/minor"
+                    style="@style/DirectoryDetails.Text"
+                    android:layout_below="@id/major_subtitle"
+                    android:visibility="gone"
+                    tools:text="Mathematics"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/minor_subtitle"
+                    style="@style/DirectoryDetails.Subtitle"
+                    android:layout_below="@id/minor"
+                    android:text="@string/minor"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+            </RelativeLayout>
+
+            <include
+                style="@style/DirectoryDetails.Divider"
+                layout="@layout/card_item_divider" />
+
 
             <!-- Phone -->
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/card_background"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    style="@style/DirectoryDetailsIcon"
+                    android:contentDescription="@string/phone"
+                    android:src="@drawable/ic_action_phone" />
 
                 <TextView
-                    style="?android:listSeparatorTextViewStyle"
-                    android:layout_width="match_parent"
+                    android:id="@+id/phone"
+                    style="@style/DirectoryDetails.Text"
+                    android:autoLink="phone"
+                    android:clickable="true"
+                    android:textIsSelectable="true"
+                    tools:text="215-555-5555" />
+
+                <TextView
+                    style="@style/DirectoryDetails.Subtitle"
+                    android:layout_below="@id/phone"
+                    android:text="@string/phone" />
+
+                <ImageButton
+                    android:id="@+id/text_button"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/phone_dd"
-                    android:textColor="@color/primary_dark" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="14dp"
+                    android:contentDescription="@string/btn_text_content_desc"
+                    android:onClick="onSmsBtnClick"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_action_sms" />
+            </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/phone"
-                        style="@android:style/TextAppearance.Medium"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:autoLink="phone"
-                        android:clickable="true"
-                        android:fontFamily="sans-serif-light"
-                        android:paddingBottom="16dp"
-                        android:paddingLeft="8dp"
-                        android:paddingTop="16dp"
-                        android:textIsSelectable="true" />
+            <include
+                style="@style/DirectoryDetails.Divider"
+                layout="@layout/card_item_divider" />
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginTop="16dp"
-                        android:background="@android:drawable/divider_horizontal_bright" />
-
-                    <ImageButton
-                        android:id="@+id/text_button"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:contentDescription="@string/btn_text_content_desc"
-                        android:onClick="onSmsBtnClick"
-                        android:padding="4dp"
-                        android:src="@drawable/ic_action_sms" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
 
             <!-- Email -->
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/card_background"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    style="?android:listSeparatorTextViewStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/email_dd"
-                    android:textColor="@color/primary_dark" />
+                <ImageView
+                    style="@style/DirectoryDetailsIcon"
+                    android:contentDescription="@string/email"
+                    android:src="@drawable/ic_action_email" />
 
                 <TextView
                     android:id="@+id/email"
-                    style="@android:style/TextAppearance.Medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/DirectoryDetails.Text"
                     android:autoLink="email"
                     android:clickable="true"
-                    android:fontFamily="sans-serif-light"
-                    android:paddingBottom="16dp"
-                    android:paddingLeft="8dp"
-                    android:paddingTop="16dp"
-                    android:textIsSelectable="true" />
-            </LinearLayout>
+                    android:textIsSelectable="true"
+                    tools:text="developer@upennapo.org" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="16dp" />
+                <TextView
+                    style="@style/DirectoryDetails.Subtitle"
+                    android:layout_below="@id/email"
+                    android:text="@string/email" />
+            </RelativeLayout>
+
+            <include
+                style="@style/DirectoryDetails.Divider"
+                layout="@layout/card_item_divider" />
 
             <Button
                 style="@android:style/TextAppearance.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/item_padding_default"
                 android:drawableLeft="@drawable/ic_action_emo_laugh"
-                android:fontFamily="sans-serif-light"
+                android:drawableStart="@drawable/ic_action_emo_laugh"
                 android:gravity="center"
                 android:onClick="onShoutoutBtnClick"
-                android:paddingBottom="16dp"
-                android:paddingTop="16dp"
+                android:padding="@dimen/item_padding_default"
                 android:text="@string/btn_dz_shoutout" />
         </LinearLayout>
     </LinearLayout>

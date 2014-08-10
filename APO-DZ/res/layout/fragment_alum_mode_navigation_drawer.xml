@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Header -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_light"
+        android:drawablePadding="6dp"
+        android:drawableStart="@drawable/ic_action_alum"
+        android:padding="16dp"
+        android:text="@string/title_activity_alumni_mode"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+
+    <!-- Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/card_backdrop"
+        tools:context="org.upennapo.app.fragment.NavigationDrawerFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/nav_sections"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:checkedButton="@+id/btn_section1">
+
+                <RadioButton
+                    android:id="@id/btn_section1"
+                    style="@style/NavDrawerSection"
+                    android:text="@string/title_am_section1" />
+
+                <RadioButton
+                    android:id="@+id/btn_section2"
+                    style="@style/NavDrawerSection"
+                    android:text="@string/title_am_section2" />
+
+                <RadioButton
+                    android:id="@+id/btn_section3"
+                    style="@style/NavDrawerSection"
+                    android:text="@string/title_am_section3" />
+
+                <RadioButton
+                    android:id="@+id/btn_section4"
+                    style="@style/NavDrawerSection"
+                    android:text="@string/title_am_section4" />
+
+            </RadioGroup>
+
+            <include
+                layout="@layout/card_item_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <Button
+                android:id="@+id/btn_about"
+                style="@style/NavDrawerButton"
+                android:text="@string/menu_about_app" />
+
+            <Button
+                android:id="@+id/btn_send_feedback"
+                style="@style/NavDrawerButton"
+                android:text="@string/menu_report_bug" />
+
+            <Switch
+                android:id="@+id/switch_alum_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:padding="16dp"
+                android:text="@string/title_activity_alumni_mode"
+                android:textAllCaps="true"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_sign_out"
+                style="@style/NavDrawerButton"
+                android:text="@string/menu_switch_user" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

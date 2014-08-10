@@ -62,15 +62,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         switch (position) {
             case 0:
                 // Brother Status
-                iconID = R.drawable.ic_action_tick;
+                iconID = R.drawable.ic_tab_user;
                 break;
             case 1:
                 // Calendar
-                iconID = R.drawable.ic_action_calendar_day;
+                iconID = R.drawable.ic_tab_calendar_day;
                 break;
             case 2:
                 // Brother Directory
-                iconID = R.drawable.ic_action_users;
+                iconID = R.drawable.ic_tab_people;
                 break;
             case 3:
                 // Pledge Directory
@@ -78,7 +78,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 break;
             case 4:
                 // Helpful Links
-                iconID = R.drawable.ic_action_bookmark;
+                iconID = R.drawable.ic_tab_bookmark;
                 break;
         }
         return iconID;
@@ -95,15 +95,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         switch (position) {
             case 0:
                 // Brother Status
-                iconID = R.drawable.ic_action_tick_selected;
+                iconID = R.drawable.ic_tab_user_selected;
                 break;
             case 1:
                 // Calendar
-                iconID = R.drawable.ic_action_calendar_day_selected;
+                iconID = R.drawable.ic_tab_calendar_day_selected;
                 break;
             case 2:
                 // Brother Directory
-                iconID = R.drawable.ic_action_users_selected;
+                iconID = R.drawable.ic_tab_people_selected;
                 break;
             case 3:
                 // Pledge Directory
@@ -111,7 +111,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 break;
             case 4:
                 // Helpful Links
-                iconID = R.drawable.ic_action_bookmark_selected;
+                iconID = R.drawable.ic_tab_bookmark_selected;
                 break;
         }
         return iconID;
@@ -166,7 +166,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         getMenuInflater().inflate(R.menu.main, menu);
 
         // Enable the 2048 option if unlocked.
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_global_storage_key), MODE_PRIVATE);
         if (prefs.getBoolean(EASTER_EGG_UNLOCKED, false)) {
             menu.findItem(R.id.menu_play_2048).setVisible(true);
         }
@@ -175,7 +175,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         try {
             final String appVersion =
                     getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-            if (!(appVersion.endsWith("-DEBUG") || LoginActivity.alumIsLoggedIn(this))) {
+            boolean isTestingMode = appVersion.endsWith("-DEBUG") || appVersion.endsWith("-beta");
+            if (!(isTestingMode || LoginActivity.isAlumLoggedIn(this))) {
                 menu.findItem(R.id.menu_switch_mode).setVisible(false);
             }
         } catch (PackageManager.NameNotFoundException e) {
@@ -201,7 +202,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 return true;
 
             case R.id.menu_switch_mode:
-                Intent switchMode = new Intent(this, AlumniModeActivity.class);
+                Intent switchMode = new Intent(this, AlumModeActivity.class);
                 startActivity(switchMode);
                 finish();
                 return true;
@@ -251,7 +252,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
      * we unlock the easter egg.
      */
     private void updateEasterEggStatus() {
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_global_storage_key), MODE_PRIVATE);
         if (++mNumTaps == NUM_TAPS_ACTIVATE && !prefs.contains(EASTER_EGG_UNLOCKED)) {
 
             // Remember that we've unlocked the easter egg.

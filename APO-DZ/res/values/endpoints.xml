@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_password">password</string>
+    <string name="app_password_alum">alumni</string>
+
+    <!-- URL for the Brotherhood Spreadsheet Script -->
+    <string name="spreadsheet_url">
+        https://script.google.com/macros/s/AKfycbzGvKKUIaqsMuCj7-A2YRhR-f7GZjl4kSxSN1YyLkS01_CfiyE/exec?id=0AgviZ9NWh5fvdDdNMlI2aXRCR2lCX1B1alZ6ZjZxSkE&amp;sheet=Summary&amp;header=2&amp;startRow=3
+    </string>
+    <!-- We can use
+      http://mashe.hawksey.info/2013/07/how-to-open-a-google-spreadsheet-at-a-specific-row-for-editing/
+      to open a specific row of a spreadsheet. This requires the spreadsheet ID, the sheet number
+      "gid", and a specific row to open.-->
+
+    <string name="spreadsheet_id">0AlxYrifk8iWLdHR0cDFINE5mRlU5cy1yWlQxZU5WZVE</string>
+    <integer name="spreadsheet_sheet_num_service">9</integer>
+    <integer name="spreadsheet_sheet_num_membership">10</integer>
+    <integer name="spreadsheet_sheet_num_fellowship">14</integer>
+
+    <!-- Both of these do the same thing, but in different ways. See the link in the last comment
+        for more info. You can pick the one you like more. -->
+    <string name="spreadsheet_row_script">https://spreadsheets.google.com/tq?tqx=out:html&amp;tq=select * LIMIT 1 OFFSET %1$d&amp;key=%2$s&amp;gid=%3$d</string>
+    <string name="spreadsheet_row_script_2">https://docs.google.com/spreadsheet/lv?key=%2$s&amp;type=view&amp;gid=%3$d&amp;f=true&amp;sortcolid=-1&amp;sortasc=true&amp;page=%1$d&amp;rowsperpage=1</string>
+
+    <!-- URL for all the Calendars. Use the Google Calendar Embed Helper. -->
+    <string name="calendar_url">https://www.google.com/calendar/embed?src=ht3jlfaac5lfd6263ulfh4tql8%40group.calendar.google.com&amp;mode=AGENDA&amp;ctz=America/Los_Angeles</string>
+    <!-- the same as above except we use mode=WEEK as opposed to mode=AGENDA above-->
+    <string name="calendar_url_mode_week">
+        https://www.google.com/calendar/embed?src=ht3jlfaac5lfd6263ulfh4tql8%40group.calendar.google.com&amp;mode=WEEK&amp;ctz=America/Los_Angeles
+    </string>
+
+
+    <!-- URL for the Brotherhood Directory -->
+    <string name="directory_script">https://script.google.com/macros/s/AKfycbxicc_r40k0BuR_HbESTVEjiwjKCGnnEkYI9B1rzBFTFE7-Hl9Q/exec?id=0AgviZ9NWh5fvdExBZUItbVI3RUMxTFhkWDZoWlFGZHc&amp;sheet=</string>
+    <string name="directory_sheet_key">0AgviZ9NWh5fvdExBZUItbVI3RUMxTFhkWDZoWlFGZHc</string>
+
+    <!-- These are the sheet names for the three different directories in your Google Sheet -->
+    <string name="brother_directory_sheet_key">Brothers</string>
+    <string name="pledge_directory_sheet_key">Pledges</string>
+    <string name="alumni_directory_sheet_key">Alumni</string>
+
+
+    <!-- HELPFUL LINKS -->
+    <!-- If necessary, change URLs here. Edit the string-array in arrays.xml to change what appears
+         in the view. -->
+    <string name="sheet_brothers" />
+    <string name="sheet_pledges" />
+    <string name="sheet_big_little" />
+    <string name="sheet_food_groups" />
+
+    <string name="form_service_reporting" />
+    <string name="form_service_reflection" />
+    <string name="form_service_withdraw" />
+    <string name="form_fellowship_hosting" />
+    <string name="form_fellowship_reporting" />
+    <string name="form_food_group_reporting" />
+    <string name="form_big_little_reporting" />
+    <string name="form_merit_reporting" />
+    <string name="form_reimbursement" />
+    <string name="form_dz_shoutout" />
+    <string name="form_board_feedback" />
+    <string name="form_directory_update" />
+
+    <string name="sites_service_calendar" />
+
+    <!-- We consolidate the above into an array so that we can dynamically create the Helpful Links lists.
+        The format must match the length/placement of strings in the helpful-links names in the
+        file res/values/strings.xml. The array can be found in res/values/arrays.xml. -->
+</resources>

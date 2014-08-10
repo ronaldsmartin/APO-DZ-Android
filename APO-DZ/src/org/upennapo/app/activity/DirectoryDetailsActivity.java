@@ -1,5 +1,6 @@
 package org.upennapo.app.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -41,7 +42,12 @@ public class DirectoryDetailsActivity extends Activity {
     }
 
     private void setupViews() {
-        getActionBar().setTitle(mBrother.toString());
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowHomeEnabled(false);
+            actionBar.setDisplayUseLogoEnabled(false);
+            actionBar.setTitle(mBrother.toString());
+        }
 
         // Set all labels.
         TextView emailLabel = (TextView) findViewById(R.id.email);
@@ -58,6 +64,16 @@ public class DirectoryDetailsActivity extends Activity {
 
         TextView majorLabel = (TextView) findViewById(R.id.major);
         majorLabel.setText(mBrother.Major);
+
+        // If a minor exists, un-hide the view and display it.
+        final String minor = mBrother.Minor;
+        if (minor != null && minor.length() > 1 && !minor.contains("N/A")) {
+            TextView minorLabel = (TextView) findViewById(R.id.minor);
+            minorLabel.setText(minor);
+            minorLabel.setVisibility(View.VISIBLE);
+
+            findViewById(R.id.minor_subtitle).setVisibility(View.VISIBLE);
+        }
 
         TextView schoolLabel = (TextView) findViewById(R.id.school);
         schoolLabel.setText(mBrother.School);

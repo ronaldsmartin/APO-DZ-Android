@@ -1,31 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/card_backdrop"
-    android:gravity="center">
+    android:gravity="center"
+    tools:context="org.upennapo.app.fragment.DirectoryFragment">
 
     <!-- Content -->
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <ListView
             android:id="@+id/name_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:clipToPadding="false"
             android:descendantFocusability="blocksDescendants"
             android:fastScrollAlwaysVisible="true"
             android:fastScrollEnabled="true"
-            android:paddingBottom="8dp"
-            android:paddingStart="16dp"
-            android:paddingTop="8dp"
+            android:footerDividersEnabled="false"
+            android:paddingBottom="@dimen/list_padding_vertical"
+            android:paddingEnd="0dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="0dp"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/list_padding_vertical"
             android:scrollbarStyle="outsideInset"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"
+            tools:fastScrollAlwaysVisible=""
+            tools:listitem="@layout/item_brother" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <!-- Loading Progress Indicator -->
@@ -35,7 +44,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:indeterminate="true" />
+        android:indeterminate="true"
+        tools:visibility="gone" />
 
     <!-- Reload button appears when there's no internet. -->
     <Button
@@ -44,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-thin"
-        android:text="Reload"
+        android:text="@string/btn_reload"
         android:visibility="gone" />
 
 </FrameLayout>

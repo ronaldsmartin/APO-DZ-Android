@@ -53,7 +53,7 @@ public class DataManager {
         // If we cannot retrieve or find the requested person's data, return null.
         User user;
         SharedPreferences prefs =
-                context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
+                context.getSharedPreferences(context.getString(R.string.app_global_storage_key), Context.MODE_PRIVATE);
         Gson gson = new Gson();
 
         // If the status isn't cached or we are refreshing, download and parse the brother status
@@ -92,7 +92,7 @@ public class DataManager {
             if (user.Last_Name.equalsIgnoreCase(lastName) &&
                     (user.First_Name.equalsIgnoreCase(firstName))) {
                 SharedPreferences.Editor editor =
-                        context.getSharedPreferences(context.getString(R.string.app_name),
+                        context.getSharedPreferences(context.getString(R.string.app_global_storage_key),
                                 Context.MODE_PRIVATE)
                                 .edit();
                 editor.putInt(BrotherStatusFragment.ROW_KEY, i);
@@ -165,7 +165,7 @@ public class DataManager {
         // If the JSON data is stored locally, pull it from preferences.
         // Otherwise, download it from the Internet and cache it.
         SharedPreferences prefs =
-                context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
+                context.getSharedPreferences(context.getString(R.string.app_global_storage_key), Context.MODE_PRIVATE);
 
         // Attempt to retrieve the string from memory.
         String jsonString = prefs.getString(sheetKey, null);
@@ -252,7 +252,7 @@ public class DataManager {
                 sheetKey = context.getString(R.string.spreadsheet_id);
 
         int rowNum =
-                context.getSharedPreferences(context.getString(R.string.app_name),
+                context.getSharedPreferences(context.getString(R.string.app_global_storage_key),
                         Context.MODE_PRIVATE)
                         .getInt(BrotherStatusFragment.ROW_KEY, 0);
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/card_backdrop"
@@ -12,7 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:indeterminate="true" />
+        android:indeterminate="true"
+        tools:visibility="gone" />
 
     <!-- Empty Layout -->
     <TextView
@@ -33,7 +35,8 @@
         android:id="@+id/swipe_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -74,22 +77,14 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_status"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_status" />
 
                         <TextView
                             android:id="@+id/status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
+                            style="@style/BrotherStatusValue"
                             android:textAllCaps="true"
-                            android:textColor="@color/primary_light" />
+                            tools:text="Early Alum" />
                     </LinearLayout>
 
 
@@ -100,22 +95,13 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_req_completion"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_req_completion" />
 
                         <TextView
                             android:id="@+id/all_reqs_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textAllCaps="true"
-                            android:textColor="@android:color/holo_red_light" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="false" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -133,14 +119,8 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@android:style/TextAppearance.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/accent_fallback_dark"
-                        android:fontFamily="sans-serif-light"
-                        android:padding="16dp"
-                        android:text="@string/service_header"
-                        android:textColor="@android:color/white" />
+                        style="@style/BrotherStatusHeader"
+                        android:text="@string/service_header" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -149,22 +129,13 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_req_completion"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_req_completion" />
 
                         <TextView
                             android:id="@+id/service_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textAllCaps="true"
-                            android:textColor="@android:color/holo_red_light" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="false" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -174,21 +145,13 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_service_hours"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_service_hours" />
 
                         <TextView
                             android:id="@+id/hours_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textColor="@color/primary_light" />
+                            style="@style/BrotherStatusValue"
+                            tools:text="19.0 of 20.0" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -198,22 +161,13 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_large_group_completion"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_large_group_completion" />
 
                         <TextView
                             android:id="@+id/large_group_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textAllCaps="true"
-                            android:textColor="@android:color/holo_red_light" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="false" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -223,22 +177,13 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_publicity_completion"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_publicity_completion" />
 
                         <TextView
                             android:id="@+id/publicity_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textAllCaps="true"
-                            android:textColor="@android:color/holo_red_light" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="true" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -248,36 +193,23 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_hosting_completion"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_hosting_completion" />
 
                         <TextView
                             android:id="@+id/service_hosting_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textAllCaps="true"
-                            android:textColor="@android:color/holo_red_light" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="true" />
                     </LinearLayout>
 
-                    <include layout="@layout/card_item_divider" />
+                    <include
+                        style="@style/CardSectionDivider"
+                        layout="@layout/card_item_divider" />
 
                     <Button
                         android:id="@+id/btn_show_service_details"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:drawableStart="@drawable/ic_action_document"
-                        android:gravity="start|center_vertical"
-                        android:text="@string/btn_bro_status_show_details"
-                        android:textColor="@color/primary_light" />
+                        style="@style/BtnBrotherStatusDetails.WithIcon"
+                        android:text="@string/btn_bro_status_show_details" />
                 </LinearLayout>
 
 
@@ -294,14 +226,8 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@android:style/TextAppearance.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/accent_fallback_dark"
-                        android:fontFamily="sans-serif-light"
-                        android:padding="16dip"
-                        android:text="@string/membership_header"
-                        android:textColor="@android:color/white" />
+                        style="@style/BrotherStatusHeader"
+                        android:text="@string/membership_header" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -310,22 +236,13 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_req_completion"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_req_completion" />
 
                         <TextView
                             android:id="@+id/membership_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textAllCaps="true"
-                            android:textColor="@android:color/holo_red_light" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="false" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -335,21 +252,13 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_points"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_points" />
 
                         <TextView
                             android:id="@+id/membership_points"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textColor="@color/primary_light" />
+                            style="@style/BrotherStatusValue"
+                            tools:text="5.0 of 10.0" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -359,22 +268,13 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_bro_comp"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_bro_comp" />
 
                         <TextView
                             android:id="@+id/brother_comp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textAllCaps="true"
-                            android:textColor="@android:color/holo_red_light" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="false" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -384,22 +284,13 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_pledge_comp"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_pledge_comp" />
 
                         <TextView
                             android:id="@+id/pledge_comp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textAllCaps="true"
-                            android:textColor="@android:color/holo_red_light" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="true" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -409,36 +300,23 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_hosting_completion"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_hosting_completion" />
 
                         <TextView
                             android:id="@+id/membership_hosting"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textAllCaps="true"
-                            android:textColor="@android:color/holo_red_light" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="false" />
                     </LinearLayout>
 
-                    <include layout="@layout/card_item_divider" />
+                    <include
+                        style="@style/CardSectionDivider"
+                        layout="@layout/card_item_divider" />
 
                     <Button
                         android:id="@+id/btn_show_membership_details"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:drawableStart="@drawable/ic_action_document"
-                        android:gravity="start|center_vertical"
-                        android:text="@string/btn_bro_status_show_details"
-                        android:textColor="@color/primary_light" />
+                        style="@style/BtnBrotherStatusDetails.WithIcon"
+                        android:text="@string/btn_bro_status_show_details" />
                 </LinearLayout>
 
 
@@ -455,14 +333,8 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@android:style/TextAppearance.Large"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/accent_fallback_dark"
-                        android:fontFamily="sans-serif-light"
-                        android:padding="16dp"
-                        android:text="@string/fellowship_header"
-                        android:textColor="@android:color/white" />
+                        style="@style/BrotherStatusHeader"
+                        android:text="@string/fellowship_header" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -471,22 +343,13 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_req_completion"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_req_completion" />
 
                         <TextView
                             android:id="@+id/fellowship_status"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textAllCaps="true"
-                            android:textColor="@android:color/holo_red_light" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="true" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -496,21 +359,13 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_points"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_points" />
 
                         <TextView
                             android:id="@+id/fellowship_points"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textColor="@color/primary_light" />
+                            style="@style/BrotherStatusValue"
+                            tools:text="7.0 of 7.0" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -520,36 +375,23 @@
                         android:padding="16dip">
 
                         <TextView
-                            style="@android:style/TextAppearance.Medium"
-                            android:layout_width="0dip"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:layout_weight="1"
-                            android:text="@string/cat_hosting_completion"
-                            android:textColor="@android:color/tertiary_text_light" />
+                            style="@style/BrotherStatusCategory"
+                            android:text="@string/cat_hosting_completion" />
 
                         <TextView
                             android:id="@+id/fellowship_hosting"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:paddingTop="4dp"
-                            android:textAllCaps="true"
-                            android:textColor="@android:color/holo_red_light" />
+                            style="@style/BrotherStatusValue.Boolean"
+                            tools:text="true" />
                     </LinearLayout>
 
-                    <include layout="@layout/card_item_divider" />
+                    <include
+                        style="@style/CardSectionDivider"
+                        layout="@layout/card_item_divider" />
 
                     <Button
                         android:id="@+id/btn_show_fellowship_details"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:drawableStart="@drawable/ic_action_document"
-                        android:gravity="start|center_vertical"
-                        android:text="@string/btn_bro_status_show_details"
-                        android:textColor="@color/primary_light" />
+                        style="@style/BtnBrotherStatusDetails.WithIcon"
+                        android:text="@string/btn_bro_status_show_details" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

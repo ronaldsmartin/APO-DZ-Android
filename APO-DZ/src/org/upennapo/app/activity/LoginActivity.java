@@ -32,11 +32,38 @@ public class LoginActivity extends Activity {
     public static final String USER_LASTNAME_KEY = "USER_LAST_NAME";
     public static final String LOGOUT_INTENT = "USER_LOGOUT_INTENT";
 
-    private static final String ALUM_LOGGED_IN = "ALUM_LOG_IN";
+    private static final String ALUM_LOGGED_IN = "ALUM_LOGGED_IN";
+    private static final String ALUM_MODE_ENABLED = "ALUM_MODE_DEFAULT";
 
-    public static boolean alumIsLoggedIn(Context context) {
+    /**
+     * Check if Alumni Mode was unlocked to enable/disable menu options.
+     *
+     * @param context The context used to access SharedPreferences
+     * @return Whether or not Alumni Mode is unlocked
+     */
+    public static boolean isAlumniModeDefault(Context context) {
         SharedPreferences prefs =
-                context.getSharedPreferences(context.getString(R.string.app_name), MODE_PRIVATE);
+                context.getSharedPreferences(context.getString(R.string.app_global_storage_key), MODE_PRIVATE);
+        return prefs.getBoolean(ALUM_MODE_ENABLED, false);
+    }
+
+    /**
+     * Set if Alumni Mode is the default activity.
+     *
+     * @param context The context used to access SharedPreferences
+     */
+    public static void setAlumniModeDefault(Context context, boolean setAsDefault) {
+        SharedPreferences.Editor editor = context
+                .getSharedPreferences(context.getString(R.string.app_global_storage_key), MODE_PRIVATE)
+                .edit();
+        editor.putBoolean(ALUM_MODE_ENABLED, setAsDefault);
+        editor.apply();
+    }
+
+    public static boolean isAlumLoggedIn(Context context) {
+        final String storageKey = context.getString(R.string.app_global_storage_key);
+        SharedPreferences prefs = context.getSharedPreferences(storageKey, MODE_PRIVATE);
+
         return prefs.getBoolean(ALUM_LOGGED_IN, false);
     }
 
@@ -46,17 +73,17 @@ public class LoginActivity extends Activity {
 
         if (getIntent().getBooleanExtra(LOGOUT_INTENT, false)) {
             updateNameLabel();
-            findViewById(R.id.logout_button).setVisibility(View.VISIBLE);
-        } else if (userIsLoggedIn() && hasUsername()) {
-            proceedToApp();
-        } else if (alumIsLoggedIn()) {
+            setLogoutButtonVisibility(true);
+        } else if (isAlumLoggedIn()) {
             proceedToAlumApp();
+        } else if (isBrotherLoggedIn() && isUsernameStored()) {
+            proceedToActiveBrotherApp();
         }
     }
 
     public void logout(View view) {
         // Thanks to http://stackoverflow.com/questions/2115758/how-to-display-alert-dialog-in-android
-        if (userIsLoggedIn() || hasUsername() || alumIsLoggedIn()) {
+        if (isBrotherLoggedIn() || isUsernameStored() || isAlumLoggedIn()) {
             // Confirm logout before proceeding.
             new AlertDialog.Builder(this)
                     .setTitle("Logout")
@@ -66,11 +93,11 @@ public class LoginActivity extends Activity {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete
                             SharedPreferences.Editor editor =
-                                    getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE).edit();
+                                    getSharedPreferences(getString(R.string.app_global_storage_key), MODE_PRIVATE).edit();
                             editor.clear();
                             if (editor.commit()) {
                                 resetNameLabel();
-                                findViewById(R.id.logout_button).setVisibility(View.INVISIBLE);
+                                setLogoutButtonVisibility(false);
 
                                 // Tell the user logout is complete.
                                 Toast logoutNotification = Toast.makeText(LoginActivity.this, "Logout successful!", Toast.LENGTH_SHORT);
@@ -94,30 +121,30 @@ public class LoginActivity extends Activity {
      * @param view - the button in activity_login.xml
      */
     public void login(View view) {
-        if (alumIsLoggedIn()) {
+        if (isAlumLoggedIn()) {
             proceedToAlumApp();
-        } else if (userIsLoggedIn() && hasUsername()) {
-            proceedToApp();
-        } else if (userIsLoggedIn() && !hasUsername()) {
+        } else if (isBrotherLoggedIn() && isUsernameStored()) {
+            proceedToActiveBrotherApp();
+        } else if (isBrotherLoggedIn()) {
             showNamePrompt();
         } else {
-            showPasswordPrompt("Enter Password");
+            showPasswordPrompt("Prove yourself");
         }
     }
 
     private void updateNameLabel() {
         // Change the prefix.
         TextView welcomeLabel = (TextView) findViewById(R.id.login_status);
-        if (hasUsername()) {
+        if (isUsernameStored()) {
             // Add the name.
             SharedPreferences prefs =
-                    getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
+                    getSharedPreferences(getString(R.string.app_global_storage_key), MODE_PRIVATE);
             String firstName = prefs.getString(USER_FIRSTNAME_KEY, "");
             String lastName = prefs.getString(USER_LASTNAME_KEY, "");
             final String newText =
                     getString(R.string.login_status_logged_in) + " " + firstName + " " + lastName;
             welcomeLabel.setText(newText);
-        } else if (alumIsLoggedIn()) {
+        } else if (isAlumLoggedIn()) {
             welcomeLabel.setText(R.string.login_status_logged_in_alum);
         } else {
             resetNameLabel();
@@ -129,30 +156,43 @@ public class LoginActivity extends Activity {
         welcomeLabel.setText(R.string.login_status_logged_out);
     }
 
-    private boolean alumIsLoggedIn() {
-        return alumIsLoggedIn(this);
+    private boolean isAlumLoggedIn() {
+        return isAlumLoggedIn(this);
     }
 
-    private boolean userIsLoggedIn() {
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
+    private boolean isBrotherLoggedIn() {
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_global_storage_key), MODE_PRIVATE);
         return prefs.getBoolean(LOGGED_IN_KEY, false);
     }
 
-    private boolean hasUsername() {
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
+    private boolean isUsernameStored() {
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.app_global_storage_key), MODE_PRIVATE);
         return prefs.contains(USER_FIRSTNAME_KEY) && prefs.contains(USER_LASTNAME_KEY);
     }
 
-    private void proceedToApp() {
+    private void proceedToActiveBrotherApp() {
         Intent openAppIntent = new Intent(this, MainActivity.class);
         startActivity(openAppIntent);
         finish();
     }
 
+    /**
+     * Depending on the user's preferences, go either to
+     * {@link org.upennapo.app.activity.AlumModeActivity Alumni Mode} or to
+     * {@link org.upennapo.app.activity.MainActivity Active Brother Mode}.
+     * The default is Alumni Mode.
+     * <p/>
+     * This setting is toggled in {@link org.upennapo.app.fragment.NavigationDrawerFragment} via
+     * {@link #setAlumniModeDefault(android.content.Context, boolean) setAlumniModeDefault}
+     */
     private void proceedToAlumApp() {
-        Intent openAppIntent = new Intent(this, AlumniModeActivity.class);
-        startActivity(openAppIntent);
-        finish();
+        if (isAlumniModeDefault(this)) {
+            Intent openAppIntent = new Intent(this, AlumModeActivity.class);
+            startActivity(openAppIntent);
+            finish();
+        } else {
+            proceedToActiveBrotherApp();
+        }
     }
 
     protected void showPasswordPrompt(String title) {
@@ -169,13 +209,13 @@ public class LoginActivity extends Activity {
         input.setTransformationMethod(PasswordTransformationMethod.getInstance());
         prompt.setView(input);
 
-        prompt.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+        prompt.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // Retrieve the user input.
                 String value = input.getText().toString();
 
                 SharedPreferences.Editor editor =
-                        getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE).edit();
+                        getSharedPreferences(getString(R.string.app_global_storage_key), MODE_PRIVATE).edit();
 
                 // User entered password correctly.
                 if (value.equals(getString(R.string.app_password))) {
@@ -187,6 +227,7 @@ public class LoginActivity extends Activity {
                     showNamePrompt();
                 } else if (getString(R.string.app_password_alum).equals(value)) {
                     // Store that we have logged in as an alum.
+                    editor.putBoolean(ALUM_MODE_ENABLED, true);
                     editor.putBoolean(ALUM_LOGGED_IN, true);
                     editor.apply();
 
@@ -199,7 +240,7 @@ public class LoginActivity extends Activity {
             }
         });
 
-        prompt.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        prompt.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 // Canceled.
             }
@@ -217,6 +258,16 @@ public class LoginActivity extends Activity {
         namePrompt.show(fm, "NamePromptDialogFragment");
 
         updateNameLabel();
+    }
+
+    /**
+     * Show/hide the logout button.
+     *
+     * @param showButton Whether or not to show the logout button
+     */
+    private void setLogoutButtonVisibility(boolean showButton) {
+        final int visibility = showButton ? View.VISIBLE : View.GONE;
+        findViewById(R.id.logout_button).setVisibility(visibility);
     }
 
     public static class NamePromptDialogFragment extends DialogFragment implements OnEditorActionListener {
@@ -283,7 +334,7 @@ public class LoginActivity extends Activity {
                     } else {
                         // Store that we have logged in.
                         SharedPreferences.Editor editor = getActivity()
-                                .getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)
+                                .getSharedPreferences(getString(R.string.app_global_storage_key), MODE_PRIVATE)
                                 .edit();
                         editor.putString(LoginActivity.USER_FIRSTNAME_KEY, firstName);
                         editor.putString(LoginActivity.USER_LASTNAME_KEY, lastName);

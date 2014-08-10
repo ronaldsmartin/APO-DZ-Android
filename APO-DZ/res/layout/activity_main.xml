@@ -5,4 +5,5 @@
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity" />
+    tools:actionBarNavMode="tabs"
+    tools:context=".activity.MainActivity" />

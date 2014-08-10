@@ -38,6 +38,7 @@
 
         <!-- Light.DarkActionBar specific -->
         <item name="android:actionBarWidgetTheme">@style/Theme.Apo_dz_actionbar.Widget</item>
+        <item name="android:windowBackground">@color/primary</item>
 
     </style>
 

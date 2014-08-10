@@ -6,6 +6,7 @@
         <item>@string/title_am_section1</item>
         <item>@string/title_am_section2</item>
         <item>@string/title_am_section3</item>
+        <item>@string/title_am_section4</item>
     </string-array>
 
     <!-- Names of Helpful Links -->
@@ -175,15 +176,6 @@
         <item>president@upennapo.org</item>
         <item>developer@upennapo.org</item>
 
-        <!-- About app -->
-        <item>@string/app_list_header</item>
-        <item>@string/links_app_title_about</item>
-        <item>@string/links_app_title_play_link</item>
-        <item>@string/links_app_title_repo</item>
-        <item>@string/links_app_title_g_plus</item>
-        <item>@string/links_app_title_beta_link</item>
-        <item>@string/links_app_title_suggestion_box</item>
-
         <item>Delta Zeta</item>
         <item>upennapo.org</item>
         <item>the olde service forum</item>
@@ -206,6 +198,15 @@
         <item>section ninety-two</item>
         <item>region two</item>
         <item>national alumni</item>
+
+        <!-- About app -->
+        <item>@string/app_list_header</item>
+        <item>@string/links_app_title_about</item>
+        <item>@string/links_app_title_play_link</item>
+        <item>@string/links_app_title_repo</item>
+        <item>@string/links_app_title_g_plus</item>
+        <item>@string/links_app_title_beta_link</item>
+        <item>@string/links_app_title_suggestion_box</item>
     </string-array>
 
     <!-- OnClick targets for the above items -->
@@ -215,14 +216,7 @@
         <item>mailto:historian@upennapo.org</item>
         <item>mailto:president@upennapo.org</item>
         <item>mailto:developer@upennapo.org</item>
-        <!-- About App -->
-        <item>@string/link_header_flag</item>
-        <item>@string/app_about</item>
-        <item>@string/app_google_play</item>
-        <item>@string/app_github_source</item>
-        <item>@string/app_google_plus</item>
-        <item>@string/app_beta_invite</item>
-        <item>@string/app_suggestion_box</item>
+
         <!-- Delta Zeta -->
         <item>@string/link_header_flag</item>
         <item>@string/sites_chapter_homepage</item>
@@ -233,11 +227,13 @@
         <item>@string/social_apoutofcontext</item>
         <item>@string/sites_chapter_homepage</item>
         <item>@string/form_dz_shoutout</item>
+
         <!-- National -->
         <item>@string/link_header_flag</item>
         <item>@string/sites_national_homepage</item>
         <item>@string/sites_national_alum_res</item>
         <item>@string/sites_national_soc_of_life</item>
+
         <!-- Facebook -->
         <item>@string/link_header_flag</item>
         <item>@string/social_fb_alum_group</item>
@@ -246,6 +242,15 @@
         <item>@string/social_fb_section_92</item>
         <item>@string/social_fb_region_II</item>
         <item>@string/social_fb_national_alum_page</item>
+
+        <!-- About App -->
+        <item>@string/link_header_flag</item>
+        <item>@string/app_about</item>
+        <item>@string/app_google_play</item>
+        <item>@string/app_github_source</item>
+        <item>@string/app_google_plus</item>
+        <item>@string/app_beta_invite</item>
+        <item>@string/app_suggestion_box</item>
     </string-array>
 
     <!-- OnClick targets for the above items -->
@@ -255,15 +260,6 @@
         <item>alumni relations coordinator</item>
         <item />
         <item>a.k.a. Dean &amp; Ronald \'14</item>
-
-        <!-- About App -->
-        <item>@string/link_header_flag</item>
-        <item>@string/links_app_descr_about</item>
-        <item>@string/links_app_descr_play_link</item>
-        <item>@string/links_app_descr_repo</item>
-        <item>@string/links_app_descr_g_plus</item>
-        <item>@string/links_app_descr_beta_link</item>
-        <item>@string/links_app_descr_suggestion_box</item>
 
         <!-- Delta Zeta -->
         <item>@string/link_header_flag</item>
@@ -290,5 +286,14 @@
         <item />
         <item>northeast represent</item>
         <item>this is a page, not a group!</item>
+
+        <!-- About App -->
+        <item>@string/link_header_flag</item>
+        <item>@string/links_app_descr_about</item>
+        <item>@string/links_app_descr_play_link</item>
+        <item>@string/links_app_descr_repo</item>
+        <item>@string/links_app_descr_g_plus</item>
+        <item>@string/links_app_descr_beta_link</item>
+        <item>@string/links_app_descr_suggestion_box</item>
     </string-array>
 </resources>
