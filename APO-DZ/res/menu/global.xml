@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_switch_mode"
+        android:icon="@drawable/ic_action_turn_right"
+        android:orderInCategory="115"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_switch_mode" />
+
+</menu>

@@ -8,8 +8,8 @@
     android:divider="@drawable/transparent_color"
     android:dividerHeight="5dp"
     android:gravity="center"
-    android:paddingBottom="8dp"
+    android:paddingBottom="@dimen/list_padding_vertical"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingTop="8dp"
+    android:paddingTop="@dimen/list_padding_vertical"
     android:scrollbarStyle="outsideOverlay" />

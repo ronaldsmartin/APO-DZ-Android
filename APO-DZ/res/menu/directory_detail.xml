@@ -3,7 +3,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_add_to_contacts"
-        android:icon="@drawable/ic_action_add"
+        android:icon="@drawable/ic_action_person_add"
         android:onClick="onAddContactClick"
         android:showAsAction="ifRoom|withText"
         android:title="@string/menu_add_contact" />

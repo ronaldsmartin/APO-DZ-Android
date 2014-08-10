@@ -1,53 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="88dp"
+    android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants"
-    android:orientation="vertical"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp">
+    android:padding="@dimen/item_padding_default">
 
     <TextView
         android:id="@+id/txt_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/info_icon"
-        android:clickable="false"
-        android:fontFamily="sans-serif-light"
-        android:textColor="@color/primary_dark"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        style="@style/DirectoryItem.Name"
+        tools:text="Frank Reed Horton" />
 
     <ImageView
-        android:id="@id/info_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
-        android:contentDescription="brother info"
+        android:id="@+id/info_icon"
+        style="@style/DirectoryItemIcon.End"
+        android:contentDescription="@string/directory_item_icon"
         android:src="@drawable/ic_action_info_light" />
 
     <TextView
         android:id="@+id/txt_pledge_class"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        style="@style/DirectoryItem.Subtitle"
         android:layout_below="@id/txt_name"
-        android:clickable="false"
-        android:fontFamily="sans-serif-thin"
-        android:textColor="@android:color/secondary_text_light"
-        android:textSize="14sp" />
+        tools:text="Delta Zeta | CAS'10" />
 
     <TextView
         android:id="@+id/txt_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
+        style="@style/DirectoryItem.Phone"
         android:layout_below="@id/txt_pledge_class"
-        android:autoLink="phone"
-        android:fontFamily="sans-serif-light"
-        android:textColorLink="@color/primary" />
+        tools:text="215-555-1234" />
 </RelativeLayout>

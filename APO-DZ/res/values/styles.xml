@@ -1,34 +1,181 @@
 <resources>
-
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
+    <!-- App Theme -->
+    <style name="AppThemeBase" parent="@style/widgets_accent_color">
+        <item name="android:actionOverflowButtonStyle">@style/ActionOverFlow</item>
     </style>
 
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style>
-    
-    <!-- the theme applied to the application or activity -->
-    <style name="CustomActionBarTheme"
-           parent="android:style/Theme.Holo.Light.DarkActionBar">
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    <style name="ActionOverFlow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_action_more</item>
     </style>
 
-    <!-- ActionBar styles -->
-    <style name="MyActionBar"
-           parent="android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/apo_blue</item>
+    <!-- Brother Status -->
+    <style name="BrotherStatusHeader" parent="@android:style/TextAppearance.Large">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@color/accent_fallback_dark</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
-    
+    <style name="BrotherStatusCategory" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:textColor">@android:color/tertiary_text_light</item>
+    </style>
+
+    <style name="BrotherStatusValue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:textColor">@color/primary_light</item>
+    </style>
+
+    <style name="BrotherStatusValue.Boolean">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+    </style>
+
+    <style name="CardSectionDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+
+    <style name="BtnBrotherStatusDetails" parent="@android:style/Widget.Holo.Button.Borderless">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textColor">@color/primary_light</item>
+    </style>
+
+    <style name="BtnBrotherStatusDetails.WithIcon">
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:drawableLeft">@drawable/ic_action_drive_spreadsheet</item>
+    </style>
+
+
+    <!-- Directory -->
+    <style name="DirectoryItem">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+
+    <style name="DirectoryItem.Name">
+        <item name="android:textColor">@color/primary_dark</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="DirectoryItem.Subtitle">
+        <item name="android:textColor">@android:color/secondary_text_light</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="DirectoryItem.Phone">
+        <item name="android:autoLink">phone</item>
+        <item name="android:textColorLink">@color/primary</item>
+    </style>
+
+    <style name="DirectoryItemIcon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="DirectoryItemIcon.End">
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <!-- Directory Details -->
+    <style name="DirectoryDetails">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">72dp</item>
+        <item name="android:layout_marginStart">72dp</item>
+    </style>
+
+    <style name="DirectoryDetails.Text">
+        <item name="android:paddingTop">@dimen/item_padding_default</item>
+        <item name="android:textColorLink">@android:color/secondary_text_light</item>
+        <item name="android:textColor">@android:color/secondary_text_light</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="DirectoryDetails.Subtitle">
+        <item name="android:paddingBottom">@dimen/item_padding_default</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@android:color/secondary_text_light</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="DirectoryDetails.Divider">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="DirectoryDetailsIcon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+
+
+    <!-- Helpful Links/Resources -->
+    <style name="LinkContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/item_padding_default</item>
+        <item name="android:paddingBottom">@dimen/item_padding_default</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- Overridable style allows use of 'start' in API 17+ -->
+    <style name="LinkContainer.Start">
+        <item name="android:layout_gravity">left</item>
+        <item name="android:paddingLeft">8dp</item>
+    </style>
+
+    <style name="LinkText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="LinkText.Primary">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="LinkText.Secondary">
+        <item name="android:textColor">@android:color/secondary_text_light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="NavDrawerSection">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">start</item>
+        <item name="android:padding">@dimen/item_padding_default</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@color/nav_bar_item_text</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="NavDrawerButton" parent="@android:style/Widget.Holo.Button.Borderless">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:gravity">start</item>
+        <item name="android:padding">@dimen/item_padding_default</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@android:color/secondary_text_light</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 
 </resources>

@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.upennapo.app">
 
-
     <!-- Permissions -->
     <!-- Used to prevent the app from crashing if when there's no network reachability -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -13,18 +12,16 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:logo="@drawable/ic_logo"
         android:theme="@style/Theme.Apo_dz_actionbar">
-        <activity
-            android:name=".activity.LoginActivity"
-            android:label="@string/app_name">
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.MainActivity"
-            android:label="@string/app_name" />
+        <activity android:name=".activity.MainActivity" />
         <activity
             android:name=".activity.DirectoryActivity"
             android:parentActivityName=".activity.MainActivity">
@@ -51,6 +48,7 @@
         <activity
             android:name=".activity.AlumniModeActivity"
             android:label="@string/title_activity_alumni_mode" />
+        <activity android:name=".activity.AlumModeActivity" />
     </application>
 
 </manifest>

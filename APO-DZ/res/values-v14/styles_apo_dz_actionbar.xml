@@ -18,8 +18,8 @@
 
 <resources>
 
-    <style name="Theme.Apo_dz_actionbar" parent="@style/widgets_accent_color">
-        <item name="android:actionBarItemBackground">
+    <style name="Theme.Apo_dz_actionbar" parent="AppThemeBase">
+    <item name="android:actionBarItemBackground">
             @drawable/selectable_background_apo_dz_actionbar
         </item>
         <item name="android:popupMenuStyle">@style/PopupMenu.Apo_dz_actionbar</item>

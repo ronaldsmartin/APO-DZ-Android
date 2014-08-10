@@ -2,6 +2,7 @@ package org.upennapo.app.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -42,6 +43,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     private ArrayList<Brother> mDirectoryList;
 
     private AlphabeticalAdapter mAdapter;
+
     private ListView mListView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private View mProgressBar, mReloadButton;
@@ -114,9 +116,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
         // Retrieve the arguments passed by the MainActivity
         this.mSheetKey = getArguments().getString(SHEET_KEY);
 
-        // Show Alum option in ActionBar on Brother tab only
-        if (getString(R.string.brother_directory_sheet_key).equals(this.mSheetKey))
-            setHasOptionsMenu(true);
+        setHasOptionsMenu(true);
 
         // If possible, retrieve saved data. Otherwise, initialize new list.
         if (savedInstanceState == null) {
@@ -141,6 +141,11 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.directory, menu);
+
+        // Show Alum option in ActionBar on Brother tab only
+        boolean isBrotherDirectoryTab =
+                getString(R.string.brother_directory_sheet_key).equals(this.mSheetKey);
+        menu.findItem(R.id.menu_show_alumni).setVisible(isBrotherDirectoryTab);
     }
 
     @Override
@@ -149,14 +154,29 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
             case R.id.menu_show_alumni:
                 showAlumDirectory();
                 return true;
+
+            case R.id.menu_directory_update_form:
+                openDirectoryUpdateForm();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Open the Alumni Directory in the default browser.
+     */
     private void showAlumDirectory() {
         Intent intent = new Intent(getActivity(), DirectoryActivity.class);
         intent.putExtra(SHEET_KEY, getString(R.string.alumni_directory_sheet_key));
         startActivity(intent);
+    }
+
+    /**
+     * Open the Directory Update From in the default browser.
+     */
+    private void openDirectoryUpdateForm() {
+        final String directoryFormUrl = getString(R.string.form_directory_update);
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(directoryFormUrl)));
     }
 
     @Override
@@ -172,7 +192,7 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
         // Set up PullToRefresh.
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
-        mSwipeRefreshLayout.setColorScheme(
+        mSwipeRefreshLayout.setColorSchemeResources(
                 R.color.apo_blue, R.color.apo_yellow, R.color.apo_blue, R.color.apo_yellow);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
@@ -264,6 +284,10 @@ public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.On
 
     public View getProgressBar() {
         return mProgressBar;
+    }
+
+    public ListView getListView() {
+        return mListView;
     }
 
     /**

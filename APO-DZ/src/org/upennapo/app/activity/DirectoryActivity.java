@@ -1,5 +1,6 @@
 package org.upennapo.app.activity;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
@@ -16,7 +17,12 @@ public class DirectoryActivity extends FragmentActivity {
         setContentView(R.layout.activity_directory);
 
         final String directoryName = getIntent().getStringExtra(SHEET_KEY);
-        getActionBar().setTitle(directoryName);
+        final ActionBar actionBar = getActionBar();
+
+        if (actionBar != null) {
+            actionBar.setTitle(directoryName);
+            actionBar.setLogo(R.drawable.ab_logo_activity_directory);
+        }
 
         if (savedInstanceState == null) {
             DirectoryFragment directory = new DirectoryFragment();
