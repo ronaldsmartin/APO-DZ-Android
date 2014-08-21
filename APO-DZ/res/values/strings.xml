@@ -154,8 +154,8 @@
     <string name="title_am_section4">@string/apo_2048_label</string>
 
     <!-- AlumDirectory quick-return directory toggle bar-->
-    <string name="btn_am_alum_dir_show_alumni">alumni</string>
-    <string name="btn_am_alum_dir_show_students">students</string>
+    <string name="alumni">Alumni</string>
+    <string name="students">Students</string>
 
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>

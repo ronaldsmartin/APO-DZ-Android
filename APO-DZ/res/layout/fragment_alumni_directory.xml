@@ -12,7 +12,8 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
         <!-- List -->
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipe_layout"
@@ -30,50 +31,26 @@
                 android:fastScrollEnabled="true"
                 android:footerDividersEnabled="false"
                 android:paddingBottom="@dimen/list_padding_vertical"
+                android:paddingEnd="0dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="0dp"
                 android:paddingStart="16dp"
                 android:paddingTop="@dimen/list_padding_vertical"
                 android:scrollbarStyle="insideInset"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"
+                tools:listitem="@layout/item_brother" />
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <!-- Footer -->
-        <LinearLayout
-            android:id="@+id/quick_return_bar"
-            android:layout_width="match_parent"
+        <com.melnykov.fab.FloatingActionButton xmlns:fab="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/button_floating_action"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@color/primary_translucent"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_show_alum"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/btn_am_alum_dir_show_alumni"
-                android:textAllCaps="true"
-                android:textColor="@color/accent_fallback_light" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/item_padding_default"
-                android:layout_marginTop="@dimen/item_padding_default"
-                android:background="@color/card_backdrop" />
-
-            <Button
-                android:id="@+id/btn_show_students"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/btn_am_alum_dir_show_students"
-                android:textAllCaps="true"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
+            android:layout_gravity="bottom|right|end"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_action_loop"
+            fab:fab_colorNormal="@android:color/white"
+            fab:fab_colorPressed="@color/accent_fallback_dark" />
     </FrameLayout>
 
     <!-- Loading Progress Indicator -->
@@ -83,7 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:indeterminate="true" />
+        android:indeterminate="true"
+        tools:visibility="gone" />
 
     <!-- Reload button appears when there's no internet. -->
     <Button
