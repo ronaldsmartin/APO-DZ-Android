@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
 
@@ -30,13 +29,15 @@ import butterknife.OnClick;
  */
 public class AlumDirectoryFragment extends DirectoryFragment {
 
+    //region Constants
     /* Tag for debugging */
     public static final String TAG = "AlumDirectoryFragment";
+
     /* Keys allow storage and retrieval of data during Fragment lifecycle. */
     private static final String LIST_BROS = "LIST_BROS";
     private static final String LIST_ALUM = "LIST_ALUM";
-    @InjectView(R.id.button_floating_action)
-    FloatingActionButton mToggleDirectoryBtn;
+    //endregion
+
     /* Store entries independently of directory list to allow toggling by user. */
     private ArrayList<Brother> mStudentList, mAlumList;
 
@@ -84,7 +85,11 @@ public class AlumDirectoryFragment extends DirectoryFragment {
     protected void init(Bundle savedInstanceState, View view) {
         super.init(savedInstanceState, view);
         ButterKnife.inject(this, view);
-        mToggleDirectoryBtn.attachToListView(getListView());
+
+        FloatingActionButton floatingActionButton =
+                ButterKnife.findById(view, R.id.button_floating_action);
+        floatingActionButton.attachToListView(getListView());
+
         getActionBar().setSubtitle(R.string.alumni);
     }
 
@@ -93,8 +98,8 @@ public class AlumDirectoryFragment extends DirectoryFragment {
         super.onResume();
 
         // Set the appropriate ActionBar subtitle text.
-        if (isShowingAlumDirectory()) getActionBar().setSubtitle(R.string.students);
-        else if (isShowingStudentDirectory()) getActionBar().setSubtitle(R.string.alumni);
+        if (isShowingAlumDirectory()) getActionBar().setSubtitle(R.string.alumni);
+        else if (isShowingStudentDirectory()) getActionBar().setSubtitle(R.string.students);
     }
 
     @Override
