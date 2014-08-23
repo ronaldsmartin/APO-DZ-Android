@@ -97,6 +97,16 @@ public class AlumModeActivity extends FragmentActivity
         refreshActionBarTitle();
     }
 
+    @Override
+    public CharSequence getItemSubtitle(int position) {
+        switch (position) {
+            case R.id.btn_section1:
+                return getString(R.string.alumni);
+            default:
+                return null;
+        }
+    }
+
     /**
      * Use the currently selected navigation item as the ActionBar title.
      */

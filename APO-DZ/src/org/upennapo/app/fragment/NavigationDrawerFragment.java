@@ -62,6 +62,7 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
     private View mFragmentContainerView;
 
     private CharSequence mCurrentTitle;
+    private CharSequence mCurrentSubtitle = null;
     private int mCurrentSelectedPosition = R.id.btn_section1;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
@@ -160,6 +161,7 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
                 if (!isAdded()) {
                     return;
                 }
+                setSubtitle(mCurrentSubtitle);
                 getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
 
@@ -179,6 +181,7 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
                     sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
                 }
 
+                mCurrentSubtitle = getActionBar().getSubtitle();
                 getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
         };
@@ -206,6 +209,7 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
         if (mCallbacks != null) {
+            mCurrentSubtitle = mCallbacks.getItemSubtitle(position);
             mCallbacks.onNavigationDrawerItemSelected(position);
         }
     }
@@ -326,14 +330,15 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setTitle(R.string.app_name);
+        actionBar.setSubtitle(null);
     }
 
     private ActionBar getActionBar() {
         return getActivity().getActionBar();
     }
 
-    private void setTitle(CharSequence title) {
-        getActionBar().setTitle(title);
+    private void setSubtitle(CharSequence subtitle) {
+        getActionBar().setSubtitle(subtitle);
     }
 
     /**
@@ -344,5 +349,7 @@ public class NavigationDrawerFragment extends Fragment implements View.OnClickLi
          * Called when an item in the navigation drawer is selected.
          */
         void onNavigationDrawerItemSelected(int position);
+
+        CharSequence getItemSubtitle(int position);
     }
 }
