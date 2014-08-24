@@ -30,6 +30,7 @@ import java.util.Arrays;
 public class DirectoryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     public static final String SHEET_KEY = "SHEET_KEY";
+    public static final String LAST_UPDATED = "_DIRECTORY_LAST_UPDATED";
     private static final String LIST_KEY = "DIRECTORY_LIST";
 
     /**

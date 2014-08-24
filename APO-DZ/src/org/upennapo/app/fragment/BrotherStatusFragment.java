@@ -24,14 +24,17 @@ import org.upennapo.app.model.User;
 public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
         View.OnClickListener {
 
-    // Constants
+    //region Constants
     public static final String STORAGE_KEY = "BROTHER_STATUS";
+    public static final String LAST_UPDATED = "BROTHER_STATUS_LAST_UPDATED";
     public static final String ROW_KEY = "USER_ROW";
     private static final String URL_KEY = "SPREADSHEET_URL";
     private static final String USER_KEY = "USER";
     private static final String FIRST_NAME_KEY = "FIRST_NAME";
     private static final String LAST_NAME_KEY = "LAST_NAME";
     private static final String TAG_FAILED_SEARCH = "SEARCH_FAILED";
+    //endregion
+
     /**
      * Flag is set in BrotherLoader when the result is null. This is used to ensure the user is only
      * notified of the failure once.
@@ -315,11 +318,11 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
         protected void onPostExecute(User result) {
             super.onPostExecute(result);
 
-            // Short circuit if our context is gone.
-            if (getActivity() == null) return;
-
-            BrotherStatusFragment.this.mUser = result;
-            updateViews();
+            // Update only if our context still exists.
+            if (getActivity() != null) {
+                BrotherStatusFragment.this.mUser = result;
+                updateViews();
+            }
         }
     }
 }

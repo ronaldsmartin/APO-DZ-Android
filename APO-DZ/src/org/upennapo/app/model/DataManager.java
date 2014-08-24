@@ -23,11 +23,13 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.upennapo.app.R;
 import org.upennapo.app.fragment.BrotherStatusFragment;
+import org.upennapo.app.fragment.DirectoryFragment;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.TimeUnit;
 
 /**
  * DataManager provides a means to download and parse information from the Google Sheets backend.
@@ -38,6 +40,7 @@ import java.io.InputStreamReader;
 public class DataManager {
 
     private static final String TAG = "DataManager";
+    private static final int DATA_EXPIRATION_DAYS = 7;
 
     /**
      * Downloads brotherhood requirement data for the requested person.
@@ -56,9 +59,15 @@ public class DataManager {
                 context.getSharedPreferences(context.getString(R.string.app_global_storage_key), Context.MODE_PRIVATE);
         Gson gson = new Gson();
 
+        // Make sure data isn't stale.
+        long currentTime = System.currentTimeMillis();
+        long lastUpdated = prefs.getLong(BrotherStatusFragment.LAST_UPDATED, 0);
+
+        boolean dataIsStale = isDataExpired(currentTime, lastUpdated);
+
         // If the status isn't cached or we are refreshing, download and parse the brother status
         // data, then save the corresponding JSON string in SharedPrefs.
-        if ((!prefs.contains(BrotherStatusFragment.STORAGE_KEY) || forceDownload)
+        if ((!prefs.contains(BrotherStatusFragment.STORAGE_KEY) || forceDownload || dataIsStale)
                 && isNetworkAvailable(context)) {
             String jsonString = downloadJsonData(urlString);
             user = findUserInArray(context, firstName, lastName, parseSpreadsheetJson(jsonString));
@@ -66,6 +75,7 @@ public class DataManager {
             if (user != null) {
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString(BrotherStatusFragment.STORAGE_KEY, gson.toJson(user));
+                editor.putLong(BrotherStatusFragment.LAST_UPDATED, currentTime);
                 editor.apply();
             }
         } else {
@@ -74,6 +84,19 @@ public class DataManager {
         }
 
         return user;
+    }
+
+    /**
+     * Check if data is stale based on timestamps. Data is stale if a week has passed since the last
+     * update.
+     *
+     * @param currentTime The current Unix time in ms
+     * @param lastUpdated The Unix time of the last update in ms
+     * @return {@code true} if the a week has passed between the last update and the current time
+     */
+    private static boolean isDataExpired(long currentTime, long lastUpdated) {
+        long delta = TimeUnit.MILLISECONDS.toDays(currentTime - lastUpdated);
+        return delta >= DATA_EXPIRATION_DAYS;
     }
 
     /**
@@ -170,14 +193,19 @@ public class DataManager {
         // Attempt to retrieve the string from memory.
         String jsonString = prefs.getString(sheetKey, null);
 
-        if (jsonString == null || forceDownload) {
-            if (isNetworkAvailable(context)) {
-                jsonString = downloadJsonData(urlString);
+        // Make sure data isn't stale.
+        String lastUpdatedKey = sheetKey + DirectoryFragment.LAST_UPDATED;
+        long currentTime = System.currentTimeMillis();
+        long lastUpdated = prefs.getLong(lastUpdatedKey, 0);
+        boolean dataIsStale = isDataExpired(currentTime, lastUpdated);
 
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putString(sheetKey, jsonString);
-                editor.apply();
-            }
+        if (jsonString == null || forceDownload || dataIsStale && isNetworkAvailable(context)) {
+            jsonString = downloadJsonData(urlString);
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString(sheetKey, jsonString);
+            editor.putLong(lastUpdatedKey, currentTime);
+            editor.apply();
         }
 
         return jsonString;
