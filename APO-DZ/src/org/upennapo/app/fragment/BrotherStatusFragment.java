@@ -54,9 +54,17 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
     public static BrotherStatusFragment newInstance(Context context) {
         BrotherStatusFragment instance = new BrotherStatusFragment();
 
+        SharedPreferences prefs = context.getSharedPreferences(
+                context.getString(R.string.app_global_storage_key),
+                Context.MODE_PRIVATE);
+        final String firstName = prefs.getString(LoginActivity.USER_FIRSTNAME_KEY, ""),
+                lastName = prefs.getString(LoginActivity.USER_LASTNAME_KEY, "");
+
         Bundle broStatusArgs = new Bundle();
+        broStatusArgs.putString(FIRST_NAME_KEY, firstName);
+        broStatusArgs.putString(LAST_NAME_KEY, lastName);
         broStatusArgs.putString(BrotherStatusFragment.URL_KEY,
-                context.getString(R.string.spreadsheet_url));
+                context.getString(R.string.spreadsheet_url, firstName, lastName));
 
         instance.setArguments(broStatusArgs);
         return instance;
@@ -109,20 +117,23 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
 
     private void init(Bundle savedInstanceState, View view) {
         if (savedInstanceState == null) {
+            // Retrieve arguments
+            Bundle args = getArguments();
+            this.firstName = args.getString(FIRST_NAME_KEY);
+            this.lastName = args.getString(LAST_NAME_KEY);
+            this.spreadsheetUrl = args.getString(URL_KEY);
+
             // Automatically fail the search for alumni.
             this.mFlagFailedSearch = LoginActivity.isAlumLoggedIn(getActivity())
                     || getActivity()
                     .getSharedPreferences(getString(R.string.app_global_storage_key), Context.MODE_PRIVATE)
                     .getBoolean(TAG_FAILED_SEARCH, false);
             if (mFlagFailedSearch) {
+                // Show the user not found text.
                 mProgressBar.setVisibility(View.GONE);
                 view.findViewById(R.id.status_fail_txt).setVisibility(View.VISIBLE);
             } else if (DataManager.isNetworkAvailable(getActivity())) {
-                SharedPreferences prefs = getActivity().getSharedPreferences(getString(R.string.app_global_storage_key), Context.MODE_PRIVATE);
-                this.firstName = prefs.getString(LoginActivity.USER_FIRSTNAME_KEY, "");
-                this.lastName = prefs.getString(LoginActivity.USER_LASTNAME_KEY, "");
-                this.spreadsheetUrl = getArguments().getString(URL_KEY);
-
+                // Download/retrieve user's spreadsheet data.
                 getUserData();
             } else {
                 // Notify the user that there is no connection. Tell them to try later.

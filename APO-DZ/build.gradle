@@ -18,7 +18,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 19
         versionCode 12
-        versionName "2.2.0"
+        versionName "2.2.1"
 
         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
     }
