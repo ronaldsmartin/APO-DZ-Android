@@ -110,6 +110,12 @@
 
 ##---------------End: proguard configuration for Gson ----------
 
+##---------------Begin: proguard configuration for ButterKnife ----------
+-dontwarn butterknife.internal.**
+-keep class **$$ViewInjector { *; }
+-keepnames class * { @butterknife.InjectView *;}
+##---------------End: proguard configuration for ButterKnife ----------
+
 
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
