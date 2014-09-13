@@ -279,7 +279,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
         updateStatusText(R.id.membership_status, this.mUser.Membership);
 
         TextView membershipPointsLabel = (TextView) getActivity().findViewById(R.id.membership_points);
-        membershipPointsLabel.setText(this.mUser.Membership_Points + " of " + this.mUser.Required_Membership_Points);
+        membershipPointsLabel.setText(this.mUser.Meetings_This_Month + " of " + this.mUser.Monthly_Required_Meetings);
 
         updateStatusText(R.id.brother_comp, this.mUser.Brother_Comp);
 

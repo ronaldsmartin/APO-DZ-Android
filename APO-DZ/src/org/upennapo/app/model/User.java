@@ -40,14 +40,15 @@ public class User implements Parcelable {
     public boolean Fellowship_Hosting;
     // Membership Details
     public boolean Membership;
-    public float Membership_Points;
-    public float Required_Membership_Points;
+    public int Meetings_This_Month;
+    public int Monthly_Required_Meetings;
     public boolean Pledge_Comp;
     public boolean Brother_Comp;
 
     /**
      * No argument constructor for GSON (de-)serialization.
      */
+    @SuppressWarnings("unused")
     public User() {
     }
 
@@ -84,8 +85,8 @@ public class User implements Parcelable {
         this.Fellowship_Points = in.readFloat();
         this.Required_Fellowship = in.readFloat();
 
-        this.Membership_Points = in.readFloat();
-        this.Required_Membership_Points = in.readFloat();
+        this.Meetings_This_Month = in.readInt();
+        this.Monthly_Required_Meetings = in.readInt();
     }
 
     @Override
@@ -100,8 +101,8 @@ public class User implements Parcelable {
         userStringBuilder.append(this.Service_Hours);
         userStringBuilder.append('\n');
 
-        userStringBuilder.append("\tMembership Points: ");
-        userStringBuilder.append(this.Membership_Points);
+        userStringBuilder.append("\tMeetings: ");
+        userStringBuilder.append(this.Meetings_This_Month);
         userStringBuilder.append('\n');
 
         userStringBuilder.append("\tFellowship Points: ");
@@ -134,7 +135,7 @@ public class User implements Parcelable {
         out.writeFloat(Fellowship_Points);
         out.writeFloat(Required_Fellowship);
 
-        out.writeFloat(Membership_Points);
-        out.writeFloat(Required_Membership_Points);
+        out.writeFloat(Meetings_This_Month);
+        out.writeFloat(Monthly_Required_Meetings);
     }
 }

@@ -253,7 +253,7 @@
 
                         <TextView
                             style="@style/BrotherStatusCategory"
-                            android:text="@string/cat_points" />
+                            android:text="@string/cat_meetings" />
 
                         <TextView
                             android:id="@+id/membership_points"
