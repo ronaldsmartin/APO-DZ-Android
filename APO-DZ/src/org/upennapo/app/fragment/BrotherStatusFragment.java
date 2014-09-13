@@ -314,6 +314,7 @@ public class BrotherStatusFragment extends Fragment implements SwipeRefreshLayou
             textView.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
         } else {
             textView.setText(R.string.req_incomplete);
+            textView.setTextColor(getResources().getColor(android.R.color.holo_red_light));
         }
     }
 
