@@ -30,8 +30,19 @@ For more info on this version, check out [app webpage](http://ronaldsmartin.gith
 ## Making It Your Own
 Please see the [project wiki](https://github.com/ronaldsmartin/APO-DZ-Android/wiki) for information on the app structure, adaptable components, and producing your own version of the app. The wiki is currently in progress, so just reach out to us if you have any questions.
 
-## Contact
+## Credits
+### Authors
+The primary app team consists of Nikila Dandapani (@nikiladandapani), Ronald Martin (@ronaldsmartin), and Dean Wilhelmi (@turniphead).
+
+A full list of contributors can be found on the [project site](http://ronaldsmartin.github.io/APO-DZ-Android/).
+
+### Dependencies
+* [Google GSON](https://code.google.com/p/google-gson/) (_since v0.1_)
+* [Butter Knife](http://jakewharton.github.io/butterknife/) (_since v2.2.1_)
+* [FloatingActionButton](https://github.com/makovkastar/FloatingActionButton) (_since v2.2.1_)
+
+### Contact
 For app-related queries, feel free to contact us at developer@upennapo.org.
 
-### Our Chapter
+#### Our Chapter
 The Delta Zeta chapter is based at the University of Pennsylvania. Please visit us at [upennapo.org](upennapo.org) for more information.
