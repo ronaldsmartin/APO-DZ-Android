@@ -17,7 +17,7 @@ android {
         applicationId 'org.upennapo.app'
         minSdkVersion 14
         targetSdkVersion 19
-        versionCode 13
+        versionCode 14
         versionName "2.2.5"
 
         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
