@@ -52,23 +52,6 @@ public class AlumModeActivity extends FragmentActivity
         FragmentManager fm = getSupportFragmentManager();
         Fragment item;
         switch (position) {
-            case 0:
-                item = fm.findFragmentByTag(AlumDirectoryFragment.TAG);
-                if (item == null) {
-                    item = AlumDirectoryFragment.newInstance(this);
-                    fm.beginTransaction().add(item, AlumDirectoryFragment.TAG);
-                }
-                break;
-            case 1:
-                item = WebFragment.newCalendarInstance(this);
-                break;
-            case 2:
-                item = LinkListFragment.newAlumLinksInstance(this);
-                break;
-            case 3:
-                item = WebFragment.new2048Instance(this);
-                break;
-
             case R.id.btn_section1:
                 item = fm.findFragmentByTag(AlumDirectoryFragment.TAG);
                 if (item == null) {
