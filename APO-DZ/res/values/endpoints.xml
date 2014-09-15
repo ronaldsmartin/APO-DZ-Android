@@ -34,11 +34,6 @@
     <string name="directory_script">https://script.google.com/macros/s/AKfycbxicc_r40k0BuR_HbESTVEjiwjKCGnnEkYI9B1rzBFTFE7-Hl9Q/exec?id=0AgviZ9NWh5fvdExBZUItbVI3RUMxTFhkWDZoWlFGZHc&amp;sheet=</string>
     <string name="directory_sheet_key">0AgviZ9NWh5fvdExBZUItbVI3RUMxTFhkWDZoWlFGZHc</string>
 
-    <!-- These are the sheet names for the three different directories in your Google Sheet -->
-    <string name="brother_directory_sheet_key">Brothers</string>
-    <string name="pledge_directory_sheet_key">Pledges</string>
-    <string name="alumni_directory_sheet_key">Alumni</string>
-
 
     <!-- HELPFUL LINKS -->
     <!-- If necessary, change URLs here. Edit the string-array in arrays.xml to change what appears

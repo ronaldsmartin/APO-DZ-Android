@@ -18,9 +18,14 @@ android {
         minSdkVersion 14
         targetSdkVersion 19
         versionCode 14
-        versionName "2.2.5"
+        versionName "2.2.6"
 
         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+
+        // TODO: use product flavors to clarify resource switching?
+        resValue "string", "pledge_directory_sheet_key", "Pledges"
+        resValue "string", "brother_directory_sheet_key", "Brothers"
+        resValue "string", "alumni_directory_sheet_key", "Alumni"
     }
 
 
@@ -53,6 +58,13 @@ android {
             applicationIdSuffix '.dev'
             versionNameSuffix '-DEBUG'
             runProguard false
+
+            // Overriding Strings here lets us take screenshots in debug builds without compromising
+            // anyone's contact info. Previously we manually went to xml files and changed them back
+            // and forth specifically for this purpose.
+            resValue "string", "pledge_directory_sheet_key", "DummyPledges"
+            resValue "string", "brother_directory_sheet_key", "DummyBrothers"
+            resValue "string", "alumni_directory_sheet_key", "DummyAlumni"
         }
         beta {
             versionNameSuffix '-beta'
