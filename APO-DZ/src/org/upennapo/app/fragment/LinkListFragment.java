@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import org.upennapo.app.R;
+import org.upennapo.app.activity.WebActivity;
 import org.upennapo.app.adapter.LinkAdapter;
 
 
@@ -27,7 +28,7 @@ public class LinkListFragment extends ListFragment {
     public static final String DESCRIPTIONS = "LINK_DESCRIPTIONS";
     public static final String TARGETS = "LINK_TARGETS";
 
-    private String[] mLinkTargets;
+    private String[] mLinkTargets, mLinkTitles;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -64,6 +65,7 @@ public class LinkListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLinkTargets = getArguments().getStringArray(TARGETS);
+        mLinkTitles = getArguments().getStringArray(TITLES);
         setListAdapter(new LinkAdapter(getActivity(), R.layout.fragment_links, getArguments()));
     }
 
@@ -75,7 +77,18 @@ public class LinkListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        final String targetUrl = mLinkTargets[position];
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(targetUrl)));
+
+        final String targetUrl = mLinkTargets[position],
+                targetTitle = mLinkTitles[position];
+        boolean targetIsAForm = targetUrl.startsWith("https://docs.google.com/forms/")
+                || targetUrl.startsWith("http://form.jotform.us/form/");
+
+        Intent viewIntent = targetIsAForm ?
+                new Intent(getActivity(), WebActivity.class) :
+                new Intent(Intent.ACTION_VIEW, Uri.parse(targetUrl));
+        viewIntent.putExtra(WebFragment.URL_KEY, targetUrl);
+        viewIntent.putExtra(WebActivity.TITLE, targetTitle);
+
+        startActivity(viewIntent);
     }
 }

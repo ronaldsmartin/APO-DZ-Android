@@ -154,12 +154,14 @@
     <string name="title_am_section3">Resources</string>
     <string name="title_am_section4">@string/apo_2048_label</string>
 
-    <!-- AlumDirectory quick-return directory toggle bar-->
+    <!-- AlumDirectory quick-return directory toggle bar -->
     <string name="alumni">Alumni</string>
     <string name="students">Students</string>
 
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_web">WebActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
