@@ -22,8 +22,7 @@
         <item>Report your fellowship</item>
         <item>Report your food group</item>
         <item>Report big-little hangout</item>
-        <item>Give a (de-)merit</item>
-        <item>Request a reimbursement</item>
+        <item>Request a travel reimbursement</item>
         <item>Send a shoutout</item>
         <item>Tell Board</item>
 
@@ -39,7 +38,6 @@
         <item>APO Nationals</item>
         <item>Section 92 Home</item>
         <item>UPenn APO</item>
-        <item>Service Calendar</item>
         <item>1925 Club</item>
 
         <!-- Social Media -->
@@ -77,7 +75,6 @@
         <item />
         <item />
         <item />
-        <item />
 
         <!-- Spreadsheets -->
         <item>@string/link_header_flag</item>
@@ -88,7 +85,6 @@
 
         <!-- Websites -->
         <item>@string/link_header_flag</item>
-        <item />
         <item />
         <item />
         <item />
@@ -127,7 +123,6 @@
         <item>@string/form_fellowship_reporting</item>
         <item>@string/form_food_group_reporting</item>
         <item>@string/form_big_little_reporting</item>
-        <item>@string/form_merit_reporting</item>
         <item>@string/form_reimbursement</item>
         <item>@string/form_dz_shoutout</item>
         <item>@string/form_board_feedback</item>
@@ -144,7 +139,6 @@
         <item>@string/sites_national_homepage</item>
         <item>@string/sites_section_92</item>
         <item>@string/sites_chapter_homepage</item>
-        <item>@string/sites_service_calendar</item>
         <item>@string/sites_national_1925_club</item>
 
         <!-- Social Media -->
