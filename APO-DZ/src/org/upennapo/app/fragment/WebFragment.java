@@ -36,20 +36,30 @@ public class WebFragment extends Fragment {
     }
 
     /**
+     * Get an instance of WebFragment that loads the specified URL.
+     *
+     * @param urlString to load in the WebView
+     * @return new WebFragment set to load the URL
+     */
+    public static WebFragment newInstance(String urlString) {
+        WebFragment instance = new WebFragment();
+
+        Bundle args = new Bundle();
+        args.putString(URL_KEY, urlString);
+        instance.setArguments(args);
+
+        return instance;
+    }
+
+    /**
      * Get an instance of WebFragment that loads the Google Calendars.
      *
      * @param context in which to load the WebView
      * @return Google Calendar Fragment
      */
     public static WebFragment newCalendarInstance(Context context) {
-        WebFragment instance = new WebFragment();
-
         final String url = context.getString(R.string.calendar_url);
-        Bundle args = new Bundle();
-        args.putString(URL_KEY, url);
-        instance.setArguments(args);
-
-        return instance;
+        return newInstance(url);
     }
 
     /**
@@ -59,14 +69,8 @@ public class WebFragment extends Fragment {
      * @return 2048 Fragment
      */
     public static WebFragment new2048Instance(Context context) {
-        WebFragment instance = new WebFragment();
-
         final String url = context.getString(R.string.apo_2048_url);
-        Bundle args = new Bundle();
-        args.putString(URL_KEY, url);
-        instance.setArguments(args);
-
-        return instance;
+        return newInstance(url);
     }
 
     @Override
