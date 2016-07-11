@@ -30,15 +30,17 @@ For more info on this version, check out [app webpage](http://ronaldsmartin.gith
 ## Making It Your Own
 Please see the [project wiki](https://github.com/ronaldsmartin/APO-DZ-Android/wiki) for information on the app structure, adaptable components, and producing your own version of the app. The wiki is currently in progress, so just reach out to us if you have any questions.
 
+In particular, you'll need to create a string XML resource file with your spreadsheet keys and the like before your forks will build.
+
 ## Credits
 ### Authors
-The primary app team consists of Nikila Dandapani (@nikiladandapani), Ronald Martin (@ronaldsmartin), and Dean Wilhelmi (@turniphead).
+Nikila Dandapani ([@nikilad](https://github.com/nikilad)), Ronald Martin ([@ronaldsmartin](https://github.com/ronaldsmartin)), and Dean Wilhelmi ([@turniphead](https://github.com/turniphead)).
 
 A full list of contributors can be found on the [project site](http://ronaldsmartin.github.io/APO-DZ-Android/).
 
 ### Dependencies
 * [Google GSON](https://code.google.com/p/google-gson/) (_since v0.1_)
-* [Butter Knife](http://jakewharton.github.io/butterknife/) (_since v2.2.1_)
+* [ButterKnife](http://jakewharton.github.io/butterknife/) (_since v2.2.1_)
 * [FloatingActionButton](https://github.com/makovkastar/FloatingActionButton) (_since v2.2.1_)
 
 ### Contact
